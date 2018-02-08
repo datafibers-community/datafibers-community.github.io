@@ -2,31 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hive on DataFibers</title>
-    <link>https://datafibers.org/tags/hive/</link>
+    <link>https://datafibers-community.github.io/tags/hive/</link>
     <description>Recent content in Hive on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Copyright (c) 2018, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Fri, 02 Feb 2018 13:50:46 +0200</lastBuildDate>
     
-	<atom:link href="https://datafibers.org/tags/hive/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://datafibers-community.github.io/tags/hive/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hive Get the Max/Min</title>
-      <link>https://datafibers.org/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/</link>
+      <link>https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/</link>
       <pubDate>Fri, 02 Feb 2018 13:50:46 +0200</pubDate>
       
-      <guid>https://datafibers.org/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/</guid>
+      <guid>https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/</guid>
       <description>Most of time, we need to find the max or min value of particular columns as well as other columns. For example, we have following employee table.
 &amp;gt; SELECT name,sex_age.sex AS sex,sex_age.age AS age FROM employee; +----------+---------+------+ | name | sex | age | +----------+---------+------+ | Michael | Male | 30 | | Will | Male | 35 | | Shelley | Female | 27 | | Lucy | Female | 57 | | Steven | Male | 30 | +----------+---------+------+ 5 rows selected (75.</description>
     </item>
     
     <item>
       <title>Big Data Books Reviews</title>
-      <link>https://datafibers.org/blog/2018/01/10/2018-01-10-reviews-big-data/</link>
+      <link>https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/</link>
       <pubDate>Wed, 10 Jan 2018 13:50:46 +0200</pubDate>
       
-      <guid>https://datafibers.org/blog/2018/01/10/2018-01-10-reviews-big-data/</guid>
+      <guid>https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/</guid>
       <description>Learning Spark SQL  Level Ent.
  Level Mid.
  Level Adv.  Published in Sep. 2017. Start reading it.
@@ -36,40 +37,40 @@ Learning Apache Flink  Level Ent. Level Mid.  There are very few books about Apa
     
     <item>
       <title>Hive RowID Generation</title>
-      <link>https://datafibers.org/blog/2017/11/01/2017-11-02-hive-rowid-generation/</link>
+      <link>https://datafibers-community.github.io/blog/2017/11/01/2017-11-02-hive-rowid-generation/</link>
       <pubDate>Wed, 01 Nov 2017 13:50:46 +0200</pubDate>
       
-      <guid>https://datafibers.org/blog/2017/11/01/2017-11-02-hive-rowid-generation/</guid>
+      <guid>https://datafibers-community.github.io/blog/2017/11/01/2017-11-02-hive-rowid-generation/</guid>
       <description>Introduction It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.
 ROW_NUMBER() Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data.</description>
     </item>
     
     <item>
       <title>Apache Hive Essentials Published</title>
-      <link>https://datafibers.org/blog/1/01/01/2015-03-15-apache-hive-essentials-published/</link>
+      <link>https://datafibers-community.github.io/blog/1/01/01/2015-03-15-apache-hive-essentials-published/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://datafibers.org/blog/1/01/01/2015-03-15-apache-hive-essentials-published/</guid>
+      <guid>https://datafibers-community.github.io/blog/1/01/01/2015-03-15-apache-hive-essentials-published/</guid>
       <description>Finally, I made it. I got it published after working for 6 monthes.
 Apache Hive Essentials  My very first book Also the first book on Apache Hive 1.0.0 in the world  Check it out here</description>
     </item>
     
     <item>
       <title>Hive Composite Data Type</title>
-      <link>https://datafibers.org/blog/1/01/01/2013-09-29-hive-composite-data-type/</link>
+      <link>https://datafibers-community.github.io/blog/1/01/01/2013-09-29-hive-composite-data-type/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://datafibers.org/blog/1/01/01/2013-09-29-hive-composite-data-type/</guid>
+      <guid>https://datafibers-community.github.io/blog/1/01/01/2013-09-29-hive-composite-data-type/</guid>
       <description>For now, hive supports following composite data type：
  map: (key1, value1, key2, value2, …). Creates a map with the given key/value pairs struct: (val1, val2, val3, …). Creates a struct with the given field values. Struct field names will be col1, col2, &amp;hellip; named_struct: (name1, val1, name2, val2, …). Creates a struct with the given field names and values. (as of Hive 0.8.0) array: (val1, val2, …). Creates an array with the given elements create_union:(tag, val1, val2, …).</description>
     </item>
     
     <item>
       <title>Hive Performance Tuning - No. of MapReduce</title>
-      <link>https://datafibers.org/blog/1/01/01/2012-06-20-hive-performance-tuning/</link>
+      <link>https://datafibers-community.github.io/blog/1/01/01/2012-06-20-hive-performance-tuning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://datafibers.org/blog/1/01/01/2012-06-20-hive-performance-tuning/</guid>
+      <guid>https://datafibers-community.github.io/blog/1/01/01/2012-06-20-hive-performance-tuning/</guid>
       <description>###1. Set proper number of map
  通常情况下，作业会通过input的目录产生一个或者多个map任务。 主要的决定因素有： input的文件总个数，input的文件大小，集群设置的文件块大小(目前为128M, 可在hive中通过set dfs.block.size;命令查看到，该参数不能自定义修改)；
  举例： a) 假设input目录下有1个文件a,大小为780M,那么hadoop会将该文件a分隔成7个块（6个128m的块和1个12m的块），从而产生7个map数
@@ -92,10 +93,10 @@ select data_desc,count(1),count(distinct id),sum(case when …), sum(case when .
     
     <item>
       <title>Hive and Hadoop Exceptions</title>
-      <link>https://datafibers.org/blog/1/01/01/2014-06-01-hive-and-hadoop-exceptions/</link>
+      <link>https://datafibers-community.github.io/blog/1/01/01/2014-06-01-hive-and-hadoop-exceptions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://datafibers.org/blog/1/01/01/2014-06-01-hive-and-hadoop-exceptions/</guid>
+      <guid>https://datafibers-community.github.io/blog/1/01/01/2014-06-01-hive-and-hadoop-exceptions/</guid>
       <description>I installed Hive 1.0.0 on Hadoop 1.2.1. When I try to enter the Hive CLI, it reports following exceptions
 org.apache.hadoop.hive.ql.metadata.HiveException:java.io.IOException:Filesystem closed  According to the search here, the mainly reason for this is that when multiple nodes read HFDS files if one node is offline, it will throw such exception when the other nodes are still reading the data cached. There are two ways to resolve this.
  Turn off JVM reuse  &amp;lt;property&amp;gt; &amp;lt;name&amp;gt;mapred.</description>
@@ -103,10 +104,10 @@ org.apache.hadoop.hive.ql.metadata.HiveException:java.io.IOException:Filesystem 
     
     <item>
       <title>Hive and Hadoop Exceptions</title>
-      <link>https://datafibers.org/blog/1/01/01/2015-02-12-hive-and-hadoop-exceptions/</link>
+      <link>https://datafibers-community.github.io/blog/1/01/01/2015-02-12-hive-and-hadoop-exceptions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://datafibers.org/blog/1/01/01/2015-02-12-hive-and-hadoop-exceptions/</guid>
+      <guid>https://datafibers-community.github.io/blog/1/01/01/2015-02-12-hive-and-hadoop-exceptions/</guid>
       <description>I installed Hive 1.0.0 on Hadoop 1.2.1. When I try to enter the Hive CLI, it reports following exceptions
 org.apache.hadoop.hive.ql.metadata.HiveException:java.io.IOException:Filesystem closed  According to the search here, the mainly reason for this is that when multiple nodes read HFDS files if one node is offline, it will throw such exception when the other nodes are still reading the data cached. There are two ways to resolve this.
  Turn off JVM reuse  &amp;lt;property&amp;gt; &amp;lt;name&amp;gt;mapred.</description>
@@ -114,10 +115,10 @@ org.apache.hadoop.hive.ql.metadata.HiveException:java.io.IOException:Filesystem 
     
     <item>
       <title>Hive vs. Pig</title>
-      <link>https://datafibers.org/blog/1/01/01/2013-04-24-hive-vs-pig/</link>
+      <link>https://datafibers-community.github.io/blog/1/01/01/2013-04-24-hive-vs-pig/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://datafibers.org/blog/1/01/01/2013-04-24-hive-vs-pig/</guid>
+      <guid>https://datafibers-community.github.io/blog/1/01/01/2013-04-24-hive-vs-pig/</guid>
       <description>Both projects are top Apache projects to process data in Hadoop. Here, I try to compare the difference.
 Below is picture I found (I cannot find the original link, but there is mirror here)
 In addition, I am here to share some more difference. To be honest, I prefer pig more. Mapred, Hive, and pig are like Java, ruby, and python.
