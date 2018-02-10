@@ -184,6 +184,37 @@
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
+                                      <a href="https://datafibers-community.github.io/blog/1/01/01/2013-07-06-hbase-disable-major-compaction/">
+                                          
+                                          <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
+                                          
+                                      </a>
+                                  </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h2><a href="https://datafibers-community.github.io/blog/1/01/01/2013-07-06-hbase-disable-major-compaction/">Disable Major Compaction in HBase Cluster</a></h2>
+                                    <div class="clearfix">
+                                        <p class="author-category">
+                                          
+                                          
+
+                                        </p>
+                                        <p class="date-comments">
+                                            <a href="https://datafibers-community.github.io/blog/1/01/01/2013-07-06-hbase-disable-major-compaction/"><i class="fa fa-calendar-o"></i> January 1, 0001</a>
+                                        </p>
+                                    </div>
+                                    <p class="intro">HBase consists of multiple regions. While a region may have several Stores, each holds a single column family. An edit first writes to the hosting region store&rsquo;s in-memory space, which is called MemStore. When the size of MemStore reaches a threshold, it is flushed to StoreFiles on HDFS.
+As data increases, there may be many StoreFiles on HDFS, which is not good for its performance. Thus, HBase will automatically pick up a couple of the smaller StoreFiles and rewrite them into a bigger one.</p>
+                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/1/01/01/2013-07-06-hbase-disable-major-compaction/" class="btn btn-template-main">Continue reading</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                  <div class="image">
                                       <a href="https://datafibers-community.github.io/blog/1/01/01/2013-01-18-git-cheat-sheet/">
                                           
                                           <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
@@ -471,40 +502,6 @@ Context context... //Enum class refers to groupName，Enum class type refers to 
                             </div>
                         </section>
                         
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/">
-                                          
-                                          <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/">Hadoop DistributedCache</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/"><i class="fa fa-calendar-o"></i> January 1, 0001</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">DistributedCache Usage The usage of DistributedCache is as follows
- Share data files/meta data/binary files among map and reduce tasks Add 3rd party packages to the classpath  
-DistributedCache API Basic Files DistributedCache is actually to add property mapred.cache.{files|archives}to the Hadoop Configuraton. In Hadoop 2.0, it changes to mapreduce.job.cache.{files|archives}.
-There are two ways to use the DistributedCache though API
-conf.set(&quot;mapred.cache.files&quot;, &quot;/data/data&quot;); conf.set(&quot;mapred.cache. archives&quot;, &quot;/data/data.zip&quot;);  Or better (compatible for late version)</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
 
                         <ul class="pager">
                             
@@ -575,6 +572,9 @@ conf.set(&quot;mapred.cache.files&quot;, &quot;/data/data&quot;); conf.set(&quot
             </li>
             
             <li><a href="https://datafibers-community.github.io/categories/review">review (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/training">training (1)</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/categories/tutorial">tutorial (1)</a>

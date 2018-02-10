@@ -184,6 +184,40 @@
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
+                                      <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/">
+                                          
+                                          <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
+                                          
+                                      </a>
+                                  </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h2><a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/">Hadoop DistributedCache</a></h2>
+                                    <div class="clearfix">
+                                        <p class="author-category">
+                                          
+                                          
+
+                                        </p>
+                                        <p class="date-comments">
+                                            <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/"><i class="fa fa-calendar-o"></i> January 1, 0001</a>
+                                        </p>
+                                    </div>
+                                    <p class="intro">DistributedCache Usage The usage of DistributedCache is as follows
+ Share data files/meta data/binary files among map and reduce tasks Add 3rd party packages to the classpath  
+DistributedCache API Basic Files DistributedCache is actually to add property mapred.cache.{files|archives}to the Hadoop Configuraton. In Hadoop 2.0, it changes to mapreduce.job.cache.{files|archives}.
+There are two ways to use the DistributedCache though API
+conf.set(&quot;mapred.cache.files&quot;, &quot;/data/data&quot;); conf.set(&quot;mapred.cache. archives&quot;, &quot;/data/data.zip&quot;);  Or better (compatible for late version)</p>
+                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/" class="btn btn-template-main">Continue reading</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                  <div class="image">
                                       <a href="https://datafibers-community.github.io/blog/1/01/01/2012-11-10-hadoop-job-patterns/">
                                           
                                           <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
@@ -481,37 +515,6 @@ CREATE EXTERNAL TABLE logs_20120101 ( host STRING, identity STRING, user STRING,
                             </div>
                         </section>
                         
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/1/01/01/2013-03-01-hive-sorting-and-ordering/">
-                                          
-                                          <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/1/01/01/2013-03-01-hive-sorting-and-ordering/">Hive Sorting and Ordering</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/1/01/01/2013-03-01-hive-sorting-and-ordering/"><i class="fa fa-calendar-o"></i> January 1, 0001</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">There are following key words used in Hive to sort data with following difference:
- ORDER BY (ASC|DESC) : This is similar to the traditional SQL operator. Sorted order is maintained across all of the output from every reducer. It performs the global sort using only one reducer, so it takes long time to return result. The Usage with LIMIT is strongly recommended for order by. When hive.mapred.mode = strict and you do not specify “limit”, there are error out.</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/1/01/01/2013-03-01-hive-sorting-and-ordering/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
 
                         <ul class="pager">
                             
@@ -582,6 +585,9 @@ CREATE EXTERNAL TABLE logs_20120101 ( host STRING, identity STRING, user STRING,
             </li>
             
             <li><a href="https://datafibers-community.github.io/categories/review">review (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/training">training (1)</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/categories/tutorial">tutorial (1)</a>

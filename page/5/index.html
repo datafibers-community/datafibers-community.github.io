@@ -406,6 +406,42 @@
                             <div class="bg"></div>
                             <div class="text">
                                 <p class="buttons">
+                                    <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <h4><a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/">Hadoop DistributedCache</a></h4>
+                            <p class="author-category">
+                            
+                            on January 1, 0001
+                            </p>
+                            <p class="intro">DistributedCache Usage The usage of DistributedCache is as follows
+ Share data files/meta data/binary files among map and reduce tasks Add 3rd party packages to the classpath  
+DistributedCache API Basic Files DistributedCache is actually to add property mapred.cache.{files|archives}to the Hadoop Configuraton. In Hadoop 2.0, it changes to mapreduce.job.cache.{files|archives}.
+There are two ways to use the DistributedCache though API
+conf.set(&quot;mapred.cache.files&quot;, &quot;/data/data&quot;); conf.set(&quot;mapred.cache. archives&quot;, &quot;/data/data.zip&quot;);  Or better (compatible for late version)</p>
+                            <p class="read-more">
+                              <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-28-hadoop-distributedcache/" class="btn btn-template-main">Continue reading</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="box-image-text blog">
+                        <div class="top">
+                            <div class="image" style="overflow:hidden">
+                                
+                                <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
+                                
+                            </div>
+                            <div class="bg"></div>
+                            <div class="text">
+                                <p class="buttons">
                                     <a href="https://datafibers-community.github.io/blog/1/01/01/2012-11-10-hadoop-job-patterns/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
                                 </p>
                             </div>
@@ -491,38 +527,6 @@ Similarly, there is MultipleOutputs to write multiple destinations
  In order to be used as a key data type of a MapReduce computation, a data type must implement the org.</p>
                             <p class="read-more">
                               <a href="https://datafibers-community.github.io/blog/1/01/01/2012-07-06-hadoop-serialization-framework/" class="btn btn-template-main">Continue reading</a>
-                            </p>
-                        </div>
-                    </div>
-                    
-
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="box-image-text blog">
-                        <div class="top">
-                            <div class="image" style="overflow:hidden">
-                                
-                                <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
-                                
-                            </div>
-                            <div class="bg"></div>
-                            <div class="text">
-                                <p class="buttons">
-                                    <a href="https://datafibers-community.github.io/blog/1/01/01/2012-08-25-hadoop-split-and-block/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            <h4><a href="https://datafibers-community.github.io/blog/1/01/01/2012-08-25-hadoop-split-and-block/">Hadoop Split and Block</a></h4>
-                            <p class="author-category">
-                            
-                            on January 1, 0001
-                            </p>
-                            <p class="intro">There are two confusing concepts in Hadoop, block and split ####Block - A Physical Division HDFS was designed to hold and manage large amounts of data; a default block size is 64 MB. That means if a 128-MB text file was put in to HDFS, HDFS would divide the file into two blocks (128 MB/64 MB) and distribute the two chunks to the data nodes in the cluster. The main reason to setting proper block size is to balance the load of each map and reduce throughput so that the overall job takes better time to finish.</p>
-                            <p class="read-more">
-                              <a href="https://datafibers-community.github.io/blog/1/01/01/2012-08-25-hadoop-split-and-block/" class="btn btn-template-main">Continue reading</a>
                             </p>
                         </div>
                     </div>
