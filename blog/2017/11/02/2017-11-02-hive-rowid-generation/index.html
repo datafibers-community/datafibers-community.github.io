@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hive</title>
+  <title>Hive RowID Generation</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Hive" />
+  <meta property="og:title" content="Hive RowID Generation" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/tags/hive//" />
+  <meta property="og:url" content="/blog/2017/11/02/2017-11-02-hive-rowid-generation//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Hive logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Hive logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Hive - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Hive RowID Generation logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Hive RowID Generation logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Hive RowID Generation - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Hive</h1>
+                <h1>Hive RowID Generation</h1>
             </div>
         </div>
     </div>
@@ -173,131 +173,102 @@
 
         <div id="content">
             <div class="container">
+
                 <div class="row">
+
                     
 
-                    <div class="col-md-9" id="blog-listing-medium">
+                    <div class="col-md-9" id="blog-post">
 
+                        <p class="text-muted text-uppercase mb-small text-right">November 2, 2017</p>
+
+                        <div id="post-content">
+                          
+
+<p><img src="/img/banners/big-data-hive.jpg" alt="" /></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.</p>
+
+<h3 id="row-number">ROW_NUMBER()</h3>
+
+<p>Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data. Although there is no documentation in the official wiki, you can easily find articles regarding use this function to generate row number for the whole table.</p>
+
+<pre><code>SELECT ROW_NUMBER() OVER () as row_num FROM table_name
+</code></pre>
+
+<p>However, it is reported in some version of Hive that the function has exceptions when used in views or weird behavior, see here and there. Therefore, it is a quite danger to use this approach right now since your result is unexpected across different version of Hive.</p>
+
+<h3 id="java-package">Java Package</h3>
+
+<p>Hive is capable of leveraging Java internal packages naturally. By using Java’s UUID, you can directly generate a UUID number for each row as follows.</p>
+
+<pre><code>SELECT regexp_replace(reflect('java.util.UUID','randomUUID'), '-', '') as row_num FROM table_name
+</code></pre>
+
+<p>As UUID generation logic defines, there are chance of collision. However, it is very low chance.</p>
+
+<h3 id="hive-mall-ex">Hive Mall Ex</h3>
+
+<p>Hivemall is a scalable machine learning library that runs on Apache Hive. It has provided a UDF called <a href="https://github.com/apache/incubator-hivemall/blob/master/core/src/main/java/hivemall/tools/mapred/RowIdUDF.java">RowIdUDF</a>. It combines a MapReduce task ID and random number as row.</p>
+
+<pre><code>SELECT rowid() as row_num FROM table_name
+</code></pre>
+
+<h3 id="hive-virtual-columns">Hive Virtual Columns</h3>
+
+<p>Hive has provided three <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+VirtualColumns">virtual columns</a> as follows.</p>
+
+<pre><code>* INPUT__FILE__NAME: Full URI of a file name in HDFS.
+* BLOCK__OFFSET__INSIDE__FILE: Byte offset for the block from beginning of the file.
+* ROW__OFFSET__INSIDE__BLOCK: Byte offset for the line within the block.
+</code></pre>
+
+<p>We can always combine three above virtual columns to identify the each line in the table. In addition, we can control the length of this combined value by increasing the number of files (increasing the number of reducers). As result, the offset value becomes smaller for each block. The usage of this approach is as follows. Note, <strong>ROW_OFFSET_INSIDE_BLOCK</strong> is only available for RCFile or SequenceFile format of data.</p>
+
+<pre><code>// To enable ROW__OFFSET__INSIDE__BLOCK
+SET hive.exec.rowoffset=true; 
+
+SELECT 
+// Convert file name as number, such as 000001_0 to 10
+concat(cast(regexp_replace(reverse(split(reverse(INPUT__FILE__NAME),'/')[0]),'_','') as int), 
+BLOCK__OFFSET__INSIDE__FILE, 
+ROW__OFFSET__INSIDE__BLOCK) as row_num
+FROM table_name
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Before Hive ROW_NUMBER() function issue gets fixed, it is recommended to use either Hivemall rowid() or virtual columns. If you need to control the length of row id, you have to use Hive virtual columns approach.</p>
+
+                        </div>
                         
                         
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/">
-                                          
-                                          <img src="https://datafibers-community.github.io//img/banners/maxmin.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/">Hive Get the Max/Min</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/article">article</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/"><i class="fa fa-calendar-o"></i> February 2, 2018</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Most of time, we need to find the max or min value of particular columns as well as other columns. For example, we have following employee table.
-&gt; SELECT name,sex_age.sex AS sex,sex_age.age AS age FROM employee; +----------+---------+------+ | name | sex | age | +----------+---------+------+ | Michael | Male | 30 | | Will | Male | 35 | | Shelley | Female | 27 | | Lucy | Female | 57 | | Steven | Male | 30 | +----------+---------+------+ 5 rows selected (75.</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/">
-                                          
-                                          <img src="https://datafibers-community.github.io//img/banners/book_reviews.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/">Big Data Books Reviews</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/review">review</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/"><i class="fa fa-calendar-o"></i> January 10, 2018</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Learning Spark SQL  Level Ent.
- Level Mid.
- Level Adv.  Published in Sep. 2017. Start reading it.
-
-Learning Apache Flink  Level Ent. Level Mid.  There are very few books about Apache Flink. Besides offical document, this is a good one for people who wants to know Flink quicker. This book, published in the earlier of 2017, covers most of core topics for Flink with examples.</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2017/11/02/2017-11-02-hive-rowid-generation/">
-                                          
-                                          <img src="https://datafibers-community.github.io//img/banners/big-data-hive.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2017/11/02/2017-11-02-hive-rowid-generation/">Hive RowID Generation</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/article">article</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2017/11/02/2017-11-02-hive-rowid-generation/"><i class="fa fa-calendar-o"></i> November 2, 2017</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Introduction It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.
-ROW_NUMBER() Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data.</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2017/11/02/2017-11-02-hive-rowid-generation/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
                         
 
-                        <ul class="pager">
-                            
-                            <li class="previous disabled"><a href="#">&larr; Newer</a></li>
-                            
-
-                            
-                            <li class="next disabled"><a href="#">Older &rarr;</a></li>
-                            
-                        </ul>
                     </div>
                     
 
@@ -418,6 +389,7 @@ ROW_NUMBER() Hive have a couple of internal functions to achieve this. ROW_NUMBE
 
                 </div>
                 
+
             </div>
             
         </div>
@@ -580,5 +552,6 @@ ga('send', 'pageview');
 <script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
 
 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
   </body>
 </html>

@@ -36,10 +36,10 @@ Learning Apache Flink  Level Ent. Level Mid.  There are very few books about Apa
     
     <item>
       <title>Hive RowID Generation</title>
-      <link>https://datafibers-community.github.io/blog/2017/11/01/2017-11-02-hive-rowid-generation/</link>
-      <pubDate>Wed, 01 Nov 2017 13:50:46 +0200</pubDate>
+      <link>https://datafibers-community.github.io/blog/2017/11/02/2017-11-02-hive-rowid-generation/</link>
+      <pubDate>Thu, 02 Nov 2017 13:50:46 +0200</pubDate>
       
-      <guid>https://datafibers-community.github.io/blog/2017/11/01/2017-11-02-hive-rowid-generation/</guid>
+      <guid>https://datafibers-community.github.io/blog/2017/11/02/2017-11-02-hive-rowid-generation/</guid>
       <description>Introduction It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.
 ROW_NUMBER() Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data.</description>
     </item>

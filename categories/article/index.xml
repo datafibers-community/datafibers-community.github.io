@@ -22,22 +22,22 @@
     </item>
     
     <item>
+      <title>Hive RowID Generation</title>
+      <link>https://datafibers-community.github.io/blog/2017/11/02/2017-11-02-hive-rowid-generation/</link>
+      <pubDate>Thu, 02 Nov 2017 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2017/11/02/2017-11-02-hive-rowid-generation/</guid>
+      <description>Introduction It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.
+ROW_NUMBER() Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data.</description>
+    </item>
+    
+    <item>
       <title>GIT Tips</title>
       <link>https://datafibers-community.github.io/blog/2017/11/01/2017-11-01-git-tips/</link>
       <pubDate>Wed, 01 Nov 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2017/11/01/2017-11-01-git-tips/</guid>
       <description>1. Git Cheat Sheet 2. Check in Git Modified But Untracked Content Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the git add . and git status. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit.</description>
-    </item>
-    
-    <item>
-      <title>Hive RowID Generation</title>
-      <link>https://datafibers-community.github.io/blog/2017/11/01/2017-11-02-hive-rowid-generation/</link>
-      <pubDate>Wed, 01 Nov 2017 13:50:46 +0200</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/2017/11/01/2017-11-02-hive-rowid-generation/</guid>
-      <description>Introduction It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.
-ROW_NUMBER() Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data.</description>
     </item>
     
     <item>
