@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hive RowID Generation</title>
+  <title>One Platform Initatives for Spark</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Hive RowID Generation" />
+  <meta property="og:title" content="One Platform Initatives for Spark" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2017/11/01/2017-11-02-hive-rowid-generation//" />
+  <meta property="og:url" content="/blog/2017/06/24/2017-06-24-cloudera-launches-one-platform-initatives-to-advance-spark---copy//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Hive RowID Generation logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Hive RowID Generation logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Hive RowID Generation - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="One Platform Initatives for Spark logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="One Platform Initatives for Spark logo" class="visible-xs visible-sm">
+                    <span class="sr-only">One Platform Initatives for Spark - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Hive RowID Generation</h1>
+                <h1>One Platform Initatives for Spark</h1>
             </div>
         </div>
     </div>
@@ -180,67 +180,16 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">November 1, 2017</p>
+                        <p class="text-muted text-uppercase mb-small text-right">June 24, 2017</p>
 
                         <div id="post-content">
-                          
+                          <p><img src="/img/banners/spark.jpg" alt="" /></p>
 
-<p><img src="/img/banners/big-data-hive.jpg" alt="" /></p>
+<p>In the early of this September, the Chief Strategy Offer of Cloudera Mike Olson has announced that the next important initiatives for Couldera - One Platform to advance their investment on Apache Spark.</p>
 
-<h2 id="introduction">Introduction</h2>
+<p>The Spark is originally invented by few guys who started up the <a href="https://databricks.com/">Databrick</a>. Later, Spark catches most attention from big data communities and companies by its high-performance in-memory computing framework, which can run on top of Hadoop Yarn. As a result, more and more companies start switching their MapReduce jobs to Spark and few of them already have big cluster deployed in production. Few months earlier, IBM has claimed that they would have 5000+ developers working in Apache Spark to make it better (It is heard that the core DB2 development force are reassigned to this new mission inside the IBM, not sure.). Clearly, the One Platform initiative is an echo for IBM&rsquo;s saying from Cloudera who always believe itself a leader in the domain in big data. Cloudera is not likely to leave IBM alone to take this delicious fruit - Spark. We are waiting for more actions from other company, such as Hortonworks, MapR. I do not believe they just keep silent. Or maybe there is the underlying discussion to acquire the Databrick, who knows.</p>
 
-<p>It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.</p>
-
-<h3 id="row-number">ROW_NUMBER()</h3>
-
-<p>Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data. Although there is no documentation in the official wiki, you can easily find articles regarding use this function to generate row number for the whole table.</p>
-
-<pre><code>SELECT ROW_NUMBER() OVER () as row_num FROM table_name
-</code></pre>
-
-<p>However, it is reported in some version of Hive that the function has exceptions when used in views or weird behavior, see here and there. Therefore, it is a quite danger to use this approach right now since your result is unexpected across different version of Hive.</p>
-
-<h3 id="java-package">Java Package</h3>
-
-<p>Hive is capable of leveraging Java internal packages naturally. By using Java’s UUID, you can directly generate a UUID number for each row as follows.</p>
-
-<pre><code>SELECT regexp_replace(reflect('java.util.UUID','randomUUID'), '-', '') as row_num FROM table_name
-</code></pre>
-
-<p>As UUID generation logic defines, there are chance of collision. However, it is very low chance.</p>
-
-<h3 id="hive-mall-ex">Hive Mall Ex</h3>
-
-<p>Hivemall is a scalable machine learning library that runs on Apache Hive. It has provided a UDF called <a href="https://github.com/apache/incubator-hivemall/blob/master/core/src/main/java/hivemall/tools/mapred/RowIdUDF.java">RowIdUDF</a>. It combines a MapReduce task ID and random number as row.</p>
-
-<pre><code>SELECT rowid() as row_num FROM table_name
-</code></pre>
-
-<h3 id="hive-virtual-columns">Hive Virtual Columns</h3>
-
-<p>Hive has provided three <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+VirtualColumns">virtual columns</a> as follows.</p>
-
-<pre><code>* INPUT__FILE__NAME: Full URI of a file name in HDFS.
-* BLOCK__OFFSET__INSIDE__FILE: Byte offset for the block from beginning of the file.
-* ROW__OFFSET__INSIDE__BLOCK: Byte offset for the line within the block.
-</code></pre>
-
-<p>We can always combine three above virtual columns to identify the each line in the table. In addition, we can control the length of this combined value by increasing the number of files (increasing the number of reducers). As result, the offset value becomes smaller for each block. The usage of this approach is as follows. Note, <strong>ROW_OFFSET_INSIDE_BLOCK</strong> is only available for RCFile or SequenceFile format of data.</p>
-
-<pre><code>// To enable ROW__OFFSET__INSIDE__BLOCK
-SET hive.exec.rowoffset=true; 
-
-SELECT 
-// Convert file name as number, such as 000001_0 to 10
-concat(cast(regexp_replace(reverse(split(reverse(INPUT__FILE__NAME),'/')[0]),'_','') as int), 
-BLOCK__OFFSET__INSIDE__FILE, 
-ROW__OFFSET__INSIDE__BLOCK) as row_num
-FROM table_name
-</code></pre>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Before Hive ROW_NUMBER() function issue gets fixed, it is recommended to use either Hivemall rowid() or virtual columns. If you need to control the length of row id, you have to use Hive virtual columns approach.</p>
+<p>The One Platform initiative has covers four areas of efforts including security, scale, management, streaming. For more information regarding the One Platform initiative, please refer to the <a href="http://vision.cloudera.com/one-platform/">Cloudera post</a>.</p>
 
                         </div>
                         

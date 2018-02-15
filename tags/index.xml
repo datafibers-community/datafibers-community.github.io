@@ -12,15 +12,6 @@
     
     
     <item>
-      <title>Bigdata</title>
-      <link>https://datafibers-community.github.io/tags/bigdata/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/bigdata/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Datafibers</title>
       <link>https://datafibers-community.github.io/tags/datafibers/</link>
       <pubDate>Fri, 22 Dec 2017 13:50:46 +0200</pubDate>
@@ -30,29 +21,11 @@
     </item>
     
     <item>
-      <title>Datamining</title>
-      <link>https://datafibers-community.github.io/tags/datamining/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/datamining/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Git</title>
       <link>https://datafibers-community.github.io/tags/git/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 01 Nov 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://datafibers-community.github.io/tags/go/</link>
-      <pubDate>Fri, 02 Oct 2015 21:49:20 +0200</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/go/</guid>
       <description></description>
     </item>
     
@@ -66,15 +39,6 @@
     </item>
     
     <item>
-      <title>Hbase</title>
-      <link>https://datafibers-community.github.io/tags/hbase/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/hbase/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Hive</title>
       <link>https://datafibers-community.github.io/tags/hive/</link>
       <pubDate>Fri, 02 Feb 2018 13:50:46 +0200</pubDate>
@@ -84,47 +48,11 @@
     </item>
     
     <item>
-      <title>Hugo</title>
-      <link>https://datafibers-community.github.io/tags/hugo/</link>
-      <pubDate>Sat, 10 Oct 2015 13:07:31 +0200</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Kafka</title>
       <link>https://datafibers-community.github.io/tags/kafka/</link>
       <pubDate>Thu, 05 Oct 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/kafka/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Maven</title>
-      <link>https://datafibers-community.github.io/tags/maven/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/maven/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pig</title>
-      <link>https://datafibers-community.github.io/tags/pig/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/pig/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Programming</title>
-      <link>https://datafibers-community.github.io/tags/programming/</link>
-      <pubDate>Fri, 02 Oct 2015 21:49:20 +0200</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/programming/</guid>
       <description></description>
     </item>
     

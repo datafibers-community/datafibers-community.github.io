@@ -55,32 +55,12 @@ Environment  Apache Spark v1.6 Scala 2.10.4 Eclipse Scala IDE  Download Software
     
     <item>
       <title>One Platform Initatives for Spark</title>
-      <link>https://datafibers-community.github.io/blog/2017/06/24/2015-09-23-cloudera-launches-one-platform-initatives-to-advance-spark---copy/</link>
+      <link>https://datafibers-community.github.io/blog/2017/06/24/2017-06-24-cloudera-launches-one-platform-initatives-to-advance-spark---copy/</link>
       <pubDate>Sat, 24 Jun 2017 13:50:46 +0200</pubDate>
       
-      <guid>https://datafibers-community.github.io/blog/2017/06/24/2015-09-23-cloudera-launches-one-platform-initatives-to-advance-spark---copy/</guid>
+      <guid>https://datafibers-community.github.io/blog/2017/06/24/2017-06-24-cloudera-launches-one-platform-initatives-to-advance-spark---copy/</guid>
       <description>In the early of this September, the Chief Strategy Offer of Cloudera Mike Olson has announced that the next important initiatives for Couldera - One Platform to advance their investment on Apache Spark.
 The Spark is originally invented by few guys who started up the Databrick. Later, Spark catches most attention from big data communities and companies by its high-performance in-memory computing framework, which can run on top of Hadoop Yarn.</description>
-    </item>
-    
-    <item>
-      <title>Moving to the Spark</title>
-      <link>https://datafibers-community.github.io/blog/1/01/01/2014-11-23-move-to-the-spark/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/1/01/01/2014-11-23-move-to-the-spark/</guid>
-      <description>It has been a while that the blog is now updated since 2014 is a ready busy year. After I almost completed my first book recently, I think it is the right time to start new journey in big data for real time processing.
-Big data ecosystem has great changes over the past two years. The speed of big data processing becomes the hot topic over the past year. When Hadoop enter the area of Yarn, it becomes more like a distribute computing infrastructure.</description>
-    </item>
-    
-    <item>
-      <title>Setup Spark in MAC</title>
-      <link>https://datafibers-community.github.io/blog/1/01/01/2015-01-23-setup-spark-in-mac/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/1/01/01/2015-01-23-setup-spark-in-mac/</guid>
-      <description>It is great to see that Brew supports install Spark. It makes installation of Spark quite easier in Mac. I just follow few steps to get my spark instance installed locally.
-1. Install brew utility. mymac:$ ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; ==&amp;gt; This script will install: /usr/local/bin/brew /usr/local/Library/... /usr/local/share/man/man1/brew.1 ==&amp;gt; The following directories will be made group writable: /usr/local/. /usr/local/bin ==&amp;gt; The following directories will have their group set to admin: /usr/local/.</description>
     </item>
     
   </channel>

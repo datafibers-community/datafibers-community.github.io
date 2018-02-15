@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hive RowID Generation</title>
+  <title>When to Disable Speculative Execution</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Hive RowID Generation" />
+  <meta property="og:title" content="When to Disable Speculative Execution" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2017/11/01/2017-11-02-hive-rowid-generation//" />
+  <meta property="og:url" content="/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Hive RowID Generation logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Hive RowID Generation logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Hive RowID Generation - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="When to Disable Speculative Execution logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="When to Disable Speculative Execution logo" class="visible-xs visible-sm">
+                    <span class="sr-only">When to Disable Speculative Execution - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Hive RowID Generation</h1>
+                <h1>When to Disable Speculative Execution</h1>
             </div>
         </div>
     </div>
@@ -180,67 +180,54 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">November 1, 2017</p>
+                        <p class="text-muted text-uppercase mb-small text-right">November 22, 2016</p>
 
                         <div id="post-content">
                           
 
-<p><img src="/img/banners/big-data-hive.jpg" alt="" /></p>
+<h2 id="backgrounds">Backgrounds</h2>
 
-<h2 id="introduction">Introduction</h2>
+<p>This is the link from WikiMedia about what’s <strong><a href="http://en.wikipedia.org/wiki/Speculative_execution">Speculative Execution</a></strong>. In Hadoop, the following parameters string are for this settings. And, they are true by default.</p>
 
-<p>It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.</p>
-
-<h3 id="row-number">ROW_NUMBER()</h3>
-
-<p>Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data. Although there is no documentation in the official wiki, you can easily find articles regarding use this function to generate row number for the whole table.</p>
-
-<pre><code>SELECT ROW_NUMBER() OVER () as row_num FROM table_name
+<pre><code>mapred.map.tasks.speculative.execution
+mapred.reduce.tasks.speculative.execution
 </code></pre>
 
-<p>However, it is reported in some version of Hive that the function has exceptions when used in views or weird behavior, see here and there. Therefore, it is a quite danger to use this approach right now since your result is unexpected across different version of Hive.</p>
+<h2 id="when-to-disable">When to Disable</h2>
 
-<h3 id="java-package">Java Package</h3>
+<p>Most time, it helps. However, I am here to collect some scenario when we do not need it.</p>
 
-<p>Hive is capable of leveraging Java internal packages naturally. By using Java’s UUID, you can directly generate a UUID number for each row as follows.</p>
+<ul>
+<li>Of course, when ever your cluster really in shortage of resource or for the purpose of experiment, we can disable them by setting them to false since “SE” really a big resource consumer</li>
+<li>It is generally advisable to turn off ”SE” for mapred jobs that use HBase as a source. Especially for longer running jobs, speculative execution will create duplicate map-tasks which will double-write your data to HBase; this is probably not what you want. In addition, its local data has high priority when you mapred running against resource in HBase. That is to say every task in tasktracker stays closer to the regionserver in the same physical server. The “SE” will create new jobs to access data which may not local. As result, it will make your regionserver overloaded by wasting IO and network resource.</li>
+<li>When moving data using distcp, the source cluster should have speculative execution turned off for map tasks. In the mapredsite.xml configuration file, set mapred.map.tasks.speculative.execution to false. This will prevent any undefined behavior from occurring in the case where a map task fails.</li>
+</ul>
 
-<pre><code>SELECT regexp_replace(reflect('java.util.UUID','randomUUID'), '-', '') as row_num FROM table_name
+<h2 id="how-to-disable">How to Disable</h2>
+
+<p>There are two ways to disable it.
+1.Set in mapred-site.xml (recommend for admin and wider user having such request)</p>
+
+<pre><code>&lt;property&gt;  
+         &lt;name&gt;mapred.map.tasks.speculative.execution&lt;/name&gt;  
+         &lt;value&gt;false&lt;/value&gt;  
+&lt;/property&gt;  
+&lt;property&gt;  
+         &lt;name&gt;mapred.reduce.tasks.speculative.execution&lt;/name&gt;  
+         &lt;value&gt;false&lt;/value&gt;  
+&lt;/property&gt;
 </code></pre>
 
-<p>As UUID generation logic defines, there are chance of collision. However, it is very low chance.</p>
+<p>2.Set in job configuration</p>
 
-<h3 id="hive-mall-ex">Hive Mall Ex</h3>
+<pre><code>    jobconf.set(&quot;mapred.map.tasks.speculative.execution&quot;,false);
 
-<p>Hivemall is a scalable machine learning library that runs on Apache Hive. It has provided a UDF called <a href="https://github.com/apache/incubator-hivemall/blob/master/core/src/main/java/hivemall/tools/mapred/RowIdUDF.java">RowIdUDF</a>. It combines a MapReduce task ID and random number as row.</p>
-
-<pre><code>SELECT rowid() as row_num FROM table_name
+    jobconf.set(&quot;mapred.reduce.tasks.speculative.execution&quot;,false);
 </code></pre>
 
-<h3 id="hive-virtual-columns">Hive Virtual Columns</h3>
+<h2 id="issues">Issues</h2>
 
-<p>Hive has provided three <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+VirtualColumns">virtual columns</a> as follows.</p>
-
-<pre><code>* INPUT__FILE__NAME: Full URI of a file name in HDFS.
-* BLOCK__OFFSET__INSIDE__FILE: Byte offset for the block from beginning of the file.
-* ROW__OFFSET__INSIDE__BLOCK: Byte offset for the line within the block.
-</code></pre>
-
-<p>We can always combine three above virtual columns to identify the each line in the table. In addition, we can control the length of this combined value by increasing the number of files (increasing the number of reducers). As result, the offset value becomes smaller for each block. The usage of this approach is as follows. Note, <strong>ROW_OFFSET_INSIDE_BLOCK</strong> is only available for RCFile or SequenceFile format of data.</p>
-
-<pre><code>// To enable ROW__OFFSET__INSIDE__BLOCK
-SET hive.exec.rowoffset=true; 
-
-SELECT 
-// Convert file name as number, such as 000001_0 to 10
-concat(cast(regexp_replace(reverse(split(reverse(INPUT__FILE__NAME),'/')[0]),'_','') as int), 
-BLOCK__OFFSET__INSIDE__FILE, 
-ROW__OFFSET__INSIDE__BLOCK) as row_num
-FROM table_name
-</code></pre>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Before Hive ROW_NUMBER() function issue gets fixed, it is recommended to use either Hivemall rowid() or virtual columns. If you need to control the length of row id, you have to use Hive virtual columns approach.</p>
+<p><strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-2062">MAPREDUCE-2062</a></strong> and <strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-3895">MAPREDUCE-3895</a></strong> list some problem on <strong>“SE”</strong>. See if you needs improvements if you have to use.</p>
 
                         </div>
                         

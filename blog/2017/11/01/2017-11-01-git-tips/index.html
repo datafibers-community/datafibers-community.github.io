@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hive RowID Generation</title>
+  <title>GIT Tips</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Hive RowID Generation" />
+  <meta property="og:title" content="GIT Tips" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2017/11/01/2017-11-02-hive-rowid-generation//" />
+  <meta property="og:url" content="/blog/2017/11/01/2017-11-01-git-tips//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Hive RowID Generation logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Hive RowID Generation logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Hive RowID Generation - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="GIT Tips logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="GIT Tips logo" class="visible-xs visible-sm">
+                    <span class="sr-only">GIT Tips - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Hive RowID Generation</h1>
+                <h1>GIT Tips</h1>
             </div>
         </div>
     </div>
@@ -185,62 +185,75 @@
                         <div id="post-content">
                           
 
-<p><img src="/img/banners/big-data-hive.jpg" alt="" /></p>
+<h3 id="1-git-cheat-sheet">1. Git Cheat Sheet</h3>
 
-<h2 id="introduction">Introduction</h2>
+<p align="left"><img src="http://i.imgur.com/5jLso42.png" width="600" /></p>
 
-<p>It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.</p>
+<h3 id="2-check-in-git-modified-but-untracked-content">2. Check in Git Modified But Untracked Content</h3>
 
-<h3 id="row-number">ROW_NUMBER()</h3>
+<p>Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the <code>git add .</code> and <code>git status</code>. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit. I only realize that I miss the theme files when I try to rebuild the Hexo site from home.</p>
 
-<p>Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data. Although there is no documentation in the official wiki, you can easily find articles regarding use this function to generate row number for the whole table.</p>
+<p>After searching a while form Google, I got my issues resolved and share the steps below for reference.</p>
 
-<pre><code>SELECT ROW_NUMBER() OVER () as row_num FROM table_name
+<ul>
+<li>Removed the .git directories from the directories (In my case, ../theme/hueman/.git)</li>
+<li>Ran git rm -rf &ndash;cached <the untracked directory> (In my case, /C/Users/ddu/Git/sparkera/themes/hueman)</li>
+<li>Re-added the directories with a <code>git add .</code> and check by <code>git status</code>.</li>
+</ul>
+
+<p>Then all the untracked files are added. Then you can do <code>git commit -m</code> and <code>git push</code> the submit all the changes.</p>
+
+<h3 id="3-git-catch-up-changes">3. Git Catch up Changes</h3>
+
+<p>There are following ways to catch up/revert changes in GIT</p>
+
+<h4 id="catchup-changes-from-remote">Catchup changes from remote</h4>
+
+<ol>
+<li><p>Pull out from remote again and you <strong>lost all</strong> of your local changes as well as hisory</p>
+
+<pre><code>rm -Rf working_folders
+git clone remote_git_address
+</code></pre></li>
+
+<li><p>Merge from remote and this <strong>keeps all</strong> your local changes</p>
+
+<pre><code>git pull 
 </code></pre>
 
-<p>However, it is reported in some version of Hive that the function has exceptions when used in views or weird behavior, see here and there. Therefore, it is a quite danger to use this approach right now since your result is unexpected across different version of Hive.</p>
+<p>or</p>
 
-<h3 id="java-package">Java Package</h3>
+<pre><code>git fetch
+git merge
+</code></pre></li>
+</ol>
 
-<p>Hive is capable of leveraging Java internal packages naturally. By using Java’s UUID, you can directly generate a UUID number for each row as follows.</p>
+<p><br></p>
 
-<pre><code>SELECT regexp_replace(reflect('java.util.UUID','randomUUID'), '-', '') as row_num FROM table_name
-</code></pre>
+<h4 id="catchup-changes-from-local-commit">Catchup changes from local commit</h4>
 
-<p>As UUID generation logic defines, there are chance of collision. However, it is very low chance.</p>
+<ol>
+<li><p>Roll back all files to the latest commit and you <strong>lost all</strong> of your local changes not submitted</p>
 
-<h3 id="hive-mall-ex">Hive Mall Ex</h3>
+<pre><code>git reset --head HEAD
+</code></pre></li>
 
-<p>Hivemall is a scalable machine learning library that runs on Apache Hive. It has provided a UDF called <a href="https://github.com/apache/incubator-hivemall/blob/master/core/src/main/java/hivemall/tools/mapred/RowIdUDF.java">RowIdUDF</a>. It combines a MapReduce task ID and random number as row.</p>
+<li><p>Roll back specific files to the latest commit and you <strong>keep all</strong> of other local changes not submitted</p>
 
-<pre><code>SELECT rowid() as row_num FROM table_name
-</code></pre>
+<pre><code>git checkout HEAD specific_file_name 
+</code></pre></li>
 
-<h3 id="hive-virtual-columns">Hive Virtual Columns</h3>
+<li><p>Roll back all files to the latest commit and you <strong>lost all</strong> of your local changes not submitted. Hoever, this will submit a new commit as revert</p>
 
-<p>Hive has provided three <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+VirtualColumns">virtual columns</a> as follows.</p>
+<pre><code>git revert HEAD
+</code></pre></li>
+</ol>
 
-<pre><code>* INPUT__FILE__NAME: Full URI of a file name in HDFS.
-* BLOCK__OFFSET__INSIDE__FILE: Byte offset for the block from beginning of the file.
-* ROW__OFFSET__INSIDE__BLOCK: Byte offset for the line within the block.
-</code></pre>
+<p><strong>Note:</strong></p>
 
-<p>We can always combine three above virtual columns to identify the each line in the table. In addition, we can control the length of this combined value by increasing the number of files (increasing the number of reducers). As result, the offset value becomes smaller for each block. The usage of this approach is as follows. Note, <strong>ROW_OFFSET_INSIDE_BLOCK</strong> is only available for RCFile or SequenceFile format of data.</p>
-
-<pre><code>// To enable ROW__OFFSET__INSIDE__BLOCK
-SET hive.exec.rowoffset=true; 
-
-SELECT 
-// Convert file name as number, such as 000001_0 to 10
-concat(cast(regexp_replace(reverse(split(reverse(INPUT__FILE__NAME),'/')[0]),'_','') as int), 
-BLOCK__OFFSET__INSIDE__FILE, 
-ROW__OFFSET__INSIDE__BLOCK) as row_num
-FROM table_name
-</code></pre>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Before Hive ROW_NUMBER() function issue gets fixed, it is recommended to use either Hivemall rowid() or virtual columns. If you need to control the length of row id, you have to use Hive virtual columns approach.</p>
+<ul>
+<li>Git fast forward: It means code commit submmited should be ordered by time. To resolve the &ldquo;non-fast-forward&rdquo; error, you can use command 2 or 3. <strong><code>git -f push</code></strong> is not recommended since it forces push to remote.</li>
+</ul>
 
                         </div>
                         

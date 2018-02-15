@@ -6,19 +6,18 @@
     <description>Recent content in Git on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 01 Nov 2017 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>GIT Cheat Sheet</title>
-      <link>https://datafibers-community.github.io/blog/1/01/01/2013-01-18-git-cheat-sheet/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>GIT Tips</title>
+      <link>https://datafibers-community.github.io/blog/2017/11/01/2017-11-01-git-tips/</link>
+      <pubDate>Wed, 01 Nov 2017 13:50:46 +0200</pubDate>
       
-      <guid>https://datafibers-community.github.io/blog/1/01/01/2013-01-18-git-cheat-sheet/</guid>
-      <description>Here I am sharing two good git sheet as follows.
-
-http://ndpsoftware.com/git-cheatsheet.html</description>
+      <guid>https://datafibers-community.github.io/blog/2017/11/01/2017-11-01-git-tips/</guid>
+      <description>1. Git Cheat Sheet 2. Check in Git Modified But Untracked Content Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the git add . and git status. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit.</description>
     </item>
     
   </channel>

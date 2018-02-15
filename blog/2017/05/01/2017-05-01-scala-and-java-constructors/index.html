@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hive RowID Generation</title>
+  <title>Constructor - Scala vs. Java</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Hive RowID Generation" />
+  <meta property="og:title" content="Constructor - Scala vs. Java" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2017/11/01/2017-11-02-hive-rowid-generation//" />
+  <meta property="og:url" content="/blog/2017/05/01/2017-05-01-scala-and-java-constructors//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Hive RowID Generation logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Hive RowID Generation logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Hive RowID Generation - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Constructor - Scala vs. Java logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Constructor - Scala vs. Java logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Constructor - Scala vs. Java - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Hive RowID Generation</h1>
+                <h1>Constructor - Scala vs. Java</h1>
             </div>
         </div>
     </div>
@@ -180,67 +180,117 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">November 1, 2017</p>
+                        <p class="text-muted text-uppercase mb-small text-right">May 1, 2017</p>
 
                         <div id="post-content">
                           
 
-<p><img src="/img/banners/big-data-hive.jpg" alt="" /></p>
+<p><p align="left"><img src="/img/banners/scala-vs-java.png" width="500" /></p></p>
 
-<h2 id="introduction">Introduction</h2>
+<h3 id="1-constructor-with-parameters">1. Constructor With Parameters</h3>
 
-<p>It is quite often that we need a unique identifier for each single rows in the Apache Hive tables. This is quite useful when you need such columns as surrogate keys in data warehouse, as the primary key for data or use as system nature keys. There are following ways of doing that in Hive.</p>
+<p><strong>Java Code</strong></p>
 
-<h3 id="row-number">ROW_NUMBER()</h3>
-
-<p>Hive have a couple of internal functions to achieve this. ROW_NUMBER function, which can generate row number for each partition of data. Although there is no documentation in the official wiki, you can easily find articles regarding use this function to generate row number for the whole table.</p>
-
-<pre><code>SELECT ROW_NUMBER() OVER () as row_num FROM table_name
+<pre><code>public class Foo() {  
+   public Bar bar;  
+   public Foo(Bar bar) {  
+       this.bar = bar;  
+   }  
+}  
 </code></pre>
 
-<p>However, it is reported in some version of Hive that the function has exceptions when used in views or weird behavior, see here and there. Therefore, it is a quite danger to use this approach right now since your result is unexpected across different version of Hive.</p>
+<p><strong>Scala Code</strong></p>
 
-<h3 id="java-package">Java Package</h3>
-
-<p>Hive is capable of leveraging Java internal packages naturally. By using Java’s UUID, you can directly generate a UUID number for each row as follows.</p>
-
-<pre><code>SELECT regexp_replace(reflect('java.util.UUID','randomUUID'), '-', '') as row_num FROM table_name
+<pre><code>class Foo(val bar:Bar)  
 </code></pre>
 
-<p>As UUID generation logic defines, there are chance of collision. However, it is very low chance.</p>
+<h3 id="2-constructor-with-private-attribute">2. Constructor With Private Attribute</h3>
 
-<h3 id="hive-mall-ex">Hive Mall Ex</h3>
+<p><strong>Java Code</strong></p>
 
-<p>Hivemall is a scalable machine learning library that runs on Apache Hive. It has provided a UDF called <a href="https://github.com/apache/incubator-hivemall/blob/master/core/src/main/java/hivemall/tools/mapred/RowIdUDF.java">RowIdUDF</a>. It combines a MapReduce task ID and random number as row.</p>
-
-<pre><code>SELECT rowid() as row_num FROM table_name
+<pre><code>public class Foo() {  
+   private final Bar bar;  
+   public Foo(Bar bar) {  
+       this.bar = bar;  
+   }  
+}  
 </code></pre>
 
-<h3 id="hive-virtual-columns">Hive Virtual Columns</h3>
+<p><strong>Scala Code</strong></p>
 
-<p>Hive has provided three <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+VirtualColumns">virtual columns</a> as follows.</p>
-
-<pre><code>* INPUT__FILE__NAME: Full URI of a file name in HDFS.
-* BLOCK__OFFSET__INSIDE__FILE: Byte offset for the block from beginning of the file.
-* ROW__OFFSET__INSIDE__BLOCK: Byte offset for the line within the block.
+<pre><code>class Foo(private val bar:Bar)  
 </code></pre>
 
-<p>We can always combine three above virtual columns to identify the each line in the table. In addition, we can control the length of this combined value by increasing the number of files (increasing the number of reducers). As result, the offset value becomes smaller for each block. The usage of this approach is as follows. Note, <strong>ROW_OFFSET_INSIDE_BLOCK</strong> is only available for RCFile or SequenceFile format of data.</p>
+<h3 id="3-call-super-constructor">3. Call <em>Super</em> Constructor</h3>
 
-<pre><code>// To enable ROW__OFFSET__INSIDE__BLOCK
-SET hive.exec.rowoffset=true; 
+<p><strong>Java Code</strong></p>
 
-SELECT 
-// Convert file name as number, such as 000001_0 to 10
-concat(cast(regexp_replace(reverse(split(reverse(INPUT__FILE__NAME),'/')[0]),'_','') as int), 
-BLOCK__OFFSET__INSIDE__FILE, 
-ROW__OFFSET__INSIDE__BLOCK) as row_num
-FROM table_name
+<pre><code>public class Foo() extends SuperFoo {  
+   public Foo(Bar bar) {   
+      super(bar);  
+   }  
+}  
 </code></pre>
 
-<h2 id="conclusion">Conclusion</h2>
+<p><strong>Scala Code</strong></p>
 
-<p>Before Hive ROW_NUMBER() function issue gets fixed, it is recommended to use either Hivemall rowid() or virtual columns. If you need to control the length of row id, you have to use Hive virtual columns approach.</p>
+<pre><code>class Foo(bar:Bar) extends SuperFoo(bar) {}
+</code></pre>
+
+<h3 id="4-multiple-constructors">4. Multiple Constructors</h3>
+
+<p><strong>Java Code</strong></p>
+
+<pre><code>public class Foo {  
+    public Bar bar;  
+    public Foo() {   
+       this(new Bar());   
+    }  
+    public Foo(Bar bar) {  
+       this. bar = bar;   
+    }  
+}  
+</code></pre>
+
+<p><strong>Scala Code</strong></p>
+
+<pre><code>class Foo(val bar:Bar){  
+    def this() = this(new Bar)  
+}
+</code></pre>
+
+<h3 id="5-methods-of-getter-and-setter">5. Methods of <em>getter</em> and <em>setter</em></h3>
+
+<p><strong>Java Code</strong></p>
+
+<pre><code>public class Foo() {  
+   private Bar bar;  
+   public Foo(Bar bar) {  
+       this.bar = bar;  
+   } 
+   public Bar getBar() {   
+      return bar;   
+   }  
+   public void setBar(Bar bar) {   
+      this.bar = bar;  
+   }  
+}  
+</code></pre>
+
+<p><strong>Scala Code</strong></p>
+
+<pre><code>import scala.reflect._  
+class Foo(@BeanProperty var bar:Bar)  
+</code></pre>
+
+<p><strong>Scala Code (Other Way)</strong></p>
+
+<pre><code>import scala.reflect._  
+class Foo(aBar:Bar) {  
+    @BeanProperty  
+    private var bar = aBar  
+}  
+</code></pre>
 
                         </div>
                         
