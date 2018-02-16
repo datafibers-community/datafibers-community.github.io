@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open sourec data bus">	
   
 
-  <meta name="generator" content="Hugo 0.36" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -193,11 +193,11 @@
 
 <p>Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the <code>git add .</code> and <code>git status</code>. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit. I only realize that I miss the theme files when I try to rebuild the Hexo site from home.</p>
 
-<p>After searching a while form Google, I got my issues resolved and share the steps below for reference.</p>
+<p>After searching a while form Google, I got my issues resolved and shared the steps below for reference.</p>
 
 <ul>
 <li>Removed the .git directories from the directories (In my case, ../theme/hueman/.git)</li>
-<li>Ran git rm -rf &ndash;cached <the untracked directory> (In my case, /C/Users/ddu/Git/sparkera/themes/hueman)</li>
+<li>Run <code>git rm -rf --cached &lt;the untracked directory&gt;</code> (In my case, /C/Users/ddu/Git/sparkera/themes/hueman)</li>
 <li>Re-added the directories with a <code>git add .</code> and check by <code>git status</code>.</li>
 </ul>
 
