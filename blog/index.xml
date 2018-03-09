@@ -7,10 +7,41 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Fri, 02 Feb 2018 13:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 02 Mar 2018 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ML Overview</title>
+      <link>https://datafibers-community.github.io/blog/2018/03/02/2018-03-02-ml-overview/</link>
+      <pubDate>Fri, 02 Mar 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2018/03/02/2018-03-02-ml-overview/</guid>
+      <description>Background Machine learning is a field of computer science that gives computer systems the ability to &amp;ldquo;learn&amp;rdquo; with data, without being explicitly programmed. Machine learning can be broken down into three broad categories: Recommender, Classification, Clustering.
+ Recommender—Recommender systems suggest items based on past behavior or interest. These items can be other users in a social network, or products and services in retail websites. There are some algorithm like Pearson correlation and euclidean distance.</description>
+    </item>
+    
+    <item>
+      <title>Spark RowID Generation</title>
+      <link>https://datafibers-community.github.io/blog/2018/03/01/2018-03-01-spark-rowid-generation/</link>
+      <pubDate>Thu, 01 Mar 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2018/03/01/2018-03-01-spark-rowid-generation/</guid>
+      <description>Most of time, we need to generate a unique identifier column for dataframe. There are couple of ways doing that as follows.
+https://stackoverflow.com/questions/35705038/how-do-i-add-an-persistent-column-of-row-ids-to-spark-dataframe
+Solution 1 The most frequent way of doing it is to to firstly find the MAX of age in each SEX group and do SELF JOIN by matching SEX and the MAX age as follows. This will create two stages of jobs and NOT efficient.
+&amp;gt; SELECT employee.</description>
+    </item>
+    
+    <item>
+      <title>Naive Bayes Algorithm</title>
+      <link>https://datafibers-community.github.io/blog/2018/02/10/2018-03-10-ml-naive-bayes/</link>
+      <pubDate>Sat, 10 Feb 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2018/02/10/2018-03-10-ml-naive-bayes/</guid>
+      <description>Background It would be difficult and practically impossible to classify a web page, a document, an email or any other lengthy text notes manually. This is where Naïve Bayes Classifier machine learning algorithm comes to the rescue. A classifier is a function that allocates a population’s element value from one of the available categories. For instance, Spam Filtering is a popular application of Naïve Bayes algorithm. Spam filter here, is a classifier that assigns a label Spam or Not Spam to all the emails.</description>
+    </item>
     
     <item>
       <title>Hive Get the Max/Min</title>

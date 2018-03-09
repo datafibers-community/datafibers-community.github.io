@@ -58,6 +58,15 @@
     </item>
     
     <item>
+      <title>Machine Learning</title>
+      <link>https://datafibers-community.github.io/tags/machine-learning/</link>
+      <pubDate>Fri, 02 Mar 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Scala</title>
       <link>https://datafibers-community.github.io/tags/scala/</link>
       <pubDate>Fri, 15 Sep 2017 13:50:46 +0200</pubDate>
@@ -69,7 +78,7 @@
     <item>
       <title>Spark</title>
       <link>https://datafibers-community.github.io/tags/spark/</link>
-      <pubDate>Fri, 02 Feb 2018 13:50:46 +0200</pubDate>
+      <pubDate>Thu, 01 Mar 2018 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/spark/</guid>
       <description></description>
