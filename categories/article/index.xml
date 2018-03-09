@@ -23,18 +23,6 @@
     </item>
     
     <item>
-      <title>Spark RowID Generation</title>
-      <link>https://datafibers-community.github.io/blog/2018/03/01/2018-03-01-spark-rowid-generation/</link>
-      <pubDate>Thu, 01 Mar 2018 13:50:46 +0200</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/2018/03/01/2018-03-01-spark-rowid-generation/</guid>
-      <description>Most of time, we need to generate a unique identifier column for dataframe. There are couple of ways doing that as follows.
-https://stackoverflow.com/questions/35705038/how-do-i-add-an-persistent-column-of-row-ids-to-spark-dataframe
-Solution 1 The most frequent way of doing it is to to firstly find the MAX of age in each SEX group and do SELF JOIN by matching SEX and the MAX age as follows. This will create two stages of jobs and NOT efficient.
-&amp;gt; SELECT employee.</description>
-    </item>
-    
-    <item>
       <title>Hive Get the Max/Min</title>
       <link>https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/</link>
       <pubDate>Fri, 02 Feb 2018 13:50:46 +0200</pubDate>
