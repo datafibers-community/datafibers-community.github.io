@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Training</title>
+  <title>Naive Bayes Algorithm</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Training" />
+  <meta property="og:title" content="Naive Bayes Algorithm" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/categories/training//" />
+  <meta property="og:url" content="/blog/2018/03/10/2018-03-10-ml-naive-bayes//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Training logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Training logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Training - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Naive Bayes Algorithm logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Naive Bayes Algorithm logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Naive Bayes Algorithm - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Training</h1>
+                <h1>Naive Bayes Algorithm</h1>
             </div>
         </div>
     </div>
@@ -173,57 +173,215 @@
 
         <div id="content">
             <div class="container">
+
                 <div class="row">
+
                     
 
-                    <div class="col-md-9" id="blog-listing-medium">
+                    <div class="col-md-9" id="blog-post">
 
+                        <p class="text-muted text-uppercase mb-small text-right">March 10, 2018</p>
+
+                        <div id="post-content">
+                          
+
+<h2 id="background">Background</h2>
+
+<p>It would be difficult and practically impossible to classify a web page, a document, an email or any other lengthy text notes manually. This is where Naïve Bayes Classifier machine learning algorithm comes to the rescue. A classifier is a function that allocates a population’s element value from one of the available categories. For instance, Spam Filtering is a popular application of Naïve Bayes algorithm. Spam filter here, is a classifier that assigns a label <strong>Spam</strong> or <strong>Not Spam</strong> to all the emails.</p>
+
+<p>Naïve Bayes Classifier is amongst the most popular <strong>supervised</strong> learning method grouped by similarities, that works on the popular Bayes Theorem of Probability to build machine learning models particularly for disease prediction and document classification. It is a simple classification of words based on Bayes Probability Theorem for subjective analysis of content.</p>
+
+<h2 id="what-is-naive-bayes">What is Naive Bayes?</h2>
+
+<p>It is a classification technique based on <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ Theorem</a> with an assumption of independence among predictors/features and requires your features to take on non-negative values.. In simple terms, a Naive Bayes classifier assumes that the presence of a particular feature in a class is unrelated to the presence of any other feature. For example, a fruit may be considered to be an apple if it is red, round, and about 3 inches in diameter. Even if these features depend on each other or upon the existence of the other features, all of these properties independently contribute to the probability that this fruit is an apple and that is why it is known as <em><strong>Naive</strong></em>.</p>
+
+<p>Naive Bayes model is easy to build and particularly useful for very large data sets. Along with simplicity, Naive Bayes is known to outperform even highly sophisticated classification methods. Bayes theorem provides a way of calculating posterior probability P(c|x) from P(c), P(x) and P(x|c) as follows.</p>
+
+<p align="center"><img src="https://s3.ap-south-1.amazonaws.com/techleer/204.png" width="400"></p>
+
+<ul>
+<li><strong>P(c|x) is the posterior probability of class (c, target) given predictor (x, attributes).</strong></li>
+<li><strong>P(c) is the prior probability of class.</strong></li>
+<li><strong>P(x|c) is the likelihood which is the probability of predictor given class.</strong></li>
+<li><strong>P(x) is the prior probability of predictor.</strong></li>
+</ul>
+
+<p>There are three types of Naive Bayes model:</p>
+
+<ul>
+<li><strong><a href="http://scikit-learn.org/stable/modules/naive_bayes.html">Gaussian</a></strong>: It is used in classification and it assumes that features follow a normal distribution. This is only supported by scikit learn library.</li>
+<li><strong><a href="http://scikit-learn.org/stable/modules/naive_bayes.html">Multinomial</a></strong>: It is used for discrete counts. For example, let’s say,  we have a text classification problem. Here we can consider bernoulli trials which is one step further and instead of “word occurring in the document”, we have “count how often word occurs in the document”, you can think of it as “number of times outcome number x_i is observed over the n trials”. This is <strong>default</strong> mode in spark MLLib.</li>
+<li><strong><a href="http://scikit-learn.org/stable/modules/naive_bayes.html">Bernoulli</a></strong>: The binomial model is useful if your feature vectors are binary (i.e. zeros and ones). One application would be text classification with ‘bag of words’ model where the 1s &amp; 0s are “word occurs in the document” and “word does not occur in the document” respectively. This is also supported by Spark MLLib.</li>
+</ul>
+
+<h2 id="how-it-works-for-example">How it Works for Example</h2>
+
+<p>Let’s understand the algorithm from an easiler example. Below is a training data set of weather and corresponding target variable <strong>Play</strong> (suggesting possibilities of playing). Now, we need to classify whether players will play or not based on weather condition.</p>
+
+<pre><code>+-----------+--------+
+| weather   | play ? |
++-----------+--------+
+| sunny     | no     |
+| overcast  | yes    |
+| rainy     | yes    |
+| sunny     | yes    |
+| sunny     | yes    |
+| overcast  | yes    |
+| rainy     | no     |
+| rainy     | no     |
+| sunny     | yes    |
+| rainy     | yes    |
+| sunny     | no     |
+| overcast  | yes    |
+| overcast  | yes    |
+| rainy     | no     |
++-----------+--------+
+</code></pre>
+
+<blockquote>
+<p><strong>Problem: Players will play if weather is sunny. Is this statement is correct?</strong></p>
+</blockquote>
+
+<p>Now, use Naive Bayesian equation to calculate the posterior probability for each class. The class with the highest posterior probability is the outcome of prediction. First, convert the data set into a frequency table.</p>
+
+<pre><code>+-----------+----+-----+
+| weather   | no | yes | 
++-----------+----+-----+
+| overcast  | 0  |  4  |
++-----------+----+-----+
+| rainy     | 3  |  2  |
++-----------+----+-----+
+| sunny     | 2  |  3  |
++-----------+----+-----+
+| total     | 5  |  9  |
++-----------+----+-----+
+</code></pre>
+
+<p>We can solve it using above discussed method by calculating the posterior probability.</p>
+
+<p><strong>P(Yes|Sunny) = P(Sunny|Yes) * P(Yes)/P (Sunny)</strong></p>
+
+<p>Here, we are able to calculate</p>
+
+<ul>
+<li><strong>P(Sunny|Yes) = <sup>3</sup>&frasl;<sub>9</sub> = 0.33</strong></li>
+<li><strong>P(Sunny) = <sup>5</sup>&frasl;<sub>14</sub> = 0.36</strong></li>
+<li><strong>P(Yes)= <sup>9</sup>&frasl;<sub>14</sub> = 0.64</strong></li>
+</ul>
+
+<p>Therefore, <strong>P (Yes|Sunny) = 0.33 * 0.64 / 0.36 = 0.60</strong>, which has higher probability.</p>
+
+<h2 id="pros-and-cons">Pros and Cons?</h2>
+
+<h3 id="pros">Pros</h3>
+
+<ul>
+<li>It is easy and fast to predict class of test data set and also performs well in multi class prediction</li>
+<li>When assumption of independence holds, a Naive Bayes classifier performs better compare to other models like logistic regression and you need less training data.</li>
+<li>It perform well in case of categorical input variables compared to numerical variable(s). For numerical variable, normal distribution is assumed (bell curve, which is a strong assumption).</li>
+<li>Naïve Bayes Classifier algorithm performs well when the input variables are categorical.</li>
+<li>A Naïve Bayes classifier converges faster, requiring relatively little training data than other discriminative models like logistic regression, when the Naïve Bayes conditional independence assumption holds.</li>
+<li>With Naïve Bayes Classifier algorithm, it is easier to predict class of the test data set. A good bet for multi class predictions as well.</li>
+<li>Though it requires conditional independence assumption, Naïve Bayes Classifier has presented good performance in various application domains.</li>
+</ul>
+
+<h3 id="cons">Cons</h3>
+
+<ul>
+<li>If categorical variable has a category (in test data set), which was not observed in training data set, then model will assign a 0 (zero) probability and will be unable to make a prediction. This is often known as “Zero Frequency”. To solve this, we can use the smoothing technique. One of the simplest smoothing techniques is called Laplace estimation.</li>
+<li>On the other side, Naive Bayes is also known as a bad estimator, so the probability outputs from predict_proba are not to be taken too seriously.</li>
+<li>Another limitation of Naive Bayes is the assumption of independent predictors. In real life, it is almost impossible that we get a set of predictors which are completely independent.</li>
+</ul>
+
+<h2 id="typical-use-cases">Typical Use Cases</h2>
+
+<ul>
+<li>Real time Prediction: Naive Bayes is an eager learning classifier and it is sure fast. Thus, it could be used for making predictions in real time.</li>
+<li>Multi class Prediction: This algorithm is also well known for multi class prediction feature. Here we can predict the probability of multiple classes of target variable.</li>
+<li>Recommendation System: Naive Bayes Classifier and Collaborative Filtering together builds a Recommendation System that uses machine learning and data mining techniques to filter unseen information and predict whether a user would like a given resource or not</li>
+<li>Sentiment Analysis: It is used at Facebook to analyse status updates expressing positive or negative emotions.</li>
+<li>Document Categorization: Google uses document classification to index documents and find relevancy scores i.e. the PageRank. PageRank mechanism considers the pages marked as important in the databases that were parsed and classified using a document classification technique. Naïve Bayes Algorithm is also used for classifying news articles about Technology, Entertainment, Sports, Politics, etc.</li>
+<li>Email Spam Filtering: Google Mail uses Naïve Bayes algorithm to classify your emails as Spam or Not Spam</li>
+</ul>
+
+<h2 id="example-in-spark">Example in Spark</h2>
+
+<pre><code>from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.feature import StringIndexer
+from pyspark.ml.classification import NaiveBayes
+from pyspark.ml import Pipeline
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
+
+# Get raw data into dataframe
+rawData = sqlContext.sql(&quot;SELECT SepalLength, SepalWidth, PetalLength, PetalWidth, Species FROM rawDataTable&quot;)
+
+# Convert target into numerical categories
+labelIndexer = StringIndexer(inputCol=&quot;Species&quot;, outputCol=&quot;label&quot;)
+vecAssembler = VectorAssembler(inputCols=[&quot;SepalLength&quot;, &quot;SepalWidth&quot;, &quot;PetalLength&quot;, &quot;PetalWidth&quot;], outputCol=&quot;features&quot;)
+
+# Split dataset randomly into Training and Test sets. Set seed for reproducibility
+(trainingData, testData) = rawData.randomSplit([0.7, 0.3], seed = 100)
+
+# Train a NaiveBayes model
+nb = NaiveBayes(smoothing=1.0, modelType=&quot;multinomial&quot;)
+
+# Chain labelIndexer, vecAssembler and NBmodel in a 
+pipeline = Pipeline(stages=[labelIndexer, vecAssembler, nb])
+
+# Create ParamGrid and Evaluator for Cross Validation
+paramGrid = ParamGridBuilder().addGrid(nb.smoothing, [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]).build()
+cvEvaluator = MulticlassClassificationEvaluator(metricName=&quot;precision&quot;)
+
+# Run Cross-validation
+cv = CrossValidator(estimator=pipeline, estimatorParamMaps=paramGrid, evaluator=cvEvaluator)
+model = cv.fit(trainingData)
+
+# Make predictions on testData. model uses the best model.
+prediction = model.transform(testData)
+
+# Model evaluation
+evaluator = MulticlassClassificationEvaluator(labelCol=&quot;label&quot;, predictionCol=&quot;prediction&quot;, metricName=&quot;precision&quot;)
+accuracy = evaluator.evaluate(prediction)
+print &quot;Model Accuracy: &quot;, accuracy
+</code></pre>
+
+<h3 id="reference">Reference</h3>
+
+<ol>
+<li><a href="https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/">https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/</a></li>
+<li><a href="https://www.dezyre.com/article/top-10-machine-learning-algorithms/202">https://www.dezyre.com/article/top-10-machine-learning-algorithms/202</a></li>
+<li><a href="https://www.kdnuggets.com/2017/10/top-10-machine-learning-algorithms-beginners.html">https://www.kdnuggets.com/2017/10/top-10-machine-learning-algorithms-beginners.html</a></li>
+<li><a href="https://www.kdnuggets.com/2016/08/10-algorithms-machine-learning-engineers.html">https://www.kdnuggets.com/2016/08/10-algorithms-machine-learning-engineers.html</a></li>
+</ol>
+
+                        </div>
                         
                         
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2017/07/20/2017-07-20-df-meetup-summer/">
-                                          
-                                          <img src="https://datafibers-community.github.io//img/banners/training_meetup.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2017/07/20/2017-07-20-df-meetup-summer/">Simplify Big Data Streaming</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/training">training</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2017/07/20/2017-07-20-df-meetup-summer/"><i class="fa fa-calendar-o"></i> July 20, 2017</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Here is our free training offered during 2017 summer meetup in Toronto, Canada.</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2017/07/20/2017-07-20-df-meetup-summer/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
                         
 
-                        <ul class="pager">
-                            
-                            <li class="previous disabled"><a href="#">&larr; Newer</a></li>
-                            
-
-                            
-                            <li class="next disabled"><a href="#">Older &rarr;</a></li>
-                            
-                        </ul>
                     </div>
                     
 
@@ -350,6 +508,7 @@
 
                 </div>
                 
+
             </div>
             
         </div>
@@ -512,5 +671,6 @@ ga('send', 'pageview');
 <script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
 
 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
   </body>
 </html>
