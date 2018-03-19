@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open sourec data bus">	
   
 
-  <meta name="generator" content="Hugo 0.30.2" />
+  <meta name="generator" content="Hugo 0.36" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -189,9 +189,21 @@
 
 <p>Most of time, we need to find the max or min value of particular columns as well as other columns. For example, we have following <em>employee</em> table.</p>
 
-<pre><code>&gt; SELECT name,sex_age.sex AS sex,sex_age.age AS age FROM employee;
+<pre><code>DESC employee;
++---------------+------------------------------+----------+--+
+|   col_name    |          data_type           | comment  |
++---------------+------------------------------+----------+--+
+| name          | string                       |          |
+| work_place    | array&lt;string&gt;                |          |
+| gender_age    | struct&lt;gender:string,age:int&gt;|          |
+| skills_score  | map&lt;string,int&gt;              |          |
+| depart_title  | map&lt;string,array&lt;string&gt;&gt;    |          |
++---------------+------------------------------+----------+--+
+5 rows selected (0.186 seconds)
+
+&gt; SELECT name,gender_age.gender AS gender,gender_age.age AS age FROM employee;
 +----------+---------+------+
-|   name   |   sex   | age  |
+|   name   |  gender | age  |
 +----------+---------+------+
 | Michael  | Male    | 30   |
 | Will     | Male    | 35   |
@@ -202,25 +214,31 @@
 5 rows selected (75.887 seconds)
 </code></pre>
 
-<p>We want to know <strong>Who is oldest of males or females?</strong> There are three solutions available.</p>
+<h2 id="questions">Questions</h2>
+
+<blockquote>
+<p><strong>Who is oldest of males or females?</strong></p>
+</blockquote>
+
+<p>There are three solutions available.  <strong>Note</strong>, gender_age is a struct.</p>
 
 <h2 id="solution-1">Solution 1</h2>
 
-<p>The most frequent way of doing it is to to firstly find the MAX of age in each SEX group and do SELF JOIN by matching SEX and the MAX age as follows. This will create two stages of jobs and <strong>NOT</strong> efficient.</p>
+<p>The most frequent way of doing it is to to firstly find the MAX of age in each gender group and do SELF JOIN by matching gender and the MAX age as follows. This will create two stages of jobs and <strong>NOT</strong> efficient.</p>
 
-<pre><code>&gt; SELECT employee.sex_age.sex, employee.sex_age.age, name 
+<pre><code>&gt; SELECT employee.gender_age.gender, employee.gender_age.age, name 
 &gt; FROM
 &gt; employee JOIN 
 &gt; (
 &gt; SELECT 
-&gt; max(sex_age.age) as max_age, sex_age.sex as sex  
+&gt; max(gender_age.age) as max_age, gender_age.gender as gender  
 &gt; FROM employee
-&gt; GROUP BY sex_age.sex
+&gt; GROUP BY gender_age.gender
 &gt; ) maxage
-&gt; ON employee.sex_age.age = maxage.max_age
-&gt; AND employee.sex_age.sex = maxage.sex;
+&gt; ON employee.gender_age.age = maxage.max_age
+&gt; AND employee.gender_age.gender = maxage.gender;
 +--------------+------+-------+
-| sex_age.sex  | age  | name  |
+| gender       | age  | name  |
 +--------------+------+-------+
 | Female       | 57   | Lucy  |
 | Male         | 35   | Will  |
@@ -232,16 +250,16 @@
 
 <p>Once Hive 0.11.0 introduced analytics functions, we can use ROW_NUMBER to solve the problem as well, but only trigger one MapReduce job.</p>
 
-<pre><code>&gt; SELECT sex, age, name
+<pre><code>&gt; SELECT gender, age, name
 &gt; FROM
 &gt; (
-&gt; SELECT sex_age.sex AS sex,
-&gt; ROW_NUMBER() OVER (PARTITION BY sex_age.sex ORDER BY sex_age.age DESC) AS row_num, 
-&gt; sex_age.age as age,name
+&gt; SELECT gender_age.gender AS gender,
+&gt; ROW_NUMBER() OVER (PARTITION BY gender_age.gender ORDER BY gender_age.age DESC) AS row_num, 
+&gt; gender_age.age as age,name
 &gt; FROM employee
 &gt; ) t WHERE row_num = 1;
 +---------+------+-------+
-|   sex   | age  | name  |
+| gender  | age  | name  |
 +---------+------+-------+
 | Female  | 57   | Lucy  |
 | Male    | 35   | Will  |
@@ -253,13 +271,13 @@
 
 <p>Actually, there is a better way of doing it as follows through <strong><em>MAX/MIN STRUCT</em></strong> function added by <strong><a href="https://issues.apache.org/jira/browse/HIVE-1128">Hive-1128</a></strong> since Hive 0.6.0, although it is not documented anywhere in the Hive Wiki.</p>
 
-<pre><code>&gt; SELECT sex_age.sex, 
-&gt; max(struct(sex_age.age, name)).col1 as age,
-&gt; max(struct(sex_age.age, name)).col2 as name
+<pre><code>&gt; SELECT gender_age.gender, 
+&gt; max(struct(gender_age.age, name)).col1 as age,
+&gt; max(struct(gender_age.age, name)).col2 as name
 &gt; FROM employee
-&gt; GROUP BY sex_age.sex;
+&gt; GROUP BY gender_age.gender;
 +--------------+------+-------+
-| sex_age.sex  | age  | name  |
+| gender       | age  | name  |
 +--------------+------+-------+
 | Female       | 57   | Lucy  |
 | Male         | 35   | Will  |
@@ -271,7 +289,7 @@
 
 <h2 id="summary">Summary</h2>
 
-<p>The solution 3 is better in terms of performance, query complexity, and version supports. In addition, the solutions above are also working in Spark SQL.</p>
+<p>The solution 3 is better in terms of performance, query complexity, and version supports at older Hive. The solution 2 is better and powerful since it does not requires GROUP BY keywords. In addition, the solutions above are also working in Spark SQL.</p>
 
                         </div>
                         

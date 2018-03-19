@@ -6,7 +6,6 @@
     <description>Recent content in Spark on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright (c) 2018, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Sat, 10 Mar 2018 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
@@ -28,7 +27,7 @@
       
       <guid>https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/</guid>
       <description>Most of time, we need to find the max or min value of particular columns as well as other columns. For example, we have following employee table.
-&amp;gt; SELECT name,sex_age.sex AS sex,sex_age.age AS age FROM employee; +----------+---------+------+ | name | sex | age | +----------+---------+------+ | Michael | Male | 30 | | Will | Male | 35 | | Shelley | Female | 27 | | Lucy | Female | 57 | | Steven | Male | 30 | +----------+---------+------+ 5 rows selected (75.</description>
+DESC employee; +---------------+------------------------------+----------+--+ | col_name | data_type | comment | +---------------+------------------------------+----------+--+ | name | string | | | work_place | array&amp;lt;string&amp;gt; | | | gender_age | struct&amp;lt;gender:string,age:int&amp;gt;| | | skills_score | map&amp;lt;string,int&amp;gt; | | | depart_title | map&amp;lt;string,array&amp;lt;string&amp;gt;&amp;gt; | | +---------------+------------------------------+----------+--+ 5 rows selected (0.</description>
     </item>
     
     <item>
