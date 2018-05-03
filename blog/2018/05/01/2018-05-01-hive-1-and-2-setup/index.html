@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>When to Disable Speculative Execution</title>
+  <title>Run Hive 1 and 2 Together</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="When to Disable Speculative Execution" />
+  <meta property="og:title" content="Run Hive 1 and 2 Together" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution//" />
+  <meta property="og:url" content="/blog/2018/05/01/2018-05-01-hive-1-and-2-setup//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="When to Disable Speculative Execution logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="When to Disable Speculative Execution logo" class="visible-xs visible-sm">
-                    <span class="sr-only">When to Disable Speculative Execution - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Run Hive 1 and 2 Together logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Run Hive 1 and 2 Together logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Run Hive 1 and 2 Together - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>When to Disable Speculative Execution</h1>
+                <h1>Run Hive 1 and 2 Together</h1>
             </div>
         </div>
     </div>
@@ -180,54 +180,73 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">November 22, 2016</p>
+                        <p class="text-muted text-uppercase mb-small text-right">May 1, 2018</p>
 
                         <div id="post-content">
                           
 
-<h2 id="backgrounds">Backgrounds</h2>
+<p align="left"><img src="/img/banners/maxmin.jpg" width="400"></p>
 
-<p>This is the link from WikiMedia about what’s <strong><a href="http://en.wikipedia.org/wiki/Speculative_execution">Speculative Execution</a></strong>. In Hadoop, the following parameters string are for this settings. And, they are true by default.</p>
+<p>Most of time, we need to generate a unique identifier column for dataframe. There are couple of ways doing that as follows.</p>
 
-<pre><code>mapred.map.tasks.speculative.execution
-mapred.reduce.tasks.speculative.execution
+<p><a href="https://stackoverflow.com/questions/35705038/how-do-i-add-an-persistent-column-of-row-ids-to-spark-dataframe">https://stackoverflow.com/questions/35705038/how-do-i-add-an-persistent-column-of-row-ids-to-spark-dataframe</a></p>
+
+<h2 id="solution-1">Solution 1</h2>
+
+<p>The most frequent way of doing it is to to firstly find the MAX of age in each SEX group and do SELF JOIN by matching SEX and the MAX age as follows. This will create two stages of jobs and <strong>NOT</strong> efficient.</p>
+
+<pre><code>&gt; SELECT employee.sex_age.sex, employee.sex_age.age, name 
+&gt; FROM
+&gt; employee JOIN 
+&gt; (
+&gt; SELECT 
+&gt; max(sex_age.age) as max_age, sex_age.sex as sex  
+&gt; FROM employee
+&gt; GROUP BY sex_age.sex
+&gt; ) maxage
+&gt; ON employee.sex_age.age = maxage.max_age
+&gt; AND employee.sex_age.sex = maxage.sex;
++--------------+------+-------+
+| sex_age.sex  | age  | name  |
++--------------+------+-------+
+| Female       | 57   | Lucy  |
+| Male         | 35   | Will  |
++--------------+------+-------+
+2 rows selected (94.043 seconds)
 </code></pre>
 
-<h2 id="when-to-disable">When to Disable</h2>
+<p>Option 1 =&gt; Using MontotonicallyIncreasingID or ZipWithUniqueId methods</p>
 
-<p>Most time, it helps. However, I am here to collect some scenario when we do not need it.</p>
+<p>Create a Dataframe from a parallel collection
+Apply a spark dataframe method to generate Unique Ids Monotonically Increasing
+import org.apache.spark.sql.functions._
+val df = sc.parallelize(Seq((&ldquo;Databricks&rdquo;, 20000), (&ldquo;Spark&rdquo;, 100000), (&ldquo;Hadoop&rdquo;, 3000))).toDF(&ldquo;word&rdquo;, &ldquo;count&rdquo;)
+df.withColumn(&ldquo;uniqueID&rdquo;,monotonicallyIncreasingId).show()
+Screen Shot 2016-05-23 at 4.13.37 PM</p>
 
-<ul>
-<li>Of course, when ever your cluster really in shortage of resource or for the purpose of experiment, we can disable them by setting them to false since “SE” really a big resource consumer</li>
-<li>It is generally advisable to turn off ”SE” for mapred jobs that use HBase as a source. Especially for longer running jobs, speculative execution will create duplicate map-tasks which will double-write your data to HBase; this is probably not what you want. In addition, its local data has high priority when you mapred running against resource in HBase. That is to say every task in tasktracker stays closer to the regionserver in the same physical server. The “SE” will create new jobs to access data which may not local. As result, it will make your regionserver overloaded by wasting IO and network resource.</li>
-<li>When moving data using distcp, the source cluster should have speculative execution turned off for map tasks. In the mapredsite.xml configuration file, set mapred.map.tasks.speculative.execution to false. This will prevent any undefined behavior from occurring in the case where a map task fails.</li>
-</ul>
+<p>import org.apache.spark.sql.types.{StructType, StructField, LongType}
+val df = sc.parallelize(Seq((&ldquo;Databricks&rdquo;, 20000), (&ldquo;Spark&rdquo;, 100000), (&ldquo;Hadoop&rdquo;, 3000))).toDF(&ldquo;word&rdquo;, &ldquo;count&rdquo;)
+val wcschema = df.schema
+val inputRows = df.rdd.zipWithUniqueId.map{
+   case (r: Row, id: Long) =&gt; Row.fromSeq(id +: r.toSeq)}
+val wcID = sqlContext.createDataFrame(inputRows, StructType(StructField(&ldquo;id&rdquo;, LongType, false) +: wcschema.fields))
+Screen Shot 2016-05-23 at 4.13.46 PM</p>
 
-<h2 id="how-to-disable">How to Disable</h2>
+<p>Option 2 =&gt; Use Row_Number Function</p>
 
-<p>There are two ways to disable it.
-1.Set in mapred-site.xml (recommend for admin and wider user having such request)</p>
+<p>With PartitionBy Column:</p>
 
-<pre><code>&lt;property&gt;  
-         &lt;name&gt;mapred.map.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;  
-&lt;property&gt;  
-         &lt;name&gt;mapred.reduce.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;
-</code></pre>
+<p>val df = sc.parallelize(Seq((&ldquo;Databricks&rdquo;, 20000), (&ldquo;Spark&rdquo;, 100000), (&ldquo;Hadoop&rdquo;, 3000))).toDF(&ldquo;word&rdquo;, &ldquo;count&rdquo;)
+df.createOrReplaceTempView(&ldquo;wordcount&rdquo;)
+val tmpTable = sqlContext.sql(&ldquo;select row_number() over (partition by word order by count) as rnk,word,count from wordcount&rdquo;)
+tmpTable.show()
+Screen Shot 2016-05-23 at 8.12.15 PM</p>
 
-<p>2.Set in job configuration</p>
+<p>Without PartitionBy Column:</p>
 
-<pre><code>    jobconf.set(&quot;mapred.map.tasks.speculative.execution&quot;,false);
-
-    jobconf.set(&quot;mapred.reduce.tasks.speculative.execution&quot;,false);
-</code></pre>
-
-<h2 id="issues">Issues</h2>
-
-<p><strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-2062">MAPREDUCE-2062</a></strong> and <strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-3895">MAPREDUCE-3895</a></strong> list some problem on <strong>“SE”</strong>. See if you needs improvements if you have to use.</p>
+<p>val tmpTable1 = sqlContext.sql(&ldquo;select row_number() over (order by count) as rnk,word,count from wordcount&rdquo;)
+tmpTable1.show()
+Screen Shot 2016-05-23 at 8.13.09 PM</p>
 
                         </div>
                         

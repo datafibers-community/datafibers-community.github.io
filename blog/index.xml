@@ -6,11 +6,33 @@
     <description>Recent content in Blogs on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright (c) 2018, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sat, 10 Mar 2018 13:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 01 May 2018 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Run Hive 1 and 2 Together</title>
+      <link>https://datafibers-community.github.io/blog/2018/05/01/2018-05-01-hive-1-and-2-setup/</link>
+      <pubDate>Tue, 01 May 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2018/05/01/2018-05-01-hive-1-and-2-setup/</guid>
+      <description>Most of time, we need to generate a unique identifier column for dataframe. There are couple of ways doing that as follows.
+https://stackoverflow.com/questions/35705038/how-do-i-add-an-persistent-column-of-row-ids-to-spark-dataframe
+Solution 1 The most frequent way of doing it is to to firstly find the MAX of age in each SEX group and do SELF JOIN by matching SEX and the MAX age as follows. This will create two stages of jobs and NOT efficient.
+&amp;gt; SELECT employee.</description>
+    </item>
+    
+    <item>
+      <title>HBase Shell Reference</title>
+      <link>https://datafibers-community.github.io/blog/2018/04/28/2018-04-28-hbase-shell_example/</link>
+      <pubDate>Sat, 28 Apr 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2018/04/28/2018-04-28-hbase-shell_example/</guid>
+      <description>We use this place to collect commonly used HBase shell command for reference. HBase shell is an HBase extensible jruby-based (JIRB) shell to execute some commands(each command represents one functionality) in HBase. HBase shell commands are mainly categorized into 6 parts as follows. Will keep adding more examples here.
+1. General Information status Show cluster status. Can be &amp;lsquo;summary&amp;rsquo;, &amp;lsquo;simple&amp;rsquo;, or &amp;lsquo;detailed&amp;rsquo;. The default is &amp;lsquo;summary&amp;rsquo;.
+hbase&amp;gt; status hbase&amp;gt; status &#39;simple&#39; hbase&amp;gt; status &#39;summary&#39; hbase&amp;gt; status &#39;detailed&#39;  version Output this HBase version.</description>
+    </item>
     
     <item>
       <title>Naive Bayes Algorithm</title>

@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>When to Disable Speculative Execution</title>
+  <title>Article</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="When to Disable Speculative Execution" />
+  <meta property="og:title" content="Article" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution//" />
+  <meta property="og:url" content="/categories/article//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="When to Disable Speculative Execution logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="When to Disable Speculative Execution logo" class="visible-xs visible-sm">
-                    <span class="sr-only">When to Disable Speculative Execution - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Article logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Article logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Article - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>When to Disable Speculative Execution</h1>
+                <h1>Article</h1>
             </div>
         </div>
     </div>
@@ -173,89 +173,59 @@
 
         <div id="content">
             <div class="container">
-
                 <div class="row">
-
                     
 
-                    <div class="col-md-9" id="blog-post">
+                    <div class="col-md-9" id="blog-listing-medium">
 
-                        <p class="text-muted text-uppercase mb-small text-right">November 22, 2016</p>
-
-                        <div id="post-content">
-                          
-
-<h2 id="backgrounds">Backgrounds</h2>
-
-<p>This is the link from WikiMedia about what’s <strong><a href="http://en.wikipedia.org/wiki/Speculative_execution">Speculative Execution</a></strong>. In Hadoop, the following parameters string are for this settings. And, they are true by default.</p>
-
-<pre><code>mapred.map.tasks.speculative.execution
-mapred.reduce.tasks.speculative.execution
-</code></pre>
-
-<h2 id="when-to-disable">When to Disable</h2>
-
-<p>Most time, it helps. However, I am here to collect some scenario when we do not need it.</p>
-
-<ul>
-<li>Of course, when ever your cluster really in shortage of resource or for the purpose of experiment, we can disable them by setting them to false since “SE” really a big resource consumer</li>
-<li>It is generally advisable to turn off ”SE” for mapred jobs that use HBase as a source. Especially for longer running jobs, speculative execution will create duplicate map-tasks which will double-write your data to HBase; this is probably not what you want. In addition, its local data has high priority when you mapred running against resource in HBase. That is to say every task in tasktracker stays closer to the regionserver in the same physical server. The “SE” will create new jobs to access data which may not local. As result, it will make your regionserver overloaded by wasting IO and network resource.</li>
-<li>When moving data using distcp, the source cluster should have speculative execution turned off for map tasks. In the mapredsite.xml configuration file, set mapred.map.tasks.speculative.execution to false. This will prevent any undefined behavior from occurring in the case where a map task fails.</li>
-</ul>
-
-<h2 id="how-to-disable">How to Disable</h2>
-
-<p>There are two ways to disable it.
-1.Set in mapred-site.xml (recommend for admin and wider user having such request)</p>
-
-<pre><code>&lt;property&gt;  
-         &lt;name&gt;mapred.map.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;  
-&lt;property&gt;  
-         &lt;name&gt;mapred.reduce.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;
-</code></pre>
-
-<p>2.Set in job configuration</p>
-
-<pre><code>    jobconf.set(&quot;mapred.map.tasks.speculative.execution&quot;,false);
-
-    jobconf.set(&quot;mapred.reduce.tasks.speculative.execution&quot;,false);
-</code></pre>
-
-<h2 id="issues">Issues</h2>
-
-<p><strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-2062">MAPREDUCE-2062</a></strong> and <strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-3895">MAPREDUCE-3895</a></strong> list some problem on <strong>“SE”</strong>. See if you needs improvements if you have to use.</p>
-
-                        </div>
                         
                         
-                        <div id="comments">
-                            <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-                        </div>
+                        <section class="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                  <div class="image">
+                                      <a href="https://datafibers-community.github.io/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution/">
+                                          
+                                          <img src="https://datafibers-community.github.io//img/banners/banner-1.jpg" class="img-responsive" alt="">
+                                          
+                                      </a>
+                                  </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h2><a href="https://datafibers-community.github.io/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution/">When to Disable Speculative Execution</a></h2>
+                                    <div class="clearfix">
+                                        <p class="author-category">
+                                          
+                                          
+                                          
+                                          in <a href="https://datafibers-community.github.io/categories/article">article</a>
+                                          
+                                          
+
+                                        </p>
+                                        <p class="date-comments">
+                                            <a href="https://datafibers-community.github.io/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution/"><i class="fa fa-calendar-o"></i> November 22, 2016</a>
+                                        </p>
+                                    </div>
+                                    <p class="intro">Backgrounds This is the link from WikiMedia about what’s Speculative Execution. In Hadoop, the following parameters string are for this settings. And, they are true by default.
+mapred.map.tasks.speculative.execution mapred.reduce.tasks.speculative.execution  When to Disable Most time, it helps. However, I am here to collect some scenario when we do not need it.
+ Of course, when ever your cluster really in shortage of resource or for the purpose of experiment, we can disable them by setting them to false since “SE” really a big resource consumer It is generally advisable to turn off ”SE” for mapred jobs that use HBase as a source.</p>
+                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution/" class="btn btn-template-main">Continue reading</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
                         
 
+                        <ul class="pager">
+                            
+                            <li class="previous"><a href="https://datafibers-community.github.io//categories/article/">&larr; Newer</a></li>
+                            
+
+                            
+                            <li class="next disabled"><a href="#">Older &rarr;</a></li>
+                            
+                        </ul>
                     </div>
                     
 
@@ -385,7 +355,6 @@ mapred.reduce.tasks.speculative.execution
 
                 </div>
                 
-
             </div>
             
         </div>
@@ -548,6 +517,5 @@ ga('send', 'pageview');
 <script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
 
 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
   </body>
 </html>
