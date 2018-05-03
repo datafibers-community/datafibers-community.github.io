@@ -6,22 +6,10 @@
     <description>Recent content on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 May 2018 13:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 28 Apr 2018 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Run Hive 1 and 2 Together</title>
-      <link>https://datafibers-community.github.io/blog/2018/05/01/2018-05-01-hive-1-and-2-setup/</link>
-      <pubDate>Tue, 01 May 2018 13:50:46 +0200</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/2018/05/01/2018-05-01-hive-1-and-2-setup/</guid>
-      <description>Most of time, we need to generate a unique identifier column for dataframe. There are couple of ways doing that as follows.
-https://stackoverflow.com/questions/35705038/how-do-i-add-an-persistent-column-of-row-ids-to-spark-dataframe
-Solution 1 The most frequent way of doing it is to to firstly find the MAX of age in each SEX group and do SELF JOIN by matching SEX and the MAX age as follows. This will create two stages of jobs and NOT efficient.
-&amp;gt; SELECT employee.</description>
-    </item>
     
     <item>
       <title>HBase Shell Reference</title>
