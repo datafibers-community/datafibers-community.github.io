@@ -493,11 +493,15 @@ hbase&gt; get 't1', 'r1', ['c1', 'c2']
 
 <p>Besides the default &lsquo;toStringBinary&rsquo; format, &lsquo;get&rsquo; also supports custom formatting by
 column. A user can define a FORMATTER by adding it to the column name in the get
-specification. The FORMATTER can be stipulated:1. either as a org.apache.hadoop.hbase.util.Bytes method name (e.g, toInt, toString)
-2. or as a custom class followed by method name: e.g. &lsquo;c(MyFormatterClass).format&rsquo;.Example formatting cf:qualifier1 and cf:qualifier2 both as Integers:</p>
+specification. The FORMATTER can be stipulated:</p>
 
-<pre><code>hbase&gt; get 't1', 'r1' {COLUMN =&gt; ['cf:qualifier1:toInt','cf:qualifier2:c(org.apache.hadoop.hbase.util.Bytes).toInt'] }
-</code></pre>
+<ol>
+<li>either as a org.apache.hadoop.hbase.util.Bytes method name (e.g, toInt, toString)</li>
+<li>or as a custom class followed by method name: e.g. &lsquo;c(MyFormatterClass).format&rsquo;.Example formatting cf:qualifier1 and cf:qualifier2 both as Integers:
+<code>
+hbase&gt; get 't1', 'r1' {COLUMN =&gt; ['cf:qualifier1:toInt','cf:qualifier2:c(org.apache.hadoop.hbase.util.Bytes).toInt'] }
+</code></li>
+</ol>
 
 <p>Note that you can specify a FORMATTER by column only (cf:qualifer). You cannot specify
 a FORMATTER for all columns of a column family.The same commands also can be run on a reference to a table (obtained via get_table or
@@ -572,10 +576,15 @@ specifications. Scanner specifications may include one or more of:
 TIMERANGE, FILTER, LIMIT, STARTROW, STOPROW, TIMESTAMP, MAXLENGTH,
 or COLUMNS, CACHEIf no columns are specified, all columns will be scanned.
 To scan all members of a column family, leave the qualifier empty as in
-&lsquo;col_family:&lsquo;.The filter can be specified in two ways:
-1. Using a filterString – more information on this is available in the
-Filter Language document attached to the HBASE-4176 JIRA
-2. Using the entire package name of the filter.Some examples:</p>
+&lsquo;col_family:&lsquo;.The filter can be specified in two ways:</p>
+
+<ol>
+<li>Using a filterString – more information on this is available in the
+Filter Language document attached to the HBASE-4176 JIRA</li>
+<li>Using the entire package name of the filter.</li>
+</ol>
+
+<p>Some examples:</p>
 
 <pre><code>hbase&gt; scan '.META.'
 hbase&gt; scan '.META.', {COLUMNS =&gt; 'info:regioninfo'}
@@ -616,8 +625,6 @@ the scan specification. The FORMATTER can be stipulated:</p>
 
 <p>Note that you can specify a FORMATTER by column only (cf:qualifer). You cannot
 specify a FORMATTER for all columns of a column family.</p>
-
-<h4 id="scan-1">Scan</h4>
 
 <p>Scan can also be used directly from a table, by first getting a reference to a
 table, like such:</p>
@@ -689,9 +696,11 @@ hbase&gt; close_region 'REGIONNAME', 'SERVER_NAME'
 
 <p>Compact all regions in passed table or pass a region row
 to compact an individual region. You can also compact a single column
-family within a region.
-Examples:
-Compact all regions in a table:</p>
+family within a region.</p>
+
+<p>Examples:</p>
+
+<p>Compact all regions in a table:</p>
 
 <pre><code>hbase&gt; compact 't1'
 </code></pre>
@@ -725,9 +734,11 @@ hbase&gt; flush 'REGIONNAME'
 <p>Run major compaction on passed table or pass a region row
 to major compact an individual region. To compact a single
 column family within a region specify the region name
-followed by the column family name.
-Examples:
-Compact all regions in a table:</p>
+followed by the column family name.</p>
+
+<p>Examples:</p>
+
+<p>Compact all regions in a table:</p>
 
 <pre><code>hbase&gt; major_compact 't1'
 </code></pre>
@@ -756,8 +767,9 @@ is the hash suffix on region names: e.g. if the region name were
 TestTable,0094429456,1289497600452.527db22f95c8a9e0116f0cc13c680396. then
 the encoded region name portion is 527db22f95c8a9e0116f0cc13c680396
 A server name is its host, port plus startcode. For example:
-host187.example.com,60020,1289493121758
-Examples:</p>
+host187.example.com,60020,1289493121758</p>
+
+<p>Examples:</p>
 
 <pre><code>hbase&gt; move 'ENCODED_REGIONNAME'
 hbase&gt; move 'ENCODED_REGIONNAME', 'SERVER_NAME'
@@ -766,8 +778,9 @@ hbase&gt; move 'ENCODED_REGIONNAME', 'SERVER_NAME'
 <h4 id="split">split</h4>
 
 <p>Split entire table or pass a region to split individual region. With the
-second parameter, you can specify an explicit split key for the region.
-Examples:</p>
+second parameter, you can specify an explicit split key for the region.</p>
+
+<p>Examples:</p>
 
 <pre><code>split 'tableName'
 split 'regionName' # format: 'tableName,startKey,id'
@@ -781,7 +794,9 @@ split 'regionName', 'splitKey'
 reopen it again. Pass &lsquo;true&rsquo; to force the unassignment (&lsquo;force&rsquo; will clear
 all in-memory state in master before the reassign. If results in
 double assignment use hbck -fix to resolve. To be used by experts).
-Use with caution. For expert use only. Examples:</p>
+Use with caution. For expert use only.</p>
+
+<p>Examples:</p>
 
 <pre><code>hbase&gt; unassign 'REGIONNAME'
 hbase&gt; unassign 'REGIONNAME', true
@@ -800,7 +815,9 @@ master ui or when you do detailed status in shell)</p>
 
 <h4 id="zk-dump">zk_dump</h4>
 
-<p>Dump status of HBase cluster as seen by ZooKeeper. Example:</p>
+<p>Dump status of HBase cluster as seen by ZooKeeper.</p>
+
+<p>Example:</p>
 
 <pre><code>hbase&gt;zk_dump
 </code></pre>
@@ -812,8 +829,9 @@ master ui or when you do detailed status in shell)</p>
 <p>Add a peer cluster to replicate to, the id must be a short and
 the cluster key is composed like this:
 hbase.zookeeper.quorum:hbase.zookeeper.property.clientPort:zookeeper.znode.parent
-This gives a full path for HBase to connect to another cluster.
-Examples:</p>
+This gives a full path for HBase to connect to another cluster.</p>
+
+<p>Examples:</p>
 
 <pre><code>hbase&gt; add_peer '1', “server1.cie.com:2181:/hbase”
 hbase&gt; add_peer '2', “zk1,zk2,zk3:2182:/hbase-prod”
@@ -822,7 +840,9 @@ hbase&gt; add_peer '2', “zk1,zk2,zk3:2182:/hbase-prod”
 <h4 id="remove-peer">remove_peer</h4>
 
 <p>Stops the specified replication stream and deletes all the meta
-information kept about it. Examples:</p>
+information kept about it.</p>
+
+<p>Examples:</p>
 
 <pre><code>hbase&gt; remove_peer '1'
 </code></pre>
@@ -832,35 +852,39 @@ information kept about it. Examples:</p>
 <p>List all replication peer clusters.
 hbase&gt; list_peers
 enable_peer Restarts the replication to the specified peer cluster,
-continuing from where it was disabled.Examples:
+continuing from where it was disabled.</p>
+
+<p>Examples:
 hbase&gt; enable_peer &lsquo;1&rsquo;</p>
 
 <h4 id="disable-peer">disable_peer</h4>
 
 <p>Stops the replication stream to the specified cluster, but still
-keeps track of new edits to replicate.Examples:</p>
+keeps track of new edits to replicate.</p>
+
+<p>Examples:</p>
 
 <pre><code>hbase&gt; disable_peer '1'
 </code></pre>
 
 <h4 id="start-replication">start_replication</h4>
 
-<p>Restarts all the replication features. The state in which each
-stream starts in is undetermined.
+<p>Restarts all the replication features. The state in which each stream starts in is undetermined.
 WARNING:
-start/stop replication is only meant to be used in critical load situations.
-Examples:</p>
+start/stop replication is only meant to be used in critical load situations.</p>
+
+<p>Examples:</p>
 
 <pre><code>hbase&gt; start_replication
 </code></pre>
 
 <h4 id="stop-replication">stop_replication</h4>
 
-<p>Stops all the replication features. The state in which each
-stream stops in is undetermined.
+<p>Stops all the replication features. The state in which each stream stops in is undetermined.
 WARNING:
-start/stop replication is only meant to be used in critical load situations.
-Examples:</p>
+start/stop replication is only meant to be used in critical load situations.</p>
+
+<p>Examples:</p>
 
 <pre><code>hbase&gt; stop_replication
 </code></pre>
@@ -871,7 +895,7 @@ Examples:</p>
 
 <p>Grant users specific rights.
 Syntax : grantpermissions is either zero or more letters from the set “RWXCA”.
-READ(&lsquo;R&rsquo;), WRITE(&lsquo;W&rsquo;), EXEC(&lsquo;X&rsquo;), CREATE(&lsquo;C&rsquo;), ADMIN(&lsquo;A&rsquo;)For example:</p>
+READ(&lsquo;R&rsquo;), WRITE(&lsquo;W&rsquo;), EXEC(&lsquo;X&rsquo;), CREATE(&lsquo;C&rsquo;), ADMIN(&lsquo;A&rsquo;). For example:</p>
 
 <pre><code>hbase&gt; grant 'bobsmith', 'RWXCA'
 hbase&gt; grant 'bobsmith', 'RW', 't1', 'f1', 'col1'
@@ -887,8 +911,9 @@ hbase&gt; grant 'bobsmith', 'RW', 't1', 'f1', 'col1'
 <h4 id="user-permission">user_permission</h4>
 
 <p>Show all permissions for the particular user.
-Syntax : user_permission
-For example:</p>
+Syntax : user_permission</p>
+
+<p>For example:</p>
 
 <pre><code>hbase&gt; user_permission
 hbase&gt; user_permission 'table1'
@@ -968,7 +993,7 @@ hbase&gt; user_permission 'table1'
     <div class="panel-body">
         <ul class="nav nav-pills nav-stacked">
             
-            <li><a href="https://datafibers-community.github.io/categories/article">article (10)</a>
+            <li><a href="https://datafibers-community.github.io/categories/article">article (11)</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/categories/digest">digest (1)</a>
@@ -1080,6 +1105,19 @@ hbase&gt; user_permission 'table1'
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2018/05/30/2018-05-30-hive-1-and-2-setup/">
+                          
+                            <img src="https://datafibers-community.github.io//img/banners/hive2.png" class="img-responsive" alt="Run Hive 1 and 2 Together">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2018/05/30/2018-05-30-hive-1-and-2-setup/">Run Hive 1 and 2 Together</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2018/04/28/2018-04-28-hbase-shell_example/">
                           
                             <img src="https://datafibers-community.github.io//img/banners/hbase_logo.png" class="img-responsive" alt="HBase Shell Reference">
@@ -1101,19 +1139,6 @@ hbase&gt; user_permission 'table1'
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2018/03/10/2018-03-10-ml-naive-bayes/">Naive Bayes Algorithm</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2018/03/02/2018-03-02-ml-overview/">
-                          
-                            <img src="https://datafibers-community.github.io//img/banners/machine-learning.jpg" class="img-responsive" alt="ML Overview">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2018/03/02/2018-03-02-ml-overview/">ML Overview</a></h5>
                     </div>
                 </div>
                 

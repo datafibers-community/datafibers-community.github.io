@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Apr 2018 13:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 30 May 2018 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Run Hive 1 and 2 Together</title>
+      <link>https://datafibers-community.github.io/blog/2018/05/30/2018-05-30-hive-1-and-2-setup/</link>
+      <pubDate>Wed, 30 May 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2018/05/30/2018-05-30-hive-1-and-2-setup/</guid>
+      <description>Overview The latest HDP 2.6.x has both Hive version 1 and 2 installed together. However, it does not allow user to run hive version to command directly, but only use beeline. The lab_dev repository here provides an demo virtual box image to have both Hive version configured properly.
+Conf. Changes The trick thing to make both hive version working is do not add any setting in the .profile anymore. See below, I comments out all pervious hive settings.</description>
+    </item>
     
     <item>
       <title>HBase Shell Reference</title>

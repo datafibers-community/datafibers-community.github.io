@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Release</title>
+  <title>Run Hive 1 and 2 Together</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Release" />
+  <meta property="og:title" content="Run Hive 1 and 2 Together" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/categories/release//" />
+  <meta property="og:url" content="/blog/2018/05/30/2018-05-30-hive-1-and-2-setup//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Release logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Release logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Release - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Run Hive 1 and 2 Together logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Run Hive 1 and 2 Together logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Run Hive 1 and 2 Together - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Release</h1>
+                <h1>Run Hive 1 and 2 Together</h1>
             </div>
         </div>
     </div>
@@ -173,132 +173,137 @@
 
         <div id="content">
             <div class="container">
+
                 <div class="row">
+
                     
 
-                    <div class="col-md-9" id="blog-listing-medium">
+                    <div class="col-md-9" id="blog-post">
 
+                        <p class="text-muted text-uppercase mb-small text-right">May 30, 2018</p>
+
+                        <div id="post-content">
+                          
+
+<h2 id="overview">Overview</h2>
+
+<p>The latest HDP 2.6.x has both Hive version 1 and 2 installed together. However, it does not allow user to run hive version to command directly, but only use beeline.
+The <a href="https://github.com/datafibers/lab_env">lab_dev</a> repository here provides an demo virtual box image to have both Hive version configured properly.</p>
+
+<h2 id="conf-changes">Conf. Changes</h2>
+
+<p>The trick thing to make both hive version working is do not add any setting in the .profile anymore. See below, I comments out all pervious hive settings.</p>
+
+<pre><code>$cat .profile
+...
+export HADOOP_USER_CLASSPATH_FIRST=true
+export HADOOP_CONF_DIR=&quot;/mnt/etc/hadoop&quot;
+export HADOOP_LOG_DIR=&quot;/mnt/logs&quot;
+export HADOOP_HOME=&quot;/opt/hadoop&quot;
+# export HIVE_CONF_DIR=&quot;/mnt/etc/hive2&quot;
+# export HIVE_HOME=&quot;/opt/hive2&quot; 
+# To run two version of hive, comment hive setting out here and use hive-env.sh for instead since setting here has the highest privilige
+
+PATH=&quot;$HADOOP_HOME/bin:$PATH&quot;
+PATH=&quot;$HADOOP_HOME/sbin:$PATH&quot;
+# PATH=&quot;$HIVE_HOME/bin:$PATH&quot;
+</code></pre>
+
+<p>For instead, we use <code>hive-env.sh</code> in each hive installation folder to make each individual hive working.</p>
+
+<pre><code>cat /opt/hive/conf/hive-env.sh
+export HIVE_HOME=/opt/hive
+export HIVE_CONF_DIR=/opt/hive/conf
+</code></pre>
+
+<pre><code>cat /opt/hive2/conf/hive-env.sh
+export HIVE_HOME=/opt/hive2
+export HIVE_CONF_DIR=/opt/hive2/conf
+</code></pre>
+
+<p>For the <code>hive-site.xml</code>, for need make sure following properties are set.</p>
+
+<ul>
+<li><strong>hive.server2.thrift.port</strong>: set to 10000 for hive1 and 10500 for hive2</li>
+<li><strong>hive.metastore.port</strong>: set to 9083 for hive1 and 9085 for hive2. And also update <strong><code>hive.metastore.uris</code></strong>.</li>
+</ul>
+
+<p>The sample of configuration files (<code>hive-env.sh</code> and <code>hive-site.xml</code>) can be found <a href="https://github.com/datafibers/lab_env/tree/master/etc">here</a> in the hive1 and hive2 folder.</p>
+
+<p>Then, we need to create the metadata store in relational database, such as MySQL. The create the schema using the schema tools in hive2 installation folder, since hive2 metastore
+will be compatible with hive1.</p>
+
+<h2 id="install-steps">Install Steps</h2>
+
+<p>After we download the hive1 and hive2 jar, unzip them to <code>/opt/hive1</code> nad <code>/opt/hive2</code> folder respectively.</p>
+
+<pre><code># Create metastore database
+mysql -u root --password=&quot;mypassword&quot; -f -e &quot;DROP DATABASE IF EXISTS metastore;&quot;
+mysql -u root --password=&quot;mypassword&quot; -f -e &quot;CREATE DATABASE IF NOT EXISTS metastore;&quot;
+mysql -u root --password=&quot;mypassword&quot; -e &quot;GRANT ALL PRIVILEGES ON metastore.* TO 'hive'@'localhost' IDENTIFIED BY 'mypassword'; FLUSH PRIVILEGES;&quot;
+
+# Copy database jdbc driver file
+ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive2/lib/mysql-connector-java.jar
+ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive/lib/mysql-connector-java.jar
+
+# Copy our configuration files (```hive-env.sh``` and ```hive-site.xml```) in place    
+cp /mnt/etc/hive2/* /opt/hive2/conf/
+cp /mnt/etc/hive/* /opt/hive/conf/
+chown -R vagrant:vagrant /opt/hive/conf/*
+chown -R vagrant:vagrant /opt/hive2/conf/*
+
+# Use schema tool in the hive2 installation
+/opt/hive2/bin/schematool -dbType mysql -initSchema 
+</code></pre>
+
+<h2 id="start-and-verify-service">Start and Verify Service</h2>
+
+<p>In order to start Hive, start Hadoop first. Then use below commands to start both hive1 and hive2 service.</p>
+
+<pre><code>/opt/hive/bin/hive --service metastore 1&gt;&gt; /mnt/logs/metastore.log 2&gt;&gt; /mnt/logs/metastore.log &amp;
+/opt/hive/bin/hive --service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2.log 2&gt;&gt; /mnt/logs/hiveserver2.log &amp;
+/opt/hive2/bin/hive --service metastore 1&gt;&gt; /mnt/logs/metastore_h2.log 2&gt;&gt; /mnt/logs/metastore_h2.log &amp;
+/opt/hive2/bin/hive --service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2_h2.log 2&gt;&gt; /mnt/logs/hiveserver2_h2.log &amp;
+</code></pre>
+
+<p>Once all hive services are started, we can use <code>beeline</code> or <code>hive</code> to connect to hive.</p>
+
+<pre><code># connect to hive 1
+beeline -u &quot;jdbc:hive2://localhost:10000&quot; 
+/opt/hive/bin/hive
+
+# connect to hive 2
+beeline -u &quot;jdbc:hive2://localhost:10500&quot; 
+/opt/hive2/bin/hive
+</code></pre>
+
+                        </div>
                         
                         
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2017/12/22/2017-12-22-df-winter-release/">
-                                          
-                                          <img src="https://datafibers-community.github.io//img/banners/df_release.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2017/12/22/2017-12-22-df-winter-release/">2017 Winter Release</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/release">release</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2017/12/22/2017-12-22-df-winter-release/"><i class="fa fa-calendar-o"></i> December 22, 2017</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Summary Before christmas, DataFibers has completed the winter release, which has more than 40+ changes requests applied. In this release, DataFibers is featured with first demo combined both data landing and transforming in real time with new web interface. In addition, the preview version of batch processing (by spark) is ready.
-Details Below is the list of key changes in this release.
- New Web admin UI released using ReactJs based AOR.</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2017/12/22/2017-12-22-df-winter-release/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2017/08/31/2017-08-31-df-summer-release/">
-                                          
-                                          <img src="https://datafibers-community.github.io//img/banners/df_release.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2017/08/31/2017-08-31-df-summer-release/">2017 Summer Release</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/release">release</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2017/08/31/2017-08-31-df-summer-release/"><i class="fa fa-calendar-o"></i> August 31, 2017</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Summary A little bit data, but DataFibers has completed the summer release of 2017 about right time. In this release, we have applied 30+ changes requests. In this release, DataFibers is featured with a preview of new web interface. In addition, couple of connectors are added/updated to preparing the demo later.
-Details Below is the list of key changes in this release.
- Support Flink Table API and SQL API support Flink upgrade to v1.</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2017/08/31/2017-08-31-df-summer-release/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2016/12/29/2016-12-29-df-winter-release/">
-                                          
-                                          <img src="https://datafibers-community.github.io//img/banners/df_release.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2016/12/29/2016-12-29-df-winter-release/">2016 Winter Release</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/release">release</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2016/12/29/2016-12-29-df-winter-release/"><i class="fa fa-calendar-o"></i> December 29, 2016</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Summary Before new year, DataFibers has completed the winter release of 2016, which has more than 20+ changes requests applied. In this release, DataFibers is featured with new api document and landing pages. In addition, the preview version of stream processing (by flink) is ready.
-Details Below is the list of key changes in this release.
- Integrated REST API Document to the DF Application
- Added landing welcome page</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2016/12/29/2016-12-29-df-winter-release/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
                         
 
-                        <ul class="pager">
-                            
-                            <li class="previous disabled"><a href="#">&larr; Newer</a></li>
-                            
-
-                            
-                            <li class="next disabled"><a href="#">Older &rarr;</a></li>
-                            
-                        </ul>
                     </div>
                     
 
@@ -428,6 +433,7 @@ Details Below is the list of key changes in this release.
 
                 </div>
                 
+
             </div>
             
         </div>
@@ -590,5 +596,6 @@ ga('send', 'pageview');
 <script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
 
 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
   </body>
 </html>
