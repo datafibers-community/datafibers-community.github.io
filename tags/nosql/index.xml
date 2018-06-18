@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nosql on DataFibers</title>
+    <link>https://datafibers-community.github.io/tags/nosql/</link>
+    <description>Recent content in Nosql on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Jun 2018 13:50:46 +0200</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/tags/nosql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NoSQL Overview</title>
+      <link>https://datafibers-community.github.io/blog/2018/06/17/2018-06-17-nosql-overview/</link>
+      <pubDate>Sun, 17 Jun 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2018/06/17/2018-06-17-nosql-overview/</guid>
+      <description>Overview NoSQL (NoSQL = Not Only SQL) means &amp;ldquo;not just SQL&amp;rdquo;. Modern computing systems generate a huge amount of data every day on the network. A large part of these data are handled by relational database management systems (RDBMSs). Its matured relational theory foundation makes data modeling and application programming easier. However, with the wave of informationization and the rise of the Internet, traditional RDBMSs have started to experience problems in some paticular domain.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoSQL Overview</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="datafibers, big data, streaming">	
+  
+
+  
+  <meta name="description" content="DataFibers enterprise open sourec data bus">	
+  
+
+  <meta name="generator" content="Hugo 0.36" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="https://datafibers-community.github.io/css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="https://datafibers-community.github.io/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="https://datafibers-community.github.io/css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="https://datafibers-community.github.io/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="https://datafibers-community.github.io/img/apple-touch-icon.png" />
+  
+
+  <link href="https://datafibers-community.github.io/css/owl.carousel.css" rel="stylesheet">
+  <link href="https://datafibers-community.github.io/css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
+
+  
+  <meta property="og:title" content="NoSQL Overview" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2018/06/17/2018-06-17-nosql-overview//" />
+  <meta property="og:image" content="img/logo.png" />
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="https://datafibers-community.github.io/">
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="NoSQL Overview logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="NoSQL Overview logo" class="visible-xs visible-sm">
+                    <span class="sr-only">NoSQL Overview - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">Home</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="http://github.com/datafibers-community/df_data_service/releases/latest">Download</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/community/">Community</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/training/">Training</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">Contact</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>NoSQL Overview</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">June 17, 2018</p>
+
+                        <div id="post-content">
+                          
+
+<h2 id="overview">Overview</h2>
+
+<p><strong>NoSQL</strong> (NoSQL = Not Only SQL) means &ldquo;not just SQL&rdquo;. Modern computing systems generate a huge amount of data every day on the network. A large part of these data are handled by relational database management systems (RDBMSs). Its matured relational theory foundation makes data modeling and application programming easier. However, with the wave of informationization and the rise of the Internet, traditional RDBMSs have started to experience problems in some paticular domain.</p>
+
+<p>First of all, the database storage capacity requirements are getting higher and higher. For instead, we have to use clusters to meet the demand of storage increasing. However, most RDBMS generally does not support fully distributed clusters especially on special operations such as join and union. Second, in today&rsquo;s big data area, many of the data are <strong>&ldquo;frequently read rather than frequently modified&rdquo;</strong>, but RDBMS treats all operations equally. This brings oppotunities for performance optimization. In addition, the uncertainties in the Internet era cause the storage mode of the database to change frequently. The non-free and local storage mode increases the complexity of operation and maintenance and the difficulty of expansion.</p>
+
+<p>NoSQL is a brand-new and revolutionary database movement. It has been proposed in the early days that the trend has been rising since 2009. This kind of database mainly has these characteristics: non-relational, distributed, open source, and horizontally scalable. The initial purpose was for large-scale web applications. NoSQL advocates advocate the use of non-relational data storage. The usual applications are: mode freedom, support for simple replication, simple APIs, eventual consistency (non-ACID), large-capacity data, and so on.</p>
+
+<p>In below picture, it lists a commonly-used NoSQL database.
+<p align="center"><img src="/img/banners/nosql_list.jpg" width="600" /></p></p>
+
+<h2 id="the-theory">The Theory</h2>
+
+<h3 id="acid">ACID</h3>
+
+<p>ACID, refers to the database management system (DBMS) in the process of writing or updating data, in order to ensure the transaction (transaction) is correct and reliable, it must have four characteristics: Atomicity (atomicity, or indivisibility), Consistency, Isolation (also called independence), Durability.</p>
+
+<ul>
+<li><p><strong>A = Atomicity</strong>, all operations in a transaction are either completed or not completed and will not end in the middle. An error occurred during the execution of the transaction, and it was rolled back to the state before the transaction started, just as the transaction was never executed.</p></li>
+
+<li><p><strong>C = Consistency</strong>, the integrity of the database was not destroyed before and after the transaction began. This means that the written data must fully comply with all the preset rules, which include the accuracy of the data, the tandemness, and the follow-up database can spontaneously complete the scheduled work.</p></li>
+
+<li><p><strong>I = Isolation</strong>, the database allows multiple concurrent transactions to simultaneously read, write, and modify their data. Isolation prevents data from being inconsistent due to cross-execution when multiple transactions are executing concurrently. Transaction isolation is divided into different levels, including Read uncommitted, Read committed, Repeatable read, and Serializable.</p></li>
+
+<li><p><strong>D = Durability</strong>, after the transaction is completed, the data modification is permanent and will not be lost even if the system fails.</p></li>
+</ul>
+
+<p>Relational databases strictly follow the ACID theory. However, when the database needs to meet the requirements of horizontal extension, high availability, and mode freedom, it is necessary to make a trade-off from ACID theories. As result, NoSQL databases theory based on CAP theory and BASE theory began to appear.</p>
+
+<h3 id="cap">CAP</h3>
+
+<p>If we expect to implement a set of distributed transactions that strictly satisfy ACID, it is likely that there will be conflicts between system availability and strict consistency. There can never be a best of both worlds between usability and consistency. Since the basic requirement of NoSQL is to support distributed storage, strict consistency and availability need to be mutually discounted, thereby extending the CAP theory to define the problems encountered by distributed storage.</p>
+
+<p>CAP theory tells us that a distributed system <strong>CANNOT</strong> meet three basic requirements of consistency (C: Consistency), availability (A: Availability), and partition fault tolerance (P: Partition tolerance), and it can only satisfy at most two of them as shown in the below picture. For a distributed system, partition fault tolerance is a basic requirement, otherwise it cannot be called a distributed system. So the architect needs to find a balance between C and A.</p>
+
+<p align="center"><img src="https://3.bp.blogspot.com/--1ZiwH7SKTQ/WLVq5Bye9WI/AAAAAAAALNY/84oWSSIxc38_jZ5cg0A5d0NlNqkQOTo0gCLcB/s1600/truth-of-cap-theorem-diagram%255B1%255D.png width="600" /></p>
+
+<ul>
+<li><p><strong>C = Consistency</strong> (completely different from AC of C), Consistency refers to &ldquo;all nodes see the same data at the same time&rdquo;, that is, when the update operation is successful and the return of the client is completed, the data of all nodes at the same time is exactly the same. For consistency, it can be divided into two different perspectives from the client and the server. From the perspective of the client, consistency mainly refers to the problem of how to obtain updated data when mple concurrent accesses are made. From the perspective of the server, it is how updates are distributed to the entire system to ensure that the data is ultimately consistent. Consistency is due to the problem of concurrent reading and writing. Therefore, when understanding the consistency problem, we must pay attention to the combination of concurrent reading and writing scenarios. From the perspective of the client, when multiple processes access concurrently, different strategies for how the updated data is obtained in different processes determine different consistency. For relational databases, the updated data can be seen by subsequent visits. This is strongly consistent. If we can tolerate some or all of the subsequent visits, it is weak consistency. If after a certain period of time it is required to access the updated data, it is ultimately consistent.</p></li>
+
+<li><p><strong>A = Availability</strong>, availability refers to &ldquo;Reads and writes always succeed&rdquo;, that is, the service is always available, and it is a normal response time. For an availability distributed system, each non-failed node must respond to every request. That is, any algorithm used by the system must eventually terminate. This is a strong definition when partition tolerance is required at the same time: even if it is a serious network error, each request must be completed. Good usability mainly refers to the fact that the system can serve users well and does not experience poor user experience due to user operation failure or access timeout. In the general case, availability has a lot to do with distributed data redundancy, load balancing, and so on.</p></li>
+
+<li><p><strong>P = Partition tolerance</strong>, Partition fault tolerance refers to &ldquo;the system continues to operate (Architecture to operate to arbitrary message loss or failureof part of the system)&rdquo;, that is, when a distributed system encounters a failure of a certain node or network partition, it can still provide services to meet the consistency and availability. Partition fault tolerance and scalability are closely related. In distributed applications, the system may not function properly due to some distributed reason. A good partition fault tolerance requirement can make an application a distributed system, but it seems to be a functioning whole. For example, if one or more machines in a distributed system are crashed, the remaining machines can still operate normally to meet the system requirements, or there are network exceptions between machines, and the distributed system is divided into several independent ones. Each part can also maintain the operation of the distributed system, so that it has good partition fault tolerance.</p></li>
+
+<li><p><strong>CA without P</strong>, If P (do not allow partitioning) is not required, C (strong consistency) and A (availability) are guaranteed. But in fact, the partition is not a problem that you want to think about, but it will always exist, so the CA system is more to allow the partitions to remain CA.</p></li>
+
+<li><p><strong>CP without A</strong>, If A (available) is not required, it means that each request needs to be strongly consistent between Servers, and P (partition) will cause the synchronization time to be infinitely extended, so the CP is also guaranteed. Many traditional database distributed transactions fall into this pattern.</p></li>
+
+<li><p><strong>AP without C</strong>, To be highly available and allow partitions, you must give up consistency. Once partitions occur, the nodes may lose contact. In order to be highly available, each node can only provide services with local data. This may cause inconsistency of global data. Many NoSQL now fall into this category.</p></li>
+</ul>
+
+<p>CAP theory defines the fundamental issue of distributed storage, but it does not indicate how trade-offs between consistency and availability should be. Then the BASE theory emerged, giving a feasible solution to trade off A and C.</p>
+
+<h3 id="base">BASE</h3>
+
+<p>The <strong>BASE</strong> stands for <strong>B</strong>asically <strong>A</strong>vailable + <strong>S</strong>oft state + <strong>E</strong>ventually consistent, which is proposed by Dan Pritchett, an eBay architect. Base is the result of trade-offs between consistency <strong>A</strong> and availability <strong>C</strong> in the <strong>CAP</strong>, from the author&rsquo;s own summary of practice on large-scale distributed systems. The core idea is that strong consistency cannot be achieved, but each application can use its own characteristics to achieve eventual consistency.</p>
+
+<ul>
+<li><p><strong>BA = Basically Available</strong>, This refers to the fact that when a distributed system fails, it is allowed to lose some of its availability, that is, to ensure that the core functions or the most important functions are currently available. For users, the availability of the features they are most concerned about or the most commonly used functions will be guaranteed, but other features will be weakened.</p></li>
+
+<li><p><strong>S = Soft State</strong>, Allowing system data to exist in an intermediate state does not affect the overall availability of the system, that is, it allows the system to have time delays in synchronizing data between different nodes&rsquo; data copies.</p></li>
+
+<li><p><strong>E = Eventually Consistent - Final Consistency</strong>, It is required that the system data copy be eventually consistent without the need to guarantee the consistency of the data copy in real time. Final consistency is a special case of weak consistency. There are 5 variants of the final consistency:</p></li>
+</ul>
+
+<h2 id="the-algorithm">The Algorithm</h2>
+
+<h3 id="paxos">Paxos</h3>
+
+<p>The problem solved by the Paxos algorithm is how a distributed system agrees on a certain value (resolution). A typical scenario is that in a distributed database system, if each node has the same initial state and each node performs the same sequence of operations, then they can finally get a consistent state. To ensure that each node executes the same sequence of commands, a &ldquo;consistency algorithm&rdquo; needs to be executed on each instruction to ensure that the instructions seen by each node are consistent. A universal consensus algorithm can be applied in many scenarios and is an important issue in distributed computing. Therefore, research on consensus algorithms has not stopped since the 1980s. There are two models of node communication: Shared memory and Messages passing. The Paxos algorithm is a consensus algorithm based on the messaging model.</p>
+
+<p>It is not only in distributed systems that the Paxos algorithm can be used where multiple processes need to reach a certain consensus. Consensus algorithms can be implemented either through shared memory (locking required) or message passing, and the Paxos algorithm uses the latter. The Paxos algorithm is applicable to several situations: data consistency among multiple processes/threads in a single machine; multiple clients concurrently reading and writing data in a distributed file system or distributed database; multiple copies of distributed storage responding to read and write requests consistency.</p>
+
+<h3 id="partitioning">Partitioning</h3>
+
+<p>All the original data is in a database, network IO and file IO are concentrated in a database, so CPU, memory, file IO, network IO may become the system bottleneck. The partition scheme is to put the data of a certain table or several related tables on a separate database, so that the CPU, memory, file IO, and network IO can be decomposed into multiple machines, thereby improving system processing. ability.</p>
+
+<h3 id="replication">Replication</h3>
+
+<p>There are two modes of partitioning, one is the master-slave mode, which is used for read-write separation; the other is the replication mode, that is, the data in one table is decomposed into multiple tables. A partition can only be one of these modes.</p>
+
+<h3 id="consistent-hashing">Consistent Hashing</h3>
+
+<p>Consistent hashing algorithms are commonly used in distributed systems. For example, a distributed storage system stores data on a specific node. If an ordinary hash method is used, the data is mapped to a specific node, such as key%N, key is the key of the data, and N is a node of the machine. Number, if there is a machine that joins or exits the cluster, all data mappings will be invalid. If it is persistent storage, data migration will be done. If it is a distributed cache, other caches will be invalid.</p>
+
+<p>The consistent hash basically solves the most critical problem in the P2P environment—how to distribute storage and routing in a dynamic network topology. Each node only needs to maintain a small amount of neighboring node information, and only a small number of related nodes participate in the maintenance of the topology when the node joins/exits the system. All of this makes consistent hashing the first practical DHT algorithm.</p>
+
+<h2 id="nosql-types">NoSQL Types</h2>
+
+<h3 id="key-value-store-database">Key-Value Store Database</h3>
+
+<p>This kind of database will mainly use the hash table, in this table there is a specific key and a pointer to specific data. Key/value models for IT systems are simple and easy to deploy. However, if the DBA only queries or updates some of the values, the Key/value becomes inefficient.</p>
+
+<ul>
+<li>TokyoCabinet/Tyrant</li>
+<li>Redis</li>
+<li>Voldemort</li>
+<li>OracleBDB</li>
+</ul>
+
+<h3 id="column-storage-database">Column storage database</h3>
+
+<p>This part of the database is usually used to deal with distributed storage of large amounts of data. The keys still exist, but they are characterized by multiple columns. These columns are arranged by the column family.</p>
+
+<ul>
+<li>Cassandra</li>
+<li>HBase</li>
+<li>Riak</li>
+<li>Document Database</li>
+</ul>
+
+<h3 id="document-database">Document database</h3>
+
+<p>The document database was inspired by the Lotus Notes office software, which is similar to the first key-value store. This type of data model is a versioned document, semi-structured documents are stored in a specific format, such as JSON. A document database can be thought of as an upgraded version of a key-value database that allows nesting of key values. And the document database is more efficient than the key database.</p>
+
+<ul>
+<li>CouchDB</li>
+<li>MongoDB</li>
+<li>SequoiaDB</li>
+<li>Graph database</li>
+</ul>
+
+<h3 id="graphic-database">Graphic database</h3>
+
+<p>The database of the graphic structure is different from other rows and columns and the rigid structure of the SQL database. It uses a flexible graphic model and can be extended to multiple servers. NoSQL databases do not have a standard query language (SQL), so database queries require a data model. Many NoSQL databases have RESTful data interfaces or query APIs.</p>
+
+<ul>
+<li>Neo4J</li>
+<li>InfoGrid</li>
+<li>InfiniteGraph</li>
+</ul>
+
+<h2 id="pron-and-cons">Pron and Cons</h2>
+
+<h3 id="prons">Prons</h3>
+
+<ul>
+<li><p><strong>Easy to expand</strong>, there are many kinds of NoSQL databases, but there is a common feature that removes the relational nature of relational databases. There is no relationship between data, so it is very easy to expand. Also intangible, it brings with it the ability to expand at the architectural level.</p></li>
+
+<li><p><strong>Large amount of data, high performance</strong>, NoSQL databases have very high read/write performance, and they perform equally well under large data volumes. This is due to its unrelated nature and the simple structure of the database. Generally, MySQL uses Query Cache. Each time the table updates Cache, it is invalid. It is a large-scale Cache. For the frequently-interactive applications of web2.0, Cache performance is not high. The NoSQL Cache is a record-level, fine-grained Cache, so NoSQL performance at this level is much higher.</p></li>
+
+<li><p><strong>Flexible data model</strong>, NoSQL does not need to create fields for the data to be stored in advance and can store custom data formats at any time. In a relational database, adding or deleting fields is a very troublesome thing. If it is a very large amount of data, adding fields is a nightmare. This is particularly evident in the era of large data volume web 2.0.</p></li>
+
+<li><p><strong>High availability</strong>, NoSQL can easily implement a highly available architecture without compromising performance. Such as Cassandra, HBase model, can also achieve high availability by copying the model.</p></li>
+</ul>
+
+<h3 id="cons">Cons</h3>
+
+<ul>
+<li><p><strong>No standard</strong>, There is no standard defined for NoSQL databases, so no two NoSQL databases are equal.</p></li>
+
+<li><p><strong>There is no stored procedure</strong>, Most of the NoSQL databases do not have stored procedures.</p></li>
+
+<li><p><strong>Does not support SQL</strong>, Most of NoSQL does not provide support for SQL: If you do not support industry standards such as SQL, you will have a certain amount of learning and application migration costs for users.</p></li>
+
+<li><p><strong>The support features are not rich enough and the products are not mature enough</strong>, the functions provided by existing products are relatively limited, unlike MS SQL Server and Oracle, which can provide various additional functions such as BI and reports. Most of the products are still in the initial stage, and the improvement of relational databases for decades is not the same.</p></li>
+</ul>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="https://datafibers-community.github.io/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="https://datafibers-community.github.io/categories/article">article (12)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/digest">digest (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/release">release (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/review">review (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/training">training (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/tutorial">tutorial (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/git"><i class="fa fa-tags"></i> git</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hadoop"><i class="fa fa-tags"></i> hadoop</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hbase"><i class="fa fa-tags"></i> hbase</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/scala"><i class="fa fa-tags"></i> scala</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2018/06/17/2018-06-17-nosql-overview/">
+                          
+                            <img src="https://datafibers-community.github.io//img/banners/nosql_overview.png" class="img-responsive" alt="NoSQL Overview">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2018/06/17/2018-06-17-nosql-overview/">NoSQL Overview</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2018/05/30/2018-05-30-hive-1-and-2-setup/">
+                          
+                            <img src="https://datafibers-community.github.io//img/banners/hive2.png" class="img-responsive" alt="Run Hive 1 and 2 Together">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2018/05/30/2018-05-30-hive-1-and-2-setup/">Run Hive 1 and 2 Together</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2018/04/28/2018-04-28-hbase-shell_example/">
+                          
+                            <img src="https://datafibers-community.github.io//img/banners/hbase_logo.png" class="img-responsive" alt="HBase Shell Reference">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2018/04/28/2018-04-28-hbase-shell_example/">HBase Shell Reference</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>Contact</h4>
+
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2018, DataFibers all rights reserved.</p>
+			<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		    <span id="busuanzi_container_site_pv"> <span id="busuanzi_value_site_pv"></span> visits</span>
+            
+            <p class="pull-right">
+              Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Powered by <a href="https://gohugo.io/">Hugo</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCksU3IZTuUK6fA-doQUfQ4KcYm7mB_vlk&v=3.exp"></script>
+
+<script src="https://datafibers-community.github.io/js/hpneo.gmaps.js"></script>
+<script src="https://datafibers-community.github.io/js/gmaps.init.js"></script>
+<script src="https://datafibers-community.github.io/js/front.js"></script>
+
+
+<script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
+  </body>
+</html>
