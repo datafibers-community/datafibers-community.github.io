@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2018/08/04/2018-08-04-apache-kafka-consumers/</loc>
+    <lastmod>2018-08-04T13:50:46+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2018/06/17/2018-06-17-nosql-overview/</loc>
     <lastmod>2018-06-17T13:50:46+02:00</lastmod>
   </url>
@@ -105,7 +110,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2018-06-17T13:50:46+02:00</lastmod>
+    <lastmod>2018-08-04T13:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -125,7 +130,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2018-06-17T13:50:46+02:00</lastmod>
+    <lastmod>2018-08-04T13:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -137,7 +142,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/digest/</loc>
-    <lastmod>2018-03-10T13:50:46+02:00</lastmod>
+    <lastmod>2018-08-04T13:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -167,7 +172,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/kafka/</loc>
-    <lastmod>2017-10-05T13:50:46+02:00</lastmod>
+    <lastmod>2018-08-04T13:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
