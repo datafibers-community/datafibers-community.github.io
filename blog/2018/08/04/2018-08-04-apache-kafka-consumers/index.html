@@ -197,15 +197,43 @@
 
 <h2 id="load-balance">Load Balance</h2>
 
-<p>Kafka consumer consumption divides partitions over consumer instances within a consumer group. Each consumer in the consumer group is an exclusive consumer of a “fair share” of partitions. This is how Kafka does load balancing of consumers in a consumer group. Consumer membership within a consumer group is handled by the Kafka protocol dynamically. If new consumers join a consumer group, it gets a share of partitions. If a consumer dies, its partitions are split among the remaining live consumers in the consumer group. This is how Kafka does fail over of consumers in a consumer group. There are some pictures from <a href="https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/ch04.html">Kafka definitive guide</a> makes this more clearly.
-One Consumer group with four partitions
-<img src="/img/banners/kafka_consumer_group_1.png">
-Four partitions split to two consumers in a group
-<img src="/img/banners/kafka_consumer_group_2.png">
-Four consumers in a group with one partition each
-<img src="/img/banners/kafka_consumer_group_3.png">
-More consumers in a group than partitions means idle consumers. Only a single consumer from the same consumer group can access a single partition. If consumer group count exceeds the partition count, then the extra consumers remain idle. Kafka can use the idle consumers for failover. If there are more partitions than consumer group, then some consumers will read from more than one partition.
-<img src="/img/banners/kafka_consumer_group_4.png"></p>
+<p>Kafka consumer consumption divides partitions over consumer instances within a consumer group. Each consumer in the consumer group is an exclusive consumer of a “fair share” of partitions. This is how Kafka does load balancing of consumers in a consumer group. Consumer membership within a consumer group is handled by the Kafka protocol dynamically. If new consumers join a consumer group, it gets a share of partitions. If a consumer dies, its partitions are split among the remaining live consumers in the consumer group. This is how Kafka does fail over of consumers in a consumer group. There are some pictures from <a href="https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/ch04.html">Kafka definitive guide</a> makes this more clearly.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">One Consumer group with four partitions</th>
+<th align="left">Four partitions split to two consumers in a group.</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><img src="/img/banners/kafka_consumer_group_1.png" width="400" /></td>
+<td align="left"><img src="/img/banners/kafka_consumer_group_2.png" width="400" /></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="left">Four consumers in a group with one partition each</th>
+<th align="left">More consumers in a group than partitions means idle consumers.</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><img src="/img/banners/kafka_consumer_group_3.png" width="400" /></td>
+<td align="left"><img src="/img/banners/kafka_consumer_group_4.png" width="400" /></td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>Only a single consumer from the same consumer group can access a single partition. If consumer group count exceeds the partition count, then the extra consumers remain idle. Kafka can use the idle consumers for failover. If there are more partitions than consumer group, then some consumers will read from more than one partition.</p>
+</blockquote>
 
 <h2 id="failover">Failover</h2>
 
@@ -215,23 +243,23 @@ More consumers in a group than partitions means idle consumers. Only a single co
 
 <h2 id="offset-management">Offset Management</h2>
 
-<p>Kafka stores offset data in a topic called &ldquo;<strong>consumer_offset&rdquo;. These topics use log compaction, which means they only save the most recent value per key.
-When a consumer has processed data, it should commit offsets. If consumer process dies, it will be able to start up and start reading where it left off based on offset stored in &ldquo;</strong>consumer_offset&rdquo; or as discussed another consumer in the consumer group can take over.</p>
+<p>Kafka stores offset data in a topic called <strong>__consumer_offset</strong>. These topics use log compaction, which means they only save the most recent value per key.
+When a consumer has processed data, it should commit offsets. If consumer process dies, it will be able to start up and start reading where it left off based on offset stored in <strong>__consumer_offset</strong> or as discussed another consumer in the consumer group can take over.</p>
 
 <h2 id="consume-scope">Consume Scope</h2>
 
-<p>What is the scope of records can be consumed by a Kafka consumer? Consumers can’t read un-replicated data. Kafka consumers can only consume messages beyond the “High Watermark” offset of the partition. “Log end offset” is offset of the last record written to log partition and where producers writes to next.
-“High Watermark” is the offset of the last record that was successfully replicated to all partition’s followers. Consumer only reads up to the “High Watermark”.</p>
+<p>What is the scope of records can be consumed by a Kafka consumer? Consumers can’t read un-replicated data. Kafka consumers can only consume messages beyond the <strong>High Watermark</strong> offset of the partition. <strong>Log end offset</strong> is offset of the last record written to log partition and where producers writes to next.
+<strong>High Watermark</strong> is the offset of the last record that was successfully replicated to all partition’s followers. Consumer only reads up to the “High Watermark”.</p>
 
 <h2 id="multi-threaded">Multi-threaded</h2>
 
 <p>You can run more than one Consumer in a JVM process by using threads.</p>
 
-<h3 id="consumer-with-many-threads">Consumer with many threads</h3>
+<h4 id="consumer-with-many-threads">Consumer with many threads</h4>
 
 <p>If processing a record takes a while, a single Consumer can run multiple threads to process records, but it is harder to manage offset for each Thread/Task. If one consumer runs multiple threads, then two messages on the same partitions could be processed by two different threads which make it hard to guarantee record delivery order without complex thread coordination. This setup might be appropriate if processing a single task takes a long time, but try to avoid it.</p>
 
-<h3 id="thread-per-consumer">Thread per consumer</h3>
+<h4 id="thread-per-consumer">Thread per consumer</h4>
 
 <p>If you need to run multiple consumers, then run each consumer in their own thread. This way Kafka can deliver record batches to the consumer and the consumer does not have to worry about the offset ordering. A thread per consumer makes it easier to manage offsets. It is also simpler to manage failover (each process runs X num of consumer threads) as you can allow Kafka to do the brunt of the work.</p>
 
