@@ -6,10 +6,20 @@
     <description>Recent content in Digest on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Aug 2018 13:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 20 May 2019 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/digest/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Use Redish Lock for SecKill</title>
+      <link>https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/</link>
+      <pubDate>Mon, 20 May 2019 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/</guid>
+      <description>What is Seckill? When associated with online shopping, &amp;ldquo;seckill&amp;rdquo; refers to the quick sell out of newly-advertised goods. If you look at the transaction record, you will find that each of the transactions is made in seconds. It sounds inconceivable but is the naked truth. This is called &amp;ldquo;seckill&amp;rdquo;.
+A typical system for seckill has following features. * A large number of users will be shopping at the same time during the quick sell, and the web site traffic increses dramatically.</description>
+    </item>
     
     <item>
       <title>Apache Kafka Consumers</title>
