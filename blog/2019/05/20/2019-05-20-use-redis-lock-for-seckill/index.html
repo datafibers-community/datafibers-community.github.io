@@ -187,7 +187,7 @@
 
 <h2 id="what-is-seckill">What is Seckill?</h2>
 
-<p>When associated with online shopping, &ldquo;seckill&rdquo; refers to the quick sell out of newly-advertised goods. If you look at the transaction record, you will find that each of the transactions is made in seconds. It sounds inconceivable but is the naked truth. This is called &ldquo;seckill&rdquo;.</p>
+<p>When associated with online shopping, <strong>&ldquo;seckill&rdquo;</strong> refers to the quick sell out of newly-advertised goods. If you look at the transaction record, you will find that each of the transactions is made in seconds. It sounds inconceivable but is the naked truth. This is called <strong>&ldquo;seckill&rdquo;</strong>.</p>
 
 <p>A typical system for seckill has following features.
 * A large number of users will be shopping at the same time during the quick sell, and the web site traffic increses dramatically.
@@ -197,11 +197,15 @@
 <h2 id="design-considerations">Design Considerations</h2>
 
 <ul>
-<li>Traffic Control: Since only a small number of users can purchase successfully, majority requests of purchase traffic is controled and allowing only a small amount of requests to enter the service backend.</li>
-<li>Peak Cutting: There will be a large volumn of users for the system, so there will be a very high instantaneous peak at the beginning of the seckill. High peak flow is a very important reason for the crashing the system, so how to turn the instantaneous high flow into a stable flow for a period of time is also an important idea for designing the seckill system. Common methods for achieving peak cutting include techniques such as caching and message middleware.</li>
-<li>Asynchronous Processing: The seckill system is a high-concurrency system. The asynchronous processing mode can greatly improve the system concurrency. In fact, asynchronous processing is an implementation of peak cutting.</li>
-<li>Memory Cache: The biggest bottleneck of the seckill system is generally database read and write. Since the database read and write depends on the disk IO, the performance sometimes is very low. If some data or business logic can be transferred to the memory, the performance will be much improved.</li>
-<li>Scalability: By leveraging the scalabile design, we can leverage dynamic number of nodes in the cluster to meet the requirement for particular user case during pparticular time period.</li>
+<li><p><strong>Traffic Control</strong>: Since only a small number of users can purchase successfully, majority requests of purchase traffic is controled and allowing only a small amount of requests to enter the service backend.</p></li>
+
+<li><p><strong>Peak Cutting</strong>: There will be a large volumn of users for the system, so there will be a very high instantaneous peak at the beginning of the seckill. High peak flow is a very important reason for the crashing the system, so how to turn the instantaneous high flow into a stable flow for a period of time is also an important idea for designing the seckill system. Common methods for achieving peak cutting include techniques such as caching and message middleware.</p></li>
+
+<li><p><strong>Asynchronous Processing</strong>: The seckill system is a high-concurrency system. The asynchronous processing mode can greatly improve the system concurrency. In fact, asynchronous processing is an implementation of peak cutting.</p></li>
+
+<li><p><strong>Memory Cache</strong>: The biggest bottleneck of the seckill system is generally database read and write. Since the database read and write depends on the disk IO, the performance sometimes is very low. If some data or business logic can be transferred to the memory, the performance will be much improved.</p></li>
+
+<li><p><strong>Scalability</strong>: By leveraging the scalabile design, we can leverage dynamic number of nodes in the cluster to meet the requirement for particular user case during pparticular time period.</p></li>
 </ul>
 
 <h2 id="solutions">Solutions</h2>
@@ -215,7 +219,7 @@
 
 <p>So how do you control the lock on a better fine granularity? You can consider setting an exclusive lock for each item, and the string associated with the item ID is uniquely identified. This allows you to mutually exclusively contend for the same item instead of threads. Distributed locks in <a href="https://redis.io/">Redish</a> can help us solve this problem.</p>
 
-<h2 id="about-distributed-lock">About Distributed Lock?</h2>
+<h2 id="about-distributed-lock">About Distributed Lock</h2>
 
 <p>Distributed locks are a way to control the simultaneous access of shared resources between distributed systems. In distributed systems, it is often necessary to coordinate their actions. If different systems or one host of resources are shared between different hosts of the same system, access to these resources often requires mutual exclusion to prevent mutual interference to ensure consistency. In this case, Use to a distributed lock.</p>
 
@@ -223,17 +227,39 @@
 Business systems that typically have spike scenarios are complex, carrying a huge amount of traffic and a high amount of concurrency. Such systems often employ a distributed architecture to balance the load. Then these 1000 concurrency will come from different places, commodity inventory is a shared resource, and these 1000 concurrent competing resources, this time we need to manage the mutual exclusion. This is the application of distributed locks.
 Key-value storage systems, such as redis, are important tools for implementing distributed locks because of their features.</p>
 
-<h2 id="issues-to-consider">Issues to consider</h2>
+<h2 id="issues">Issues</h2>
 
-<ol>
-<li>What is the operation of redis? Fortunately, redis has provided the jedis client for java applications, and can directly call the jedis API.</li>
-<li>How to achieve locking? &ldquo;Lock&rdquo; is actually an abstract concept. The abstract concept is changed into a concrete thing. It is a key-value pair stored in redis. The key is uniquely identified by the string associated with the product ID. The value is not important. Because as long as this unique key-value exists, it means that the item is locked.</li>
-<li>How to release the lock? Since the key-value pair is locked, it is natural to delete the key-value pair in redis.</li>
-<li>Blocking or non-blocking? The author uses a blocking implementation, if the thread finds that it has been locked, it will poll the lock within a certain time.</li>
-<li>How to deal with abnormal situations? For example, a thread locks a product, but for various reasons, the operation is not completed (in the above business scenario, the inventory-1 is not written to the database), and naturally no lock is released. In this case, the author adds a lock timeout mechanism. Use redis&rsquo;s expire command to set the timeout period for the key. After the timeout period, redis will automatically delete the key, that is, force release the lock (it can be considered that the timeout release lock is an asynchronous operation, completed by redis, the application only needs to be based on the system. Features set the timeout period).</li>
-</ol>
+<blockquote>
+<p><strong>What is the operation of redis?</strong></p>
+</blockquote>
 
-<h2 id="implementation">Implementation</h2>
+<p>Fortunately, redis has provided the jedis client for java applications, and can directly call the jedis API.</p>
+
+<blockquote>
+<p><strong>How to achieve locking?</strong></p>
+</blockquote>
+
+<p>&ldquo;Lock&rdquo; is actually an abstract concept. The abstract concept is changed into a concrete thing. It is a key-value pair stored in redis. The key is uniquely identified by the string associated with the product ID. The value is not important. Because as long as this unique key-value exists, it means that the item is locked.</p>
+
+<blockquote>
+<p><strong>How to release the lock?</strong></p>
+</blockquote>
+
+<p>Since the key-value pair is locked, it is natural to delete the key-value pair in redis.</p>
+
+<blockquote>
+<p><strong>Blocking or non-blocking?</strong></p>
+</blockquote>
+
+<p>The author uses a blocking implementation, if the thread finds that it has been locked, it will poll the lock within a certain time.</p>
+
+<blockquote>
+<p><strong>How to deal with abnormal situations?</strong></p>
+</blockquote>
+
+<p>For example, a thread locks a product, but for various reasons, the operation is not completed (in the above business scenario, the inventory-1 is not written to the database), and naturally no lock is released. In this case, the author adds a lock timeout mechanism. Use redis&rsquo;s expire command to set the timeout period for the key. After the timeout period, redis will automatically delete the key, that is, force release the lock (it can be considered that the timeout release lock is an asynchronous operation, completed by redis, the application only needs to be based on the system. Features set the timeout period).</p>
+
+<h2 id="implementations">Implementations</h2>
 
 <p>Let&rsquo;s take a look at some of the basic commands of redis:</p>
 
@@ -288,83 +314,87 @@ Key-value storage systems, such as redis, are important tools for implementing d
 <p>For testing, use 1000 threads for seckill simulation.</p>
 
 <pre><code>@Test
-    public void testSecKill(){
-        int threadCount = 1000;
-        int splitPoint = 500;
-        CountDownLatch endCount = new CountDownLatch(threadCount);
-        CountDownLatch beginCount = new CountDownLatch(1);
-        SecKillImpl testClass = new SecKillImpl();
+public void testSecKill(){
+    int threadCount = 1000;
+    int splitPoint = 500;
+    CountDownLatch endCount = new CountDownLatch(threadCount);
+    CountDownLatch beginCount = new CountDownLatch(1);
+    SecKillImpl testClass = new SecKillImpl();
 
-        Thread[] threads = new Thread[threadCount];
-        //First 500 threads for the 1st stuff
-        for(int i= 0;i &lt; splitPoint;i++){
-            threads[i] = new Thread(new  Runnable() {
-                public void run() {
-                    try {
-                        //wait to start
-                        beginCount.await();
-                        //call secKill with proxy
-                        SeckillInterface proxy = (SeckillInterface) Proxy.newProxyInstance(SeckillInterface.class.getClassLoader(), 
-                            new Class[]{SeckillInterface.class}, new CacheLockInterceptor(testClass));
-                        proxy.secKill(&quot;test&quot;, commidityId1);
-                        endCount.countDown();
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+    Thread[] threads = new Thread[threadCount];
+    //First 500 threads for the 1st stuff
+    for(int i= 0;i &lt; splitPoint;i++){
+        threads[i] = new Thread(new  Runnable() {
+            public void run() {
+                try {
+                    //wait to start
+                    beginCount.await();
+                    //call secKill with proxy
+                    SeckillInterface proxy = 
+                    (SeckillInterface) Proxy.newProxyInstance(SeckillInterface.class.getClassLoader(), 
+                        new Class[]{SeckillInterface.class}, new CacheLockInterceptor(testClass));
+                    proxy.secKill(&quot;test&quot;, commidityId1);
+                    endCount.countDown();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
-            });
-            threads[i].start();
+            }
+        });
+        threads[i].start();
 
-        }
-        //Another 500 threads for the 2nd stuff
-        for(int i= splitPoint;i &lt; threadCount;i++){
-            threads[i] = new Thread(new  Runnable() {
-                public void run() {
-                    try {
-                        //wait to start
-                        beginCount.await();
-                         //call secKill with proxy
-                        SeckillInterface proxy = (SeckillInterface) Proxy.newProxyInstance(SeckillInterface.class.getClassLoader(), 
-                            new Class[]{SeckillInterface.class}, new CacheLockInterceptor(testClass));
-                        proxy.secKill(&quot;test&quot;, commidityId2);
-                        //testClass.testFunc(&quot;test&quot;, 10000001L);
-                        endCount.countDown();
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            });
-            threads[i].start();
-
-        }
-
-
-        long startTime = System.currentTimeMillis();
-        //start all together
-        beginCount.countDown();
-
-        try {
-            endCount.await();
-            //check result
-            System.out.println(SecKillImpl.inventory.get(commidityId1));
-            System.out.println(SecKillImpl.inventory.get(commidityId2));
-            System.out.println(&quot;error count&quot; + CacheLockInterceptor.ERROR_COUNT);
-            System.out.println(&quot;total cost &quot; + (System.currentTimeMillis() - startTime));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
+    //Another 500 threads for the 2nd stuff
+    for(int i= splitPoint;i &lt; threadCount;i++){
+        threads[i] = new Thread(new  Runnable() {
+            public void run() {
+                try {
+                    //wait to start
+                    beginCount.await();
+                     //call secKill with proxy
+                    SeckillInterface proxy = 
+                    (SeckillInterface) Proxy.newProxyInstance(SeckillInterface.class.getClassLoader(), 
+                        new Class[]{SeckillInterface.class}, new CacheLockInterceptor(testClass));
+                    proxy.secKill(&quot;test&quot;, commidityId2);
+                    //testClass.testFunc(&quot;test&quot;, 10000001L);
+                    endCount.countDown();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        threads[i].start();
+
+    }
+
+
+    long startTime = System.currentTimeMillis();
+    //start all together
+    beginCount.countDown();
+
+    try {
+        endCount.await();
+        //check result
+        System.out.println(SecKillImpl.inventory.get(commidityId1));
+        System.out.println(SecKillImpl.inventory.get(commidityId2));
+        System.out.println(&quot;error count&quot; + CacheLockInterceptor.ERROR_COUNT);
+        System.out.println(&quot;total cost &quot; + (System.currentTimeMillis() - startTime));
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+}
 </code></pre>
 
 <p>As the result, all inventory decrease 500 for each commidity. Without distributed lock, the inventory could not exactly decrease to 500 sometimes.</p>
 
 <h2 id="reference">Reference</h2>
 
-<p><a href="https://blog.csdn.net/yunzhaji3762/article/details/79579318">https://blog.csdn.net/yunzhaji3762/article/details/79579318</a>
-<a href="https://blog.csdn.net/u010359884/article/details/50310387">https://blog.csdn.net/u010359884/article/details/50310387</a>
-<a href="https://blog.csdn.net/shendl/article/details/51092916">https://blog.csdn.net/shendl/article/details/51092916</a></p>
+<ol>
+<li><a href="https://blog.csdn.net/yunzhaji3762/article/details/79579318">https://blog.csdn.net/yunzhaji3762/article/details/79579318</a></li>
+<li><a href="https://blog.csdn.net/u010359884/article/details/50310387">https://blog.csdn.net/u010359884/article/details/50310387</a></li>
+<li><a href="https://blog.csdn.net/shendl/article/details/51092916">https://blog.csdn.net/shendl/article/details/51092916</a></li>
+</ol>
 
                         </div>
                         
@@ -560,7 +590,7 @@ Key-value storage systems, such as redis, are important tools for implementing d
                     <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/redish.jpg" class="img-responsive" alt="Use Redish Lock for SecKill">
+                            <img src="https://datafibers-community.github.io//img/banners/seckill.jpg" class="img-responsive" alt="Use Redish Lock for SecKill">
                           
                         </a>
                     </div>
