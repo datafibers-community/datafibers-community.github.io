@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Run Hive 1 and 2 Together</title>
+  <title>All About Big Data Interviews</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Run Hive 1 and 2 Together" />
+  <meta property="og:title" content="All About Big Data Interviews" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2018/05/30/2018-05-30-hive-1-and-2-setup//" />
+  <meta property="og:url" content="/blog/2019/06/02/2019-06-02-all-about-big-data-interviews//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Run Hive 1 and 2 Together logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Run Hive 1 and 2 Together logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Run Hive 1 and 2 Together - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="All About Big Data Interviews logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="All About Big Data Interviews logo" class="visible-xs visible-sm">
+                    <span class="sr-only">All About Big Data Interviews - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Run Hive 1 and 2 Together</h1>
+                <h1>All About Big Data Interviews</h1>
             </div>
         </div>
     </div>
@@ -180,102 +180,48 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">May 30, 2018</p>
+                        <p class="text-muted text-uppercase mb-small text-right">June 2, 2019</p>
 
                         <div id="post-content">
                           
 
-<h2 id="overview">Overview</h2>
+<p>Quite often, we got chances to go for big data interviews or interview some candidates. Most of time, we could add some short questions in addition to the white board coding. Here, we collect a few aspects of areas we can focus during the interview or prepaing the coming interviews.</p>
 
-<p>The latest HDP 2.6.x has both Hive version 1 and 2 installed together. However, it does not allow user to run hive version to command directly, but only use beeline.
-The <a href="https://github.com/datafibers/lab_env">lab_dev</a> repository here provides an demo virtual box image to have both Hive version configured properly.</p>
+<h2 id="small-concept">Small Concept</h2>
 
-<h2 id="conf-changes">Conf. Changes</h2>
+<blockquote>
+<p><strong>1. What&rsquo;s the reason to use <em>Dequeue</em> instead of <em>Stack</em> in Java.</strong></p>
+</blockquote>
 
-<p>The trick thing to make both hive version working is do not add any setting in the .profile anymore. See below, I comments out all pervious hive settings.</p>
+<pre><code>Dequeue has the ability to use streams convert to list with keeping LIFO concept applied while stack does not.
 
-<pre><code>$cat .profile
-...
-export HADOOP_USER_CLASSPATH_FIRST=true
-export HADOOP_CONF_DIR=&quot;/mnt/etc/hadoop&quot;
-export HADOOP_LOG_DIR=&quot;/mnt/logs&quot;
-export HADOOP_HOME=&quot;/opt/hadoop&quot;
-# export HIVE_CONF_DIR=&quot;/mnt/etc/hive2&quot;
-# export HIVE_HOME=&quot;/opt/hive2&quot; 
-# To run two version of hive, comment hive setting out here and use hive-env.sh for instead since setting here has the highest privilige
+Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();
+Deque&lt;Integer&gt; deque = new ArrayDeque&lt;&gt;();
 
-PATH=&quot;$HADOOP_HOME/bin:$PATH&quot;
-PATH=&quot;$HADOOP_HOME/sbin:$PATH&quot;
-# PATH=&quot;$HIVE_HOME/bin:$PATH&quot;
+stack.push(1);//1 is the top
+deque.push(1)//1 is the top
+stack.push(2);//2 is the top
+deque.push(2);//2 is the top
+
+List&lt;Integer&gt; list1 = strack.stream().collect(Collectors.toList());//[1,2]
+List&lt;Integer&gt; list2 = deque.stream().collect(Collectors.toList());//[2,1]
 </code></pre>
 
-<p>For instead, we use <code>hive-env.sh</code> in each hive installation folder to make each individual hive working.</p>
+<h2 id="problem-solving">Problem Solving</h2>
 
-<pre><code>cat /opt/hive/conf/hive-env.sh
-export HIVE_HOME=/opt/hive
-export HIVE_CONF_DIR=/opt/hive/conf
-</code></pre>
+<blockquote>
+<p><strong>1. You are climbing a stair case. It takes n steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</strong></p>
+</blockquote>
 
-<pre><code>cat /opt/hive2/conf/hive-env.sh
-export HIVE_HOME=/opt/hive2
-export HIVE_CONF_DIR=/opt/hive2/conf
-</code></pre>
+<p>Think about <strong>Fibonacci Number</strong> and/or <a href="https://leetcode.com/problems/climbing-stairs/solution/">dynamic programing</a>.</p>
 
-<p>For the <code>hive-site.xml</code>, for need make sure following properties are set.</p>
+<h2 id="experience">Experience</h2>
 
-<ul>
-<li><strong>hive.server2.thrift.port</strong>: set to 10000 for hive1 and 10500 for hive2</li>
-<li><strong>hive.metastore.port</strong>: set to 9083 for hive1 and 9085 for hive2. And also update <strong><code>hive.metastore.uris</code></strong>.</li>
-</ul>
+<blockquote>
+<p><strong>1. What&rsquo;s the typical use case of <em>Redish</em>?</strong></p>
+</blockquote>
 
-<p>The sample of configuration files (<code>hive-env.sh</code> and <code>hive-site.xml</code>) can be found <a href="https://github.com/datafibers/lab_env/tree/master/etc">here</a> in the hive1 and hive2 folder.</p>
-
-<p>Then, we need to create the metadata store in relational database, such as MySQL. The create the schema using the schema tools in hive2 installation folder, since hive2 metastore
-will be compatible with hive1.</p>
-
-<h2 id="install-steps">Install Steps</h2>
-
-<p>After we download the hive1 and hive2 jar, unzip them to <code>/opt/hive1</code> nad <code>/opt/hive2</code> folder respectively.</p>
-
-<pre><code># Create metastore database
-mysql -u root --password=&quot;mypassword&quot; -f -e &quot;DROP DATABASE IF EXISTS metastore;&quot;
-mysql -u root --password=&quot;mypassword&quot; -f -e &quot;CREATE DATABASE IF NOT EXISTS metastore;&quot;
-mysql -u root --password=&quot;mypassword&quot; -e &quot;GRANT ALL PRIVILEGES ON metastore.* TO 'hive'@'localhost' IDENTIFIED BY 'mypassword'; FLUSH PRIVILEGES;&quot;
-
-# Copy database jdbc driver file
-ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive2/lib/mysql-connector-java.jar
-ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive/lib/mysql-connector-java.jar
-
-# Copy our configuration files (```hive-env.sh``` and ```hive-site.xml```) in place    
-cp /mnt/etc/hive2/* /opt/hive2/conf/
-cp /mnt/etc/hive/* /opt/hive/conf/
-chown -R vagrant:vagrant /opt/hive/conf/*
-chown -R vagrant:vagrant /opt/hive2/conf/*
-
-# Use schema tool in the hive2 installation
-/opt/hive2/bin/schematool -dbType mysql -initSchema 
-</code></pre>
-
-<h2 id="start-and-verify-service">Start and Verify Service</h2>
-
-<p>In order to start Hive, start Hadoop first. Then use below commands to start both hive1 and hive2 service.</p>
-
-<pre><code>/opt/hive/bin/hive --service metastore 1&gt;&gt; /mnt/logs/metastore.log 2&gt;&gt; /mnt/logs/metastore.log &amp;
-/opt/hive/bin/hive --service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2.log 2&gt;&gt; /mnt/logs/hiveserver2.log &amp;
-/opt/hive2/bin/hive --service metastore 1&gt;&gt; /mnt/logs/metastore_h2.log 2&gt;&gt; /mnt/logs/metastore_h2.log &amp;
-/opt/hive2/bin/hive --service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2_h2.log 2&gt;&gt; /mnt/logs/hiveserver2_h2.log &amp;
-</code></pre>
-
-<p>Once all hive services are started, we can use <code>beeline</code> or <code>hive</code> to connect to hive.</p>
-
-<pre><code># connect to hive 1
-beeline -u &quot;jdbc:hive2://localhost:10000&quot; 
-/opt/hive/bin/hive
-
-# connect to hive 2
-beeline -u &quot;jdbc:hive2://localhost:10500&quot; 
-/opt/hive2/bin/hive
-</code></pre>
+<p>Distributed Cache. Also see this <a href="https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/">article</a>.</p>
 
                         </div>
                         

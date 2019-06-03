@@ -6,10 +6,21 @@
     <description>Recent content in Blogs on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 May 2019 13:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 02 Jun 2019 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>All About Big Data Interviews</title>
+      <link>https://datafibers-community.github.io/blog/2019/06/02/2019-06-02-all-about-big-data-interviews/</link>
+      <pubDate>Sun, 02 Jun 2019 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2019/06/02/2019-06-02-all-about-big-data-interviews/</guid>
+      <description>Quite often, we got chances to go for big data interviews or interview some candidates. Most of time, we could add some short questions in addition to the white board coding. Here, we collect a few aspects of areas we can focus during the interview or prepaing the coming interviews.
+Small Concept  1. What&amp;rsquo;s the reason to use Dequeue instead of Stack in Java.
+ Dequeue has the ability to use streams convert to list with keeping LIFO concept applied while stack does not.</description>
+    </item>
     
     <item>
       <title>Use Redish Lock for SecKill</title>
