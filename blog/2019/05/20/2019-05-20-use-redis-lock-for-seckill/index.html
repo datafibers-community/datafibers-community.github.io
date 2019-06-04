@@ -217,7 +217,7 @@
 
 <p>The methods described above are all effective, but they are not good. why? The first and second methods are essentially &ldquo;locked&rdquo;, but the lock granularity is still relatively high. Imagine if two threads execute the seckill method at the same time, the two threads operate on different commodities, which should be possible at the same time from the business. If the first two methods are used, the two threads will also go. Fighting for the same lock is actually unnecessary. The third method also did not solve the problem mentioned above.</p>
 
-<p>So how do you control the lock on a better fine granularity? You can consider setting an exclusive lock for each item, and the string associated with the item ID is uniquely identified. This allows you to mutually exclusively contend for the same item instead of threads. Distributed locks in <a href="https://redis.io/">Redish</a> can help us solve this problem.</p>
+<p>So how do you control the lock on a better fine granularity? You can consider setting an exclusive lock for each item, and the string associated with the item ID is uniquely identified. This allows you to mutually exclusively contend for the same item instead of threads. Distributed locks in <a href="https://redis.io/">Redis</a> can help us solve this problem.</p>
 
 <h2 id="about-distributed-lock">About Distributed Lock</h2>
 
