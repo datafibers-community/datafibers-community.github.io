@@ -212,9 +212,10 @@ List&lt;Integer&gt; list2 = deque.stream().collect(Collectors.toList());//[2,1]
 
 <p>**3. What is AOP? **</p>
 
-<p>**4. List ways to create object in Java
-Use new keyword, reflection, clone, or serilization.</p>
+<p>**4. List ways to create object in Java</p>
 </blockquote>
+
+<p>Use new keyword, reflection, clone, or serilization.</p>
 
 <h2 id="problem-solving">Problem Solving</h2>
 
@@ -245,13 +246,14 @@ Use new keyword, reflection, clone, or serilization.</p>
 <p>false. 在编译过程中，编译器会将s2直接优化为”ab”，会将其放置在常量池当中，s5则是被创建在堆区，相当于s5=new String(“ab”);</p>
 
 <blockquote>
-<p><strong>3. Are you farmilar the intern() method in String class?</strong>
-intern()方法会首先从常量池中查找是否存在该常量值，如果常量池中不存在则现在常量池中创建，如果已经存在则直接返回。
+<p><strong>3. Are you farmilar the intern() method in String class?</strong></p>
+</blockquote>
+
+<p>intern()方法会首先从常量池中查找是否存在该常量值，如果常量池中不存在则现在常量池中创建，如果已经存在则直接返回。
 比如
 String s1=”aa”;
 String s2=s1.intern();
 System.out.print(s1==s2);//返回true</p>
-</blockquote>
 
                         </div>
                         
