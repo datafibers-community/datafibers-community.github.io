@@ -189,13 +189,11 @@
 
 <h2 id="concept">Concept</h2>
 
-<blockquote>
-<p><strong>1. What&rsquo;s the reason to use <em>Dequeue</em> instead of <em>Stack</em> in Java.</strong></p>
-</blockquote>
+<h4 id="1-what-s-the-reason-to-use-dequeue-instead-of-stack-in-java">1. What&rsquo;s the reason to use <em>Dequeue</em> instead of <em>Stack</em> in Java.</h4>
 
-<pre><code>Dequeue has the ability to use streams convert to list with keeping LIFO concept applied while stack does not.
+<p>Dequeue has the ability to use streams convert to list with keeping LIFO concept applied while stack does not.</p>
 
-Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();
+<pre><code>Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();
 Deque&lt;Integer&gt; deque = new ArrayDeque&lt;&gt;();
 
 stack.push(1);//1 is the top
@@ -207,56 +205,46 @@ List&lt;Integer&gt; list1 = strack.stream().collect(Collectors.toList());//[1,2]
 List&lt;Integer&gt; list2 = deque.stream().collect(Collectors.toList());//[2,1]
 </code></pre>
 
-<blockquote>
-<p>**2. How to implement polymorphism java, ways? **</p>
-</blockquote>
+<h4 id="2-how-many-ways-to-implement-polymorphism-in-java">2. How many ways to implement polymorphism in java?</h4>
 
 <p>Use interface, class inheritance and method override, overload.</p>
 
-<blockquote>
-<p>**3. What is AOP? **</p>
+<h4 id="3-what-is-aop">3. What is AOP?</h4>
 
-<p>**4. List ways to create object in Java **</p>
-</blockquote>
+<p>placeholder</p>
+
+<h4 id="4-list-ways-to-create-object-in-java">4. List ways to create object in Java</h4>
 
 <p>Use new keyword, reflection, clone, or serilization.</p>
 
 <h2 id="problem-solving">Problem Solving</h2>
 
-<blockquote>
-<p><strong>1. You are climbing a stair case. It takes n steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</strong></p>
-</blockquote>
+<h4 id="1-you-are-climbing-a-stair-case-it-takes-n-steps-to-reach-to-the-top-each-time-you-can-either-climb-1-or-2-steps-in-how-many-distinct-ways-can-you-climb-to-the-top">1. You are climbing a stair case. It takes n steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</h4>
 
 <p>Think about <strong>Fibonacci Number</strong> and/or <a href="https://leetcode.com/problems/climbing-stairs/solution/">dynamic programing</a>.</p>
 
-<blockquote>
-<p><strong>2. You are trying to put 1000 apples into 10 boxes. No matter how many apples you need, you can always to find couple of boxes which contains the right sum of apples in your demand. How many numbers of apples should be in each box?</strong></p>
-</blockquote>
+<h4 id="2-you-are-trying-to-put-1000-apples-into-10-boxes-no-matter-how-many-apples-you-need-you-can-always-to-find-couple-of-boxes-which-contains-the-right-sum-of-apples-in-your-demand-how-many-numbers-of-apples-should-be-in-each-box">2. You are trying to put 1000 apples into 10 boxes. No matter how many apples you need, you can always to find couple of boxes which contains the right sum of apples in your demand. How many numbers of apples should be in each box?</h4>
 
 <p>Think about binary to decimal, pow(2, 10) = 1024 &gt; 1000. The number will be 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 486.</p>
 
 <h2 id="experience">Experience</h2>
 
-<blockquote>
-<p><strong>1. What&rsquo;s the typical use case of <em>Redis</em>?</strong></p>
-</blockquote>
+<h4 id="1-what-s-the-typical-use-case-of-redis">1. What&rsquo;s the typical use case of <em>Redis</em>?</h4>
 
 <p>Distributed Cache. Also see this <a href="https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/">article</a>.</p>
 
-<blockquote>
-<p><strong>2. String s1=”ab”, String s2=”a”+”b”, String s3=”a”, String s4=”b”, s5=s3+s4, then s5==s2 returns true or false?</strong></p>
-</blockquote>
+<h4 id="2-string-s1-ab-string-s2-a-b-string-s3-a-string-s4-b-s5-s3-s4-then-s5-s2-returns-true-or-false">2. <code>String s1 = &quot;ab&quot;</code>, <code>String s2 = &quot;a&quot; + &quot;b&quot;</code>, <code>String s3 = &quot;a&quot;</code>, <code>String s4 = &quot;b&quot;</code>, <code>s5 = s3 + s4</code>, then <code>s5 == s2</code> returns true or false?</h4>
 
 <p>false. During the code compling, the s2 is optimize as ”ab” and keep in constant pool. However, s5 is created in stack which is equal to s5=new String(“ab”);</p>
 
-<blockquote>
-<p><strong>3. Are you farmilar the intern() method in String class?</strong></p>
-</blockquote>
+<h4 id="3-are-you-farmilar-the-intern-method-in-string-class">3. Are you farmilar the intern() method in String class?</h4>
 
-<p>intern() will look if there is constant value in the constant pool. If yes, reuse. Or else create a new one in the pool. For example,
-String s1=”aa”;
-String s2=s1.intern();
-System.out.print(s1==s2);//return true</p>
+<p>intern() will look if there is constant value in the constant pool. If yes, reuse. Or else create a new one in the pool. For example,</p>
+
+<pre><code>String s1=”aa”; 
+String s2=s1.intern(); 
+System.out.print(s1==s2);//return true
+</code></pre>
 
                         </div>
                         
