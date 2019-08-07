@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open sourec data bus">	
   
 
-  <meta name="generator" content="Hugo 0.36" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -254,28 +254,31 @@ chown -R vagrant:vagrant /opt/hive2/conf/*
 
 # Use schema tool in the hive2 installation
 /opt/hive2/bin/schematool -dbType mysql -initSchema 
+```	
+
+## Start and Verify Service
+In order to start Hive, start Hadoop first. Then use below commands to start both hive1 and hive2 service.
 </code></pre>
 
-<h2 id="start-and-verify-service">Start and Verify Service</h2>
+<p>/opt/hive/bin/hive &ndash;service metastore 1&gt;&gt; /mnt/logs/metastore.log 2&gt;&gt; /mnt/logs/metastore.log &amp;
+/opt/hive/bin/hive &ndash;service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2.log 2&gt;&gt; /mnt/logs/hiveserver2.log &amp;
+/opt/hive2/bin/hive &ndash;service metastore 1&gt;&gt; /mnt/logs/metastore_h2.log 2&gt;&gt; /mnt/logs/metastore_h2.log &amp;
+/opt/hive2/bin/hive &ndash;service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2_h2.log 2&gt;&gt; /mnt/logs/hiveserver2_h2.log &amp;</p>
 
-<p>In order to start Hive, start Hadoop first. Then use below commands to start both hive1 and hive2 service.</p>
-
-<pre><code>/opt/hive/bin/hive --service metastore 1&gt;&gt; /mnt/logs/metastore.log 2&gt;&gt; /mnt/logs/metastore.log &amp;
-/opt/hive/bin/hive --service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2.log 2&gt;&gt; /mnt/logs/hiveserver2.log &amp;
-/opt/hive2/bin/hive --service metastore 1&gt;&gt; /mnt/logs/metastore_h2.log 2&gt;&gt; /mnt/logs/metastore_h2.log &amp;
-/opt/hive2/bin/hive --service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2_h2.log 2&gt;&gt; /mnt/logs/hiveserver2_h2.log &amp;
+<pre><code>
+Once all hive services are started, we can use ```beeline``` or ```hive``` to connect to hive.
 </code></pre>
 
-<p>Once all hive services are started, we can use <code>beeline</code> or <code>hive</code> to connect to hive.</p>
+<h1 id="connect-to-hive-1">connect to hive 1</h1>
 
-<pre><code># connect to hive 1
-beeline -u &quot;jdbc:hive2://localhost:10000&quot; 
-/opt/hive/bin/hive
+<p>beeline -u &ldquo;jdbc:hive2://localhost:10000&rdquo;
+/opt/hive/bin/hive</p>
 
-# connect to hive 2
-beeline -u &quot;jdbc:hive2://localhost:10500&quot; 
+<h1 id="connect-to-hive-2">connect to hive 2</h1>
+
+<p>beeline -u &ldquo;jdbc:hive2://localhost:10500&rdquo;
 /opt/hive2/bin/hive
-</code></pre>
+```</p>
 
                         </div>
                         
@@ -351,7 +354,7 @@ beeline -u &quot;jdbc:hive2://localhost:10500&quot;
     <div class="panel-body">
         <ul class="nav nav-pills nav-stacked">
             
-            <li><a href="https://datafibers-community.github.io/categories/article">article (14)</a>
+            <li><a href="https://datafibers-community.github.io/categories/article">article (15)</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/categories/digest">digest (3)</a>
@@ -472,6 +475,19 @@ beeline -u &quot;jdbc:hive2://localhost:10500&quot;
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2019/08/03/2019-08-03-big-data-stack-compare/">
+                          
+                            <img src="https://datafibers-community.github.io//img/banners/big_data_stack.jpg" class="img-responsive" alt="Big Data Stack Compare">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2019/08/03/2019-08-03-big-data-stack-compare/">Big Data Stack Compare</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2019/07/01/2019-07-01-what-does-big-data-engineer-do/">
                           
                             <img src="https://datafibers-community.github.io//img/banners/data_engineer.png" class="img-responsive" alt="What Does Big Data Engineer Do?">
@@ -493,19 +509,6 @@ beeline -u &quot;jdbc:hive2://localhost:10500&quot;
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2019/06/02/2019-06-02-all-about-big-data-interviews/">All About Big Data Interviews</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/">
-                          
-                            <img src="https://datafibers-community.github.io//img/banners/seckill.jpg" class="img-responsive" alt="Use Redish Lock for SecKill">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/">Use Redish Lock for SecKill</a></h5>
                     </div>
                 </div>
                 

@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>All About Big Data Interviews</title>
+  <title>Big Data Stack Compare</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="All About Big Data Interviews" />
+  <meta property="og:title" content="Big Data Stack Compare" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2019/06/02/2019-06-02-all-about-big-data-interviews//" />
+  <meta property="og:url" content="/blog/2019/08/03/2019-08-03-big-data-stack-compare//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="All About Big Data Interviews logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="All About Big Data Interviews logo" class="visible-xs visible-sm">
-                    <span class="sr-only">All About Big Data Interviews - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Big Data Stack Compare logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Big Data Stack Compare logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Big Data Stack Compare - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>All About Big Data Interviews</h1>
+                <h1>Big Data Stack Compare</h1>
             </div>
         </div>
     </div>
@@ -180,71 +180,54 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">June 2, 2019</p>
+                        <p class="text-muted text-uppercase mb-small text-right">August 3, 2019</p>
 
                         <div id="post-content">
                           
 
-<p>Quite often, we got chances to go for big data interviews or interview some candidates. Most of time, we could add some short questions in addition to the white board coding. Here, we collect a few aspects of areas we can focus during the interview or prepaing the coming interviews.</p>
+<h2 id="1-batch-processing">1. Batch Processing</h2>
 
-<h2 id="concept">Concept</h2>
+<hr />
 
-<h4 id="1-what-s-the-reason-to-use-dequeue-instead-of-stack-in-java">1. What&rsquo;s the reason to use <em>Dequeue</em> instead of <em>Stack</em> in Java.</h4>
+<h3 id="etl-elk">ETL + ELK</h3>
 
-<p>Dequeue has the ability to use streams convert to list with keeping LIFO concept applied while stack does not.</p>
+<p>ELK stands for Elastisearch, Logstash, Kibana and is a powerful tool for real-time logs analysis. Performance depends on the amount of RAM for the cluster. If the full index is in RAM search will have close to zero latency. This solution also supports storing similar information in one cluster to enhance speed. ELK can be hard to maintain if the index is growing big, but scaling is achieved by adding new nodes. Cost is also reasonable, unfortunately, ELK has very limited SQL capabilities and is build for search rather then data digging. Elasticsearch query language takes some time to master.</p>
 
-<pre><code>Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();
-Deque&lt;Integer&gt; deque = new ArrayDeque&lt;&gt;();
+<h3 id="mongodb-connector-bi-tool">MongoDB connector + BI tool</h3>
 
-stack.push(1);//1 is the top
-deque.push(1)//1 is the top
-stack.push(2);//2 is the top
-deque.push(2);//2 is the top
+<p>If your production data lives in MongoDB, it is an easy win might have been a connector that will allow people to query Mongo with SQL. This solution is cheap (free for us as Atlas users), easy to use, but it was not clear how it will scale, as well as how to do transformations of the data along with simple mapping. That seemed to be a good solution for quick MongoDB exploration with SQL, but how that would have helped us to achieve the goal of Ada’s dashboard revamping was not clear.</p>
 
-List&lt;Integer&gt; list1 = strack.stream().collect(Collectors.toList());//[1,2]
-List&lt;Integer&gt; list2 = deque.stream().collect(Collectors.toList());//[2,1]
-</code></pre>
+<h3 id="hadoop-spark-sql-database-bi-tool">Hadoop + Spark + SQL database + BI Tool</h3>
 
-<h4 id="2-how-many-ways-to-implement-polymorphism-in-java">2. How many ways to implement polymorphism in java?</h4>
+<p>This is powerful, scalable, supports SQL digging but close to impossible to implement and maintain for a bunch of people with no experience in it.</p>
 
-<p>Use interface, class inheritance and method override, overload.</p>
+<h3 id="aws-athena-aws-s3">AWS Athena + AWS S3</h3>
 
-<h4 id="3-what-is-aop">3. What is AOP?</h4>
+<p>If you are already using AWS infrastructure so ease of use and maintenance should have been the main advantage of this stack. The disadvantage, however, is the fact that for Ada’s dashboard we still needed a backend SQL database and a way to transfer data there. AWS Athena pricing is based on the amount of scanned data and that implies that you are using it as a tool for data exploration rather than as a SQL API for the backend data source.</p>
 
-<p>placeholder</p>
+<h3 id="mongodb-etl-aws-redshift-bi-tool">MongoDB + ETL + AWS Redshift + BI Tool</h3>
 
-<h4 id="4-list-ways-to-create-object-in-java">4. List ways to create object in Java</h4>
+<p>This stack looked like the most suitable one for our needs. Redshift is fairly cheap, scales well and supports SQL. Most of the BI tools support Redshift as a source. The only disadvantage is that Redshift lives on AWS but it can be replaced with PostgreSQL vendor-free solution if required.</p>
 
-<p>Use new keyword, reflection, clone, or serilization.</p>
+<h2 id="2-stream-processing">2. Stream Processing</h2>
 
-<h2 id="problem-solving">Problem Solving</h2>
+<hr />
 
-<h4 id="1-you-are-climbing-a-stair-case-it-takes-n-steps-to-reach-to-the-top-each-time-you-can-either-climb-1-or-2-steps-in-how-many-distinct-ways-can-you-climb-to-the-top">1. You are climbing a stair case. It takes n steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</h4>
+<h3 id="flink">Flink</h3>
 
-<p>Think about <strong>Fibonacci Number</strong> and/or <a href="https://leetcode.com/problems/climbing-stairs/solution/">dynamic programing</a>.</p>
+<p>Flink is a matured stream processing framework. If your business have stream centric characters, Flink is your best choice.</p>
 
-<h4 id="2-you-are-trying-to-put-1000-apples-into-10-boxes-no-matter-how-many-apples-you-need-you-can-always-to-find-couple-of-boxes-which-contains-the-right-sum-of-apples-in-your-demand-how-many-numbers-of-apples-should-be-in-each-box">2. You are trying to put 1000 apples into 10 boxes. No matter how many apples you need, you can always to find couple of boxes which contains the right sum of apples in your demand. How many numbers of apples should be in each box?</h4>
+<h3 id="spark-streaming">Spark Streaming</h3>
 
-<p>Think about binary to decimal, pow(2, 10) = 1024 &gt; 1000. The number will be 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 486.</p>
+<p>Whenever you prefer full stack data processing in Spark, it is a good choice. Spark stream is ideal for second to subsecord level streaming processing.</p>
 
-<h2 id="experience">Experience</h2>
+<h3 id="kafka">Kafka</h3>
 
-<h4 id="1-what-s-the-typical-use-case-of-redis">1. What&rsquo;s the typical use case of <em>Redis</em>?</h4>
+<p>Kafka connect (source and sink) as well as Kafka SQL provide complete solution for simple and quick stream processing. However, for high performance and complex stream processing especially treansformation, Flink is recommended.</p>
 
-<p>Distributed Cache. Also see this <a href="https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/">article</a>.</p>
+<h3 id="kinesis">Kinesis</h3>
 
-<h4 id="2-string-s1-ab-string-s2-a-b-string-s3-a-string-s4-b-s5-s3-s4-then-s5-s2-returns-true-or-false">2. <code>String s1 = &quot;ab&quot;</code>, <code>String s2 = &quot;a&quot; + &quot;b&quot;</code>, <code>String s3 = &quot;a&quot;</code>, <code>String s4 = &quot;b&quot;</code>, <code>s5 = s3 + s4</code>, then <code>s5 == s2</code> returns true or false?</h4>
-
-<p>false. During the code compling, the s2 is optimize as ”ab” and keep in constant pool. However, s5 is created in stack which is equal to s5=new String(“ab”);</p>
-
-<h4 id="3-are-you-farmilar-the-intern-method-in-string-class">3. Are you farmilar the intern() method in String class?</h4>
-
-<p>intern() will look if there is constant value in the constant pool. If yes, reuse. Or else create a new one in the pool. For example,</p>
-
-<pre><code>String s1=”aa”; 
-String s2=s1.intern(); 
-System.out.print(s1==s2);//return true
-</code></pre>
+<p>Kinesis and it analytic tools provide simliar functions like Kafka. However, it has data retention limitation and does not support exact once delivery.</p>
 
                         </div>
                         
