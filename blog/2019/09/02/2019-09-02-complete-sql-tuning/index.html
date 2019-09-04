@@ -188,21 +188,29 @@
 <h2 id="sql-statement-mysql">SQL Statement (MySQL)</h2>
 
 <ol>
-<li>Aviod full table scan and try to create index on the columns used after <strong>where</strong> or <strong>order by</strong>.</li>
-<li>Aviod check null after <strong>where</strong> clause. You set set null as default value when creating tables. However, mostly we should use not null value or use special value, such as 0 or -1 for instead.</li>
-<li>Avoid using != or &lt;&gt; after <strong>where</strong>. MySQL can support indexing on &lt;, &lt;=, =, &gt;, &gt;=, BETWEEN,IN, and sometimes LIKE。</li>
-<li>Avoid using or after <strong>where</strong>. Or else, it causes full table scan rather using index. We can try to use <strong>UNION</strong> for instead. <code>select id from t where num=10 union all select id from t where num=20</code></li>
-<li>Avoid using <strong>in</strong> and <strong>not in</strong>. Because it is likely to cause full table scan. If possible, use <strong>between</strong>, such as <code>select id from t where num between 1 and 3</code></li>
-<li>Avoid using parameters after <strong>where</strong>, which is likely to cause full table scan.</li>
-<li>Query <code>select id from t where name like ‘%abc%’</code> and <code>select id from t where name like ‘%abc’</code> may cause full table scan. Use <code>select id from t where name like ‘abc%’</code> to leverage index.</li>
-<li>Use <strong>exists</strong> instead of <strong>in</strong>, such as <code>select num from a where num in(select num from b)</code> rewrite as <code>select num from a where exists(select 1 from b where num=a.num)</code></li>
-<li>Index can improve the <strong>select</strong> performance. However, it may decrease the performance of <strong>update</strong> and <strong>insert</strong>, which could rebuild the index. Make more considerations when you create more than 6 indexes for one table.</li>
+<li><p>Aviod full table scan and try to create index on the columns used after <strong>where</strong> or <strong>order by</strong>.</p></li>
+
+<li><p>Aviod check null after <strong>where</strong> clause. You set set null as default value when creating tables. However, mostly we should use not null value or use special value, such as 0 or -1 for instead.</p></li>
+
+<li><p>Avoid using != or &lt;&gt; after <strong>where</strong>. MySQL can support indexing on &lt;, &lt;=, =, &gt;, &gt;=, BETWEEN,IN, and sometimes LIKE。</p></li>
+
+<li><p>Avoid using or after <strong>where</strong>. Or else, it causes full table scan rather using index. We can try to use <strong>UNION</strong> for instead. <code>select id from t where num=10 union all select id from t where num=20</code></p></li>
+
+<li><p>Avoid using <strong>in</strong> and <strong>not in</strong>. Because it is likely to cause full table scan. If possible, use <strong>between</strong>, such as <code>select id from t where num between 1 and 3</code></p></li>
+
+<li><p>Avoid using parameters after <strong>where</strong>, which is likely to cause full table scan.</p></li>
+
+<li><p>Query <code>select id from t where name like ‘%abc%’</code> and <code>select id from t where name like ‘%abc’</code> may cause full table scan. Use <code>select id from t where name like ‘abc%’</code> to leverage index.</p></li>
+
+<li><p>Use <strong>exists</strong> instead of <strong>in</strong>, such as <code>select num from a where num in(select num from b)</code> rewrite as <code>select num from a where exists(select 1 from b where num=a.num)</code></p></li>
+
+<li><p>Index can improve the <strong>select</strong> performance. However, it may decrease the performance of <strong>update</strong> and <strong>insert</strong>, which could rebuild the index. Make more considerations when you create more than 6 indexes for one table.</p></li>
 
 <li><p>Aviod update columns who has cluster index, because the cluster index use records&rsquo; physical ordering. By updating it, it leads lots of data movement physically. If ou have such kinds of columns requires frequent update, create non-cluster index on it.</p></li>
 
-<li><p>尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。</p></li>
+<li><p>Use number data type instead of string</p></li>
 
-<li><p>尽可能的使用 varchar/nvarchar 代替 char/nchar ， 因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。</p></li>
+<li><p>Use <strong>varchar/nvarchar</strong> instead of <strong>char/nchar</strong> for saving more storage and improving query performance</p></li>
 
 <li><p>最好不要使用”“返回所有： select from t ，用具体的字段列表代替“*”，不要返回用不到的任何字段。</p></li>
 
