@@ -381,9 +381,28 @@ t1 &gt;&gt; [t2, t3]
 <p>Variables are key-value stores in Airflow’s metadata database. It is used to store and retrieve arbitrary content or settings from the metadata database. We should always <strong>restrict the number of Airflow variables in your DAG</strong>.
 Since Airflow Variables are stored in Metadata Database, so any call to variables would mean a connection to Metadata DB. Instead of storing a large number of variable in your DAG, which may end up saturating the number of allowed connections to your database. It is recommended you store all your DAG configuration inside a single Airflow variable with JSON value.</p>
 
-<p>You can access the variable in the code as follows.</p>
+<p>First, create a json file as variable file.</p>
 
-<pre><code>dag_config = Variable.get(&quot;example_variables_config&quot;, deserialize_json=True)
+<pre><code>vi variables_from_json.json
+{
+    &quot;variables_from_json&quot;: {
+        &quot;var1&quot;: &quot;value1&quot;,
+        &quot;var2&quot;: [1, 2, 3],
+        &quot;var3&quot;: {
+            &quot;k&quot;: &quot;value3&quot;
+        }
+    }
+}
+</code></pre>
+
+<p>Then, import the variable through <a href="https://airflow.apache.org/cli.html#variables">Airflow CLI</a>.</p>
+
+<pre><code>airflow variables --import /usr/local/airflow/dags/config/variables_from_json.json
+</code></pre>
+
+<p>After that, you can access the variable in the code as follows.</p>
+
+<pre><code>dag_config = Variable.get(&quot;variables_from_json&quot;, deserialize_json=True)
 var1 = dag_config[&quot;var1&quot;]
 var2 = dag_config[&quot;var2&quot;]
 var3 = dag_config[&quot;var3&quot;]
