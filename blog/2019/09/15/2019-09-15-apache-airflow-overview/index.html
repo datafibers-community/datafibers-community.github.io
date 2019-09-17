@@ -189,15 +189,18 @@
 
 <p>Airflow is a platform to programmaticaly author, schedule and monitor workflows or data pipelines. It composes Directed Acyclic Graph (DAG) with multiple tasks which can be executed independently. The Airflow scheduler executes the tasks on an array of workers while following the specified dependencies. Rich command line utilities make performing complex surgeries on DAGs a snap. The rich user interface makes it easy to visualize pipelines running in production, monitor progress, and troubleshoot issues when needed. The Airflow project joined the Apache Software Foundation’s incubation program in 2016. Google cloud also provides a cloud service, <a href="https://cloud.google.com/composer/">CLOUD COMPOSER</a>, for people who do not want to host Airflow themselves.</p>
 
-<p>Below is a short summary for the highlights of Airflow.
-* A workflow (data-pipeline) management system developed by Airbnb
-* A framework to define tasks &amp; dependencies in python
-* Executing, scheduling, distributing tasks accross worker nodes.
-* View of present and past runs, logging feature
-* Extensible through plugins
-* Nice UI, possibility to define REST interface
-* Interact well with database
-* Used by more than 200 companies: Airbnb, Yahoo, Paypal, Intel, Stripe,…</p>
+<p>Below is a short summary for the highlights of Airflow.</p>
+
+<ul>
+<li>A workflow (data-pipeline) management system developed by Airbnb</li>
+<li>A framework to define tasks &amp; dependencies in python</li>
+<li>Executing, scheduling, distributing tasks accross worker nodes.</li>
+<li>View of present and past runs, logging feature</li>
+<li>Extensible through plugins</li>
+<li>Nice UI, possibility to define REST interface</li>
+<li>Interact well with database</li>
+<li>Used by more than 200 companies: Airbnb, Yahoo, Paypal, Intel, Stripe,…</li>
+</ul>
 
 <h3 id="what-makes-airflow-great">What makes Airflow great?</h3>
 
@@ -230,26 +233,35 @@
 
 <h5 id="sensors">Sensors</h5>
 
-<p>It is a certain type of operator that will keep running until a certain criteria is met. Example include waiting for a certain time, external file, or upstream data source.
-* HdfsSensor: Waits for a file or folder to land in HDFS
-* NamedHivePartitionSensor: check whether the most recent partition of a Hive table is available for downstream processing.</p>
+<p>It is a certain type of operator that will keep running until a certain criteria is met. Example include waiting for a certain time, external file, or upstream data source.</p>
+
+<ul>
+<li>HdfsSensor: Waits for a file or folder to land in HDFS</li>
+<li>NamedHivePartitionSensor: check whether the most recent partition of a Hive table is available for downstream processing.</li>
+</ul>
 
 <h5 id="operators-1">Operators</h5>
 
-<p>It triggers a certain action (e.g. run a bash command, execute a python function, or execute a Hive query, etc)
-* BashOperator: executes a bash command
-* PythonOperator: calls an arbitrary Python function
-* HiveOperator: executes hql code or hive script in a specific Hive database.
-* BigQueryOperator: executes Google BigQuery SQL queries in a specific BigQuery database
-* SimpleHttpOperator: sends an HTTP request
-* EmailOperator: sends an email
-* MySqlOperator, SqliteOperator, PostgresOperator, MsSqlOperator, OracleOperator, JdbcOperator: Run a SQL command in different database.</p>
+<p>It triggers a certain action (e.g. run a bash command, execute a python function, or execute a Hive query, etc)</p>
+
+<ul>
+<li>BashOperator: executes a bash command</li>
+<li>PythonOperator: calls an arbitrary Python function</li>
+<li>HiveOperator: executes hql code or hive script in a specific Hive database.</li>
+<li>BigQueryOperator: executes Google BigQuery SQL queries in a specific BigQuery database</li>
+<li>SimpleHttpOperator: sends an HTTP request</li>
+<li>EmailOperator: sends an email</li>
+<li>MySqlOperator, SqliteOperator, PostgresOperator, MsSqlOperator, OracleOperator, JdbcOperator: Run a SQL command in different database.</li>
+</ul>
 
 <h5 id="transfers">Transfers:</h5>
 
-<p>It moves data from one location to another.
-* MySqlToHiveTransfer: Moves data from MySql to Hive.
-* S3ToRedshiftTransfer: load files from s3 to Redshift</p>
+<p>It moves data from one location to another.</p>
+
+<ul>
+<li>MySqlToHiveTransfer: Moves data from MySql to Hive.</li>
+<li>S3ToRedshiftTransfer: load files from s3 to Redshift</li>
+</ul>
 
 <h4 id="task">Task</h4>
 
