@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 15 Sep 2019 19:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 19:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Flink Windows Explained</title>
+      <link>https://datafibers-community.github.io/blog/2019/10/05/2019-10-05-flink-windows-explained/</link>
+      <pubDate>Sat, 05 Oct 2019 19:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2019/10/05/2019-10-05-flink-windows-explained/</guid>
+      <description>Overview Apache Flink supports data analysis over specific ranges in terms of windows. It supports two ways to create windows, time and count. Time window defines windows by specific time range. Count window defines windows by specifc number of envents.
+In addition, there are two windows time attributes.
+ size: how long the window itsef last interval: how long between windows  Whenever the window size = interval, this type of windows are called tumbling-window.</description>
+    </item>
     
     <item>
       <title>Apache Airflow Overview</title>
