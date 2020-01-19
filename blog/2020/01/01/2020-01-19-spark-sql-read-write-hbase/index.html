@@ -236,9 +236,10 @@ sqlContext.sql(&quot;select * from iteblog_table where id in (1, 2)&quot;)
 </code></pre>
 
 <p>Because the search condition is aginst the RowKey, we can change it using <strong>get</strong> or <strong>BulkGet</strong>. The 1st SQL query is working as follows.
-<img src="https://s.iteblog.com/pic/hbase/shc_get-iteblog.png" alt="alt text" />
-The 2nd and 3rd query are equal. It will convert <code>key in (x1, x2, x3..)</code> to <code>(key == x1) or (key == x2) or ...</code> as follows.
-<img src="https://s.iteblog.com/pic/hbase/shc_bulkget-iteblog.png" alt="" /></p>
+<p align="center"><img src="https://s.iteblog.com/pic/hbase/shc_get-iteblog.png" width="800"></p></p>
+
+<p>The 2nd and 3rd query are equal. It will convert <code>key in (x1, x2, x3..)</code> to <code>(key == x1) or (key == x2) or ...</code> as follows.
+<p align="center"><img src="https://s.iteblog.com/pic/hbase/shc_bulkget-iteblog.png" width="800"></p></p>
 
 <p>if the query has both filtering on RowKey and other columns (see below example),</p>
 
@@ -275,7 +276,7 @@ sqlContext.sql(&quot;select id, col6, col8 from iteblog_table where col7 = 'xxx'
 
 <h4 id="2-composition-rowkey-optimization">2. Composition RowKey Optimization</h4>
 
-<p>SHC also supports Composition  还支持组合 RowKey 的方式来建表，具体如下：</p>
+<p>SHC also supports Composition as follows：</p>
 
 <pre><code>def cat =
   s&quot;&quot;&quot;{
