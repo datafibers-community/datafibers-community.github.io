@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sat, 04 Aug 2018 13:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 02 Nov 2019 19:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Apache Kafka Producers</title>
+      <link>https://datafibers-community.github.io/blog/2019/11/02/2019-11-02-apache-kafka-producers/</link>
+      <pubDate>Sat, 02 Nov 2019 19:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2019/11/02/2019-11-02-apache-kafka-producers/</guid>
+      <description>Kafka producers send records to topics. The records are sometimes referred to as messages.
+The producer picks which partition to send a record to per topic. The producer can send records round-robin. The producer could implement priority systems based on sending records to certain partitions based on the priority of the record. Generally speaking, producers send records to a partition based on the record’s key. The default partitioner for Java uses a hash of the record’s key to choose the partition or uses a round-robin strategy if the record has no key.</description>
+    </item>
     
     <item>
       <title>Apache Kafka Consumers</title>

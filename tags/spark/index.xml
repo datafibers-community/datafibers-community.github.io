@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sat, 10 Mar 2018 13:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 20:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spark SQL Read/Write HBase</title>
+      <link>https://datafibers-community.github.io/blog/2020/01/01/2020-01-19-spark-sql-read-write-hbase/</link>
+      <pubDate>Wed, 01 Jan 2020 20:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2020/01/01/2020-01-19-spark-sql-read-write-hbase/</guid>
+      <description>Apache Spark and Apache HBase are very commonly used big data frameworks. In many senarios, we need to use Spark to query and analyze the big volumn of data in HBase. Spark has wider support to read data as dataset from many kinds of data source. To read from HBase, Spark provides TableInputFormat, which as following disadvantages.
+ There is only on scan triggerred in each task to read from HBase TableInputFormat does not support BulkGet Cannot leverage the optimization from Spark SQL catalyst  Considering the above points above, there is another choice by using Hortonworks/Cloudera Apache Spark—Apache HBase Connector short for (SHC).</description>
+    </item>
     
     <item>
       <title>Naive Bayes Algorithm</title>

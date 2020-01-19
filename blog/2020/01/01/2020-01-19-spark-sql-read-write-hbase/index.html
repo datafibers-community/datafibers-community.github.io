@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>When to Disable Speculative Execution</title>
+  <title>Spark SQL Read/Write HBase</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="When to Disable Speculative Execution" />
+  <meta property="og:title" content="Spark SQL Read/Write HBase" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution//" />
+  <meta property="og:url" content="/blog/2020/01/01/2020-01-19-spark-sql-read-write-hbase//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="When to Disable Speculative Execution logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="When to Disable Speculative Execution logo" class="visible-xs visible-sm">
-                    <span class="sr-only">When to Disable Speculative Execution - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Spark SQL Read/Write HBase logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Spark SQL Read/Write HBase logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Spark SQL Read/Write HBase - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>When to Disable Speculative Execution</h1>
+                <h1>Spark SQL Read/Write HBase</h1>
             </div>
         </div>
     </div>
@@ -180,54 +180,151 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">November 22, 2016</p>
+                        <p class="text-muted text-uppercase mb-small text-right">January 1, 2020</p>
 
                         <div id="post-content">
                           
 
-<h2 id="backgrounds">Backgrounds</h2>
+<hr />
 
-<p>This is the link from WikiMedia about what’s <strong><a href="http://en.wikipedia.org/wiki/Speculative_execution">Speculative Execution</a></strong>. In Hadoop, the following parameters string are for this settings. And, they are true by default.</p>
-
-<pre><code>mapred.map.tasks.speculative.execution
-mapred.reduce.tasks.speculative.execution
-</code></pre>
-
-<h2 id="when-to-disable">When to Disable</h2>
-
-<p>Most time, it helps. However, I am here to collect some scenario when we do not need it.</p>
+<p>Apache Spark and Apache HBase are very commonly used big data frameworks. In many senarios, we need to use Spark to query and analyze the big volumn of data in HBase. Spark has wider support to read data as dataset from many kinds of data source. To read from HBase, Spark provides TableInputFormat, which as following disadvantages.</p>
 
 <ul>
-<li>Of course, when ever your cluster really in shortage of resource or for the purpose of experiment, we can disable them by setting them to false since “SE” really a big resource consumer</li>
-<li>It is generally advisable to turn off ”SE” for mapred jobs that use HBase as a source. Especially for longer running jobs, speculative execution will create duplicate map-tasks which will double-write your data to HBase; this is probably not what you want. In addition, its local data has high priority when you mapred running against resource in HBase. That is to say every task in tasktracker stays closer to the regionserver in the same physical server. The “SE” will create new jobs to access data which may not local. As result, it will make your regionserver overloaded by wasting IO and network resource.</li>
-<li>When moving data using distcp, the source cluster should have speculative execution turned off for map tasks. In the mapredsite.xml configuration file, set mapred.map.tasks.speculative.execution to false. This will prevent any undefined behavior from occurring in the case where a map task fails.</li>
+<li>There is only on scan triggerred in each task to read from HBase</li>
+<li>TableInputFormat does not support BulkGet</li>
+<li>Cannot leverage the optimization from Spark SQL catalyst</li>
 </ul>
 
-<h2 id="how-to-disable">How to Disable</h2>
+<p>Considering the above points above, there is another choice by using Hortonworks/Cloudera <a href="https://github.com/hortonworks-spark/shc">Apache Spark—Apache HBase Connector</a> short for (SHC). By using SHC, we can use Spark SQL directly load dataframe data into HBase or query data from HBase. When querying HBase, it leverages the Spark Catalyst for query optimization, such as partition pruning, column pruning, predicate pushdown, data locality, and so on. As a result, the performance using Spark to query HBase has great improvment.</p>
 
-<p>There are two ways to disable it.
-1.Set in mapred-site.xml (recommend for admin and wider user having such request)</p>
+<p>Note：SHC also supports writing DataFrame into HBase. However, there is no much performance improvment, so we do not focus on this part.</p>
 
-<pre><code>&lt;property&gt;  
-         &lt;name&gt;mapred.map.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;  
-&lt;property&gt;  
-         &lt;name&gt;mapred.reduce.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;
+<h3 id="how-shc-improve-the-query-performance">How SHC Improve the Query Performance</h3>
+
+<p>SHC mainly uses following ways for performance tuning to narrow down the HBase scanning scops.</p>
+
+<h4 id="1-convert-rowkey-based-search-to-get">1. Convert Rowkey based search to get</h4>
+
+<p>As we all know that search using <strong>scan</strong> in HBase is very efficient. If the search condition is RowKey based，we should able to change it using <strong>get</strong>.</p>
+
+<p>For example, with predefined HBase catalog as follows.</p>
+
+<pre><code>val catalog = s&quot;&quot;&quot;{
+  |&quot;table&quot;:{&quot;namespace&quot;:&quot;default&quot;, &quot;name&quot;:&quot;iteblog&quot;, &quot;tableCoder&quot;:&quot;PrimitiveType&quot;},
+  |&quot;rowkey&quot;:&quot;key&quot;,
+  |&quot;columns&quot;:{
+    |&quot;col0&quot;:{&quot;cf&quot;:&quot;rowkey&quot;, &quot;col&quot;:&quot;id&quot;, &quot;type&quot;:&quot;int&quot;},
+    |&quot;col1&quot;:{&quot;cf&quot;:&quot;cf1&quot;, &quot;col&quot;:&quot;col1&quot;, &quot;type&quot;:&quot;boolean&quot;},
+    |&quot;col2&quot;:{&quot;cf&quot;:&quot;cf2&quot;, &quot;col&quot;:&quot;col2&quot;, &quot;type&quot;:&quot;double&quot;},
+    |&quot;col3&quot;:{&quot;cf&quot;:&quot;cf3&quot;, &quot;col&quot;:&quot;col3&quot;, &quot;type&quot;:&quot;float&quot;},
+    |&quot;col4&quot;:{&quot;cf&quot;:&quot;cf4&quot;, &quot;col&quot;:&quot;col4&quot;, &quot;type&quot;:&quot;int&quot;},
+    |&quot;col5&quot;:{&quot;cf&quot;:&quot;cf5&quot;, &quot;col&quot;:&quot;col5&quot;, &quot;type&quot;:&quot;bigint&quot;},
+    |&quot;col6&quot;:{&quot;cf&quot;:&quot;cf6&quot;, &quot;col&quot;:&quot;col6&quot;, &quot;type&quot;:&quot;smallint&quot;},
+    |&quot;col7&quot;:{&quot;cf&quot;:&quot;cf7&quot;, &quot;col&quot;:&quot;col7&quot;, &quot;type&quot;:&quot;string&quot;},
+    |&quot;col8&quot;:{&quot;cf&quot;:&quot;cf8&quot;, &quot;col&quot;:&quot;col8&quot;, &quot;type&quot;:&quot;tinyint&quot;}
+  |}
+|}&quot;&quot;&quot;.stripMargin
 </code></pre>
 
-<p>2.Set in job configuration</p>
+<p>If we have flollowing search,</p>
 
-<pre><code>    jobconf.set(&quot;mapred.map.tasks.speculative.execution&quot;,false);
-
-    jobconf.set(&quot;mapred.reduce.tasks.speculative.execution&quot;,false);
+<pre><code>val df = withCatalog(catalog)
+df.createOrReplaceTempView(&quot;iteblog_table&quot;)
+sqlContext.sql(&quot;select * from iteblog_table where id = 1&quot;)
+sqlContext.sql(&quot;select * from iteblog_table where id = 1 or id = 2&quot;)
+sqlContext.sql(&quot;select * from iteblog_table where id in (1, 2)&quot;)
 </code></pre>
 
-<h2 id="issues">Issues</h2>
+<p>Because the search condition is aginst the RowKey, we can change it using <strong>get</strong> or <strong>BulkGet</strong>. The 1st SQL query is working as follows.
+<img src="https://s.iteblog.com/pic/hbase/shc_get-iteblog.png" alt="alt text" />
+The 2nd and 3rd query are equal. It will convert <code>key in (x1, x2, x3..)</code> to <code>(key == x1) or (key == x2) or ...</code> as follows.
+<img src="https://s.iteblog.com/pic/hbase/shc_bulkget-iteblog.png" alt="" /></p>
 
-<p><strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-2062">MAPREDUCE-2062</a></strong> and <strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-3895">MAPREDUCE-3895</a></strong> list some problem on <strong>“SE”</strong>. See if you needs improvements if you have to use.</p>
+<p>if the query has both filtering on RowKey and other columns (see below example),</p>
+
+<pre><code>sqlContext.sql(&quot;select id, col6, col8 from iteblog_table where id = 1 and col7 = 'xxx'&quot;)
+</code></pre>
+
+<p>it will convert to the following search.</p>
+
+<pre><code>val filter = new SingleColumnValueFilter(
+              Bytes.toBytes(&quot;cf7&quot;), Bytes.toBytes(&quot;col7 &quot;)
+              CompareOp.EQUAL,
+             Bytes.toBytes(&quot;xxx&quot;))
+ 
+val g = new Get(Bytes.toBytes(1))
+g.addColumn(Bytes.toBytes(&quot;cf6&quot;), Bytes.toBytes(&quot;col6&quot;))
+g.addColumn(Bytes.toBytes(&quot;cf8&quot;), Bytes.toBytes(&quot;col8&quot;))
+g.setFilter(filter)
+</code></pre>
+
+<p>If we have multiple and conditions, it all use<strong>SingleColumnValueFilter</strong> for filtering.
+If we have following search/query,</p>
+
+<pre><code>sqlContext.sql(&quot;select id, col6, col8 from iteblog_table where id = 1 or col7 = 'xxx'&quot;)
+</code></pre>
+
+<p>How SHC optimize it? Actually, when filtering on non RowKey, the whole table scan has to be performed. The above query in HSC will get all data from HBase and transfer data to Spark, then filter in Spark. In this case, the performance is limited. Same logic applies to the following query as well.</p>
+
+<pre><code>sqlContext.sql(&quot;select id, col6, col8 from iteblog_table where id = 1 or col7 &lt;= 'xxx'&quot;)
+sqlContext.sql(&quot;select id, col6, col8 from iteblog_table where id = 1 or col7 &gt;= 'xxx'&quot;)
+sqlContext.sql(&quot;select id, col6, col8 from iteblog_table where col7 = 'xxx'&quot;)
+</code></pre>
+
+<p>Obviously, querying in this way is not very effecient. A better way is to push computing to HBase layer using <code>SingleColumnValueFilter</code> to filter as much as possible before moving data to Spark. In this case, we do not have to transfer lots of data from HBase to Spark.</p>
+
+<h4 id="2-composition-rowkey-optimization">2. Composition RowKey Optimization</h4>
+
+<p>SHC also supports Composition  还支持组合 RowKey 的方式来建表，具体如下：</p>
+
+<pre><code>def cat =
+  s&quot;&quot;&quot;{
+     |&quot;table&quot;:{&quot;namespace&quot;:&quot;default&quot;, &quot;name&quot;:&quot;iteblog&quot;, &quot;tableCoder&quot;:&quot;PrimitiveType&quot;},
+     |&quot;rowkey&quot;:&quot;key1:key2&quot;,
+     |&quot;columns&quot;:{
+     |&quot;col00&quot;:{&quot;cf&quot;:&quot;rowkey&quot;, &quot;col&quot;:&quot;key1&quot;, &quot;type&quot;:&quot;string&quot;, &quot;length&quot;:&quot;6&quot;},
+     |&quot;col01&quot;:{&quot;cf&quot;:&quot;rowkey&quot;, &quot;col&quot;:&quot;key2&quot;, &quot;type&quot;:&quot;int&quot;},
+     |&quot;col1&quot;:{&quot;cf&quot;:&quot;cf1&quot;, &quot;col&quot;:&quot;col1&quot;, &quot;type&quot;:&quot;boolean&quot;},
+     |&quot;col2&quot;:{&quot;cf&quot;:&quot;cf2&quot;, &quot;col&quot;:&quot;col2&quot;, &quot;type&quot;:&quot;double&quot;},
+     |&quot;col3&quot;:{&quot;cf&quot;:&quot;cf3&quot;, &quot;col&quot;:&quot;col3&quot;, &quot;type&quot;:&quot;float&quot;},
+     |&quot;col4&quot;:{&quot;cf&quot;:&quot;cf4&quot;, &quot;col&quot;:&quot;col4&quot;, &quot;type&quot;:&quot;int&quot;},
+     |&quot;col5&quot;:{&quot;cf&quot;:&quot;cf5&quot;, &quot;col&quot;:&quot;col5&quot;, &quot;type&quot;:&quot;bigint&quot;},
+     |&quot;col6&quot;:{&quot;cf&quot;:&quot;cf6&quot;, &quot;col&quot;:&quot;col6&quot;, &quot;type&quot;:&quot;smallint&quot;},
+     |&quot;col7&quot;:{&quot;cf&quot;:&quot;cf7&quot;, &quot;col&quot;:&quot;col7&quot;, &quot;type&quot;:&quot;string&quot;},
+     |&quot;col8&quot;:{&quot;cf&quot;:&quot;cf8&quot;, &quot;col&quot;:&quot;col8&quot;, &quot;type&quot;:&quot;tinyint&quot;}
+     |}
+     |}&quot;&quot;&quot;.stripMargin
+</code></pre>
+
+<p>In above example, col00 and col01 combined as rowkey，and col00 at first，col01 at last. For example, col00 =&lsquo;row002&rsquo;，col01 = 2，then the composite rowkey is row002\x00\x00\x00\x02。Then when searching Rowkey, how SHC to do optimization? For example, we have following search.</p>
+
+<pre><code>df.sqlContext.sql(&quot;select col00, col01, col1 from iteblog where col00 = 'row000' and col01 = 0&quot;).show()
+</code></pre>
+
+<p>Based on the information above，RowKey is composited with col00 and col01. Then，the above search can concat col00 and col01 to form a RowKey，then convert the search to a <strong>get</strong>. However, SHC converts the above search to a <strong>scan</strong> and <strong>get</strong>. The <strong>scan</strong>&rsquo;s startRow is row000 and endRow is row000\xff\xff\xff\xff；<strong>get</strong>&rsquo;s rowkey is row000\xff\xff\xff\xff，then return all data matched the search conditions. In the end, filter in Spark to get the final result. Since SHC is still in development, the solution described above may change.</p>
+
+<p>In SHC, the two query below has the same logic when pushing down to the HBase.</p>
+
+<pre><code>df.sqlContext.sql(&quot;select col00, col01, col1 from iteblog where col00 = 'row000'&quot;).show()
+df.sqlContext.sql(&quot;select col00, col01, col1 from iteblog where col00 = 'row000' and col01 = 0&quot;).show()
+</code></pre>
+
+<p>The only difference is the filtering in Spark.</p>
+
+<h4 id="2-scan-optimization">2. Scan Optimization</h4>
+
+<p>If we have search conditions, such as &lt; or &gt; as follows：</p>
+
+<pre><code>df.sqlContext.sql(&quot;select col00, col01, col1 from iteblog where col00 &gt; 'row000' and col00 &lt; 'row005'&quot;).show()
+</code></pre>
+
+<p>In SHC, this is converted to a <strong>get</strong> and a <strong>scan</strong>. The get&rsquo;s Rowkey is row0005\xff\xff\xff\xff；scan&rsquo;s startRow is row000，endRow is row005\xff\xff\xff\xff，then retun to Spark for fitering.</p>
+
+<p>In summary, SHC can improve the query performance and aviod full table scan. For now this project is merging with <a href="https://github.com/apache/hbase-connectors/">HBase&rsquo;s connectors project</a> for better improvement.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.iteblog.com/archives/2522.html">https://www.iteblog.com/archives/2522.html</a></p>
 
                         </div>
                         

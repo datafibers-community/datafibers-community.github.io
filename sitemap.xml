@@ -3,13 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://datafibers-community.github.io/blog/2019/10/05/2019-10-05-flink-windows-explained/</loc>
-    <lastmod>2019-10-05T19:50:46+02:00</lastmod>
+    <loc>https://datafibers-community.github.io/blog/2020/01/01/2020-01-19-spark-sql-read-write-hbase/</loc>
+    <lastmod>2020-01-01T20:50:46+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/blog/2019/09/15/2019-09-15-apache-airflow-overview/</loc>
-    <lastmod>2019-09-15T19:50:46+02:00</lastmod>
+    <loc>https://datafibers-community.github.io/blog/2019/12/15/2019-12-15-apache-airflow-overview/</loc>
+    <lastmod>2019-12-15T19:50:46+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/blog/2019/11/02/2019-11-02-apache-kafka-producers/</loc>
+    <lastmod>2019-11-02T19:50:46+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/blog/2019/10/05/2019-10-05-flink-windows-explained/</loc>
+    <lastmod>2019-10-05T19:50:46+02:00</lastmod>
   </url>
   
   <url>
@@ -139,7 +149,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/artical/</loc>
-    <lastmod>2019-10-05T19:50:46+02:00</lastmod>
+    <lastmod>2019-12-15T19:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -151,19 +161,19 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/big-data/</loc>
-    <lastmod>2019-09-15T19:50:46+02:00</lastmod>
+    <lastmod>2019-12-15T19:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2019-10-05T19:50:46+02:00</lastmod>
+    <lastmod>2020-01-01T20:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/categories/</loc>
-    <lastmod>2019-10-05T19:50:46+02:00</lastmod>
+    <lastmod>2019-12-15T19:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -177,7 +187,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2019-10-05T19:50:46+02:00</lastmod>
+    <lastmod>2020-01-01T20:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -189,7 +199,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/digest/</loc>
-    <lastmod>2019-05-20T13:50:46+02:00</lastmod>
+    <lastmod>2020-01-01T20:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -225,7 +235,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/kafka/</loc>
-    <lastmod>2018-08-04T13:50:46+02:00</lastmod>
+    <lastmod>2019-11-02T19:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -267,13 +277,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/spark/</loc>
-    <lastmod>2018-03-10T13:50:46+02:00</lastmod>
+    <lastmod>2020-01-01T20:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/tags/</loc>
-    <lastmod>2019-09-15T19:50:46+02:00</lastmod>
+    <lastmod>2019-12-15T19:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   

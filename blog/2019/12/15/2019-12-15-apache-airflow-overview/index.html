@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>When to Disable Speculative Execution</title>
+  <title>Apache Airflow Overview</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="When to Disable Speculative Execution" />
+  <meta property="og:title" content="Apache Airflow Overview" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution//" />
+  <meta property="og:url" content="/blog/2019/12/15/2019-12-15-apache-airflow-overview//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="When to Disable Speculative Execution logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="When to Disable Speculative Execution logo" class="visible-xs visible-sm">
-                    <span class="sr-only">When to Disable Speculative Execution - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Apache Airflow Overview logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Apache Airflow Overview logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Apache Airflow Overview - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>When to Disable Speculative Execution</h1>
+                <h1>Apache Airflow Overview</h1>
             </div>
         </div>
     </div>
@@ -180,54 +180,233 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">November 22, 2016</p>
+                        <p class="text-muted text-uppercase mb-small text-right">December 15, 2019</p>
 
                         <div id="post-content">
                           
 
-<h2 id="backgrounds">Backgrounds</h2>
+<h3 id="what-is-airflow">What is Airflow?</h3>
 
-<p>This is the link from WikiMedia about what’s <strong><a href="http://en.wikipedia.org/wiki/Speculative_execution">Speculative Execution</a></strong>. In Hadoop, the following parameters string are for this settings. And, they are true by default.</p>
+<p>Airflow is a platform to programmaticaly author, schedule and monitor workflows or data pipelines. It composes Directed Acyclic Graph (DAG) with multiple tasks which can be executed independently. The Airflow scheduler executes the tasks on an array of workers while following the specified dependencies. Rich command line utilities make performing complex surgeries on DAGs a snap. The rich user interface makes it easy to visualize pipelines running in production, monitor progress, and troubleshoot issues when needed. The Airflow project joined the Apache Software Foundation’s incubation program in 2016. Google cloud also provides a cloud service, <a href="https://cloud.google.com/composer/">CLOUD COMPOSER</a>, for people who do not want to host Airflow themselves.</p>
 
-<pre><code>mapred.map.tasks.speculative.execution
-mapred.reduce.tasks.speculative.execution
-</code></pre>
-
-<h2 id="when-to-disable">When to Disable</h2>
-
-<p>Most time, it helps. However, I am here to collect some scenario when we do not need it.</p>
+<p>Below is a short summary for the highlights of Airflow.</p>
 
 <ul>
-<li>Of course, when ever your cluster really in shortage of resource or for the purpose of experiment, we can disable them by setting them to false since “SE” really a big resource consumer</li>
-<li>It is generally advisable to turn off ”SE” for mapred jobs that use HBase as a source. Especially for longer running jobs, speculative execution will create duplicate map-tasks which will double-write your data to HBase; this is probably not what you want. In addition, its local data has high priority when you mapred running against resource in HBase. That is to say every task in tasktracker stays closer to the regionserver in the same physical server. The “SE” will create new jobs to access data which may not local. As result, it will make your regionserver overloaded by wasting IO and network resource.</li>
-<li>When moving data using distcp, the source cluster should have speculative execution turned off for map tasks. In the mapredsite.xml configuration file, set mapred.map.tasks.speculative.execution to false. This will prevent any undefined behavior from occurring in the case where a map task fails.</li>
+<li>A workflow (data-pipeline) management system developed by Airbnb</li>
+<li>A framework to define tasks &amp; dependencies in python</li>
+<li>Executing, scheduling, distributing tasks accross worker nodes.</li>
+<li>View of present and past runs, logging feature</li>
+<li>Extensible through plugins</li>
+<li>Nice UI, possibility to define REST interface</li>
+<li>Interact well with database</li>
+<li>Used by more than 200 companies: Airbnb, Yahoo, Paypal, Intel, Stripe,…</li>
 </ul>
 
-<h2 id="how-to-disable">How to Disable</h2>
+<h3 id="what-makes-airflow-great">What makes Airflow great?</h3>
 
-<p>There are two ways to disable it.
-1.Set in mapred-site.xml (recommend for admin and wider user having such request)</p>
+<ul>
+<li>Can handle upstream/downstream dependencies gracefully (Example: upstream missing tables)</li>
+<li>Easy to reprocess historical jobs by date, or re-run for specific intervals</li>
+<li>Jobs can pass parameters to other jobs downstream</li>
+<li>Handle errors and failures gracefully. Automatically retry when a task fails.</li>
+<li>Ease of deployment of workflow changes (continuous integration)</li>
+<li>Integrations with a lot of infrastructure (Hive, Presto, Druid, AWS, Google cloud, etc)</li>
+<li>Data sensors to trigger a DAG when data arrives</li>
+<li>Job testing through airflow itself</li>
+<li>Accessibility of log files and other meta-data through the web GUI</li>
+<li>Implement trigger rules for tasks</li>
+<li>Monitoring all jobs status in real time + Email alerts</li>
+<li>Community support</li>
+</ul>
 
-<pre><code>&lt;property&gt;  
-         &lt;name&gt;mapred.map.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;  
-&lt;property&gt;  
-         &lt;name&gt;mapred.reduce.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;
+<h3 id="airflow-components">Airflow Components</h3>
+
+<h4 id="dag">DAG</h4>
+
+<p>Airflow contains DAGs, operators, tasks, and schedules.</p>
+
+<p>Directed Acyclic Graph (DAG) is a graph that has no cycles and the data in each node flows forward in only one direction. A DAG is a container that is used to organize tasks and set their execution context. In Airflow all workflows are DAGs.</p>
+
+<h4 id="operators">Operators</h4>
+
+<p>Operators determine what actually gets done. An operator defines an individual task that needs to be performed. There are different types of operators available.</p>
+
+<h5 id="sensors">Sensors</h5>
+
+<p>It is a certain type of operator that will keep running until a certain criteria is met. Example include waiting for a certain time, external file, or upstream data source.</p>
+
+<ul>
+<li>HdfsSensor: Waits for a file or folder to land in HDFS</li>
+<li>NamedHivePartitionSensor: check whether the most recent partition of a Hive table is available for downstream processing.</li>
+</ul>
+
+<h5 id="operators-1">Operators</h5>
+
+<p>It triggers a certain action (e.g. run a bash command, execute a python function, or execute a Hive query, etc)</p>
+
+<ul>
+<li>BashOperator: executes a bash command</li>
+<li>PythonOperator: calls an arbitrary Python function</li>
+<li>HiveOperator: executes hql code or hive script in a specific Hive database.</li>
+<li>BigQueryOperator: executes Google BigQuery SQL queries in a specific BigQuery database</li>
+<li>SimpleHttpOperator: sends an HTTP request</li>
+<li>EmailOperator: sends an email</li>
+<li>MySqlOperator, SqliteOperator, PostgresOperator, MsSqlOperator, OracleOperator, JdbcOperator: Run a SQL command in different database.</li>
+</ul>
+
+<h5 id="transfers">Transfers:</h5>
+
+<p>It moves data from one location to another.</p>
+
+<ul>
+<li>MySqlToHiveTransfer: Moves data from MySql to Hive.</li>
+<li>S3ToRedshiftTransfer: load files from s3 to Redshift</li>
+</ul>
+
+<h4 id="task">Task</h4>
+
+<p>Once an operator is instantiated, it is referred to as a “task”. An operator describes a single task in a workflow. Instantiating a task requires providing a unique task_id and DAG container</p>
+
+<h3 id="airflow-job-creation">Airflow Job Creation</h3>
+
+<p>A Airflow job is described by a DAG file, which is basically just a Python script. There are only 5 steps you needed to write an Airflow DAG or workflow.</p>
+
+<h5 id="step-1-importing-modules">Step 1: Importing modules</h5>
+
+<p>Import Python dependencies needed for the workflow</p>
+
+<pre><code>from datetime import timedelta
+
+import airflow
+from airflow import DAG
+from airflow.operators.bash_operator import BashOperator
 </code></pre>
 
-<p>2.Set in job configuration</p>
+<h5 id="step-2-default-arguments">Step 2: Default Arguments</h5>
 
-<pre><code>    jobconf.set(&quot;mapred.map.tasks.speculative.execution&quot;,false);
+<p>Define default and DAG-specific arguments</p>
 
-    jobconf.set(&quot;mapred.reduce.tasks.speculative.execution&quot;,false);
+<pre><code>default_args = {
+    'owner': 'airflow',    
+    'start_date': airflow.utils.dates.days_ago(2),
+    # 'end_date': datetime(2018, 12, 30),
+    'depends_on_past': False,
+    'email': ['airflow@example.com'],
+    'email_on_failure': False,
+    'email_on_retry': False,
+    # If a task fails, retry it once after waiting
+    # at least 5 minutes
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+    }
 </code></pre>
 
-<h2 id="issues">Issues</h2>
+<h5 id="step-3-instantiate-a-dag">Step 3: Instantiate a DAG</h5>
 
-<p><strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-2062">MAPREDUCE-2062</a></strong> and <strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-3895">MAPREDUCE-3895</a></strong> list some problem on <strong>“SE”</strong>. See if you needs improvements if you have to use.</p>
+<p>Give the DAG name, configure the schedule, and set the DAG settings</p>
+
+<pre><code>dag = DAG(
+    'tutorial',
+    default_args=default_args,
+    description='A simple tutorial DAG',
+	# Do not catch up from old start time
+	catchup = False,
+    # Continue to run DAG once per day
+    schedule_interval=timedelta(days=1),
+)
+</code></pre>
+
+<h5 id="step-4-tasks">Step 4: Tasks</h5>
+
+<p>The next step is to lay out all the tasks in the workflow.</p>
+
+<pre><code># t1, t2 and t3 are examples of tasks created by instantiating operators
+t1 = BashOperator(
+    task_id='print_date',
+    bash_command='date',
+    dag=dag,
+)
+
+t2 = BashOperator(
+    task_id='sleep',
+    depends_on_past=False,
+    bash_command='sleep 5',
+    dag=dag,
+)
+
+templated_command = &quot;&quot;&quot;
+{% for i in range(5) %}
+    echo &quot;{{ ds }}&quot;
+    echo &quot;{{ macros.ds_add(ds, 7)}}&quot;
+    echo &quot;{{ params.my_param }}&quot;
+{% endfor %}
+&quot;&quot;&quot;
+
+t3 = BashOperator(
+    task_id='templated',
+    depends_on_past=False,
+    bash_command=templated_command,
+    params={'my_param': 'Parameter I passed in'},
+    dag=dag,
+)
+</code></pre>
+
+<h5 id="step-5-setting-up-dependencies">Step 5: Setting up Dependencies</h5>
+
+<p>Set the dependencies or the order in which the tasks should be executed. Below are a few ways you can define dependencies between them.</p>
+
+<pre><code># This means that t2 will depend on t1
+# running successfully to run.
+t1.set_downstream(t2)
+
+# similar to above where t3 will depend on t1
+t3.set_upstream(t1)
+# The bit shift operator can also be
+# used to chain operations:
+t1 &gt;&gt; t2
+
+# And the upstream dependency with the
+# bit shift operator:
+t2 &lt;&lt; t1
+# A list of tasks can also be set as
+# dependencies. These operations
+# all have the same effect:
+t1.set_downstream([t2, t3])
+t1 &gt;&gt; [t2, t3]
+[t2, t3] &lt;&lt; t1
+</code></pre>
+
+<h3 id="airflow-variable">Airflow Variable</h3>
+
+<p>Variables are key-value stores in Airflow’s metadata database. It is used to store and retrieve arbitrary content or settings from the metadata database. We should always <strong>restrict the number of Airflow variables in your DAG</strong>.
+Since Airflow Variables are stored in Metadata Database, so any call to variables would mean a connection to Metadata DB. Instead of storing a large number of variable in your DAG, which may end up saturating the number of allowed connections to your database. It is recommended you store all your DAG configuration inside a single Airflow variable with JSON value.</p>
+
+<p>First, create a json file as variable file.</p>
+
+<pre><code>vi variables_from_json.json
+{
+    &quot;variables_from_json&quot;: {
+        &quot;var1&quot;: &quot;value1&quot;,
+        &quot;var2&quot;: [1, 2, 3],
+        &quot;var3&quot;: {
+            &quot;k&quot;: &quot;value3&quot;
+        }
+    }
+}
+</code></pre>
+
+<p>Then, import the variable through <a href="https://airflow.apache.org/cli.html#variables">Airflow CLI</a>.</p>
+
+<pre><code>airflow variables --import /usr/local/airflow/dags/config/variables_from_json.json
+</code></pre>
+
+<p>After that, you can access the variable in the code as follows.</p>
+
+<pre><code>dag_config = Variable.get(&quot;variables_from_json&quot;, deserialize_json=True)
+var1 = dag_config[&quot;var1&quot;]
+var2 = dag_config[&quot;var2&quot;]
+var3 = dag_config[&quot;var3&quot;]
+</code></pre>
 
                         </div>
                         

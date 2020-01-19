@@ -7,10 +7,39 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2018, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sat, 05 Oct 2019 19:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 20:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spark SQL Read/Write HBase</title>
+      <link>https://datafibers-community.github.io/blog/2020/01/01/2020-01-19-spark-sql-read-write-hbase/</link>
+      <pubDate>Wed, 01 Jan 2020 20:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2020/01/01/2020-01-19-spark-sql-read-write-hbase/</guid>
+      <description>Apache Spark and Apache HBase are very commonly used big data frameworks. In many senarios, we need to use Spark to query and analyze the big volumn of data in HBase. Spark has wider support to read data as dataset from many kinds of data source. To read from HBase, Spark provides TableInputFormat, which as following disadvantages.
+ There is only on scan triggerred in each task to read from HBase TableInputFormat does not support BulkGet Cannot leverage the optimization from Spark SQL catalyst  Considering the above points above, there is another choice by using Hortonworks/Cloudera Apache Spark—Apache HBase Connector short for (SHC).</description>
+    </item>
+    
+    <item>
+      <title>Apache Airflow Overview</title>
+      <link>https://datafibers-community.github.io/blog/2019/12/15/2019-12-15-apache-airflow-overview/</link>
+      <pubDate>Sun, 15 Dec 2019 19:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2019/12/15/2019-12-15-apache-airflow-overview/</guid>
+      <description>What is Airflow? Airflow is a platform to programmaticaly author, schedule and monitor workflows or data pipelines. It composes Directed Acyclic Graph (DAG) with multiple tasks which can be executed independently. The Airflow scheduler executes the tasks on an array of workers while following the specified dependencies. Rich command line utilities make performing complex surgeries on DAGs a snap. The rich user interface makes it easy to visualize pipelines running in production, monitor progress, and troubleshoot issues when needed.</description>
+    </item>
+    
+    <item>
+      <title>Apache Kafka Producers</title>
+      <link>https://datafibers-community.github.io/blog/2019/11/02/2019-11-02-apache-kafka-producers/</link>
+      <pubDate>Sat, 02 Nov 2019 19:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2019/11/02/2019-11-02-apache-kafka-producers/</guid>
+      <description>Kafka producers send records to topics. The records are sometimes referred to as messages.
+The producer picks which partition to send a record to per topic. The producer can send records round-robin. The producer could implement priority systems based on sending records to certain partitions based on the priority of the record. Generally speaking, producers send records to a partition based on the record’s key. The default partitioner for Java uses a hash of the record’s key to choose the partition or uses a round-robin strategy if the record has no key.</description>
+    </item>
     
     <item>
       <title>Flink Windows Explained</title>
@@ -21,15 +50,6 @@
       <description>Overview Apache Flink supports data analysis over specific ranges in terms of windows. It supports two ways to create windows, time and count. Time window defines windows by specific time range. Count window defines windows by specifc number of envents.
 In addition, there are two windows time attributes.
  size: how long the window itsef last interval: how long between windows  Whenever the window size = interval, this type of windows are called tumbling-window.</description>
-    </item>
-    
-    <item>
-      <title>Apache Airflow Overview</title>
-      <link>https://datafibers-community.github.io/blog/2019/09/15/2019-09-15-apache-airflow-overview/</link>
-      <pubDate>Sun, 15 Sep 2019 19:50:46 +0200</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/2019/09/15/2019-09-15-apache-airflow-overview/</guid>
-      <description>What is Airflow? Airflow is a platform to programmaticaly author, schedule and monitor workflows or data pipelines. It composes Directed Acyclic Graph (DAG) with multiple tasks which can be executed independently. The Airflow scheduler executes the tasks on an array of workers while following the specified dependencies. Rich command line utilities make performing complex surgeries on DAGs a snap. The rich user interface makes it easy to visualize pipelines running in production, monitor progress, and troubleshoot issues when needed.</description>
     </item>
     
     <item>

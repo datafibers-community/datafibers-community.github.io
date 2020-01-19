@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>When to Disable Speculative Execution</title>
+  <title>Apache Kafka Producers</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="When to Disable Speculative Execution" />
+  <meta property="og:title" content="Apache Kafka Producers" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution//" />
+  <meta property="og:url" content="/blog/2019/11/02/2019-11-02-apache-kafka-producers//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="When to Disable Speculative Execution logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="When to Disable Speculative Execution logo" class="visible-xs visible-sm">
-                    <span class="sr-only">When to Disable Speculative Execution - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Apache Kafka Producers logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Apache Kafka Producers logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Apache Kafka Producers - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>When to Disable Speculative Execution</h1>
+                <h1>Apache Kafka Producers</h1>
             </div>
         </div>
     </div>
@@ -180,54 +180,41 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">November 22, 2016</p>
+                        <p class="text-muted text-uppercase mb-small text-right">November 2, 2019</p>
 
                         <div id="post-content">
                           
 
-<h2 id="backgrounds">Backgrounds</h2>
+<p>Kafka producers send records to topics. The records are sometimes referred to as messages.</p>
 
-<p>This is the link from WikiMedia about what’s <strong><a href="http://en.wikipedia.org/wiki/Speculative_execution">Speculative Execution</a></strong>. In Hadoop, the following parameters string are for this settings. And, they are true by default.</p>
+<p>The producer picks which partition to send a record to per topic. The producer can send records round-robin. The producer could implement priority systems based on sending records to certain partitions based on the priority of the record. Generally speaking, producers send records to a partition based on the record’s key. The default partitioner for Java uses a hash of the record’s key to choose the partition or uses a round-robin strategy if the record has no key. The important concept here is that the producer picks partition. Producers write at their cadence so the order of Records cannot be guaranteed across partitions. The producers get to configure their consistency/durability level (ack=0, ack=all, ack=1), which we will cover later. Producers pick the partition such that Record/messages go to a given partition based on the data. For example, you could have all the events of a certain ‘employeeId’ go to the same partition. If order within a partition is not needed, a ‘Round Robin’ partition strategy can be used, so Records get evenly distributed across partitions.</p>
 
-<pre><code>mapred.map.tasks.speculative.execution
-mapred.reduce.tasks.speculative.execution
+<h2 id="code-examples">Code Examples</h2>
+
+<p>Below is a simple producer example with Java client.</p>
+
+<pre><code>public class Producer {
+
+    public static void main(String[] args){
+        Properties properties = new Properties();
+        properties.put(&quot;bootstrap.servers&quot;, &quot;localhost:9092&quot;);
+        properties.put(&quot;key.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+        properties.put(&quot;value.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+
+        KafkaProducer kafkaProducer = new KafkaProducer(properties);
+        try{
+            for(int i = 0; i &lt; 100; i++){
+                System.out.println(i);
+                kafkaProducer.send(new ProducerRecord(&quot;devglan-test&quot;, Integer.toString(i), &quot;test message - &quot; + i ));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            kafkaProducer.close();
+        }
+    }
+}
 </code></pre>
-
-<h2 id="when-to-disable">When to Disable</h2>
-
-<p>Most time, it helps. However, I am here to collect some scenario when we do not need it.</p>
-
-<ul>
-<li>Of course, when ever your cluster really in shortage of resource or for the purpose of experiment, we can disable them by setting them to false since “SE” really a big resource consumer</li>
-<li>It is generally advisable to turn off ”SE” for mapred jobs that use HBase as a source. Especially for longer running jobs, speculative execution will create duplicate map-tasks which will double-write your data to HBase; this is probably not what you want. In addition, its local data has high priority when you mapred running against resource in HBase. That is to say every task in tasktracker stays closer to the regionserver in the same physical server. The “SE” will create new jobs to access data which may not local. As result, it will make your regionserver overloaded by wasting IO and network resource.</li>
-<li>When moving data using distcp, the source cluster should have speculative execution turned off for map tasks. In the mapredsite.xml configuration file, set mapred.map.tasks.speculative.execution to false. This will prevent any undefined behavior from occurring in the case where a map task fails.</li>
-</ul>
-
-<h2 id="how-to-disable">How to Disable</h2>
-
-<p>There are two ways to disable it.
-1.Set in mapred-site.xml (recommend for admin and wider user having such request)</p>
-
-<pre><code>&lt;property&gt;  
-         &lt;name&gt;mapred.map.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;  
-&lt;property&gt;  
-         &lt;name&gt;mapred.reduce.tasks.speculative.execution&lt;/name&gt;  
-         &lt;value&gt;false&lt;/value&gt;  
-&lt;/property&gt;
-</code></pre>
-
-<p>2.Set in job configuration</p>
-
-<pre><code>    jobconf.set(&quot;mapred.map.tasks.speculative.execution&quot;,false);
-
-    jobconf.set(&quot;mapred.reduce.tasks.speculative.execution&quot;,false);
-</code></pre>
-
-<h2 id="issues">Issues</h2>
-
-<p><strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-2062">MAPREDUCE-2062</a></strong> and <strong><a href="https://issues.apache.org/jira/browse/MAPREDUCE-3895">MAPREDUCE-3895</a></strong> list some problem on <strong>“SE”</strong>. See if you needs improvements if you have to use.</p>
 
                         </div>
                         
