@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 01 Jan 2020 20:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 10 Mar 2021 20:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Apache Spark 3.1.1 Released :)</title>
+      <link>https://datafibers-community.github.io/blog/2021/03/10/2021-03-10-spark-3.3.1-released/</link>
+      <pubDate>Wed, 10 Mar 2021 20:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2021/03/10/2021-03-10-spark-3.3.1-released/</guid>
+      <description>Apache Spark 3.1.1 is released on March 2, 2021. It is milestone release for Spark in 2021. This version of spark keeps making it more efficient and stable. Below are highlighted new features and changes.
+ Python usability ANSI SQL compliance Query optimization enhancements Shuffle hash join improvements History Server support of structured streaming  Project Zen Project Zen was initiated in this release to improve PySpark’s usability in these three ways:</description>
+    </item>
     
     <item>
       <title>Spark SQL Read/Write HBase</title>
