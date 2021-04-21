@@ -14,10 +14,10 @@
   
 
   
-  <meta name="description" content="DataFibers enterprise open sourec data bus">	
+  <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.36" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -387,7 +387,7 @@
             </div>
 
             <p class="lead">
-              Here, we are sharing our experinece and best practice of using DataFibers as well as other big data technology.
+              Here, we are sharing our experience and best practice of using DataFibers as well as other big data technology.
             </p>
 
             
@@ -401,127 +401,28 @@
                         <div class="top">
                             <div class="image" style="overflow:hidden">
                                 
-                                <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
+                                <img src="https://datafibers-community.github.io//img/banners/banner-1.jpg" class="img-responsive" alt="" >
                                 
                             </div>
                             <div class="bg"></div>
                             <div class="text">
                                 <p class="buttons">
-                                    <a href="https://datafibers-community.github.io/blog/1/01/01/2013-07-06-hbase-disable-major-compaction/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
+                                    <a href="https://datafibers-community.github.io/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
                                 </p>
                             </div>
                         </div>
 
                         <div class="content">
-                            <h4><a href="https://datafibers-community.github.io/blog/1/01/01/2013-07-06-hbase-disable-major-compaction/">Disable Major Compaction in HBase Cluster</a></h4>
+                            <h4><a href="https://datafibers-community.github.io/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution/">When to Disable Speculative Execution</a></h4>
                             <p class="author-category">
                             
-                            on January 1, 0001
+                            on November 22, 2016
                             </p>
-                            <p class="intro">HBase consists of multiple regions. While a region may have several Stores, each holds a single column family. An edit first writes to the hosting region store&rsquo;s in-memory space, which is called MemStore. When the size of MemStore reaches a threshold, it is flushed to StoreFiles on HDFS.
-As data increases, there may be many StoreFiles on HDFS, which is not good for its performance. Thus, HBase will automatically pick up a couple of the smaller StoreFiles and rewrite them into a bigger one.</p>
+                            <p class="intro">Backgrounds This is the link from WikiMedia about what’s Speculative Execution. In Hadoop, the following parameters string are for this settings. And, they are true by default.
+mapred.map.tasks.speculative.execution mapred.reduce.tasks.speculative.execution  When to Disable Most time, it helps. However, I am here to collect some scenario when we do not need it.
+ Of course, when ever your cluster really in shortage of resource or for the purpose of experiment, we can disable them by setting them to false since “SE” really a big resource consumer It is generally advisable to turn off ”SE” for mapred jobs that use HBase as a source.</p>
                             <p class="read-more">
-                              <a href="https://datafibers-community.github.io/blog/1/01/01/2013-07-06-hbase-disable-major-compaction/" class="btn btn-template-main">Continue reading</a>
-                            </p>
-                        </div>
-                    </div>
-                    
-
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="box-image-text blog">
-                        <div class="top">
-                            <div class="image" style="overflow:hidden">
-                                
-                                <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
-                                
-                            </div>
-                            <div class="bg"></div>
-                            <div class="text">
-                                <p class="buttons">
-                                    <a href="https://datafibers-community.github.io/blog/1/01/01/2013-01-18-git-cheat-sheet/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            <h4><a href="https://datafibers-community.github.io/blog/1/01/01/2013-01-18-git-cheat-sheet/">GIT Cheat Sheet</a></h4>
-                            <p class="author-category">
-                            
-                            on January 1, 0001
-                            </p>
-                            <p class="intro">Here I am sharing two good git sheet as follows.
-
-http://ndpsoftware.com/git-cheatsheet.html</p>
-                            <p class="read-more">
-                              <a href="https://datafibers-community.github.io/blog/1/01/01/2013-01-18-git-cheat-sheet/" class="btn btn-template-main">Continue reading</a>
-                            </p>
-                        </div>
-                    </div>
-                    
-
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="box-image-text blog">
-                        <div class="top">
-                            <div class="image" style="overflow:hidden">
-                                
-                                <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
-                                
-                            </div>
-                            <div class="bg"></div>
-                            <div class="text">
-                                <p class="buttons">
-                                    <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-17-git-tips-weekend-friday/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            <h4><a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-17-git-tips-weekend-friday/">GIT Tips At Weekend - Friday</a></h4>
-                            <p class="author-category">
-                            
-                            on January 1, 0001
-                            </p>
-                            <p class="intro">Git Setup Git Clone git clone [repo]  clone the repository specified by [repo]. It defaully run git init and git remote add origin [repo]
-Add colors by setting ~/.gitconfig file: [color] ui = auto [color &quot;branch&quot;] current = yellow reverse local = yellow remote = green [color &quot;diff&quot;] meta = yellow bold frag = magenta bold old = red bold new = green bold [color &quot;status&quot;] added = yellow changed = green untracked = cyan  Highlight whitespace in diffs by setting ~/.</p>
-                            <p class="read-more">
-                              <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-17-git-tips-weekend-friday/" class="btn btn-template-main">Continue reading</a>
-                            </p>
-                        </div>
-                    </div>
-                    
-
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="box-image-text blog">
-                        <div class="top">
-                            <div class="image" style="overflow:hidden">
-                                
-                                <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="">
-                                
-                            </div>
-                            <div class="bg"></div>
-                            <div class="text">
-                                <p class="buttons">
-                                    <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-18-git-tips-weekend-saturday/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Read more</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            <h4><a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-18-git-tips-weekend-saturday/">GIT Tips At Weekend - Saturday</a></h4>
-                            <p class="author-category">
-                            
-                            on January 1, 0001
-                            </p>
-                            <p class="intro">Info git reflog  Use this to recover from major fuck ups! It&rsquo;s basically a log of the last few actions and you might have luck and find old commits that have been lost by doing a complex merge.
-git diff  Show a diff of the changes made since your last commit to diff one file: git diff -- \&lt;filename&gt; to show a diff between staging area and HEAD: git diff --cached</p>
-                            <p class="read-more">
-                              <a href="https://datafibers-community.github.io/blog/1/01/01/2013-05-18-git-tips-weekend-saturday/" class="btn btn-template-main">Continue reading</a>
+                              <a href="https://datafibers-community.github.io/blog/2016/11/22/2016-11-22-when-to-disable-speculative-execution/" class="btn btn-template-main">Continue reading</a>
                             </p>
                         </div>
                     </div>
@@ -644,40 +545,40 @@ git diff  Show a diff of the changes made since your last commit to diff one fil
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/">
+                        <a href="https://datafibers-community.github.io/blog/2021/04/20/2021-04-20-apache-superset/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/maxmin.jpg" class="img-responsive" alt="Hive Get the Max/Min">
+                            <img src="https://datafibers-community.github.io//img/banners/superset_logo.jpg" class="img-responsive" alt="Apache Superset:)">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2018/02/02/2018-02-02-hive-get-max-min-value-rows/">Hive Get the Max/Min</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/04/20/2021-04-20-apache-superset/">Apache Superset:)</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/">
+                        <a href="https://datafibers-community.github.io/blog/2021/03/10/2021-03-10-spark-3.3.1-released/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/book_reviews.jpg" class="img-responsive" alt="Big Data Books Reviews">
+                            <img src="https://datafibers-community.github.io//img/banners/spark_logo.jpg" class="img-responsive" alt="Apache Spark 3.1.1 Released :)">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/">Big Data Books Reviews</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/03/10/2021-03-10-spark-3.3.1-released/">Apache Spark 3.1.1 Released :)</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2017/12/22/2017-12-22-df-winter-release/">
+                        <a href="https://datafibers-community.github.io/blog/2020/01/01/2020-01-19-spark-sql-read-write-hbase/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/df_release.jpg" class="img-responsive" alt="2017 Winter Release">
+                            <img src="https://datafibers-community.github.io//img/banners/spark_logo.jpg" class="img-responsive" alt="Spark SQL Read/Write HBase">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2017/12/22/2017-12-22-df-winter-release/">2017 Winter Release</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2020/01/01/2020-01-19-spark-sql-read-write-hbase/">Spark SQL Read/Write HBase</a></h5>
                     </div>
                 </div>
                 
@@ -727,7 +628,7 @@ git diff  Show a diff of the changes made since your last commit to diff one fil
     <div class="container">
         <div class="col-md-12">
             
-            <p class="pull-left">Copyright (c) 2018, DataFibers all rights reserved.</p>
+            <p class="pull-left">Copyright (c) 2020, DataFibers all rights reserved.</p>
 			<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 		    <span id="busuanzi_container_site_pv"> <span id="busuanzi_value_site_pv"></span> visits</span>
             
