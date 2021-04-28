@@ -211,7 +211,8 @@ insert into test.t_name values ('test1'),('test2'),('test3');
         conf.set(&quot;spark.sql.hive.metastore.jars&quot;,&quot;path&quot;)
         conf.set(&quot;spark.sql.ui.explainMode&quot;, &quot;extended&quot;) //Show all execution plan
 
-        val spark = SparkSession.builder().config(conf).master(&quot;local[1]&quot;).enableHiveSupport().getOrCreate()
+        val spark = SparkSession.builder().config(conf).master(&quot;local[1]&quot;).enableHiveSupport()
+        						.getOrCreate()
 
         spark.sparkContext.setLogLevel(&quot;INFO&quot;)
 
