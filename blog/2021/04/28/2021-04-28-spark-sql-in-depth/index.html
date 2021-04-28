@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spark SQL in Depth:)</title>
+  <title>Spark SQL in Depth</title>
   <meta name="author" content="" />
 
   
@@ -56,7 +56,7 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Spark SQL in Depth:)" />
+  <meta property="og:title" content="Spark SQL in Depth" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/blog/2021/04/28/2021-04-28-spark-sql-in-depth//" />
   <meta property="og:image" content="img/logo.png" />
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Spark SQL in Depth:) logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Spark SQL in Depth:) logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Spark SQL in Depth:) - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Spark SQL in Depth logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Spark SQL in Depth logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Spark SQL in Depth - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Spark SQL in Depth:)</h1>
+                <h1>Spark SQL in Depth</h1>
             </div>
         </div>
     </div>
@@ -187,7 +187,7 @@
 
 <hr />
 
-<p>In this article, we&rsquo;ll look at the details of how Spark SQL working on data queries.</p>
+<p>In this article, we&rsquo;ll look at how Spark SQL working on data queries in depth.</p>
 
 <h2 id="checking-execution-plan">Checking Execution Plan</h2>
 
@@ -197,8 +197,7 @@
 
 create table if not exists test.t_name (name string);
 
-insert into test.t_name 
-values ('test1'),('test2'),('test3');
+insert into test.t_name values ('test1'),('test2'),('test3');
 </code></pre>
 
 <h3 id="test-code-preparing">Test Code Preparing</h3>
@@ -212,14 +211,11 @@ values ('test1'),('test2'),('test3');
         conf.set(&quot;spark.sql.hive.metastore.jars&quot;,&quot;path&quot;)
         conf.set(&quot;spark.sql.ui.explainMode&quot;, &quot;extended&quot;) //Show all execution plan
 
-        val spark = SparkSession.builder().config(conf).master(&quot;local[1]&quot;)
-            .enableHiveSupport().getOrCreate()
+        val spark = SparkSession.builder().config(conf).master(&quot;local[1]&quot;).enableHiveSupport().getOrCreate()
 
         spark.sparkContext.setLogLevel(&quot;INFO&quot;)
 
-        val sql =&quot;&quot;&quot;
-              | select * from test.t_name
-              |&quot;&quot;&quot;.stripMargin
+        val sql = &quot;select * from test.t_name&quot;
 
         val df = spark.sql(sql)
 
@@ -231,7 +227,7 @@ values ('test1'),('test2'),('test3');
 
 <h3 id="analyze-execution-plan">Analyze Execution Plan</h3>
 
-<p>There are four stages for analyzing and excuting the Spark SQL.</p>
+<p>There are four phases for analyzing and excuting the Spark SQL.</p>
 
 <ol>
 <li>Parse Logical Plan</li>
@@ -284,7 +280,7 @@ GlobalLimit 21
 
 <p>During the phase of optimized logical plan, the analyzed logical plan is further optimized. As result, there is no type conversion and projection needed for this example. However, the limitation of the rows returned is kept.</p>
 
-<p>####Physical Plan</p>
+<h4 id="physical-plan">Physical Plan</h4>
 
 <pre><code>== Physical Plan ==
 CollectLimit 21
@@ -292,7 +288,7 @@ CollectLimit 21
 </code></pre>
 
 <p>Physical Plan is what is actually running in cluster.
-<p align="center"><img src="/img/banners/spark_sql_pic01.png" width="500"></p></p>
+<p align="center"><img src="/img/banners/spark_sql_pic01.png" width="400"></p></p>
 
 <h2 id="checking-execution-log">Checking Execution Log</h2>
 
@@ -502,12 +498,12 @@ CollectLimit 21
                     <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/spark_sql_title.png" class="img-responsive" alt="Spark SQL in Depth:)">
+                            <img src="https://datafibers-community.github.io//img/banners/spark_sql_title.png" class="img-responsive" alt="Spark SQL in Depth">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth/">Spark SQL in Depth:)</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth/">Spark SQL in Depth</a></h5>
                     </div>
                 </div>
                 
