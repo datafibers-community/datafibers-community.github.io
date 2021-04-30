@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Mon, 02 Sep 2019 14:53:46 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 15 Dec 2019 19:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/article/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Apache Airflow Overview</title>
+      <link>https://datafibers-community.github.io/blog/2019/12/15/2019-12-15-apache-airflow-overview/</link>
+      <pubDate>Sun, 15 Dec 2019 19:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2019/12/15/2019-12-15-apache-airflow-overview/</guid>
+      <description>What is Airflow? Airflow is a platform to programmaticaly author, schedule and monitor workflows or data pipelines. It composes Directed Acyclic Graph (DAG) with multiple tasks which can be executed independently. The Airflow scheduler executes the tasks on an array of workers while following the specified dependencies. Rich command line utilities make performing complex surgeries on DAGs a snap. The rich user interface makes it easy to visualize pipelines running in production, monitor progress, and troubleshoot issues when needed.</description>
+    </item>
+    
+    <item>
+      <title>Flink Windows Explained</title>
+      <link>https://datafibers-community.github.io/blog/2019/10/05/2019-10-05-flink-windows-explained/</link>
+      <pubDate>Sat, 05 Oct 2019 19:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2019/10/05/2019-10-05-flink-windows-explained/</guid>
+      <description>Overview Apache Flink supports data analysis over specific ranges in terms of windows. It supports two ways to create windows, time and count. Time window defines windows by specific time range. Count window defines windows by specifc number of envents.
+In addition, there are two windows time attributes.
+ size: how long the window itsef last interval: how long between windows  Whenever the window size = interval, this type of windows are called tumbling-window.</description>
+    </item>
     
     <item>
       <title>The Complete SQL Tuning</title>
