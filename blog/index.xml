@@ -7,17 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 28 Apr 2021 20:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jun 2021 10:17:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Embracing Kubernetes, Goodbye Spring Cloud</title>
+      <link>https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/</link>
+      <pubDate>Sat, 19 Jun 2021 10:17:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/</guid>
+      <description>I believe many developers, after familiarizing themselves with microservices, realized that they thought they had successfully built a microservices architecture empired with Spring Cloud. But after the popular of kubernetes (K8S), they were curious and exciting of creating the cloud native microservices serivces.
+The Era of Spring Boot and Cloud In October 2012, Mike Youngstrom created a feature request in Spring Jira to support a containerless web application architecture in the Spring Framework.</description>
+    </item>
+    
+    <item>
       <title>Spark SQL in Depth</title>
-      <link>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth/</link>
+      <link>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/</link>
       <pubDate>Wed, 28 Apr 2021 20:50:46 +0200</pubDate>
       
-      <guid>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth/</guid>
+      <guid>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/</guid>
       <description>In this article, we&amp;rsquo;ll look at how Spark SQL working on data queries in depth.
 Checking Execution Plan Data Preparing create database if not exists test; create table if not exists test.t_name (name string); insert into test.t_name values (&#39;test1&#39;),(&#39;test2&#39;),(&#39;test3&#39;);  Test Code Preparing Below Scala code is used with testing with blocking at the standard input at the end. In this case, we can see more details from Spark WebUI.</description>
     </item>

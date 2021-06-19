@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>K8s on DataFibers</title>
+    <link>https://datafibers-community.github.io/tags/k8s/</link>
+    <description>Recent content in K8s on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Sat, 19 Jun 2021 10:17:46 +0200</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Embracing Kubernetes, Goodbye Spring Cloud</title>
+      <link>https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/</link>
+      <pubDate>Sat, 19 Jun 2021 10:17:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/</guid>
+      <description>I believe many developers, after familiarizing themselves with microservices, realized that they thought they had successfully built a microservices architecture empired with Spring Cloud. But after the popular of kubernetes (K8S), they were curious and exciting of creating the cloud native microservices serivces.
+The Era of Spring Boot and Cloud In October 2012, Mike Youngstrom created a feature request in Spring Jira to support a containerless web application architecture in the Spring Framework.</description>
+    </item>
+    
+  </channel>
+</rss>

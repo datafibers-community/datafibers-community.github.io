@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Apache Kafka Consumers</title>
+  <title>K8s</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Apache Kafka Consumers" />
+  <meta property="og:title" content="K8s" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2018/08/04/2018-08-04-apache-kafka-consumers//" />
+  <meta property="og:url" content="/tags/k8s//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Apache Kafka Consumers logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Apache Kafka Consumers logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Apache Kafka Consumers - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="K8s logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="K8s logo" class="visible-xs visible-sm">
+                    <span class="sr-only">K8s - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Apache Kafka Consumers</h1>
+                <h1>K8s</h1>
             </div>
         </div>
     </div>
@@ -173,159 +173,58 @@
 
         <div id="content">
             <div class="container">
-
                 <div class="row">
-
                     
 
-                    <div class="col-md-9" id="blog-post">
+                    <div class="col-md-9" id="blog-listing-medium">
 
-                        <p class="text-muted text-uppercase mb-small text-right">August 4, 2018</p>
-
-                        <div id="post-content">
-                          
-
-<p>Kafka consumer is what we use quite often to read data from Kafka. Here, we use this article to explain some key concepts and topics regarding to consumer architecture in Kafka.</p>
-
-<h2 id="consumer-groups">Consumer Groups</h2>
-
-<p>We can always group consumers into a consumer group by use case or function of the group. One consumer group might be responsible for delivering records to high-speed, in-memory microservices while another consumer group is streaming those same records to Hadoop. Consumer groups have names to identify them from other consumer groups.</p>
-
-<p>A consumer group has a unique id. Each consumer group is a subscriber to one or more Kafka topics. Each consumer group maintains its offset per topic partition. If you need multiple subscribers, then you have multiple consumer groups. A record gets delivered to only one consumer in a consumer group.</p>
-
-<p>Each consumer in a consumer group processes records and only one consumer in that group will get the same record. Consumers in a consumer group load balance record processing.</p>
-
-<h2 id="load-balance">Load Balance</h2>
-
-<p>Kafka consumer consumption divides partitions over consumer instances within a consumer group. Each consumer in the consumer group is an exclusive consumer of a “fair share” of partitions. This is how Kafka does load balancing of consumers in a consumer group. Consumer membership within a consumer group is handled by the Kafka protocol dynamically. If new consumers join a consumer group, it gets a share of partitions. If a consumer dies, its partitions are split among the remaining live consumers in the consumer group. This is how Kafka does fail over of consumers in a consumer group. There are some pictures from <a href="https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/ch04.html">Kafka definitive guide</a> makes this more clearly.</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">One Consumer group with four partitions</th>
-<th align="left">Four partitions split to two consumers in a group.</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left"><img src="/img/banners/kafka_consumer_group_1.png" width="400" /></td>
-<td align="left"><img src="/img/banners/kafka_consumer_group_2.png" width="400" /></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<thead>
-<tr>
-<th align="left">Four consumers in a group with one partition each</th>
-<th align="left">More consumers in a group than partitions means idle consumers.</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left"><img src="/img/banners/kafka_consumer_group_3.png" width="400" /></td>
-<td align="left"><img src="/img/banners/kafka_consumer_group_4.png" width="400" /></td>
-</tr>
-</tbody>
-</table>
-
-<blockquote>
-<p>Only a single consumer from the same consumer group can access a single partition. If consumer group count exceeds the partition count, then the extra consumers remain idle. Kafka can use the idle consumers for failover. If there are more partitions than consumer group, then some consumers will read from more than one partition.</p>
-</blockquote>
-
-<h2 id="failover">Failover</h2>
-
-<p>Consumers notify the Kafka broker when they have successfully processed a record, which advances the offset.
-* If a consumer fails before sending commit offset to Kafka broker, then a different consumer can continue from the last committed offset.
-* If a consumer fails after processing the record but before sending the commit to the broker, then some Kafka records could be reprocessed. In this scenario, Kafka implements the at least once behavior, and you should make sure the messages (record deliveries ) are idempotent.</p>
-
-<h2 id="offset-management">Offset Management</h2>
-
-<p>Kafka stores offset data in a topic called <strong>__consumer_offset</strong>. These topics use log compaction, which means they only save the most recent value per key.
-When a consumer has processed data, it should commit offsets. If consumer process dies, it will be able to start up and start reading where it left off based on offset stored in <strong>__consumer_offset</strong> or as discussed another consumer in the consumer group can take over.</p>
-
-<h2 id="consume-scope">Consume Scope</h2>
-
-<p>What is the scope of records can be consumed by a Kafka consumer? Consumers can’t read un-replicated data. Kafka consumers can only consume messages beyond the <strong>High Watermark</strong> offset of the partition. <strong>Log end offset</strong> is offset of the last record written to log partition and where producers writes to next.
-<strong>High Watermark</strong> is the offset of the last record that was successfully replicated to all partition’s followers. Consumer only reads up to the “High Watermark”.</p>
-
-<h2 id="multi-threaded">Multi-threaded</h2>
-
-<p>You can run more than one Consumer in a JVM process by using threads.</p>
-
-<h4 id="consumer-with-many-threads">Consumer with many threads</h4>
-
-<p>If processing a record takes a while, a single Consumer can run multiple threads to process records, but it is harder to manage offset for each Thread/Task. If one consumer runs multiple threads, then two messages on the same partitions could be processed by two different threads which make it hard to guarantee record delivery order without complex thread coordination. This setup might be appropriate if processing a single task takes a long time, but try to avoid it.</p>
-
-<h4 id="thread-per-consumer">Thread per consumer</h4>
-
-<p>If you need to run multiple consumers, then run each consumer in their own thread. This way Kafka can deliver record batches to the consumer and the consumer does not have to worry about the offset ordering. A thread per consumer makes it easier to manage offsets. It is also simpler to manage failover (each process runs X num of consumer threads) as you can allow Kafka to do the brunt of the work.</p>
-
-<h2 id="code-examples">Code Examples</h2>
-
-<p>Below is a simple consumer example with Java client.</p>
-
-<pre><code>public class Consumer {
-
-    public static void main(String[] args) {
-        Properties properties = new Properties();
-        properties.put(&quot;bootstrap.servers&quot;, &quot;localhost:9092&quot;);
-        properties.put(&quot;key.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
-        properties.put(&quot;value.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
-        properties.put(&quot;group.id&quot;, &quot;test-group&quot;);
-
-        KafkaConsumer kafkaConsumer = new KafkaConsumer(properties);
-        List topics = new ArrayList();
-        topics.add(&quot;kafka-topic-consume&quot;);
-        kafkaConsumer.subscribe(topics);
-        try{
-            while (true){
-                ConsumerRecords records = kafkaConsumer.poll(10);
-                for (ConsumerRecord record: records){
-                    System.out.println(
-					String.format(
-					&quot;Topic - %s, Partition - %d, Value: %s&quot;, record.topic(), record.partition(), record.value()
-					));
-                }
-            }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }finally {
-            kafkaConsumer.close();
-        }
-    }
-}
-</code></pre>
-
-                        </div>
                         
                         
-                        <div id="comments">
-                            <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-                        </div>
+                        <section class="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                  <div class="image">
+                                      <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/">
+                                          
+                                          <img src="https://datafibers-community.github.io//img/banners/K8S01.png" class="img-responsive" alt="">
+                                          
+                                      </a>
+                                  </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h2><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/">Embracing Kubernetes, Goodbye Spring Cloud</a></h2>
+                                    <div class="clearfix">
+                                        <p class="author-category">
+                                          
+                                          
+                                          
+                                          in <a href="https://datafibers-community.github.io/categories/digest">digest</a>
+                                          
+                                          
+
+                                        </p>
+                                        <p class="date-comments">
+                                            <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/"><i class="fa fa-calendar-o"></i> June 19, 2021</a>
+                                        </p>
+                                    </div>
+                                    <p class="intro">I believe many developers, after familiarizing themselves with microservices, realized that they thought they had successfully built a microservices architecture empired with Spring Cloud. But after the popular of kubernetes (K8S), they were curious and exciting of creating the cloud native microservices serivces.
+The Era of Spring Boot and Cloud In October 2012, Mike Youngstrom created a feature request in Spring Jira to support a containerless web application architecture in the Spring Framework.</p>
+                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/" class="btn btn-template-main">Continue reading</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
                         
 
+                        <ul class="pager">
+                            
+                            <li class="previous disabled"><a href="#">&larr; Newer</a></li>
+                            
+
+                            
+                            <li class="next disabled"><a href="#">Older &rarr;</a></li>
+                            
+                        </ul>
                     </div>
                     
 
@@ -473,7 +372,6 @@ When a consumer has processed data, it should commit offsets. If consumer proces
 
                 </div>
                 
-
             </div>
             
         </div>
@@ -636,6 +534,5 @@ ga('send', 'pageview');
 <script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
 
 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
   </body>
 </html>

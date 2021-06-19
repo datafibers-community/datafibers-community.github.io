@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Apache Kafka Consumers</title>
+  <title>Embracing Kubernetes, Goodbye Spring Cloud</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Apache Kafka Consumers" />
+  <meta property="og:title" content="Embracing Kubernetes, Goodbye Spring Cloud" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2018/08/04/2018-08-04-apache-kafka-consumers//" />
+  <meta property="og:url" content="/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Apache Kafka Consumers logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Apache Kafka Consumers logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Apache Kafka Consumers - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Embracing Kubernetes, Goodbye Spring Cloud logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Embracing Kubernetes, Goodbye Spring Cloud logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Embracing Kubernetes, Goodbye Spring Cloud - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Apache Kafka Consumers</h1>
+                <h1>Embracing Kubernetes, Goodbye Spring Cloud</h1>
             </div>
         </div>
     </div>
@@ -180,124 +180,51 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">August 4, 2018</p>
+                        <p class="text-muted text-uppercase mb-small text-right">June 19, 2021</p>
 
                         <div id="post-content">
                           
 
-<p>Kafka consumer is what we use quite often to read data from Kafka. Here, we use this article to explain some key concepts and topics regarding to consumer architecture in Kafka.</p>
+<hr />
 
-<h2 id="consumer-groups">Consumer Groups</h2>
+<p>I believe many developers, after familiarizing themselves with microservices, realized that they thought they had successfully built a microservices architecture empired with Spring Cloud. But after the popular of kubernetes (K8S), they were curious and exciting of creating the cloud native microservices serivces.</p>
 
-<p>We can always group consumers into a consumer group by use case or function of the group. One consumer group might be responsible for delivering records to high-speed, in-memory microservices while another consumer group is streaming those same records to Hadoop. Consumer groups have names to identify them from other consumer groups.</p>
+<h2 id="the-era-of-spring-boot-and-cloud">The Era of Spring Boot and Cloud</h2>
 
-<p>A consumer group has a unique id. Each consumer group is a subscriber to one or more Kafka topics. Each consumer group maintains its offset per topic partition. If you need multiple subscribers, then you have multiple consumer groups. A record gets delivered to only one consumer in a consumer group.</p>
+<p>In October 2012, Mike Youngstrom created a feature request in Spring Jira to support a containerless web application architecture in the Spring Framework. He suggested configuring web container services inside the Spring container guided by the main method. This requirement led to the development of the Spring Boot project that started in early 2013. in April 2014, Spring Boot 1.0.0 was released. Since then, a number of smaller versions of Spring Boot have started to appear.
+The simplicity of Spring boot allows java developers to quickly apply it to projects at scale. Spring boot is arguably one of the fastest ways to develop RESTful microservices based web applications in Java. It is also well suited for docker container deployment and rapid prototyping. All the way to Spring Cloud from Spring, the first big companies that selected it built a complete microservices ecosystem early on, and many solutions are open source, and many pitfalls have been stepped through quite steadily. For many small and medium-sized companies that want to use microservices architecture, it is definitely the best time to enter the market and use the Spring Cloud stack directly.</p>
 
-<p>Each consumer in a consumer group processes records and only one consumer in that group will get the same record. Consumers in a consumer group load balance record processing.</p>
+<h2 id="the-era-of-kubernetes">The Era of Kubernetes</h2>
 
-<h2 id="load-balance">Load Balance</h2>
+<p>But when K8S was introduced, things start changing. Although Java ecosystem of Spring Cloud is by far the most complete microservices framework, basically satisfying all microservices architecture requirements, it makes most architecture closely tide to Java. Especially after Oracel Java start charging money for upgrade and mainteanance, many company are looking for alternatives of Java. In addition, the performance of Java make it not the best of choice for high performance applications which becomes more and more common senarios in this era. As result, some companys give up Java and others stick to Java because they have to.</p>
 
-<p>Kafka consumer consumption divides partitions over consumer instances within a consumer group. Each consumer in the consumer group is an exclusive consumer of a “fair share” of partitions. This is how Kafka does load balancing of consumers in a consumer group. Consumer membership within a consumer group is handled by the Kafka protocol dynamically. If new consumers join a consumer group, it gets a share of partitions. If a consumer dies, its partitions are split among the remaining live consumers in the consumer group. This is how Kafka does fail over of consumers in a consumer group. There are some pictures from <a href="https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/ch04.html">Kafka definitive guide</a> makes this more clearly.</p>
+<p>Now K8S is 7 years and it becomes more mature and popular. It becomes one of most popular open source project in the planent and backed by so many great companies, such as Google and Redhat. When we put the original Spring Cloud-based services into K8S, we found out there are many overlape mechanisms offered by K8S and Spring cloud. Although SPring Could tries their best to integrate and merge it using <a href="https://github.com/">https://github.com/</a> spring-cloud/spring-cloud-kubernetes, it is quite clear developers now have more chioce to move out from Java stack freely.</p>
 
-<table>
-<thead>
-<tr>
-<th align="left">One Consumer group with four partitions</th>
-<th align="left">Four partitions split to two consumers in a group.</th>
-</tr>
-</thead>
+<p>Let&rsquo;s have a quick look what&rsquo;s offered in Spring Cloud can be replaced by K8S.</p>
 
-<tbody>
-<tr>
-<td align="left"><img src="/img/banners/kafka_consumer_group_1.png" width="400" /></td>
-<td align="left"><img src="/img/banners/kafka_consumer_group_2.png" width="400" /></td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li><p>Service Discovery
+Spring Cloud&rsquo;s classic solutions: Netflix Eureka, Alibaba Nacos, Hashicorp. the main principle is to register your own services when they are deployed, so that other services can retrieve them.</p>
 
-<table>
-<thead>
-<tr>
-<th align="left">Four consumers in a group with one partition each</th>
-<th align="left">More consumers in a group than partitions means idle consumers.</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left"><img src="/img/banners/kafka_consumer_group_3.png" width="400" /></td>
-<td align="left"><img src="/img/banners/kafka_consumer_group_4.png" width="400" /></td>
-</tr>
-</tbody>
-</table>
-
-<blockquote>
-<p>Only a single consumer from the same consumer group can access a single partition. If consumer group count exceeds the partition count, then the extra consumers remain idle. Kafka can use the idle consumers for failover. If there are more partitions than consumer group, then some consumers will read from more than one partition.</p>
-</blockquote>
-
-<h2 id="failover">Failover</h2>
-
-<p>Consumers notify the Kafka broker when they have successfully processed a record, which advances the offset.
-* If a consumer fails before sending commit offset to Kafka broker, then a different consumer can continue from the last committed offset.
-* If a consumer fails after processing the record but before sending the commit to the broker, then some Kafka records could be reprocessed. In this scenario, Kafka implements the at least once behavior, and you should make sure the messages (record deliveries ) are idempotent.</p>
-
-<h2 id="offset-management">Offset Management</h2>
-
-<p>Kafka stores offset data in a topic called <strong>__consumer_offset</strong>. These topics use log compaction, which means they only save the most recent value per key.
-When a consumer has processed data, it should commit offsets. If consumer process dies, it will be able to start up and start reading where it left off based on offset stored in <strong>__consumer_offset</strong> or as discussed another consumer in the consumer group can take over.</p>
-
-<h2 id="consume-scope">Consume Scope</h2>
-
-<p>What is the scope of records can be consumed by a Kafka consumer? Consumers can’t read un-replicated data. Kafka consumers can only consume messages beyond the <strong>High Watermark</strong> offset of the partition. <strong>Log end offset</strong> is offset of the last record written to log partition and where producers writes to next.
-<strong>High Watermark</strong> is the offset of the last record that was successfully replicated to all partition’s followers. Consumer only reads up to the “High Watermark”.</p>
-
-<h2 id="multi-threaded">Multi-threaded</h2>
-
-<p>You can run more than one Consumer in a JVM process by using threads.</p>
-
-<h4 id="consumer-with-many-threads">Consumer with many threads</h4>
-
-<p>If processing a record takes a while, a single Consumer can run multiple threads to process records, but it is harder to manage offset for each Thread/Task. If one consumer runs multiple threads, then two messages on the same partitions could be processed by two different threads which make it hard to guarantee record delivery order without complex thread coordination. This setup might be appropriate if processing a single task takes a long time, but try to avoid it.</p>
-
-<h4 id="thread-per-consumer">Thread per consumer</h4>
-
-<p>If you need to run multiple consumers, then run each consumer in their own thread. This way Kafka can deliver record batches to the consumer and the consumer does not have to worry about the offset ordering. A thread per consumer makes it easier to manage offsets. It is also simpler to manage failover (each process runs X num of consumer threads) as you can allow Kafka to do the brunt of the work.</p>
-
-<h2 id="code-examples">Code Examples</h2>
-
-<p>Below is a simple consumer example with Java client.</p>
-
-<pre><code>public class Consumer {
-
-    public static void main(String[] args) {
-        Properties properties = new Properties();
-        properties.put(&quot;bootstrap.servers&quot;, &quot;localhost:9092&quot;);
-        properties.put(&quot;key.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
-        properties.put(&quot;value.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
-        properties.put(&quot;group.id&quot;, &quot;test-group&quot;);
-
-        KafkaConsumer kafkaConsumer = new KafkaConsumer(properties);
-        List topics = new ArrayList();
-        topics.add(&quot;kafka-topic-consume&quot;);
-        kafkaConsumer.subscribe(topics);
-        try{
-            while (true){
-                ConsumerRecords records = kafkaConsumer.poll(10);
-                for (ConsumerRecord record: records){
-                    System.out.println(
-					String.format(
-					&quot;Topic - %s, Partition - %d, Value: %s&quot;, record.topic(), record.partition(), record.value()
-					));
-                }
-            }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }finally {
-            kafkaConsumer.close();
-        }
-    }
-}
+<pre><code>spring.cloud.service-registry.auto-registration.enabled
+@EnableDiscoveryClient(autoRegister=false)
 </code></pre>
+
+<p>However, in K8S, the registration and querying of services is handled by the native Service component, whose connection name is implemented using internal DNS. This means that we have to connect the service discovery function to the K8S Service mechanism. To achieve this, the solution provides a DiscoveryClient component that allows cloud-based applications to easily query other services. With Kubernetes native service discovery, the service can be tracked by Istio and will be under the control of Service Mesh in the future.</p></li>
+
+<li><p>Configuration Management
+In Spring Cloud, we can use spring cloudc config service. On the other hand, Kubernetes ConfigMap and Secret are available, and are often paired with Vault to manage sensitive configurations. K8S solution provides ConfigMapPropertySource and SecretsPropertySource to access ConfigMap and Secret on Kubernetes.</p></li>
+
+<li><p>Load Balancing &amp; Circuit Breaker
+Spring Cloud&rsquo;s original solution: Netflix Ribbon and Hystrix, but in K8S there is Service implementation of load balancing and Istio can implement fusion breaker, developers only need to focus on crud. Since load balancing and fusion breaker will rely on service discovery mechanism, so Ribbon and Hytrix&rsquo;s original functionality fails in the K8S native environment. There is some mention in the solution about Ribbon integration with Kubernetes native environment implementation, but the relevant link has disappeared and should be dropped. So it is recommended to avoid using client-side load balancing and fusers.</p></li>
+
+<li><p>Service Implementation
+Compared to the service implemention, Spring Boot make the code implemention so easy, but the Spring it can only use Java. The K8S ecosystem has been developed and designed to be more versatile and extensive, and some of the features of the Spring Cloud components are also integrated and considered and extended in Kubernetes. By using K8S, developers now have more chocie to implement micro-service in the cloud with cloud efficient programming language, such as golang, rust, etc. As result, your service architecture has not to be tied to the specific language or stack.</p></li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+
+<p>With the populrity of K8S, more and more company will move to building native cloud micro-service using golang and K8S. I believe if NetFlex is now today for doing the same thing, they will never create Eruka. Althougt we can certainly ignore K8S native components altogether and adopt Spring Boot and Spring Cloud solutions completely, using K8S only as a tool and platform for deploying applications, which are still quite common in most company. It is clear that in the near future, Service Mesh and its generic Cloud Native technology development will be derailed from Spring Cloud and deeply integrated with our applications.</p>
 
                         </div>
                         

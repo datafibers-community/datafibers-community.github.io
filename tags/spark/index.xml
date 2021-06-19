@@ -14,10 +14,10 @@
     
     <item>
       <title>Spark SQL in Depth</title>
-      <link>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth/</link>
+      <link>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/</link>
       <pubDate>Wed, 28 Apr 2021 20:50:46 +0200</pubDate>
       
-      <guid>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth/</guid>
+      <guid>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/</guid>
       <description>In this article, we&amp;rsquo;ll look at how Spark SQL working on data queries in depth.
 Checking Execution Plan Data Preparing create database if not exists test; create table if not exists test.t_name (name string); insert into test.t_name values (&#39;test1&#39;),(&#39;test2&#39;),(&#39;test3&#39;);  Test Code Preparing Below Scala code is used with testing with blocking at the standard input at the end. In this case, we can see more details from Spark WebUI.</description>
     </item>

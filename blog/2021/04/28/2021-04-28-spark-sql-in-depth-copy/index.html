@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spark SQL in Depth</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="datafibers, big data, streaming">	
+  
+
+  
+  <meta name="description" content="DataFibers enterprise open source data bus">	
+  
+
+  <meta name="generator" content="Hugo 0.30.2" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="https://datafibers-community.github.io/css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="https://datafibers-community.github.io/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="https://datafibers-community.github.io/css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="https://datafibers-community.github.io/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="https://datafibers-community.github.io/img/apple-touch-icon.png" />
+  
+
+  <link href="https://datafibers-community.github.io/css/owl.carousel.css" rel="stylesheet">
+  <link href="https://datafibers-community.github.io/css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
+
+  
+  <meta property="og:title" content="Spark SQL in Depth" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy//" />
+  <meta property="og:image" content="img/logo.png" />
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="https://datafibers-community.github.io/">
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Spark SQL in Depth logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Spark SQL in Depth logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Spark SQL in Depth - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">Home</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="http://github.com/datafibers-community/df_data_service/releases/latest">Download</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/community/">Community</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/training/">Training</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">Contact</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Spark SQL in Depth</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">April 28, 2021</p>
+
+                        <div id="post-content">
+                          
+
+<hr />
+
+<p>In this article, we&rsquo;ll look at how Spark SQL working on data queries in depth.</p>
+
+<h2 id="checking-execution-plan">Checking Execution Plan</h2>
+
+<h3 id="data-preparing">Data Preparing</h3>
+
+<pre><code>create database if not exists test;
+
+create table if not exists test.t_name (name string);
+
+insert into test.t_name values ('test1'),('test2'),('test3');
+</code></pre>
+
+<h3 id="test-code-preparing">Test Code Preparing</h3>
+
+<p>Below Scala code is used with testing with blocking at the standard input at the end. In this case, we can see more details from Spark WebUI.</p>
+
+<pre><code>    def main(args: Array[String]): Unit = {
+        val conf = new SparkConf
+        conf.set(&quot;spark.hive.enable&quot;, &quot;true&quot;)
+        conf.set(&quot;spark.sql.hive.metastore.version&quot;,&quot;2.3&quot;)
+        conf.set(&quot;spark.sql.hive.metastore.jars&quot;,&quot;path&quot;)
+        conf.set(&quot;spark.sql.ui.explainMode&quot;, &quot;extended&quot;) //Show all execution plan
+
+        val spark = SparkSession.builder().config(conf).master(&quot;local[1]&quot;).enableHiveSupport()
+        						.getOrCreate()
+
+        spark.sparkContext.setLogLevel(&quot;INFO&quot;)
+
+        val sql = &quot;select * from test.t_name&quot;
+
+        val df = spark.sql(sql)
+
+        df.show()
+
+        System.in.read()
+    }
+</code></pre>
+
+<h3 id="analyze-execution-plan">Analyze Execution Plan</h3>
+
+<p>There are four phases for analyzing and excuting the Spark SQL.</p>
+
+<ol>
+<li>Parse Logical Plan</li>
+<li>Analyz Logical Plan</li>
+<li>Optimize Logical Plan</li>
+</ol>
+
+<h4 id="check-parsed-logical-plan">Check Parsed Logical Plan</h4>
+
+<pre><code>== Parsed Logical Plan ==
+GlobalLimit 21
++- LocalLimit 21
+   +- Project [cast(name#0 as string) AS name#3]
+      +- Project [name#0]
+         +- SubqueryAlias spark_catalog.test.t_name
+            +- HiveTableRelation [`test`.`t_name`, org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, Data Cols: [name#0], Partition Cols: []]
+</code></pre>
+
+<p>The above parsed logical plan includes following information：</p>
+
+<ul>
+<li>The database name, table name, column name, partition info (we do not have partition defined in this example), and SerDe.</li>
+<li>The alias, spark_catalog.test.t_name</li>
+<li>Query/Scan the column, name#0</li>
+<li>Convert name#0 as String and gives alias name#3</li>
+<li>Add default clause &ldquo;GlobalLimit 21&rdquo; by Spark show as default</li>
+</ul>
+
+<h4 id="check-analyzed-logical-plan">Check Analyzed Logical Plan</h4>
+
+<pre><code>== Analyzed Logical Plan ==
+name: string
+GlobalLimit 21
++- LocalLimit 21
+   +- Project [cast(name#0 as string) AS name#3]
+      +- Project [name#0]
+         +- SubqueryAlias spark_catalog.test.t_name
+            +- HiveTableRelation [`test`.`t_name`, org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, Data Cols: [name#0], Partition Cols: []]
+</code></pre>
+
+<p>In the phase of analyzing logic plan, the only difference is to add a data type for the column name. In the parse sql phase, Spark SQL does not know the data type.</p>
+
+<h4 id="optimized-logical-plan">Optimized Logical Plan</h4>
+
+<pre><code>== Optimized Logical Plan ==
+GlobalLimit 21
++- LocalLimit 21
+   +- HiveTableRelation [`test`.`t_name`, org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, Data Cols: [name#0], Partition Cols: []]
+</code></pre>
+
+<p>During the phase of optimized logical plan, the analyzed logical plan is further optimized. As result, there is no type conversion and projection needed for this example. However, the limitation of the rows returned is kept.</p>
+
+<h4 id="physical-plan">Physical Plan</h4>
+
+<pre><code>== Physical Plan ==
+CollectLimit 21
++- Scan hive test.t_name [name#0], HiveTableRelation [`test`.`t_name`, org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, Data Cols: [name#0], Partition Cols: []]
+</code></pre>
+
+<p>Physical Plan is what is actually running in cluster.
+<p align="center"><img src="/img/banners/spark_sql_pic01.png" width="400"></p></p>
+
+<h2 id="checking-execution-log">Checking Execution Log</h2>
+
+<p>Logging is very important for development and troubleshooting. In this section, we&rsquo;ll look into detais of logs when a spark job is running. We set the logging level as INFO so that we can discover more details.</p>
+
+<h3 id="loading-log-config">Loading Log Config</h3>
+
+<p>Once the application starts, the log configuration is loaded.</p>
+
+<pre><code>SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/C:/opt/apache-maven-3.6.1/repository/org/slf4j/slf4j-log4j12/1.7.30/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/C:/opt/apache-maven-3.6.1/repository/org/slf4j/slf4j-simple/1.7.25/slf4j-simple-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+log4j:WARN No appenders could be found for logger (org.apache.hadoop.hive.conf.HiveConf).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+</code></pre>
+
+<p>Unless you provide your own log4j.property, or else Spark use its own settings from jar.</p>
+
+<h3 id="submitting-spark-job">Submitting Spark Job</h3>
+
+<p>Usually the Spark job is submitted to the cluster. When we run it in IDE, Spark uses JVM thread to simulate a cluster to run the job. ResourceUtils is used to load spark.driver.</p>
+
+<pre><code>21/04/23 16:54:51 INFO SparkContext: Running Spark version 3.1.1
+21/04/23 16:54:51 INFO ResourceUtils: ==============================================================
+21/04/23 16:54:51 INFO ResourceUtils: No custom resources configured for spark.driver.
+21/04/23 16:54:51 INFO ResourceUtils: ==============================================================
+21/04/23 16:54:51 INFO SparkContext: Submitted application: b72a567f-bba5-47c2-871a-1ae5db3e4352
+</code></pre>
+
+<h3 id="loading-default-executors-setting">Loading Default Executors Setting</h3>
+
+<p>Below logging is to describe the resources used by the executors. Since we do not clearly specify the settings for executers, the default one is used which is an executor with one core and 1gb memory. Every task uses one vcore, one executor task.</p>
+
+<pre><code>21/04/23 16:54:51 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -&gt; name: cores, amount: 1, script: , vendor: , memory -&gt; name: memory, amount: 1024, script: , vendor: , offHeap -&gt; name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -&gt; name: cpus, amount: 1.0)
+21/04/23 16:54:51 INFO ResourceProfile: Limiting resource is cpu
+21/04/23 16:54:51 INFO ResourceProfileManager: Added ResourceProfile id: 0
+</code></pre>
+
+<p>Note: the ResourceProfile id is 0. ResourceProfile is used to load executor settings.</p>
+
+<h3 id="verifying-access-control">Verifying Access Control</h3>
+
+<p>Spark Kubernetes Security is by default disabled. SecurityManager is used to deal with Kebrous authentication.</p>
+
+<pre><code>21/04/23 16:54:52 INFO SecurityManager: Changing view acls to: USA,hdfs
+21/04/23 16:54:52 INFO SecurityManager: Changing modify acls to: USA,hdfs
+21/04/23 16:54:52 INFO SecurityManager: Changing view acls groups to: 
+21/04/23 16:54:52 INFO SecurityManager: Changing modify acls groups to: 
+21/04/23 16:54:52 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(USA, hdfs); groups with view permissions: Set(); users  with modify permissions: Set(USA, hdfs); groups with modify permissions: Set()
+</code></pre>
+
+<h3 id="starting-spark-core-services">Starting Spark Core Services</h3>
+
+<p>Next, the MapOutputTracker, BlockManagerMaste, BlockManagerMasterEndpoint,  and OutputCommitCoordinator are registered. Then, starts the Spark UI and Netty service for data transmission。</p>
+
+<p>Key components:</p>
+
+<ul>
+<li>SparkEnv - Spark running environment.</li>
+<li>SparkUI - Spark web ui.</li>
+<li>NettyBlockTransferService - Use Netty to send data.</li>
+</ul>
+
+<pre><code>21/04/23 16:54:55 INFO SparkEnv: Registering MapOutputTracker
+21/04/23 16:54:55 INFO SparkEnv: Registering BlockManagerMaster
+21/04/23 16:54:55 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+21/04/23 16:54:55 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+21/04/23 16:54:55 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+21/04/23 16:54:55 INFO DiskBlockManager: Created local directory at C:\Users\USA\AppData\Local\Temp\blockmgr-89e66659-c81c-4922-85b0-dbcb38570c81
+21/04/23 16:54:56 INFO MemoryStore: MemoryStore started with capacity 4.1 GiB
+21/04/23 16:54:56 INFO SparkEnv: Registering OutputCommitCoordinator
+21/04/23 16:54:56 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+21/04/23 16:54:56 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://admin:4040
+21/04/23 16:54:56 INFO Executor: Starting executor ID driver on host admin
+21/04/23 16:54:56 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 57484.
+21/04/23 16:54:56 INFO NettyBlockTransferService: Server created on admin:57484
+
+</code></pre>
+
+<h3 id="starting-block-manager">Starting Block Manager</h3>
+
+<p>Spark does its own memory management with BlockManager. In this example, the random block management policy is used and it registers on port 57484 which is same to NettyBlockTransfer. In this example, the memory can be used by the BlockManager is 4.1GB.</p>
+
+<pre><code>21/04/23 16:54:56 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+21/04/23 16:54:56 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, admin, 57484, None)
+21/04/23 16:54:56 INFO BlockManagerMasterEndpoint: Registering block manager admin:57484 with 4.1 GiB RAM, BlockManagerId(driver, admin, 57484, None)
+21/04/23 16:54:56 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, admin, 57484, None)
+21/04/23 16:54:56 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, admin, 57484, None)
+</code></pre>
+
+<p align="center"><img src="/img/banners/spark_sql_pic02.png" width="400"></p>
+
+<h3 id="loading-meta-data">Loading Meta Data</h3>
+
+<p>Any SQL engine has to load meta-data to generate execution plan. In this phase, Spark SQL loads meta-data and connects to hive metastore.</p>
+
+<pre><code>21/04/23 16:54:56 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir ('hdfs://node1:8020/user/hive/warehouse').
+21/04/23 16:54:56 INFO SharedState: Warehouse path is 'hdfs://node1:8020/user/hive/warehouse'.
+21/04/23 16:54:57 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3 using path: 
+21/04/23 16:54:59 INFO deprecation: No unit for dfs.client.datanode-restart.timeout(30) assuming SECONDS
+21/04/23 16:55:00 INFO SessionState: Created HDFS directory: /tmp/hive/hdfs/b750e106-5b2f-4c67-8217-8cba7f95aaf4
+21/04/23 16:55:00 INFO SessionState: Created local directory: C:/Users/USA/AppData/Local/Temp/USA/b750e106-5b2f-4c67-8217-8cba7f95aaf4
+21/04/23 16:55:00 INFO SessionState: Created HDFS directory: /tmp/hive/hdfs/b750e106-5b2f-4c67-8217-8cba7f95aaf4/_tmp_space.db
+21/04/23 16:55:00 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.7) is hdfs://node1:8020/user/hive/warehouse
+21/04/23 16:55:00 INFO metastore: Trying to connect to metastore with URI thrift://node1:9083
+21/04/23 16:55:00 INFO metastore: Opened a connection to metastore, current connections: 1
+21/04/23 16:55:00 INFO JniBasedUnixGroupsMapping: Error getting groups for hdfs: Unknown error.
+21/04/23 16:55:00 INFO metastore: Connected to metastore.
+21/04/23 16:55:02 INFO SQLStdHiveAccessController: Created SQLStdHiveAccessController for session context : HiveAuthzSessionContext [sessionString=b7503407-5b2f-4c67-6643-8cba7f565aaf4, clientType=HIVECLI]
+21/04/23 16:55:02 WARN SessionState: METASTORE_FILTER_HOOK will be ignored, since hive.security.authorization.manager is set to instance of HiveAuthorizerFactory.
+21/04/23 16:55:02 INFO metastore: Mestastore configuration hive.metastore.filter.hook changed from org.apache.hadoop.hive.metastore.DefaultMetaStoreFilterHookImpl to org.apache.hadoop.hive.ql.security.authorization.plugin.AuthorizationMetaStoreFilterHook
+21/04/23 16:55:02 INFO metastore: Closed a connection to metastore, current connections: 0
+21/04/23 16:55:02 INFO metastore: Trying to connect to metastore with URI thrift://node1:9083
+21/04/23 16:55:02 INFO metastore: Opened a connection to metastore, current connections: 1
+21/04/23 16:55:02 INFO metastore: Connected to metastore.
+</code></pre>
+
+<p>Spark firstly check <code>spark.sql.warehouse.dir</code>, then <code>hive.metastore.warehouse.dir</code> in the <code>hive-site.xml</code>.</p>
+
+<p>Then，SparkSession creates hdfs tmp folder.</p>
+
+<pre><code>[hadoop@node2 root]$ hdfs dfs -ls -R /tmp/hive/hdfs/b750e106-5b2f-4c67-8217-8cba7f95aaf4/
+drwx------   - hdfs hadoop          0 2021-04-23 16:55 /tmp/hive/hdfs/b750e106-5b2f-4c67-8217-8cba7f95aaf4/_tmp_space.db
+</code></pre>
+
+<p>In the end，Spark uses thrift RPC to connect to Hive MetaStore Server（thrift://node1:9083).</p>
+
+<p>Note: SessionState keeps the state of all SparkSession.</p>
+
+<h3 id="broadcasting-and-submiting">Broadcasting and Submiting</h3>
+
+<p>The next step is to broadcasting variables and submitting the job.</p>
+
+<pre><code>21/04/23 16:55:02 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 375.5 KiB, free 4.1 GiB)
+21/04/23 16:55:02 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 34.4 KiB, free 4.1 GiB)
+21/04/23 16:55:02 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on admin:57484 (size: 34.4 KiB, free: 4.1 GiB)
+21/04/23 16:55:02 INFO SparkContext: Created broadcast 0 from 
+21/04/23 16:55:02 INFO FileInputFormat: Total input files to process : 1
+21/04/23 16:55:02 INFO SparkContext: Starting job: show at SparkSQL_ResourceTest01.scala:35
+</code></pre>
+
+<p>MemoryStore is component of BlockManager, which operates the data saved in the memory. In above example, broadcast_0 block is added to the memory with size 375KB. In addition, Spark uses Hadoop FileInputFormat to read HDFS files. In the end，SparkContext submits a job.</p>
+
+<h3 id="dag-scheduler">DAG Scheduler</h3>
+
+<p>Next, DAGScheduler received the job submitted by SparkContext.Then it found the final Stage（named：show at SparkSQL_ResourceTest01.scala:35），and submit the Stage. Since the testing sql is very simple, there is only one stage without other parent stages.</p>
+
+<p>Then，BlockManager&rsquo;s MemoryStore creates the second broadcast and keeps it int he memory. In the end, DAGScheduler gets the job submitted by the stage from the DAG. In summary, the DAGScheduler is to schedule Stage and submit TaskSet.</p>
+
+<pre><code>21/04/23 16:55:02 INFO DAGScheduler: Got job 0 (show at SparkSQL_ResourceTest01.scala:35) with 1 output partitions
+21/04/23 16:55:02 INFO DAGScheduler: Final stage: ResultStage 0 (show at SparkSQL_ResourceTest01.scala:35)
+21/04/23 16:55:02 INFO DAGScheduler: Parents of final stage: List()
+21/04/23 16:55:03 INFO DAGScheduler: Missing parents: List()
+21/04/23 16:55:03 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[4] at show at SparkSQL_ResourceTest01.scala:35), which has no missing parents
+21/04/23 16:55:03 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 9.2 KiB, free 4.1 GiB)
+21/04/23 16:55:03 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 4.8 KiB, free 4.1 GiB)
+21/04/23 16:55:03 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on admin:57484 (size: 4.8 KiB, free: 4.1 GiB)
+21/04/23 16:55:03 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1383
+21/04/23 16:55:03 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[4] at show at SparkSQL_ResourceTest01.scala:35) (first 15 tasks are for partitions Vector(0))
+</code></pre>
+
+<h3 id="task-scheduler">Task Scheduler</h3>
+
+<pre><code>21/04/23 16:55:03 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+21/04/23 16:55:03 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (admin, executor driver, partition 0, ANY, 4530 bytes) taskResourceAssignments Map()
+21/04/23 16:55:03 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+21/04/23 16:55:03 INFO HadoopRDD: Input split: hdfs://node1:8020/user/hive/warehouse/test.db/t_name/000000_0:0+18
+</code></pre>
+
+<p>TaskScheduler firstly added a task set（0.0）and specify using Resource Profile 0, which is previously loaded into ResourceProfile by driver.</p>
+
+<p>Actually，when starting the task 0.0, we are running in local mode in driver and reading a file form hdfs.</p>
+
+<pre><code>[hadoop@node2 root]$ hdfs dfs -tail hdfs://node1:8020/user/hive/warehouse/test.db/t_name/000000_0
+2021-04-23 18:35:52,783 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+test1
+test2
+test3
+</code></pre>
+
+<h3 id="code-generation-and-complete-task">Code Generation and Complete Task</h3>
+
+<pre><code>21/04/23 16:55:03 INFO CodeGenerator: Code generated in 174.966701 ms
+21/04/23 16:55:05 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1402 bytes result sent to driver
+21/04/23 16:55:05 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 2375 ms on admin (executor driver) (1/1)
+21/04/23 16:55:05 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+21/04/23 16:55:05 INFO DAGScheduler: ResultStage 0 (show at SparkSQL_ResourceTest01.scala:35) finished in 2.482 s
+21/04/23 16:55:05 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+21/04/23 16:55:05 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+21/04/23 16:55:05 INFO DAGScheduler: Job 0 finished: show at SparkSQL_ResourceTest01.scala:35, took 2.533098 s
+21/04/23 16:55:05 INFO CodeGenerator: Code generated in 11.8474 ms
+</code></pre>
+
+<p>Now, we see there is a CodeGenerator component which is used to generate code and run in Executor. Once TaskSetManagerImpl fuond all task compeleted, it will remove the tasks from the pool. Once all the tasks are completed in the Stage, the TaskScheduler will shut down all task thread and finish the job.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>From previous, we looked the how Spark working from IDE run and how each component working for job submission and management. In the future blog, we&rsquo;ll look more details in execution plan itself and its optimization.</p>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="https://datafibers-community.github.io/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/digest">digest (9)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/release">release (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/review">review (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/training">training (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/tutorial">tutorial (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/git"><i class="fa fa-tags"></i> git</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hadoop"><i class="fa fa-tags"></i> hadoop</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hbase"><i class="fa fa-tags"></i> hbase</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/scala"><i class="fa fa-tags"></i> scala</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/">
+                          
+                            <img src="https://datafibers-community.github.io//img/banners/K8S01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">
+                          
+                            <img src="https://datafibers-community.github.io//img/banners/spark_sql_title.png" class="img-responsive" alt="Spark SQL in Depth">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">Spark SQL in Depth</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/03/10/2021-03-10-spark-3.3.1-released/">
+                          
+                            <img src="https://datafibers-community.github.io//img/banners/spark_logo.jpg" class="img-responsive" alt="Apache Spark 3.1.1 Released :)">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/03/10/2021-03-10-spark-3.3.1-released/">Apache Spark 3.1.1 Released :)</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>Contact</h4>
+
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2020, DataFibers all rights reserved.</p>
+			<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		    <span id="busuanzi_container_site_pv"> <span id="busuanzi_value_site_pv"></span> visits</span>
+            
+            <p class="pull-right">
+              Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Powered by <a href="https://gohugo.io/">Hugo</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCksU3IZTuUK6fA-doQUfQ4KcYm7mB_vlk&v=3.exp"></script>
+
+<script src="https://datafibers-community.github.io/js/hpneo.gmaps.js"></script>
+<script src="https://datafibers-community.github.io/js/gmaps.init.js"></script>
+<script src="https://datafibers-community.github.io/js/front.js"></script>
+
+
+<script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
+  </body>
+</html>
