@@ -219,8 +219,11 @@ In Spring Cloud, we can use spring cloudc config service. On the other hand, Kub
 Spring Cloud&rsquo;s original solution: Netflix Ribbon and Hystrix, but in K8S there is Service implementation of load balancing and Istio can implement fusion breaker, developers only need to focus on crud. Since load balancing and fusion breaker will rely on service discovery mechanism, so Ribbon and Hytrix&rsquo;s original functionality fails in the K8S native environment. There is some mention in the solution about Ribbon integration with Kubernetes native environment implementation, but the relevant link has disappeared and should be dropped. So it is recommended to avoid using client-side load balancing and fusers.</p></li>
 
 <li><p>Service Implementation
-Compared to the service implemention, Spring Boot make the code implemention so easy, but the Spring it can only use Java. The K8S ecosystem has been developed and designed to be more versatile and extensive, and some of the features of the Spring Cloud components are also integrated and considered and extended in Kubernetes. By using K8S, developers now have more chocie to implement micro-service in the cloud with cloud efficient programming language, such as golang, rust, etc. As result, your service architecture has not to be tied to the specific language or stack.</p></li>
+Compared to the service implemention, Spring Boot make the code implemention so easy, but the Spring it can only use Java. The K8S ecosystem has been developed and designed to be more versatile and extensive, and some of the features of the Spring Cloud components are also integrated and considered and extended in Kubernetes. By using K8S, developers now have more chocie to implement micro-service in the cloud with cloud efficient programming language, such as golang, rust, etc. As result, your service architecture has not to be tied to the specific language or stack.
+<p align="center"><img src="/img/banners/k8s_spring_02.png" width="400"></p></p></li>
 </ul>
+
+<p align="center"><img src="/img/banners/k8s_spring.png" width="400"></p>
 
 <h2 id="summary">Summary</h2>
 
