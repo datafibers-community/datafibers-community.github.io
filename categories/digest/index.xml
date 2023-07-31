@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sat, 19 Jun 2021 10:17:46 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 01 Jul 2023 10:17:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/digest/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Leading Cloud Tech. Stack Comparison</title>
+      <link>https://datafibers-community.github.io/blog/2023/07/01/2023-07-31-leading-cloud-technology-stack/</link>
+      <pubDate>Sat, 01 Jul 2023 10:17:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2023/07/01/2023-07-31-leading-cloud-technology-stack/</guid>
+      <description>Introduction: In today&amp;rsquo;s digital era, businesses are increasingly adopting cloud computing to scale their operations, enhance flexibility, and reduce costs. Among the major cloud service providers, Amazon Web Services (AWS), Microsoft Azure, Google Cloud, and Oracle Cloud have emerged as dominant players in the market. Each offers a comprehensive cloud technology stack tailored to meet different business needs. In this blog, we&amp;rsquo;ll conduct a thorough comparison of these leading cloud technology stacks to help you make an informed decision when choosing the best-fit cloud provider for your organization.</description>
+    </item>
     
     <item>
       <title>Embracing Kubernetes, Goodbye Spring Cloud</title>
@@ -98,15 +107,6 @@ Consumer Groups We can always group consumers into a consumer group by use case 
       
       <guid>https://datafibers-community.github.io/blog/2018/03/10/2018-03-10-ml-naive-bayes/</guid>
       <description>Background It would be difficult and practically impossible to classify a web page, a document, an email or any other lengthy text notes manually. This is where Naïve Bayes Classifier machine learning algorithm comes to the rescue. A classifier is a function that allocates a population’s element value from one of the available categories. For instance, Spam Filtering is a popular application of Naïve Bayes algorithm. Spam filter here, is a classifier that assigns a label Spam or Not Spam to all the emails.</description>
-    </item>
-    
-    <item>
-      <title>Leading Cloud Tech. Stack Comparison</title>
-      <link>https://datafibers-community.github.io/blog/1/01/01/2023-07-31-leading-cloud-technology-stack/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/1/01/01/2023-07-31-leading-cloud-technology-stack/</guid>
-      <description>Introduction: In today&amp;rsquo;s digital era, businesses are increasingly adopting cloud computing to scale their operations, enhance flexibility, and reduce costs. Among the major cloud service providers, Amazon Web Services (AWS), Microsoft Azure, Google Cloud, and Oracle Cloud have emerged as dominant players in the market. Each offers a comprehensive cloud technology stack tailored to meet different business needs. In this blog, we&amp;rsquo;ll conduct a thorough comparison of these leading cloud technology stacks to help you make an informed decision when choosing the best-fit cloud provider for your organization.</description>
     </item>
     
   </channel>
