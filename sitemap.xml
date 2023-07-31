@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud/</loc>
+    <loc>https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/</loc>
     <lastmod>2021-06-19T10:17:46+02:00</lastmod>
   </url>
   
@@ -198,6 +198,11 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/cloud/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/community/</loc>
   </url>
   
@@ -263,6 +268,10 @@
     <loc>https://datafibers-community.github.io/tags/kafka/</loc>
     <lastmod>2019-11-02T19:50:46+02:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/blog/1/01/01/2023-07-31-leading-cloud-technology-stack/</loc>
   </url>
   
   <url>
