@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flink Windows Explained</title>
+  <title>Leading Cloud Tech. Stack Comparison</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Flink Windows Explained" />
+  <meta property="og:title" content="Leading Cloud Tech. Stack Comparison" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2019/10/05/2019-10-05-flink-windows-explained//" />
+  <meta property="og:url" content="/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Flink Windows Explained logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Flink Windows Explained logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Flink Windows Explained - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Leading Cloud Tech. Stack Comparison logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Leading Cloud Tech. Stack Comparison logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Leading Cloud Tech. Stack Comparison - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Flink Windows Explained</h1>
+                <h1>Leading Cloud Tech. Stack Comparison</h1>
             </div>
         </div>
     </div>
@@ -180,101 +180,66 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">October 5, 2019</p>
+                        <p class="text-muted text-uppercase mb-small text-right">July 1, 2023</p>
 
                         <div id="post-content">
                           
 
-<h2 id="overview">Overview</h2>
+<hr />
 
-<p>Apache Flink supports data analysis over specific ranges in terms of windows. It supports two ways to create windows, <strong>time</strong> and <strong>count</strong>. Time window defines windows by specific time range. Count window defines windows by specifc number of envents.</p>
+<h1 id="introduction">Introduction:</h1>
 
-<p>In addition, there are two windows time attributes.</p>
+<p>In today&rsquo;s digital era, businesses are increasingly adopting cloud computing to scale their operations, enhance flexibility, and reduce costs. Among the major cloud service providers, Amazon Web Services (AWS), Microsoft Azure, Google Cloud, and Oracle Cloud have emerged as dominant players in the market. Each offers a comprehensive cloud technology stack tailored to meet different business needs. In this blog, we&rsquo;ll conduct a thorough comparison of these leading cloud technology stacks to help you make an informed decision when choosing the best-fit cloud provider for your organization.</p>
 
-<ul>
-<li>size: how long the window itsef last</li>
-<li>interval: how long between windows</li>
-</ul>
+<p align="center"><img src="/img/banners/cloud_stack.jpeg" width="800"></p>
 
-<p>Whenever the window size = interval, this type of windows are called <strong>tumbling-window</strong>. It is so called tumbling because it looks like rolling without overlaping. Whenever the window size &gt; interval, this type of windows are called <strong>sliding-window</strong>. It is so called sliding because it looks like ice sliding with overlap. Whenever the window size &lt; interval, this type of windows are not useful since it loses data, such as telling the traffic statistics within the past 3 seconds for every 5 seconds (2 seconds&rsquo; data are lost).</p>
+<h2 id="aws-amazon-web-services">AWS (Amazon Web Services):</h2>
 
-<p>If we consider the combination between time/count and size/interval, there are following four valid windows in Apache Flink.</p>
+<p>Amazon Web Services, launched in 2006, has been a pioneer in cloud computing and holds the largest share of the cloud market. AWS provides a wide range of cloud services, including computing power, storage options, networking capabilities, and machine learning services. Some key features of AWS include:</p>
 
 <ul>
-<li><strong>time-tumbling-window</strong> is coded like <code>timeWindow(Time.seconds(5))</code></li>
-<li><strong>time-sliding-window</strong> is coded like <code>timeWindow(Time.seconds(5), Time.seconds(3))</code></li>
-<li><strong>count-tumbling-window</strong> is coded like <code>countWindow(5)</code></li>
-<li><strong>count-sliding-window</strong> is coded like <code>countWindow(5,3)</code></li>
+<li>Scalability: AWS offers auto-scaling and load balancing features, allowing businesses to easily handle fluctuations in demand.</li>
+<li>Global Reach: With data centers located in multiple regions across the globe, AWS ensures low-latency access to services for customers worldwide.</li>
+<li>Cost Management: AWS offers a pay-as-you-go pricing model, allowing businesses to control costs effectively.</li>
+<li>Vast Service Catalog: From Amazon EC2 for virtual machines to Amazon S3 for storage and Amazon RDS for databases, AWS offers a comprehensive range of services to cater to diverse business needs.</li>
 </ul>
 
-<p>Flink supports dividing windows by keys over stream wondows as shown clearly in below chart.</p>
+<h2 id="azure-microsoft-azure">Azure (Microsoft Azure):</h2>
 
-<p align="center"><img src="/img/banners/flink_wondows.png" width="800"></p>
+<p>Microsoft Azure, launched in 2010, is a robust cloud platform that provides a vast array of services and integration with Microsoft&rsquo;s software ecosystem. Some key features of Azure include:</p>
 
-<h2 id="session-window">Session Window</h2>
+<ul>
+<li>Hybrid Capabilities: Azure offers seamless integration between on-premises infrastructure and the cloud, making it an excellent choice for hybrid cloud deployments.</li>
+<li>Enterprise Focus: With a strong focus on enterprise-grade security and compliance, Azure is widely adopted in industries with strict regulatory requirements.</li>
+<li>Azure Active Directory (AD): Azure AD provides identity and access management services, making it easy for organizations to manage user identities and access to resources.</li>
+<li>AI and Machine Learning: Azure offers a rich set of AI and machine learning services, empowering businesses to build intelligent applications.</li>
+</ul>
 
-<p>It is quite often we want report events in active period of time or gap, like regular <strong>Session Window</strong> does. Below is a sample code with Flink DataStream API.</p>
+<h2 id="google-cloud">Google Cloud:</h2>
 
-<pre><code>// Stream of (userId, buyCnts)
-val buyCnts: DataStream[(Int, Int)] = ...
-    
-val sessionCnts: DataStream[(Int, Int)] = vehicleCnts
-    .keyBy(0)
-    // session window based on a 30 seconds session gap interval 
-    .window(ProcessingTimeSessionWindows.withGap(Time.seconds(30)))
-    .sum(1)
-</code></pre>
+<p>Google Cloud, introduced in 2011, leverages Google&rsquo;s extensive experience in managing large-scale infrastructure and data centers. Some key features of Google Cloud include:</p>
 
-<h2 id="tumbling-count-window">Tumbling Count Window</h2>
+<ul>
+<li>Data Analytics: Google Cloud excels in data analytics, offering services like BigQuery, Dataflow, and Data Studio for processing and visualizing large datasets.</li>
+<li>Machine Learning Expertise: Google Cloud&rsquo;s AI/ML offerings, including TensorFlow and AI Platform, are widely acclaimed for their capabilities in building sophisticated machine learning models.</li>
+<li>Global Network: With one of the most extensive global networks, Google Cloud ensures reliable and low-latency access to services from anywhere in the world.</li>
+<li>Kubernetes Integration: Google Cloud offers strong support for Kubernetes, making it a preferred choice for containerized applications.</li>
+</ul>
 
-<p>For example, we want to report every 100 customers events. Whenever there are 100 events in a windows, we start calculation, like what <strong>Tumbling Count Window</strong> does. Below is a sample code with Flink DataStream API.</p>
+<h2 id="oracle-cloud">Oracle Cloud:</h2>
 
-<pre><code>// Stream of (userId, buyCnts)
-val buyCnts: DataStream[(Int, Int)] = ...
+<p>Oracle Cloud, launched in 2016, is an integrated cloud platform that provides a comprehensive suite of cloud services. Some key features of Oracle Cloud include:</p>
 
-val tumblingCnts: DataStream[(Int, Int)] = buyCnts
-  // key stream by userId
-  .keyBy(0)
-  // tumbling count window of 100 elements size
-  .countWindow(100)
-  // compute the buyCnt sum 
-  .sum(1)
-</code></pre>
+<ul>
+<li>Enterprise Applications: Oracle Cloud focuses on providing integrated cloud solutions for enterprise applications, including ERP, HCM, and CX.</li>
+<li>Autonomous Database: Oracle&rsquo;s Autonomous Database technology automates many routine database management tasks, reducing human intervention and improving reliability.</li>
+<li>High-Performance Computing: Oracle Cloud is equipped with high-performance computing capabilities, suitable for data-intensive workloads.</li>
+<li>Dedicated Regions: Oracle Cloud offers dedicated regions to meet specific data residency and compliance requirements.</li>
+</ul>
 
-<h2 id="sliding-time-window">Sliding Time Window</h2>
+<h1 id="conclusion">Conclusion:</h1>
 
-<p>For example, we can calculate the customer purchase within one minute and we do such calculation ever 30 seconds, like what <strong>Sliding Time Window</strong> does. In this type of window, one event could belong to multiple windows. Below is a sample code with Flink DataStream API.</p>
-
-<pre><code>val slidingCnts: DataStream[(Int, Int)] = buyCnts
-  .keyBy(0) 
-  .timeWindow(Time.minutes(1), Time.seconds(30))
-  .sum(1)
-</code></pre>
-
-<h2 id="tumbling-time-window">Tumbling Time Window</h2>
-
-<p>For example, when we want to know the total customer purchase within one minute, we need to divide the purchase events for every minite, like what <strong>Tumbling Time Window</strong> does. In this type of window, each event only belongs to one window. Below is a sample code with Flink DataStream API.</p>
-
-<pre><code>// Stream of (userId, buyCnts)
-val counts: DataStream[(Int, Int)] = ...
-val tumblingCnts: DataStream[(Int, Int)] = counts
-  // key by userId
-  .keyBy(0) 
-  // One minute Tumbling Time Window
-  .timeWindow(Time.minutes(1))
-  // calculate the sum
-  .sum(1) 
-</code></pre>
-
-<h2 id="summary">Summary</h2>
-
-<p>In a word, the Apache Flink window defines a collection over infinitive stream. This collection could be based on time and events count and both. Flink DataStream provides simple API for winodow definition and operations.</p>
-
-<h2 id="reference">Reference</h2>
-
-<ol>
-<li><a href="https://github.com/datafibers/simple_stream/tree/master/df_stream_kafka">Kafka Stream Windows</a></li>
-</ol>
+<p>When comparing the leading cloud technology stacks of AWS, Azure, Google Cloud, and Oracle Cloud, there is no one-size-fits-all solution. Each cloud provider brings unique strengths to the table, and the right choice depends on your organization&rsquo;s specific requirements, such as scalability, performance, security, budget, and existing infrastructure. Careful consideration of your business needs and a thorough evaluation of each cloud provider&rsquo;s services will help you select the best-fit cloud technology stack for your organization&rsquo;s success in the cloud.</p>
 
                         </div>
                         
