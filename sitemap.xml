@@ -8,6 +8,16 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-the-rise-of-autonomous-data-agents-crafting-self-optimizing-data-engineering-pipelines/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/</loc>
     <lastmod>2023-07-01T10:17:46+02:00</lastmod>
   </url>
@@ -178,6 +188,24 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/agents/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/ai/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/ai/ml/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/airflow/</loc>
     <lastmod>2026-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -190,8 +218,26 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/apache-flink/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/categories/article/</loc>
     <lastmod>2019-12-15T19:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/automation/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/autonomous-systems/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -209,7 +255,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/</loc>
-    <lastmod>2019-12-15T19:50:46+02:00</lastmod>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -228,13 +274,13 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/categories/data-engineering/</loc>
+    <loc>https://datafibers-community.github.io/tags/data-engineering/</loc>
     <lastmod>2026-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/data-engineering/</loc>
+    <loc>https://datafibers-community.github.io/categories/data-engineering/</loc>
     <lastmod>2026-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -270,8 +316,26 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/deep-dive/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/deep-dive/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/categories/digest/</loc>
     <lastmod>2023-07-01T10:17:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/distributed-systems/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -282,8 +346,20 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/event-time/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/fault-tolerance/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/flink/</loc>
-    <lastmod>2019-10-05T19:50:46+02:00</lastmod>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -342,6 +418,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/mlops/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/nosql/</loc>
     <lastmod>2018-06-17T13:50:46+02:00</lastmod>
     <priority>0</priority>
@@ -380,6 +462,18 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/spark/</loc>
     <lastmod>2021-04-28T20:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/stateful-streaming/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/stream-processing/</loc>
+    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

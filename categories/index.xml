@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 15 Dec 2019 19:50:46 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ai/Ml</title>
+      <link>https://datafibers-community.github.io/categories/ai/ml/</link>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/ai/ml/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Article</title>
@@ -27,6 +36,15 @@
       <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/data-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Dive</title>
+      <link>https://datafibers-community.github.io/categories/deep-dive/</link>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/deep-dive/</guid>
       <description></description>
     </item>
     
