@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.30.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,50 +183,39 @@
                         <p class="text-muted text-uppercase mb-small text-right">June 19, 2021</p>
 
                         <div id="post-content">
-                          
-
-<hr />
-
+                          <hr>
 <p>I believe many developers, after familiarizing themselves with microservices, realized that they thought they had successfully built a microservices architecture empired with Spring Cloud. But after the popular of kubernetes (K8S), they were curious and exciting of creating the cloud native microservices serivces.</p>
-
 <h2 id="the-era-of-spring-boot-and-cloud">The Era of Spring Boot and Cloud</h2>
-
 <p>In October 2012, Mike Youngstrom created a feature request in Spring Jira to support a containerless web application architecture in the Spring Framework. He suggested configuring web container services inside the Spring container guided by the main method. This requirement led to the development of the Spring Boot project that started in early 2013. in April 2014, Spring Boot 1.0.0 was released. Since then, a number of smaller versions of Spring Boot have started to appear.
 The simplicity of Spring boot allows java developers to quickly apply it to projects at scale. Spring boot is arguably one of the fastest ways to develop RESTful microservices based web applications in Java. It is also well suited for docker container deployment and rapid prototyping. All the way to Spring Cloud from Spring, the first big companies that selected it built a complete microservices ecosystem early on, and many solutions are open source, and many pitfalls have been stepped through quite steadily. For many small and medium-sized companies that want to use microservices architecture, it is definitely the best time to enter the market and use the Spring Cloud stack directly.</p>
-
 <h2 id="the-era-of-kubernetes">The Era of Kubernetes</h2>
-
 <p>But when K8S was introduced, things start changing. Although Java ecosystem of Spring Cloud is by far the most complete microservices framework, basically satisfying all microservices architecture requirements, it makes most architecture closely tide to Java. Especially after Oracel Java start charging money for upgrade and mainteanance, many company are looking for alternatives of Java. In addition, the performance of Java make it not the best of choice for high performance applications which becomes more and more common senarios in this era. As result, some companys give up Java and others stick to Java because they have to.</p>
-
-<p>Now, K8S is 7 years and it becomes more mature and popular. It becomes one of most popular open source project in the planent and backed by so many great companies, such as Google and Redhat. When we put the original Spring Cloud-based services into K8S, we found out there are many overlape mechanisms offered by K8S and Spring cloud. Although SPring Could tries their best to integrate and merge it using <a href="https://github.com/spring-cloud/spring-cloud-kubernetes">https://github.com/spring-cloud/spring-cloud-kubernetes</a>, it is quite clear developers now have more chioce to move out from Java stack freely.</p>
-
+<p>Now, K8S is 7 years and it becomes more mature and popular. It becomes one of most popular open source project in the planent and backed by so many great companies, such as Google and Redhat. When we put the original Spring Cloud-based services into K8S, we found out there are many overlape mechanisms offered by K8S and Spring cloud. Although SPring Could tries their best to integrate and merge it using <a href="https://github.com/spring-cloud/spring-cloud-kubernetes,">https://github.com/spring-cloud/spring-cloud-kubernetes,</a> it is quite clear developers now have more chioce to move out from Java stack freely.</p>
 <p>Let&rsquo;s have a quick look what&rsquo;s offered in Spring Cloud can be replaced by K8S.</p>
-
 <ul>
-<li><p>Service Discovery
-Spring Cloud&rsquo;s classic solutions: Netflix Eureka, Alibaba Nacos, Hashicorp. the main principle is to register your own services when they are deployed, so that other services can retrieve them.</p>
-
+<li>Service Discovery
+Spring Cloud&rsquo;s classic solutions: Netflix Eureka, Alibaba Nacos, Hashicorp. the main principle is to register your own services when they are deployed, so that other services can retrieve them.</li>
+</ul>
 <pre><code>spring.cloud.service-registry.auto-registration.enabled
 @EnableDiscoveryClient(autoRegister=false)
-</code></pre>
-
-<p>However, in K8S, the registration and querying of services is handled by the native Service component, whose connection name is implemented using internal DNS. This means that we have to connect the service discovery function to the K8S Service mechanism. To achieve this, the solution provides a DiscoveryClient component that allows cloud-based applications to easily query other services. With Kubernetes native service discovery, the service can be tracked by Istio and will be under the control of Service Mesh in the future.</p></li>
-
-<li><p>Configuration Management
-In Spring Cloud, we can use spring cloudc config service. On the other hand, Kubernetes ConfigMap and Secret are available, and are often paired with Vault to manage sensitive configurations. K8S solution provides ConfigMapPropertySource and SecretsPropertySource to access ConfigMap and Secret on Kubernetes.</p></li>
-
-<li><p>Load Balancing &amp; Circuit Breaker
-Spring Cloud&rsquo;s original solution: Netflix Ribbon and Hystrix, but in K8S there is Service implementation of load balancing and Istio can implement fusion breaker, developers only need to focus on crud. Since load balancing and fusion breaker will rely on service discovery mechanism, so Ribbon and Hytrix&rsquo;s original functionality fails in the K8S native environment. There is some mention in the solution about Ribbon integration with Kubernetes native environment implementation, but the relevant link has disappeared and should be dropped. So it is recommended to avoid using client-side load balancing and fusers.</p></li>
-
-<li><p>Service Implementation
-Compared to the service implemention, Spring Boot make the code implemention so easy, but the Spring it can only use Java. The K8S ecosystem has been developed and designed to be more versatile and extensive, and some of the features of the Spring Cloud components are also integrated and considered and extended in Kubernetes. By using K8S, developers now have more chocie to implement micro-service in the cloud with cloud efficient programming language, such as golang, rust, etc. As result, your service architecture has not to be tied to the specific language or stack.
-<p align="center"><img src="/img/banners/k8s_spring_02.png" width="800"></p></p></li>
+</code></pre><p>However, in K8S, the registration and querying of services is handled by the native Service component, whose connection name is implemented using internal DNS. This means that we have to connect the service discovery function to the K8S Service mechanism. To achieve this, the solution provides a DiscoveryClient component that allows cloud-based applications to easily query other services. With Kubernetes native service discovery, the service can be tracked by Istio and will be under the control of Service Mesh in the future.</p>
+<ul>
+<li>
+<p>Configuration Management
+In Spring Cloud, we can use spring cloudc config service. On the other hand, Kubernetes ConfigMap and Secret are available, and are often paired with Vault to manage sensitive configurations. K8S solution provides ConfigMapPropertySource and SecretsPropertySource to access ConfigMap and Secret on Kubernetes.</p>
+</li>
+<li>
+<p>Load Balancing &amp; Circuit Breaker
+Spring Cloud&rsquo;s original solution: Netflix Ribbon and Hystrix, but in K8S there is Service implementation of load balancing and Istio can implement fusion breaker, developers only need to focus on crud. Since load balancing and fusion breaker will rely on service discovery mechanism, so Ribbon and Hytrix&rsquo;s original functionality fails in the K8S native environment. There is some mention in the solution about Ribbon integration with Kubernetes native environment implementation, but the relevant link has disappeared and should be dropped. So it is recommended to avoid using client-side load balancing and fusers.</p>
+</li>
+<li>
+<p>Service Implementation
+Compared to the service implemention, Spring Boot make the code implemention so easy, but the Spring it can only use Java. The K8S ecosystem has been developed and designed to be more versatile and extensive, and some of the features of the Spring Cloud components are also integrated and considered and extended in Kubernetes. By using K8S, developers now have more chocie to implement micro-service in the cloud with cloud efficient programming language, such as golang, rust, etc. As result, your service architecture has not to be tied to the specific language or stack.</p>
+</li>
 </ul>
-
-<p align="center"><img src="/img/banners/k8s_spring.png" width="800"></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h2 id="summary">Summary</h2>
-
 <p>With the populrity of K8S, more and more company are moving to building native cloud micro-service with golang and K8S. I believe if NetFlex were nowadays for doing the same thing, they will not create Eruka. Althougt we can certainly ignore K8S native components altogether and adopt Spring Boot and Spring Cloud solutions completely or using K8S only as a tool and platform for deploying applications, it is equite clear that in the near future, Service Mesh and its generic Cloud Native technology development will be derailed from Spring Cloud and deeply integrated with our applications.</p>
 
                         </div>
@@ -234,7 +223,7 @@ Compared to the service implemention, Spring Boot make the code implemention so 
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -306,6 +295,12 @@ Compared to the service implemention, Spring Boot make the code implemention so 
             <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/categories/data-engineering">data-engineering (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/deep-dive">deep-dive (1)</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/categories/digest">digest (10)</a>
             </li>
             
@@ -340,7 +335,13 @@ Compared to the service implemention, Spring Boot make the code implemention so 
     <div class="panel-body">
         <ul class="tag-cloud">
             
+            <li><a href="https://datafibers-community.github.io/tags/airflow"><i class="fa fa-tags"></i> airflow</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache-flink"><i class="fa fa-tags"></i> apache-flink</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
@@ -349,7 +350,31 @@ Compared to the service implemention, Spring Boot make the code implemention so 
             <li><a href="https://datafibers-community.github.io/tags/cloud"><i class="fa fa-tags"></i> cloud</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/data-engineering"><i class="fa fa-tags"></i> data-engineering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-pipelines"><i class="fa fa-tags"></i> data-pipelines</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-quality"><i class="fa fa-tags"></i> data-quality</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/dbt"><i class="fa fa-tags"></i> dbt</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-dive"><i class="fa fa-tags"></i> deep-dive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/etl"><i class="fa fa-tags"></i> etl</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/event-time"><i class="fa fa-tags"></i> event-time</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/fault-tolerance"><i class="fa fa-tags"></i> fault-tolerance</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
@@ -367,16 +392,25 @@ Compared to the service implemention, Spring Boot make the code implemention so 
             <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/idempotency"><i class="fa fa-tags"></i> idempotency</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/orchestration"><i class="fa fa-tags"></i> orchestration</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
@@ -386,6 +420,12 @@ Compared to the service implemention, Spring Boot make the code implemention so 
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/stateful-streaming"><i class="fa fa-tags"></i> stateful-streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/stream-processing"><i class="fa fa-tags"></i> stream-processing</a>
             </li>
             
         </ul>
@@ -419,7 +459,7 @@ Compared to the service implemention, Spring Boot make the code implemention so 
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+            <!-- raw HTML omitted -->
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -436,40 +476,40 @@ Compared to the service implemention, Spring Boot make the code implemention so 
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
+                        <a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
+                            <img src="https://datafibers-community.github.io/img/banners/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt.jpg" class="img-responsive" alt="Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/">Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                        <a href="https://datafibers-community.github.io/blog/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">
+                        <a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/spark_sql_title.png" class="img-responsive" alt="Spark SQL in Depth">
+                            <img src="https://datafibers-community.github.io/img/banners/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals.jpg" class="img-responsive" alt="Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">Spark SQL in Depth</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/">Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals</a></h5>
                     </div>
                 </div>
                 
@@ -486,16 +526,7 @@ Compared to the service implemention, Spring Boot make the code implemention so 
 
           <h4>Contact</h4>
 
-            <p><p><strong>DataFibers.</strong>
-        <br>7030 Woodbine Avenue,
-        <br>L3R 6G2
-        <br>Ontario, Markham
-        <br>Canadar
-        <br>
-        <br>
-        <strong>Tel: +1 (647) 960-8578</strong>
-        <br></p>
-
+            <!-- raw HTML omitted -->
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -541,14 +572,17 @@ Compared to the service implemention, Spring Boot make the code implemention so 
     
 
     
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-40213017-3', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-40213017-3', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

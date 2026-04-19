@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kafka on DataFibers</title>
+    <title>kafka on DataFibers</title>
     <link>https://datafibers-community.github.io/tags/kafka/</link>
-    <description>Recent content in Kafka on DataFibers</description>
+    <description>Recent content in kafka on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Sat, 02 Nov 2019 19:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/kafka/index.xml" rel="self" type="application/rss+xml" />

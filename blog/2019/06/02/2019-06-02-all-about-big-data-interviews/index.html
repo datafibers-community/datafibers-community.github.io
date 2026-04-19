@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.30.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,16 +183,10 @@
                         <p class="text-muted text-uppercase mb-small text-right">June 2, 2019</p>
 
                         <div id="post-content">
-                          
-
-<p>Quite often, we got chances to go for big data interviews or interview some candidates. Most of time, we could add some short questions in addition to the white board coding. Here, we collect a few aspects of areas we can focus during the interview or prepaing the coming interviews.</p>
-
+                          <p>Quite often, we got chances to go for big data interviews or interview some candidates. Most of time, we could add some short questions in addition to the white board coding. Here, we collect a few aspects of areas we can focus during the interview or prepaing the coming interviews.</p>
 <h2 id="concept">Concept</h2>
-
-<h4 id="1-what-s-the-reason-to-use-dequeue-instead-of-stack-in-java">1. What&rsquo;s the reason to use <em>Dequeue</em> instead of <em>Stack</em> in Java.</h4>
-
+<h4 id="1-whats-the-reason-to-use-dequeue-instead-of-stack-in-java">1. What&rsquo;s the reason to use <em>Dequeue</em> instead of <em>Stack</em> in Java.</h4>
 <p>Dequeue has the ability to use streams convert to list with keeping LIFO concept applied while stack does not.</p>
-
 <pre><code>Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();
 Deque&lt;Integer&gt; deque = new ArrayDeque&lt;&gt;();
 
@@ -203,55 +197,34 @@ deque.push(2);//2 is the top
 
 List&lt;Integer&gt; list1 = strack.stream().collect(Collectors.toList());//[1,2]
 List&lt;Integer&gt; list2 = deque.stream().collect(Collectors.toList());//[2,1]
-</code></pre>
-
-<h4 id="2-how-many-ways-to-implement-polymorphism-in-java">2. How many ways to implement polymorphism in java?</h4>
-
+</code></pre><h4 id="2-how-many-ways-to-implement-polymorphism-in-java">2. How many ways to implement polymorphism in java?</h4>
 <p>Use interface, class inheritance and method override, overload.</p>
-
 <h4 id="3-what-is-aop">3. What is AOP?</h4>
-
 <p>placeholder</p>
-
 <h4 id="4-list-ways-to-create-object-in-java">4. List ways to create object in Java</h4>
-
 <p>Use new keyword, reflection, clone, or serilization.</p>
-
 <h2 id="problem-solving">Problem Solving</h2>
-
 <h4 id="1-you-are-climbing-a-stair-case-it-takes-n-steps-to-reach-to-the-top-each-time-you-can-either-climb-1-or-2-steps-in-how-many-distinct-ways-can-you-climb-to-the-top">1. You are climbing a stair case. It takes n steps to reach to the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</h4>
-
 <p>Think about <strong>Fibonacci Number</strong> and/or <a href="https://leetcode.com/problems/climbing-stairs/solution/">dynamic programing</a>.</p>
-
 <h4 id="2-you-are-trying-to-put-1000-apples-into-10-boxes-no-matter-how-many-apples-you-need-you-can-always-to-find-couple-of-boxes-which-contains-the-right-sum-of-apples-in-your-demand-how-many-numbers-of-apples-should-be-in-each-box">2. You are trying to put 1000 apples into 10 boxes. No matter how many apples you need, you can always to find couple of boxes which contains the right sum of apples in your demand. How many numbers of apples should be in each box?</h4>
-
 <p>Think about binary to decimal, pow(2, 10) = 1024 &gt; 1000. The number will be 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 486.</p>
-
 <h2 id="experience">Experience</h2>
-
-<h4 id="1-what-s-the-typical-use-case-of-redis">1. What&rsquo;s the typical use case of <em>Redis</em>?</h4>
-
+<h4 id="1-whats-the-typical-use-case-of-redis">1. What&rsquo;s the typical use case of <em>Redis</em>?</h4>
 <p>Distributed Cache. Also see this <a href="https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/">article</a>.</p>
-
-<h4 id="2-string-s1-ab-string-s2-a-b-string-s3-a-string-s4-b-s5-s3-s4-then-s5-s2-returns-true-or-false">2. <code>String s1 = &quot;ab&quot;</code>, <code>String s2 = &quot;a&quot; + &quot;b&quot;</code>, <code>String s3 = &quot;a&quot;</code>, <code>String s4 = &quot;b&quot;</code>, <code>s5 = s3 + s4</code>, then <code>s5 == s2</code> returns true or false?</h4>
-
+<h4 id="2-string-s1--ab-string-s2--a--b-string-s3--a-string-s4--b-s5--s3--s4-then-s5--s2-returns-true-or-false">2. <code>String s1 = &quot;ab&quot;</code>, <code>String s2 = &quot;a&quot; + &quot;b&quot;</code>, <code>String s3 = &quot;a&quot;</code>, <code>String s4 = &quot;b&quot;</code>, <code>s5 = s3 + s4</code>, then <code>s5 == s2</code> returns true or false?</h4>
 <p>false. During the code compling, the s2 is optimize as ”ab” and keep in constant pool. However, s5 is created in stack which is equal to s5=new String(“ab”);</p>
-
 <h4 id="3-are-you-farmilar-the-intern-method-in-string-class">3. Are you farmilar the intern() method in String class?</h4>
-
 <p>intern() will look if there is constant value in the constant pool. If yes, reuse. Or else create a new one in the pool. For example,</p>
-
 <pre><code>String s1=”aa”; 
 String s2=s1.intern(); 
 System.out.print(s1==s2);//return true
 </code></pre>
-
                         </div>
                         
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -323,6 +296,12 @@ System.out.print(s1==s2);//return true
             <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/categories/data-engineering">data-engineering (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/deep-dive">deep-dive (1)</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/categories/digest">digest (10)</a>
             </li>
             
@@ -357,7 +336,13 @@ System.out.print(s1==s2);//return true
     <div class="panel-body">
         <ul class="tag-cloud">
             
+            <li><a href="https://datafibers-community.github.io/tags/airflow"><i class="fa fa-tags"></i> airflow</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache-flink"><i class="fa fa-tags"></i> apache-flink</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
@@ -366,7 +351,31 @@ System.out.print(s1==s2);//return true
             <li><a href="https://datafibers-community.github.io/tags/cloud"><i class="fa fa-tags"></i> cloud</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/data-engineering"><i class="fa fa-tags"></i> data-engineering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-pipelines"><i class="fa fa-tags"></i> data-pipelines</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-quality"><i class="fa fa-tags"></i> data-quality</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/dbt"><i class="fa fa-tags"></i> dbt</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-dive"><i class="fa fa-tags"></i> deep-dive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/etl"><i class="fa fa-tags"></i> etl</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/event-time"><i class="fa fa-tags"></i> event-time</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/fault-tolerance"><i class="fa fa-tags"></i> fault-tolerance</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
@@ -384,16 +393,25 @@ System.out.print(s1==s2);//return true
             <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/idempotency"><i class="fa fa-tags"></i> idempotency</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/orchestration"><i class="fa fa-tags"></i> orchestration</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
@@ -403,6 +421,12 @@ System.out.print(s1==s2);//return true
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/stateful-streaming"><i class="fa fa-tags"></i> stateful-streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/stream-processing"><i class="fa fa-tags"></i> stream-processing</a>
             </li>
             
         </ul>
@@ -436,7 +460,7 @@ System.out.print(s1==s2);//return true
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+            <!-- raw HTML omitted -->
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -453,40 +477,40 @@ System.out.print(s1==s2);//return true
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
+                        <a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
+                            <img src="https://datafibers-community.github.io/img/banners/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt.jpg" class="img-responsive" alt="Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/">Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                        <a href="https://datafibers-community.github.io/blog/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">
+                        <a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/spark_sql_title.png" class="img-responsive" alt="Spark SQL in Depth">
+                            <img src="https://datafibers-community.github.io/img/banners/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals.jpg" class="img-responsive" alt="Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">Spark SQL in Depth</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/">Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals</a></h5>
                     </div>
                 </div>
                 
@@ -503,16 +527,7 @@ System.out.print(s1==s2);//return true
 
           <h4>Contact</h4>
 
-            <p><p><strong>DataFibers.</strong>
-        <br>7030 Woodbine Avenue,
-        <br>L3R 6G2
-        <br>Ontario, Markham
-        <br>Canadar
-        <br>
-        <br>
-        <strong>Tel: +1 (647) 960-8578</strong>
-        <br></p>
-
+            <!-- raw HTML omitted -->
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -558,14 +573,17 @@ System.out.print(s1==s2);//return true
     
 
     
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-40213017-3', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-40213017-3', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

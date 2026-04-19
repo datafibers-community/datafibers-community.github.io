@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Big Data on DataFibers</title>
+    <title>big data on DataFibers</title>
     <link>https://datafibers-community.github.io/tags/big-data/</link>
-    <description>Recent content in Big Data on DataFibers</description>
+    <description>Recent content in big data on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Sun, 15 Dec 2019 19:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/big-data/index.xml" rel="self" type="application/rss+xml" />
@@ -28,8 +27,8 @@
       
       <guid>https://datafibers-community.github.io/blog/2019/09/02/2019-09-02-complete-sql-tuning/</guid>
       <description>The most practice comes for MySQL server, but it applies to other relational database as well.
- Aviod full table scan and try to create index on the columns used after where or order by.
- Aviod check null after where clause. You set set null as default value when creating tables. However, mostly we should use not null value or use special value, such as 0 or -1 for instead.</description>
+  Aviod full table scan and try to create index on the columns used after where or order by.
+  Aviod check null after where clause. You set set null as default value when creating tables. However, mostly we should use not null value or use special value, such as 0 or -1 for instead.</description>
     </item>
     
     <item>
@@ -38,7 +37,7 @@
       <pubDate>Sat, 03 Aug 2019 14:53:46 +0300</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2019/08/03/2019-08-03-big-data-stack-compare/</guid>
-      <description>1. Batch Processing ETL + ELK ELK stands for Elastisearch, Logstash, Kibana and is a powerful tool for real-time logs analysis. Performance depends on the amount of RAM for the cluster. If the full index is in RAM search will have close to zero latency. This solution also supports storing similar information in one cluster to enhance speed. ELK can be hard to maintain if the index is growing big, but scaling is achieved by adding new nodes.</description>
+      <description>1. Batch Processing  ETL + ELK ELK stands for Elastisearch, Logstash, Kibana and is a powerful tool for real-time logs analysis. Performance depends on the amount of RAM for the cluster. If the full index is in RAM search will have close to zero latency. This solution also supports storing similar information in one cluster to enhance speed. ELK can be hard to maintain if the index is growing big, but scaling is achieved by adding new nodes.</description>
     </item>
     
     <item>

@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.30.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,112 +183,82 @@
                         <p class="text-muted text-uppercase mb-small text-right">May 20, 2019</p>
 
                         <div id="post-content">
-                          
-
-<h2 id="what-is-seckill">What is Seckill?</h2>
-
+                          <h2 id="what-is-seckill">What is Seckill?</h2>
 <p>When associated with online shopping, <strong>&ldquo;seckill&rdquo;</strong> refers to the quick sell out of newly-advertised goods. If you look at the transaction record, you will find that each of the transactions is made in seconds. It sounds inconceivable but is the naked truth. This is called <strong>&ldquo;seckill&rdquo;</strong>.</p>
-
-<p>A typical system for seckill has following features.
-* A large number of users will be shopping at the same time during the quick sell, and the web site traffic increses dramatically.
-* Such sell activity generally has a much larger number of access requests than inventory, and only a small percentage of users can purchase successfully.
-* The business process behind is relatively simple by placing an order and reducing the inventory.</p>
-
-<h2 id="design-considerations">Design Considerations</h2>
-
+<p>A typical system for seckill has following features.</p>
 <ul>
-<li><p><strong>Traffic Control</strong>: Since only a small number of users can purchase successfully, majority requests of purchase traffic is controled and allowing only a small amount of requests to enter the service backend.</p></li>
-
-<li><p><strong>Peak Cutting</strong>: There will be a large volumn of users for the system, so there will be a very high instantaneous peak at the beginning of the seckill. High peak flow is a very important reason for the crashing the system, so how to turn the instantaneous high flow into a stable flow for a period of time is also an important idea for designing the seckill system. Common methods for achieving peak cutting include techniques such as caching and message middleware.</p></li>
-
-<li><p><strong>Asynchronous Processing</strong>: The seckill system is a high-concurrency system. The asynchronous processing mode can greatly improve the system concurrency. In fact, asynchronous processing is an implementation of peak cutting.</p></li>
-
-<li><p><strong>Memory Cache</strong>: The biggest bottleneck of the seckill system is generally database read and write. Since the database read and write depends on the disk IO, the performance sometimes is very low. If some data or business logic can be transferred to the memory, the performance will be much improved.</p></li>
-
-<li><p><strong>Scalability</strong>: By leveraging the scalabile design, we can leverage dynamic number of nodes in the cluster to meet the requirement for particular user case during pparticular time period.</p></li>
+<li>A large number of users will be shopping at the same time during the quick sell, and the web site traffic increses dramatically.</li>
+<li>Such sell activity generally has a much larger number of access requests than inventory, and only a small percentage of users can purchase successfully.</li>
+<li>The business process behind is relatively simple by placing an order and reducing the inventory.</li>
 </ul>
-
+<h2 id="design-considerations">Design Considerations</h2>
+<ul>
+<li>
+<p><strong>Traffic Control</strong>: Since only a small number of users can purchase successfully, majority requests of purchase traffic is controled and allowing only a small amount of requests to enter the service backend.</p>
+</li>
+<li>
+<p><strong>Peak Cutting</strong>: There will be a large volumn of users for the system, so there will be a very high instantaneous peak at the beginning of the seckill. High peak flow is a very important reason for the crashing the system, so how to turn the instantaneous high flow into a stable flow for a period of time is also an important idea for designing the seckill system. Common methods for achieving peak cutting include techniques such as caching and message middleware.</p>
+</li>
+<li>
+<p><strong>Asynchronous Processing</strong>: The seckill system is a high-concurrency system. The asynchronous processing mode can greatly improve the system concurrency. In fact, asynchronous processing is an implementation of peak cutting.</p>
+</li>
+<li>
+<p><strong>Memory Cache</strong>: The biggest bottleneck of the seckill system is generally database read and write. Since the database read and write depends on the disk IO, the performance sometimes is very low. If some data or business logic can be transferred to the memory, the performance will be much improved.</p>
+</li>
+<li>
+<p><strong>Scalability</strong>: By leveraging the scalabile design, we can leverage dynamic number of nodes in the cluster to meet the requirement for particular user case during pparticular time period.</p>
+</li>
+</ul>
 <h2 id="solutions">Solutions</h2>
-
-<p>As mentioned earlier, the key point to achieve seckill system is to control the thread&rsquo;s competition for resources. According to the basic thread knowledge, we can consider following solutions for implementation:
-1. The abstraction of seckill at the technical level should be a method. The possible operation in this method is to update the goods in stock to stock-1, add the goods to the user&rsquo;s shopping cart, etc., and should operate the database without considering the cache. Then the simplest and straightforward implementation is to add the synchronized keyword to this method. In general, it is to lock the entire method.
-2. Lock the entire method This strategy is simple and convenient, but it seems a bit rough. Can be slightly optimized, only lock the code block of the seckill, such as the part of the database.
-3. Since there are concurrency problems, try to make it &ldquo;not concurrent&rdquo;. Manage all the threads with a queue to make it into a serial operation, naturally there will be no concurrency problems.</p>
-
+<p>As mentioned earlier, the key point to achieve seckill system is to control the thread&rsquo;s competition for resources. According to the basic thread knowledge, we can consider following solutions for implementation:</p>
+<ol>
+<li>The abstraction of seckill at the technical level should be a method. The possible operation in this method is to update the goods in stock to stock-1, add the goods to the user&rsquo;s shopping cart, etc., and should operate the database without considering the cache. Then the simplest and straightforward implementation is to add the synchronized keyword to this method. In general, it is to lock the entire method.</li>
+<li>Lock the entire method This strategy is simple and convenient, but it seems a bit rough. Can be slightly optimized, only lock the code block of the seckill, such as the part of the database.</li>
+<li>Since there are concurrency problems, try to make it &ldquo;not concurrent&rdquo;. Manage all the threads with a queue to make it into a serial operation, naturally there will be no concurrency problems.</li>
+</ol>
 <p>The methods described above are all effective, but they are not good. why? The first and second methods are essentially &ldquo;locked&rdquo;, but the lock granularity is still relatively high. Imagine if two threads execute the seckill method at the same time, the two threads operate on different commodities, which should be possible at the same time from the business. If the first two methods are used, the two threads will also go. Fighting for the same lock is actually unnecessary. The third method also did not solve the problem mentioned above.</p>
-
 <p>So how do you control the lock on a better fine granularity? You can consider setting an exclusive lock for each item, and the string associated with the item ID is uniquely identified. This allows you to mutually exclusively contend for the same item instead of threads. Distributed locks in <a href="https://redis.io/">Redis</a> can help us solve this problem.</p>
-
 <h2 id="about-distributed-lock">About Distributed Lock</h2>
-
 <p>Distributed locks are a way to control the simultaneous access of shared resources between distributed systems. In distributed systems, it is often necessary to coordinate their actions. If different systems or one host of resources are shared between different hosts of the same system, access to these resources often requires mutual exclusion to prevent mutual interference to ensure consistency. In this case, Use to a distributed lock.</p>
-
 <p>Let&rsquo;s assume a simplest spike scenario: there is a table in the database, the column is the item ID, and the inventory quantity corresponding to the item ID. If the spike is successful, the stock amount of this item is -1. Now suppose there are 1000 threads to kill two items, 500 threads to kill the first item, and 500 threads to kill the second item. Let&rsquo;s explain distributed locks based on this simple business scenario.
 Business systems that typically have spike scenarios are complex, carrying a huge amount of traffic and a high amount of concurrency. Such systems often employ a distributed architecture to balance the load. Then these 1000 concurrency will come from different places, commodity inventory is a shared resource, and these 1000 concurrent competing resources, this time we need to manage the mutual exclusion. This is the application of distributed locks.
 Key-value storage systems, such as redis, are important tools for implementing distributed locks because of their features.</p>
-
 <h2 id="issues">Issues</h2>
-
 <blockquote>
 <p><strong>What is the operation of redis?</strong></p>
 </blockquote>
-
 <p>Fortunately, redis has provided the jedis client for java applications, and can directly call the jedis API.</p>
-
 <blockquote>
 <p><strong>How to achieve locking?</strong></p>
 </blockquote>
-
 <p>&ldquo;Lock&rdquo; is actually an abstract concept. The abstract concept is changed into a concrete thing. It is a key-value pair stored in redis. The key is uniquely identified by the string associated with the product ID. The value is not important. Because as long as this unique key-value exists, it means that the item is locked.</p>
-
 <blockquote>
 <p><strong>How to release the lock?</strong></p>
 </blockquote>
-
 <p>Since the key-value pair is locked, it is natural to delete the key-value pair in redis.</p>
-
 <blockquote>
 <p><strong>Blocking or non-blocking?</strong></p>
 </blockquote>
-
 <p>The author uses a blocking implementation, if the thread finds that it has been locked, it will poll the lock within a certain time.</p>
-
 <blockquote>
 <p><strong>How to deal with abnormal situations?</strong></p>
 </blockquote>
-
 <p>For example, a thread locks a product, but for various reasons, the operation is not completed (in the above business scenario, the inventory-1 is not written to the database), and naturally no lock is released. In this case, the author adds a lock timeout mechanism. Use redis&rsquo;s expire command to set the timeout period for the key. After the timeout period, redis will automatically delete the key, that is, force release the lock (it can be considered that the timeout release lock is an asynchronous operation, completed by redis, the application only needs to be based on the system. Features set the timeout period).</p>
-
 <h2 id="implementations">Implementations</h2>
-
 <p>Let&rsquo;s take a look at some of the basic commands of redis:</p>
-
 <pre><code>SETNX key value
-</code></pre>
-
-<p>If the key does not exist, set the key to the string value. In this case, the command is the same as the SET. When the key already exists, no action is taken. SETNX is &ldquo;SET if Not eXists&rdquo;.</p>
-
+</code></pre><p>If the key does not exist, set the key to the string value. In this case, the command is the same as the SET. When the key already exists, no action is taken. SETNX is &ldquo;SET if Not eXists&rdquo;.</p>
 <pre><code>Expire KEY seconds
-</code></pre>
-
-<p>Set the expiration time of the key. If the key has expired, it will be automatically deleted.</p>
-
+</code></pre><p>Set the expiration time of the key. If the key has expired, it will be automatically deleted.</p>
 <pre><code>Del KEY
-</code></pre>
-
-<p>Delete key</p>
-
+</code></pre><p>Delete key</p>
 <p>To go through the implementation code, first let&rsquo;s define the interface for seckill.</p>
-
 <pre><code>public interface SeckillInterface {
     //cacheLock annotate the concurrent method
     @CacheLock(lockedPrefix=&quot;TEST_PREFIX&quot;)
     public void secKill(String userID,@LockedObject Long commidityID);//Simple method for seckill. Since multiple thread could race for the same commidity, LockedObject ahead of the parameter.
 }
-</code></pre>
-
-<p>The implementaiton for the seckill method.</p>
-
+</code></pre><p>The implementaiton for the seckill method.</p>
 <pre><code>public class SecKillImpl implements SeckillInterface{
     static Map&lt;Long, Long&gt; inventory ;
     static{
@@ -309,10 +279,7 @@ Key-value storage systems, such as redis, are important tools for implementing d
     }
 
 }
-</code></pre>
-
-<p>For testing, use 1000 threads for seckill simulation.</p>
-
+</code></pre><p>For testing, use 1000 threads for seckill simulation.</p>
 <pre><code>@Test
 public void testSecKill(){
 	int threadCount = 1000;
@@ -384,12 +351,8 @@ public void testSecKill(){
 		e.printStackTrace();
 	}
 }
-</code></pre>
-
-<p>As the result, all inventory decrease 500 for each commidity. Without distributed lock, the inventory could not exactly decrease to 500 sometimes.</p>
-
+</code></pre><p>As the result, all inventory decrease 500 for each commidity. Without distributed lock, the inventory could not exactly decrease to 500 sometimes.</p>
 <h2 id="reference">Reference</h2>
-
 <ol>
 <li><a href="https://blog.csdn.net/yunzhaji3762/article/details/79579318">https://blog.csdn.net/yunzhaji3762/article/details/79579318</a></li>
 <li><a href="https://blog.csdn.net/u010359884/article/details/50310387">https://blog.csdn.net/u010359884/article/details/50310387</a></li>
@@ -401,7 +364,7 @@ public void testSecKill(){
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -473,6 +436,12 @@ public void testSecKill(){
             <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/categories/data-engineering">data-engineering (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/deep-dive">deep-dive (1)</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/categories/digest">digest (10)</a>
             </li>
             
@@ -507,7 +476,13 @@ public void testSecKill(){
     <div class="panel-body">
         <ul class="tag-cloud">
             
+            <li><a href="https://datafibers-community.github.io/tags/airflow"><i class="fa fa-tags"></i> airflow</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache-flink"><i class="fa fa-tags"></i> apache-flink</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
@@ -516,7 +491,31 @@ public void testSecKill(){
             <li><a href="https://datafibers-community.github.io/tags/cloud"><i class="fa fa-tags"></i> cloud</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/data-engineering"><i class="fa fa-tags"></i> data-engineering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-pipelines"><i class="fa fa-tags"></i> data-pipelines</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-quality"><i class="fa fa-tags"></i> data-quality</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/dbt"><i class="fa fa-tags"></i> dbt</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-dive"><i class="fa fa-tags"></i> deep-dive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/etl"><i class="fa fa-tags"></i> etl</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/event-time"><i class="fa fa-tags"></i> event-time</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/fault-tolerance"><i class="fa fa-tags"></i> fault-tolerance</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
@@ -534,16 +533,25 @@ public void testSecKill(){
             <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/idempotency"><i class="fa fa-tags"></i> idempotency</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/orchestration"><i class="fa fa-tags"></i> orchestration</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
@@ -553,6 +561,12 @@ public void testSecKill(){
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/stateful-streaming"><i class="fa fa-tags"></i> stateful-streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/stream-processing"><i class="fa fa-tags"></i> stream-processing</a>
             </li>
             
         </ul>
@@ -586,7 +600,7 @@ public void testSecKill(){
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+            <!-- raw HTML omitted -->
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -603,40 +617,40 @@ public void testSecKill(){
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
+                        <a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
+                            <img src="https://datafibers-community.github.io/img/banners/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt.jpg" class="img-responsive" alt="Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/">Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                        <a href="https://datafibers-community.github.io/blog/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">
+                        <a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/spark_sql_title.png" class="img-responsive" alt="Spark SQL in Depth">
+                            <img src="https://datafibers-community.github.io/img/banners/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals.jpg" class="img-responsive" alt="Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">Spark SQL in Depth</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/">Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals</a></h5>
                     </div>
                 </div>
                 
@@ -653,16 +667,7 @@ public void testSecKill(){
 
           <h4>Contact</h4>
 
-            <p><p><strong>DataFibers.</strong>
-        <br>7030 Woodbine Avenue,
-        <br>L3R 6G2
-        <br>Ontario, Markham
-        <br>Canadar
-        <br>
-        <br>
-        <strong>Tel: +1 (647) 960-8578</strong>
-        <br></p>
-
+            <!-- raw HTML omitted -->
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -708,14 +713,17 @@ public void testSecKill(){
     
 
     
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-40213017-3', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-40213017-3', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

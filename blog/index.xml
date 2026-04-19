@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on DataFibers</title>
@@ -6,11 +6,29 @@
     <description>Recent content in Blogs on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sat, 01 Jul 2023 10:17:46 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt</title>
+      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/</link>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/</guid>
+      <description>Data engineering is the bedrock of any data-driven organization, transforming raw, often chaotic data into structured, reliable insights. While building simple ETL pipelines might seem straightforward, the real challenge emerges when dealing with production-grade requirements: robustness, scalability, observability, and crucially, idempotency.
+This deep-dive will move past the &amp;ldquo;Hello World&amp;rdquo; of data pipelines, exploring how Apache Airflow and dbt can be meticulously combined to construct resilient, idempotent workflows capable of handling failures, re-runs, and evolving business logic without corrupting your data.</description>
+    </item>
+    
+    <item>
+      <title>Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals</title>
+      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/</link>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/</guid>
+      <description>Unraveling Apache Flink&amp;rsquo;s Core: State, Checkpoints, and Event Time Internals Apache Flink has solidified its position as a go-to engine for stateful stream processing, capable of handling high-throughput, low-latency, and fault-tolerant computations over unbounded data streams. While many introductory articles touch upon its capabilities, this deep dive aims to peel back the layers, exploring the architectural nuances, core mechanisms, and practical considerations that make Flink exceptionally robust and powerful. We&amp;rsquo;ll venture beyond the typical overview to dissect state management, fault tolerance through checkpointing, and the intricacies of event time processing.</description>
+    </item>
     
     <item>
       <title>Leading Cloud Tech. Stack Comparison</title>
@@ -38,7 +56,7 @@ The Era of Spring Boot and Cloud In October 2012, Mike Youngstrom created a feat
       
       <guid>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/</guid>
       <description>In this article, we&amp;rsquo;ll look at how Spark SQL working on data queries in depth.
-Checking Execution Plan Data Preparing create database if not exists test; create table if not exists test.t_name (name string); insert into test.t_name values (&#39;test1&#39;),(&#39;test2&#39;),(&#39;test3&#39;);  Test Code Preparing Below Scala code is used with testing with blocking at the standard input at the end. In this case, we can see more details from Spark WebUI.</description>
+Checking Execution Plan Data Preparing create database if not exists test; create table if not exists test.t_name (name string); insert into test.t_name values (&#39;test1&#39;),(&#39;test2&#39;),(&#39;test3&#39;); Test Code Preparing Below Scala code is used with testing with blocking at the standard input at the end. In this case, we can see more details from Spark WebUI.</description>
     </item>
     
     <item>
@@ -107,8 +125,8 @@ In addition, there are two windows time attributes.
       
       <guid>https://datafibers-community.github.io/blog/2019/09/02/2019-09-02-complete-sql-tuning/</guid>
       <description>The most practice comes for MySQL server, but it applies to other relational database as well.
- Aviod full table scan and try to create index on the columns used after where or order by.
- Aviod check null after where clause. You set set null as default value when creating tables. However, mostly we should use not null value or use special value, such as 0 or -1 for instead.</description>
+  Aviod full table scan and try to create index on the columns used after where or order by.
+  Aviod check null after where clause. You set set null as default value when creating tables. However, mostly we should use not null value or use special value, such as 0 or -1 for instead.</description>
     </item>
     
     <item>
@@ -117,7 +135,7 @@ In addition, there are two windows time attributes.
       <pubDate>Sat, 03 Aug 2019 14:53:46 +0300</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2019/08/03/2019-08-03-big-data-stack-compare/</guid>
-      <description>1. Batch Processing ETL + ELK ELK stands for Elastisearch, Logstash, Kibana and is a powerful tool for real-time logs analysis. Performance depends on the amount of RAM for the cluster. If the full index is in RAM search will have close to zero latency. This solution also supports storing similar information in one cluster to enhance speed. ELK can be hard to maintain if the index is growing big, but scaling is achieved by adding new nodes.</description>
+      <description>1. Batch Processing  ETL + ELK ELK stands for Elastisearch, Logstash, Kibana and is a powerful tool for real-time logs analysis. Performance depends on the amount of RAM for the cluster. If the full index is in RAM search will have close to zero latency. This solution also supports storing similar information in one cluster to enhance speed. ELK can be hard to maintain if the index is growing big, but scaling is achieved by adding new nodes.</description>
     </item>
     
     <item>
@@ -146,7 +164,8 @@ Concept 1. What&amp;rsquo;s the reason to use Dequeue instead of Stack in Java. 
       
       <guid>https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/</guid>
       <description>What is Seckill? When associated with online shopping, &amp;ldquo;seckill&amp;rdquo; refers to the quick sell out of newly-advertised goods. If you look at the transaction record, you will find that each of the transactions is made in seconds. It sounds inconceivable but is the naked truth. This is called &amp;ldquo;seckill&amp;rdquo;.
-A typical system for seckill has following features. * A large number of users will be shopping at the same time during the quick sell, and the web site traffic increses dramatically.</description>
+A typical system for seckill has following features.
+ A large number of users will be shopping at the same time during the quick sell, and the web site traffic increses dramatically.</description>
     </item>
     
     <item>
@@ -184,9 +203,11 @@ Conf. Changes The trick thing to make both hive version working is do not add an
       <pubDate>Sat, 28 Apr 2018 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2018/04/28/2018-04-28-hbase-shell_example/</guid>
-      <description>We use this place to collect commonly used HBase shell command for reference. HBase shell is an HBase extensible jruby-based (JIRB) shell to execute some commands(each command represents one functionality) in HBase. HBase shell commands are mainly categorized into 6 parts as follows. Will keep adding more examples here.
-1. General Information status Show cluster status. Can be &amp;lsquo;summary&amp;rsquo;, &amp;lsquo;simple&amp;rsquo;, or &amp;lsquo;detailed&amp;rsquo;. The default is &amp;lsquo;summary&amp;rsquo;.
-hbase&amp;gt; status hbase&amp;gt; status &#39;simple&#39; hbase&amp;gt; status &#39;summary&#39; hbase&amp;gt; status &#39;detailed&#39;  version Output this HBase version.</description>
+      <description>1. General Information status Show cluster status. Can be &amp;lsquo;summary&amp;rsquo;, &amp;lsquo;simple&amp;rsquo;, or &amp;lsquo;detailed&amp;rsquo;. The default is &amp;lsquo;summary&amp;rsquo;.
+hbase&amp;gt; status hbase&amp;gt; status &#39;simple&#39; hbase&amp;gt; status &#39;summary&#39; hbase&amp;gt; status &#39;detailed&#39; version Output this HBase version.
+hbase&amp;gt; version whoami Show the current hbase user.Usage:
+hbase&amp;gt; whoami 2. Tables Management alter Alter column family schema by passing table name and a specification for new column family schema.
+For example, change/add the &amp;lsquo;f1&amp;rsquo; column family in table &amp;lsquo;t1&amp;rsquo; from current value and keep a maximum of 5 cell VERSIONS as follows.</description>
     </item>
     
     <item>
@@ -224,11 +245,8 @@ DESC employee; +---------------+------------------------------+----------+--+ | 
       <pubDate>Wed, 10 Jan 2018 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/</guid>
-      <description>Learning Spark SQL  Level Ent.
- Level Mid.
- Level Adv.  Published in Sep. 2017. Start reading it.
-
-Learning Apache Flink  Level Ent. Level Mid.  There are very few books about Apache Flink. Besides offical document, this is a good one for people who wants to know Flink quicker. This book, published in the earlier of 2017, covers most of core topics for Flink with examples.</description>
+      <description>Learning Spark SQL  Level Ent. Level Mid. Level Adv.  Published in Sep. 2017. Start reading it.
+ Learning Apache Flink  Level Ent. Level Mid.  There are very few books about Apache Flink. Besides offical document, this is a good one for people who wants to know Flink quicker. This book, published in the earlier of 2017, covers most of core topics for Flink with examples. Some examples may lack of details and explainations, such as on the ML section, but it is a good in general.</description>
     </item>
     
     <item>
@@ -258,7 +276,7 @@ ROW_NUMBER() Hive have a couple of internal functions to achieve this. ROW_NUMBE
       <pubDate>Wed, 01 Nov 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2017/11/01/2017-11-01-git-tips/</guid>
-      <description>1. Git Cheat Sheet 2. Check in Git Modified But Untracked Content Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the git add . and git status. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit.</description>
+      <description>1. Git Cheat Sheet 2. Check in Git Modified But Untracked Content Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the git add .  and git status. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit.</description>
     </item>
     
     <item>
@@ -298,7 +316,7 @@ Details Below is the list of key changes in this release.
       <pubDate>Thu, 20 Jul 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2017/07/20/2017-07-20-df-meetup-summer/</guid>
-      <description>Here is our free training offered during 2017 summer meetup in Toronto, Canada.</description>
+      <description>Here is our free training offered during 2017 summer meetup in Toronto, Canada. </description>
     </item>
     
     <item>
@@ -308,15 +326,15 @@ Details Below is the list of key changes in this release.
       
       <guid>https://datafibers-community.github.io/blog/2017/07/01/2017-07-01-spark-word-count/</guid>
       <description>It is quite often to setup Apache Spark development environment through IDE. Since I do not cover much setup IDE details in my Spark course, I am here to give detail steps for developing the well known Spark word count example using scala API in Eclipse.
-Environment  Apache Spark v1.6 Scala 2.10.4 Eclipse Scala IDE  Download Software Needed  Download the proper scala version and install it Download the Eclipse scala IDE from above link  Create A Scala Project  Open Scala Eclipse IDE.</description>
+Environment  Apache Spark v1.6 Scala 2.10.4 Eclipse Scala IDE  Download Software Needed  Download the proper scala version and install it Download the Eclipse scala IDE from above link  Create A Scala Project   Open Scala Eclipse IDE.</description>
     </item>
     
     <item>
       <title>One Platform Initatives for Spark</title>
-      <link>https://datafibers-community.github.io/blog/2017/06/24/2017-06-24-cloudera-launches-one-platform-initatives-to-advance-spark---copy/</link>
+      <link>https://datafibers-community.github.io/blog/2017/06/24/2017-06-24-cloudera-launches-one-platform-initatives-to-advance-spark-copy/</link>
       <pubDate>Sat, 24 Jun 2017 13:50:46 +0200</pubDate>
       
-      <guid>https://datafibers-community.github.io/blog/2017/06/24/2017-06-24-cloudera-launches-one-platform-initatives-to-advance-spark---copy/</guid>
+      <guid>https://datafibers-community.github.io/blog/2017/06/24/2017-06-24-cloudera-launches-one-platform-initatives-to-advance-spark-copy/</guid>
       <description>In the early of this September, the Chief Strategy Offer of Cloudera Mike Olson has announced that the next important initiatives for Couldera - One Platform to advance their investment on Apache Spark.
 The Spark is originally invented by few guys who started up the Databrick. Later, Spark catches most attention from big data communities and companies by its high-performance in-memory computing framework, which can run on top of Hadoop Yarn.</description>
     </item>
@@ -327,12 +345,11 @@ The Spark is originally invented by few guys who started up the Databrick. Later
       <pubDate>Mon, 01 May 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2017/05/01/2017-05-01-scala-and-java-constructors/</guid>
-      <description>1. Constructor With Parameters Java Code
-public class Foo() { public Bar bar; public Foo(Bar bar) { this.bar = bar; } }  Scala Code
-class Foo(val bar:Bar)  2. Constructor With Private Attribute Java Code
-public class Foo() { private final Bar bar; public Foo(Bar bar) { this.bar = bar; } }  Scala Code
-class Foo(private val bar:Bar)  3. Call Super Constructor Java Code
-public class Foo() extends SuperFoo { public Foo(Bar bar) { super(bar); } }  Scala Code</description>
+      <description>public class Foo() { public Bar bar; public Foo(Bar bar) { this.bar = bar; } } Scala Code
+class Foo(val bar:Bar) 2. Constructor With Private Attribute Java Code
+public class Foo() { private final Bar bar; public Foo(Bar bar) { this.bar = bar; } } Scala Code
+class Foo(private val bar:Bar) 3. Call Super Constructor Java Code
+public class Foo() extends SuperFoo { public Foo(Bar bar) { super(bar); } } Scala Code</description>
     </item>
     
     <item>
@@ -343,8 +360,8 @@ public class Foo() extends SuperFoo { public Foo(Bar bar) { super(bar); } }  Sca
       <guid>https://datafibers-community.github.io/blog/2016/12/29/2016-12-29-df-winter-release/</guid>
       <description>Summary Before new year, DataFibers has completed the winter release of 2016, which has more than 20+ changes requests applied. In this release, DataFibers is featured with new api document and landing pages. In addition, the preview version of stream processing (by flink) is ready.
 Details Below is the list of key changes in this release.
- Integrated REST API Document to the DF Application
- Added landing welcome page</description>
+  Integrated REST API Document to the DF Application
+  Added landing welcome page</description>
     </item>
     
     <item>

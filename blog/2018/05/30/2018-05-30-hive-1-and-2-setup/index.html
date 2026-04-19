@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.30.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,17 +183,11 @@
                         <p class="text-muted text-uppercase mb-small text-right">May 30, 2018</p>
 
                         <div id="post-content">
-                          
-
-<h2 id="overview">Overview</h2>
-
+                          <h2 id="overview">Overview</h2>
 <p>The latest HDP 2.6.x has both Hive version 1 and 2 installed together. However, it does not allow user to run hive version to command directly, but only use beeline.
 The <a href="https://github.com/datafibers/lab_env">lab_dev</a> repository here provides an demo virtual box image to have both Hive version configured properly.</p>
-
 <h2 id="conf-changes">Conf. Changes</h2>
-
 <p>The trick thing to make both hive version working is do not add any setting in the .profile anymore. See below, I comments out all pervious hive settings.</p>
-
 <pre><code>$cat .profile
 ...
 export HADOOP_USER_CLASSPATH_FIRST=true
@@ -207,36 +201,23 @@ export HADOOP_HOME=&quot;/opt/hadoop&quot;
 PATH=&quot;$HADOOP_HOME/bin:$PATH&quot;
 PATH=&quot;$HADOOP_HOME/sbin:$PATH&quot;
 # PATH=&quot;$HIVE_HOME/bin:$PATH&quot;
-</code></pre>
-
-<p>For instead, we use <code>hive-env.sh</code> in each hive installation folder to make each individual hive working.</p>
-
+</code></pre><p>For instead, we use <code>hive-env.sh</code> in each hive installation folder to make each individual hive working.</p>
 <pre><code>cat /opt/hive/conf/hive-env.sh
 export HIVE_HOME=/opt/hive
 export HIVE_CONF_DIR=/opt/hive/conf
-</code></pre>
-
-<pre><code>cat /opt/hive2/conf/hive-env.sh
+</code></pre><pre><code>cat /opt/hive2/conf/hive-env.sh
 export HIVE_HOME=/opt/hive2
 export HIVE_CONF_DIR=/opt/hive2/conf
-</code></pre>
-
-<p>For the <code>hive-site.xml</code>, for need make sure following properties are set.</p>
-
+</code></pre><p>For the <code>hive-site.xml</code>, for need make sure following properties are set.</p>
 <ul>
 <li><strong>hive.server2.thrift.port</strong>: set to 10000 for hive1 and 10500 for hive2</li>
 <li><strong>hive.metastore.port</strong>: set to 9083 for hive1 and 9085 for hive2. And also update <strong><code>hive.metastore.uris</code></strong>.</li>
 </ul>
-
 <p>The sample of configuration files (<code>hive-env.sh</code> and <code>hive-site.xml</code>) can be found <a href="https://github.com/datafibers/lab_env/tree/master/etc">here</a> in the hive1 and hive2 folder.</p>
-
 <p>Then, we need to create the metadata store in relational database, such as MySQL. The create the schema using the schema tools in hive2 installation folder, since hive2 metastore
 will be compatible with hive1.</p>
-
 <h2 id="install-steps">Install Steps</h2>
-
 <p>After we download the hive1 and hive2 jar, unzip them to <code>/opt/hive1</code> nad <code>/opt/hive2</code> folder respectively.</p>
-
 <pre><code># Create metastore database
 mysql -u root --password=&quot;mypassword&quot; -f -e &quot;DROP DATABASE IF EXISTS metastore;&quot;
 mysql -u root --password=&quot;mypassword&quot; -f -e &quot;CREATE DATABASE IF NOT EXISTS metastore;&quot;
@@ -254,38 +235,27 @@ chown -R vagrant:vagrant /opt/hive2/conf/*
 
 # Use schema tool in the hive2 installation
 /opt/hive2/bin/schematool -dbType mysql -initSchema 
-```	
+</code></pre><h2 id="start-and-verify-service">Start and Verify Service</h2>
+<p>In order to start Hive, start Hadoop first. Then use below commands to start both hive1 and hive2 service.</p>
+<pre><code>/opt/hive/bin/hive --service metastore 1&gt;&gt; /mnt/logs/metastore.log 2&gt;&gt; /mnt/logs/metastore.log &amp;
+/opt/hive/bin/hive --service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2.log 2&gt;&gt; /mnt/logs/hiveserver2.log &amp;
+/opt/hive2/bin/hive --service metastore 1&gt;&gt; /mnt/logs/metastore_h2.log 2&gt;&gt; /mnt/logs/metastore_h2.log &amp;
+/opt/hive2/bin/hive --service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2_h2.log 2&gt;&gt; /mnt/logs/hiveserver2_h2.log &amp;
+</code></pre><p>Once all hive services are started, we can use <code>beeline</code> or <code>hive</code> to connect to hive.</p>
+<pre><code># connect to hive 1
+beeline -u &quot;jdbc:hive2://localhost:10000&quot; 
+/opt/hive/bin/hive
 
-## Start and Verify Service
-In order to start Hive, start Hadoop first. Then use below commands to start both hive1 and hive2 service.
-</code></pre>
-
-<p>/opt/hive/bin/hive &ndash;service metastore 1&gt;&gt; /mnt/logs/metastore.log 2&gt;&gt; /mnt/logs/metastore.log &amp;
-/opt/hive/bin/hive &ndash;service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2.log 2&gt;&gt; /mnt/logs/hiveserver2.log &amp;
-/opt/hive2/bin/hive &ndash;service metastore 1&gt;&gt; /mnt/logs/metastore_h2.log 2&gt;&gt; /mnt/logs/metastore_h2.log &amp;
-/opt/hive2/bin/hive &ndash;service hiveserver2 1&gt;&gt; /mnt/logs/hiveserver2_h2.log 2&gt;&gt; /mnt/logs/hiveserver2_h2.log &amp;</p>
-
-<pre><code>
-Once all hive services are started, we can use ```beeline``` or ```hive``` to connect to hive.
-</code></pre>
-
-<h1 id="connect-to-hive-1">connect to hive 1</h1>
-
-<p>beeline -u &ldquo;jdbc:hive2://localhost:10000&rdquo;
-/opt/hive/bin/hive</p>
-
-<h1 id="connect-to-hive-2">connect to hive 2</h1>
-
-<p>beeline -u &ldquo;jdbc:hive2://localhost:10500&rdquo;
+# connect to hive 2
+beeline -u &quot;jdbc:hive2://localhost:10500&quot; 
 /opt/hive2/bin/hive
-```</p>
-
+</code></pre>
                         </div>
                         
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -357,6 +327,12 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
             <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/categories/data-engineering">data-engineering (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/deep-dive">deep-dive (1)</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/categories/digest">digest (10)</a>
             </li>
             
@@ -391,7 +367,13 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
     <div class="panel-body">
         <ul class="tag-cloud">
             
+            <li><a href="https://datafibers-community.github.io/tags/airflow"><i class="fa fa-tags"></i> airflow</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache-flink"><i class="fa fa-tags"></i> apache-flink</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
@@ -400,7 +382,31 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
             <li><a href="https://datafibers-community.github.io/tags/cloud"><i class="fa fa-tags"></i> cloud</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/data-engineering"><i class="fa fa-tags"></i> data-engineering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-pipelines"><i class="fa fa-tags"></i> data-pipelines</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-quality"><i class="fa fa-tags"></i> data-quality</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/dbt"><i class="fa fa-tags"></i> dbt</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-dive"><i class="fa fa-tags"></i> deep-dive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/etl"><i class="fa fa-tags"></i> etl</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/event-time"><i class="fa fa-tags"></i> event-time</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/fault-tolerance"><i class="fa fa-tags"></i> fault-tolerance</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
@@ -418,16 +424,25 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
             <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/idempotency"><i class="fa fa-tags"></i> idempotency</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
             </li>
             
+            <li><a href="https://datafibers-community.github.io/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
             <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/orchestration"><i class="fa fa-tags"></i> orchestration</a>
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
@@ -437,6 +452,12 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
             </li>
             
             <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/stateful-streaming"><i class="fa fa-tags"></i> stateful-streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/stream-processing"><i class="fa fa-tags"></i> stream-processing</a>
             </li>
             
         </ul>
@@ -470,7 +491,7 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+            <!-- raw HTML omitted -->
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -487,40 +508,40 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
+                        <a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
+                            <img src="https://datafibers-community.github.io/img/banners/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt.jpg" class="img-responsive" alt="Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/">Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                        <a href="https://datafibers-community.github.io/blog/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">
+                        <a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/">
                           
-                            <img src="https://datafibers-community.github.io//img/banners/spark_sql_title.png" class="img-responsive" alt="Spark SQL in Depth">
+                            <img src="https://datafibers-community.github.io/img/banners/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals.jpg" class="img-responsive" alt="Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/">Spark SQL in Depth</a></h5>
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/">Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals</a></h5>
                     </div>
                 </div>
                 
@@ -537,16 +558,7 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
 
           <h4>Contact</h4>
 
-            <p><p><strong>DataFibers.</strong>
-        <br>7030 Woodbine Avenue,
-        <br>L3R 6G2
-        <br>Ontario, Markham
-        <br>Canadar
-        <br>
-        <br>
-        <strong>Tel: +1 (647) 960-8578</strong>
-        <br></p>
-
+            <!-- raw HTML omitted -->
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -592,14 +604,17 @@ Once all hive services are started, we can use ```beeline``` or ```hive``` to co
     
 
     
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-40213017-3', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-40213017-3', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

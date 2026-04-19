@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Digest on DataFibers</title>
+    <title>digest on DataFibers</title>
     <link>https://datafibers-community.github.io/categories/digest/</link>
-    <description>Recent content in Digest on DataFibers</description>
+    <description>Recent content in digest on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright (c) 2020, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Sat, 01 Jul 2023 10:17:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/digest/index.xml" rel="self" type="application/rss+xml" />
@@ -38,7 +37,7 @@ The Era of Spring Boot and Cloud In October 2012, Mike Youngstrom created a feat
       
       <guid>https://datafibers-community.github.io/blog/2021/04/28/2021-04-28-spark-sql-in-depth-copy/</guid>
       <description>In this article, we&amp;rsquo;ll look at how Spark SQL working on data queries in depth.
-Checking Execution Plan Data Preparing create database if not exists test; create table if not exists test.t_name (name string); insert into test.t_name values (&#39;test1&#39;),(&#39;test2&#39;),(&#39;test3&#39;);  Test Code Preparing Below Scala code is used with testing with blocking at the standard input at the end. In this case, we can see more details from Spark WebUI.</description>
+Checking Execution Plan Data Preparing create database if not exists test; create table if not exists test.t_name (name string); insert into test.t_name values (&#39;test1&#39;),(&#39;test2&#39;),(&#39;test3&#39;); Test Code Preparing Below Scala code is used with testing with blocking at the standard input at the end. In this case, we can see more details from Spark WebUI.</description>
     </item>
     
     <item>
@@ -87,7 +86,8 @@ The producer picks which partition to send a record to per topic. The producer c
       
       <guid>https://datafibers-community.github.io/blog/2019/05/20/2019-05-20-use-redis-lock-for-seckill/</guid>
       <description>What is Seckill? When associated with online shopping, &amp;ldquo;seckill&amp;rdquo; refers to the quick sell out of newly-advertised goods. If you look at the transaction record, you will find that each of the transactions is made in seconds. It sounds inconceivable but is the naked truth. This is called &amp;ldquo;seckill&amp;rdquo;.
-A typical system for seckill has following features. * A large number of users will be shopping at the same time during the quick sell, and the web site traffic increses dramatically.</description>
+A typical system for seckill has following features.
+ A large number of users will be shopping at the same time during the quick sell, and the web site traffic increses dramatically.</description>
     </item>
     
     <item>
