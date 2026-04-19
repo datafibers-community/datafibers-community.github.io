@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 19:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/flink/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals</title>
-      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/</guid>
-      <description>Unraveling Apache Flink&amp;rsquo;s Core: State, Checkpoints, and Event Time Internals Apache Flink has solidified its position as a go-to engine for stateful stream processing, capable of handling high-throughput, low-latency, and fault-tolerant computations over unbounded data streams. While many introductory articles touch upon its capabilities, this deep dive aims to peel back the layers, exploring the architectural nuances, core mechanisms, and practical considerations that make Flink exceptionally robust and powerful. We&amp;rsquo;ll venture beyond the typical overview to dissect state management, fault tolerance through checkpointing, and the intricacies of event time processing.</description>
-    </item>
     
     <item>
       <title>Flink Windows Explained</title>

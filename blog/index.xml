@@ -23,21 +23,12 @@ This deep-dive will move past the &amp;ldquo;Hello World&amp;rdquo; of data pipe
     </item>
     
     <item>
-      <title>The Rise of Autonomous Data Agents: Crafting Self-Optimizing Data Engineering Pipelines</title>
-      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-the-rise-of-autonomous-data-agents-crafting-self-optimizing-data-engineering-pipelines/</link>
+      <title>Demystifying Databricks: Under the Hood of Delta Lake, Photon, and Unity Catalog</title>
+      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-demystifying-databricks-under-the-hood-of-delta-lake-photon-and-unity-catalog/</link>
       <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-the-rise-of-autonomous-data-agents-crafting-self-optimizing-data-engineering-pipelines/</guid>
-      <description>Traditional data engineering, while robust, often relies on static configurations and manual interventions. As data volumes explode and business needs become more dynamic, the demand for self-optimizing, resilient, and adaptive data pipelines grows. This is where the concept of &amp;ldquo;agents&amp;rdquo; — autonomous, goal-oriented entities — transitions from theoretical AI to practical data engineering. We&amp;rsquo;re moving beyond simple automation scripts to truly intelligent systems that can perceive, reason, and act within the complex data ecosystem.</description>
-    </item>
-    
-    <item>
-      <title>Unraveling Apache Flink&#39;s Core: State, Checkpoints, and Event Time Internals</title>
-      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/</guid>
-      <description>Unraveling Apache Flink&amp;rsquo;s Core: State, Checkpoints, and Event Time Internals Apache Flink has solidified its position as a go-to engine for stateful stream processing, capable of handling high-throughput, low-latency, and fault-tolerant computations over unbounded data streams. While many introductory articles touch upon its capabilities, this deep dive aims to peel back the layers, exploring the architectural nuances, core mechanisms, and practical considerations that make Flink exceptionally robust and powerful. We&amp;rsquo;ll venture beyond the typical overview to dissect state management, fault tolerance through checkpointing, and the intricacies of event time processing.</description>
+      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-demystifying-databricks-under-the-hood-of-delta-lake-photon-and-unity-catalog/</guid>
+      <description>Databricks has become a cornerstone of modern data platforms, offering a unified approach to data engineering, machine learning, and analytics. While its intuitive notebooks and managed Spark clusters are widely appreciated, the true power of Databricks lies in its innovative underlying architecture. This deep dive will pull back the curtain on key components like Delta Lake, the Photon Engine, and Unity Catalog, revealing how they orchestrate to deliver performance, reliability, and governance.</description>
     </item>
     
     <item>

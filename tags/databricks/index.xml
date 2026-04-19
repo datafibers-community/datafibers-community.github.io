@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Databricks on DataFibers</title>
+    <link>https://datafibers-community.github.io/tags/databricks/</link>
+    <description>Recent content in Databricks on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/tags/databricks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Demystifying Databricks: Under the Hood of Delta Lake, Photon, and Unity Catalog</title>
+      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-demystifying-databricks-under-the-hood-of-delta-lake-photon-and-unity-catalog/</link>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-demystifying-databricks-under-the-hood-of-delta-lake-photon-and-unity-catalog/</guid>
+      <description>Databricks has become a cornerstone of modern data platforms, offering a unified approach to data engineering, machine learning, and analytics. While its intuitive notebooks and managed Spark clusters are widely appreciated, the true power of Databricks lies in its innovative underlying architecture. This deep dive will pull back the curtain on key components like Delta Lake, the Photon Engine, and Unity Catalog, revealing how they orchestrate to deliver performance, reliability, and governance.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -22,14 +22,5 @@
 This deep-dive will move past the &amp;ldquo;Hello World&amp;rdquo; of data pipelines, exploring how Apache Airflow and dbt can be meticulously combined to construct resilient, idempotent workflows capable of handling failures, re-runs, and evolving business logic without corrupting your data.</description>
     </item>
     
-    <item>
-      <title>The Rise of Autonomous Data Agents: Crafting Self-Optimizing Data Engineering Pipelines</title>
-      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-the-rise-of-autonomous-data-agents-crafting-self-optimizing-data-engineering-pipelines/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-the-rise-of-autonomous-data-agents-crafting-self-optimizing-data-engineering-pipelines/</guid>
-      <description>Traditional data engineering, while robust, often relies on static configurations and manual interventions. As data volumes explode and business needs become more dynamic, the demand for self-optimizing, resilient, and adaptive data pipelines grows. This is where the concept of &amp;ldquo;agents&amp;rdquo; — autonomous, goal-oriented entities — transitions from theoretical AI to practical data engineering. We&amp;rsquo;re moving beyond simple automation scripts to truly intelligent systems that can perceive, reason, and act within the complex data ecosystem.</description>
-    </item>
-    
   </channel>
 </rss>
