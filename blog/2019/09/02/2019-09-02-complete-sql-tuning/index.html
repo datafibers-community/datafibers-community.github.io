@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -184,111 +184,86 @@
 
                         <div id="post-content">
                           <p>The most practice comes for MySQL server, but it applies to other relational database as well.</p>
+
 <ol>
-<li>
-<p>Aviod full table scan and try to create index on the columns used after <strong>where</strong> or <strong>order by</strong>.</p>
-</li>
-<li>
-<p>Aviod check null after <strong>where</strong> clause. You set set null as default value when creating tables. However, mostly we should use not null value or use special value, such as 0 or -1 for instead.</p>
-</li>
-<li>
-<p>Avoid using != or &lt;&gt; after <strong>where</strong>. MySQL can support indexing on &lt;, &lt;=, =, &gt;, &gt;=, BETWEEN,IN, and sometimes LIKE。</p>
-</li>
-<li>
-<p>Avoid using or after <strong>where</strong>. Or else, it causes full table scan rather using index. We can try to use <strong>UNION</strong> for instead. <code>select id from t where num=10 union all select id from t where num=20</code></p>
-</li>
-<li>
-<p>Avoid using <strong>in</strong> and <strong>not in</strong>. Because it is likely to cause full table scan. If possible, use <strong>between</strong>, such as <code>select id from t where num between 1 and 3</code></p>
-</li>
-<li>
-<p>Avoid using parameters after <strong>where</strong>, which is likely to cause full table scan.</p>
-</li>
-<li>
-<p>Query <code>select id from t where name like ‘%abc%’</code> and <code>select id from t where name like ‘%abc’</code> may cause full table scan. Use <code>select id from t where name like ‘abc%’</code> to leverage index.</p>
-</li>
-<li>
-<p>Use <strong>exists</strong> instead of <strong>in</strong>, such as <code>select num from a where num in(select num from b)</code> rewrite as <code>select num from a where exists(select 1 from b where num=a.num)</code></p>
-</li>
-<li>
-<p>Index can improve the <strong>select</strong> performance. However, it may decrease the performance of <strong>update</strong> and <strong>insert</strong>, which could rebuild the index. Make more considerations when you create more than 6 indexes for one table.</p>
-</li>
-<li>
-<p>Aviod update columns who has cluster index, because the cluster index use records&rsquo; physical ordering. By updating it, it leads lots of data movement physically. If ou have such kinds of columns requires frequent update, create non-cluster index on it.</p>
-</li>
-<li>
-<p>Use number data type instead of string</p>
-</li>
-<li>
-<p>Use <strong>varchar/nvarchar</strong> instead of <strong>char/nchar</strong> for saving more storage and improving query performance</p>
-</li>
-<li>
-<p>If possible use columns rather than <code>select * </code></p>
-</li>
-<li>
-<p>Use table alias when you have many tables in the query</p>
-</li>
-<li>
-<p>Use temporary tables to deal with complex logic and data transformation.</p>
-</li>
-<li>
-<p>Use <strong>UNION ALL</strong> has more chances to leverage index than using <strong>OR</strong>.</p>
-</li>
-<li>
-<p>For the list of values after <strong>IN</strong>, put the most frequent value in front.</p>
-</li>
-<li>
-<p>Since store procedure is precompiled. It has better performance.</p>
-</li>
-<li>
-<p>Try to use <strong>exists</strong> instead of <strong>select count(1)</strong>. <strong>count(1)</strong> performs better than <strong>count(*)</strong>.</p>
-</li>
-<li>
-<p>Using Index： Index is decided according to query patterns. Most of time, do not create too many indexes on one table (ideally, less than 6). Try to use index as munch as possible. If multiple columns are used in the index, the index will be used only when the first column is used in query condition. Index rebuild should be scheduled and mainteained.　</p>
-</li>
-<li>
-<p>Below queries have proper index created but not being used.</p>
+<li><p>Aviod full table scan and try to create index on the columns used after <strong>where</strong> or <strong>order by</strong>.</p></li>
+
+<li><p>Aviod check null after <strong>where</strong> clause. You set set null as default value when creating tables. However, mostly we should use not null value or use special value, such as 0 or -1 for instead.</p></li>
+
+<li><p>Avoid using != or &lt;&gt; after <strong>where</strong>. MySQL can support indexing on &lt;, &lt;=, =, &gt;, &gt;=, BETWEEN,IN, and sometimes LIKE。</p></li>
+
+<li><p>Avoid using or after <strong>where</strong>. Or else, it causes full table scan rather using index. We can try to use <strong>UNION</strong> for instead. <code>select id from t where num=10 union all select id from t where num=20</code></p></li>
+
+<li><p>Avoid using <strong>in</strong> and <strong>not in</strong>. Because it is likely to cause full table scan. If possible, use <strong>between</strong>, such as <code>select id from t where num between 1 and 3</code></p></li>
+
+<li><p>Avoid using parameters after <strong>where</strong>, which is likely to cause full table scan.</p></li>
+
+<li><p>Query <code>select id from t where name like ‘%abc%’</code> and <code>select id from t where name like ‘%abc’</code> may cause full table scan. Use <code>select id from t where name like ‘abc%’</code> to leverage index.</p></li>
+
+<li><p>Use <strong>exists</strong> instead of <strong>in</strong>, such as <code>select num from a where num in(select num from b)</code> rewrite as <code>select num from a where exists(select 1 from b where num=a.num)</code></p></li>
+
+<li><p>Index can improve the <strong>select</strong> performance. However, it may decrease the performance of <strong>update</strong> and <strong>insert</strong>, which could rebuild the index. Make more considerations when you create more than 6 indexes for one table.</p></li>
+
+<li><p>Aviod update columns who has cluster index, because the cluster index use records&rsquo; physical ordering. By updating it, it leads lots of data movement physically. If ou have such kinds of columns requires frequent update, create non-cluster index on it.</p></li>
+
+<li><p>Use number data type instead of string</p></li>
+
+<li><p>Use <strong>varchar/nvarchar</strong> instead of <strong>char/nchar</strong> for saving more storage and improving query performance</p></li>
+
+<li><p>If possible use columns rather than <code>select *</code></p></li>
+
+<li><p>Use table alias when you have many tables in the query</p></li>
+
+<li><p>Use temporary tables to deal with complex logic and data transformation.</p></li>
+
+<li><p>Use <strong>UNION ALL</strong> has more chances to leverage index than using <strong>OR</strong>.</p></li>
+
+<li><p>For the list of values after <strong>IN</strong>, put the most frequent value in front.</p></li>
+
+<li><p>Since store procedure is precompiled. It has better performance.</p></li>
+
+<li><p>Try to use <strong>exists</strong> instead of <strong>select count(1)</strong>. <strong>count(1)</strong> performs better than <strong>count(*)</strong>.</p></li>
+
+<li><p>Using Index： Index is decided according to query patterns. Most of time, do not create too many indexes on one table (ideally, less than 6). Try to use index as munch as possible. If multiple columns are used in the index, the index will be used only when the first column is used in query condition. Index rebuild should be scheduled and mainteained.　</p></li>
+
+<li><p>Below queries have proper index created but not being used.</p>
+
 <pre><code>SELECT * FROM record WHERE substrINg(card_no, 1, 4)= '5378' (13s) 
 SELECT * FROM record WHERE amount/30 &lt; 1000 (11s)
 SELECT * FROM record WHERE convert(char(10), date, 112)= '19991201' (10s)
-</code></pre><p>`</p>
+</code></pre>
+
 <p>By remove the calclations on the indexed columns, we ensure the index being used and performance becomes better.</p>
+
 <pre><code>SELECT * FROM record WHERE card_no like '5378%' (&lt; 1s)
 SELECT * FROM record WHERE amount &lt; 1000*30 (&lt; 1s) 
 SELECT * FROM record WHERE date = '1999/12/01' (&lt; 1s)
-</code></pre><p>``</p>
-</li>
-<li>
-<p>Bulk insert or update is always the first choice.</p>
-</li>
-<li>
-<p>If possible remove rows before <strong>GROUP BY</strong>.</p>
+</code></pre></li>
+
+<li><p>Bulk insert or update is always the first choice.</p></li>
+
+<li><p>If possible remove rows before <strong>GROUP BY</strong>.</p>
+
 <pre><code>SELECT JOB, AVG(SAL) FROM EMP GROUP BY JOB HAVING JOB = 'PRESIDENT' OR JOB = 'MANAGER' --slower
 SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP BY JOB --faster
-</code></pre><p>``</p>
-</li>
-<li>
-<p>Try to use Common Table Expression (CTE)</p>
-</li>
-<li>
-<p>Trigger ususally brings performance overhead.</p>
-</li>
-<li>
-<p>Usually we add a column, such as IDas PK with INT UNSIGNED and AUTO_INCREMENT.</p>
-</li>
-<li>
-<p>At the begining of store procedures and triggers, add <code>SET NOCOUNT ON</code>. At the end, add <code>SET NOCOUNT OFF</code>. It is not necessary to send <strong>DONE_IN_PROC</strong> message to client after executing each statement.</p>
-</li>
-<li>
-<p>Use cache when the database supports it</p>
-</li>
-<li>
-<p>Use <code>EXPLAIN SELECT ...</code> to check query execution plan</p>
-</li>
-<li>
-<p>If possible, limit the returned dataset.</p>
-</li>
-<li>
-<p>Best practice to create index</p>
+</code></pre></li>
+
+<li><p>Try to use Common Table Expression (CTE)</p></li>
+
+<li><p>Trigger ususally brings performance overhead.</p></li>
+
+<li><p>Usually we add a column, such as IDas PK with INT UNSIGNED and AUTO_INCREMENT.</p></li>
+
+<li><p>At the begining of store procedures and triggers, add <code>SET NOCOUNT ON</code>. At the end, add <code>SET NOCOUNT OFF</code>. It is not necessary to send <strong>DONE_IN_PROC</strong> message to client after executing each statement.</p></li>
+
+<li><p>Use cache when the database supports it</p></li>
+
+<li><p>Use <code>EXPLAIN SELECT ...</code> to check query execution plan</p></li>
+
+<li><p>If possible, limit the returned dataset.</p></li>
+
+<li><p>Best practice to create index</p>
+
 <ul>
 <li>PK and FK should have index created</li>
 <li>Table has 300M of data should create index</li>
@@ -300,31 +275,24 @@ SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP B
 <li>For tables which have frequently data operations, do not create too many index</li>
 <li>Remove useless indexes</li>
 <li>Avoid create index on the columns have many duplications or repeat values.</li>
-</ul>
-</li>
-<li>
-<p>Aviod checking null in where clause since it may cause full table scan instead of using index. Try to set default value for null when you create the table.</p>
-</li>
-<li>
-<p>Aviod using <strong>!=, &lt;&gt;, OR</strong> in where clause since it may cause full table scan instead of using index.</p>
-</li>
-<li>
-<p>When creating table with huge amount of data, use <code>select into</code> instead of <code>create table</code> to avoid generating too much log and improve performance.</p>
-</li>
-<li>
-<p><code>truncate table</code>, then <code>drop table</code> to aviod locking system tables for long time.</p>
-</li>
-<li>
-<p>Aviod using cusor because of bad performance especially when you deal with more than 10000 rows. You can use <code>while loop</code> for instead. If you have to use cusor, consider to use <strong>FAST_FORWARD</strong> cusor.</p>
-</li>
-<li>
-<p>Aviod doing huge transactions.</p>
-</li>
-<li>
-<p>Avoid return too much data to the client side</p>
-</li>
-<li>
-<p>General performace tuning considerations</p>
+</ul></li>
+
+<li><p>Aviod checking null in where clause since it may cause full table scan instead of using index. Try to set default value for null when you create the table.</p></li>
+
+<li><p>Aviod using <strong>!=, &lt;&gt;, OR</strong> in where clause since it may cause full table scan instead of using index.</p></li>
+
+<li><p>When creating table with huge amount of data, use <code>select into</code> instead of <code>create table</code> to avoid generating too much log and improve performance.</p></li>
+
+<li><p><code>truncate table</code>, then <code>drop table</code> to aviod locking system tables for long time.</p></li>
+
+<li><p>Aviod using cusor because of bad performance especially when you deal with more than 10000 rows. You can use <code>while loop</code> for instead. If you have to use cusor, consider to use <strong>FAST_FORWARD</strong> cusor.</p></li>
+
+<li><p>Aviod doing huge transactions.</p></li>
+
+<li><p>Avoid return too much data to the client side</p></li>
+
+<li><p>General performace tuning considerations</p>
+
 <ul>
 <li>Optimize SQL and Index <a href="http://coolshell.cn/articles/1846.html">http://coolshell.cn/articles/1846.html</a></li>
 <li>Leverage cache, such as memcached or redis.</li>
@@ -332,8 +300,7 @@ SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP B
 <li>Use partition tables</li>
 <li>Vertically split tables according to business</li>
 <li>Horizontally split tables, such as using moded table name</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 
                         </div>
@@ -341,7 +308,7 @@ SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP B
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -556,7 +523,7 @@ SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP B
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            <!-- raw HTML omitted -->
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -586,19 +553,6 @@ SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP B
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/">
-                            
-                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
-                            
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
                             
                             <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
@@ -607,6 +561,19 @@ SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP B
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                            
+                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
                     </div>
                 </div>
                 
@@ -623,7 +590,16 @@ SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP B
 
             <h4>Contact</h4>
 
-            <!-- raw HTML omitted -->
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -668,17 +644,14 @@ SELECT JOB, AVG(SAL) FROM EMP WHERE JOB = 'PRESIDENT' OR JOB = 'MANAGER' GROUP B
     
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-40213017-3', 'auto');
-	
-	ga('send', 'pageview');
-}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

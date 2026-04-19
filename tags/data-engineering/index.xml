@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>data-engineering on DataFibers</title>
+    <title>Data Engineering on DataFibers</title>
     <link>https://datafibers-community.github.io/tags/data-engineering/</link>
-    <description>Recent content in data-engineering on DataFibers</description>
+    <description>Recent content in Data Engineering on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/data-engineering/index.xml" rel="self" type="application/rss+xml" />

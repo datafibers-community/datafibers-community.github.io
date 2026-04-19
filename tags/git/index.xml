@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>git on DataFibers</title>
+    <title>Git on DataFibers</title>
     <link>https://datafibers-community.github.io/tags/git/</link>
-    <description>Recent content in git on DataFibers</description>
+    <description>Recent content in Git on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Wed, 01 Nov 2017 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
@@ -17,7 +18,7 @@
       <pubDate>Wed, 01 Nov 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2017/11/01/2017-11-01-git-tips/</guid>
-      <description>1. Git Cheat Sheet 2. Check in Git Modified But Untracked Content Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the git add .  and git status. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit.</description>
+      <description>1. Git Cheat Sheet 2. Check in Git Modified But Untracked Content Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the git add . and git status. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit.</description>
     </item>
     
   </channel>

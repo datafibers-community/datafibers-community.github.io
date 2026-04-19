@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,13 +183,22 @@
                         <p class="text-muted text-uppercase mb-small text-right">August 4, 2018</p>
 
                         <div id="post-content">
-                          <p>Kafka consumer is what we use quite often to read data from Kafka. Here, we use this article to explain some key concepts and topics regarding to consumer architecture in Kafka.</p>
+                          
+
+<p>Kafka consumer is what we use quite often to read data from Kafka. Here, we use this article to explain some key concepts and topics regarding to consumer architecture in Kafka.</p>
+
 <h2 id="consumer-groups">Consumer Groups</h2>
+
 <p>We can always group consumers into a consumer group by use case or function of the group. One consumer group might be responsible for delivering records to high-speed, in-memory microservices while another consumer group is streaming those same records to Hadoop. Consumer groups have names to identify them from other consumer groups.</p>
+
 <p>A consumer group has a unique id. Each consumer group is a subscriber to one or more Kafka topics. Each consumer group maintains its offset per topic partition. If you need multiple subscribers, then you have multiple consumer groups. A record gets delivered to only one consumer in a consumer group.</p>
+
 <p>Each consumer in a consumer group processes records and only one consumer in that group will get the same record. Consumers in a consumer group load balance record processing.</p>
+
 <h2 id="load-balance">Load Balance</h2>
+
 <p>Kafka consumer consumption divides partitions over consumer instances within a consumer group. Each consumer in the consumer group is an exclusive consumer of a “fair share” of partitions. This is how Kafka does load balancing of consumers in a consumer group. Consumer membership within a consumer group is handled by the Kafka protocol dynamically. If new consumers join a consumer group, it gets a share of partitions. If a consumer dies, its partitions are split among the remaining live consumers in the consumer group. This is how Kafka does fail over of consumers in a consumer group. There are some pictures from <a href="https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/ch04.html">Kafka definitive guide</a> makes this more clearly.</p>
+
 <table>
 <thead>
 <tr>
@@ -197,13 +206,15 @@
 <th align="left">Four partitions split to two consumers in a group.</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
-<td align="left"><!-- raw HTML omitted --></td>
-<td align="left"><!-- raw HTML omitted --></td>
+<td align="left"><img src="/img/banners/kafka_consumer_group_1.png" width="400" /></td>
+<td align="left"><img src="/img/banners/kafka_consumer_group_2.png" width="400" /></td>
 </tr>
 </tbody>
 </table>
+
 <table>
 <thead>
 <tr>
@@ -211,36 +222,51 @@
 <th align="left">More consumers in a group than partitions means idle consumers.</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
-<td align="left"><!-- raw HTML omitted --></td>
-<td align="left"><!-- raw HTML omitted --></td>
+<td align="left"><img src="/img/banners/kafka_consumer_group_3.png" width="400" /></td>
+<td align="left"><img src="/img/banners/kafka_consumer_group_4.png" width="400" /></td>
 </tr>
 </tbody>
 </table>
+
 <blockquote>
 <p>Only a single consumer from the same consumer group can access a single partition. If consumer group count exceeds the partition count, then the extra consumers remain idle. Kafka can use the idle consumers for failover. If there are more partitions than consumer group, then some consumers will read from more than one partition.</p>
 </blockquote>
+
 <h2 id="failover">Failover</h2>
-<p>Consumers notify the Kafka broker when they have successfully processed a record, which advances the offset.</p>
-<ul>
-<li>If a consumer fails before sending commit offset to Kafka broker, then a different consumer can continue from the last committed offset.</li>
-<li>If a consumer fails after processing the record but before sending the commit to the broker, then some Kafka records could be reprocessed. In this scenario, Kafka implements the at least once behavior, and you should make sure the messages (record deliveries ) are idempotent.</li>
-</ul>
+
+<p>Consumers notify the Kafka broker when they have successfully processed a record, which advances the offset.
+* If a consumer fails before sending commit offset to Kafka broker, then a different consumer can continue from the last committed offset.
+* If a consumer fails after processing the record but before sending the commit to the broker, then some Kafka records could be reprocessed. In this scenario, Kafka implements the at least once behavior, and you should make sure the messages (record deliveries ) are idempotent.</p>
+
 <h2 id="offset-management">Offset Management</h2>
+
 <p>Kafka stores offset data in a topic called <strong>__consumer_offset</strong>. These topics use log compaction, which means they only save the most recent value per key.
 When a consumer has processed data, it should commit offsets. If consumer process dies, it will be able to start up and start reading where it left off based on offset stored in <strong>__consumer_offset</strong> or as discussed another consumer in the consumer group can take over.</p>
+
 <h2 id="consume-scope">Consume Scope</h2>
+
 <p>What is the scope of records can be consumed by a Kafka consumer? Consumers can’t read un-replicated data. Kafka consumers can only consume messages beyond the <strong>High Watermark</strong> offset of the partition. <strong>Log end offset</strong> is offset of the last record written to log partition and where producers writes to next.
 <strong>High Watermark</strong> is the offset of the last record that was successfully replicated to all partition’s followers. Consumer only reads up to the “High Watermark”.</p>
+
 <h2 id="multi-threaded">Multi-threaded</h2>
+
 <p>You can run more than one Consumer in a JVM process by using threads.</p>
+
 <h4 id="consumer-with-many-threads">Consumer with many threads</h4>
+
 <p>If processing a record takes a while, a single Consumer can run multiple threads to process records, but it is harder to manage offset for each Thread/Task. If one consumer runs multiple threads, then two messages on the same partitions could be processed by two different threads which make it hard to guarantee record delivery order without complex thread coordination. This setup might be appropriate if processing a single task takes a long time, but try to avoid it.</p>
+
 <h4 id="thread-per-consumer">Thread per consumer</h4>
+
 <p>If you need to run multiple consumers, then run each consumer in their own thread. This way Kafka can deliver record batches to the consumer and the consumer does not have to worry about the offset ordering. A thread per consumer makes it easier to manage offsets. It is also simpler to manage failover (each process runs X num of consumer threads) as you can allow Kafka to do the brunt of the work.</p>
+
 <h2 id="code-examples">Code Examples</h2>
+
 <p>Below is a simple consumer example with Java client.</p>
+
 <pre><code>public class Consumer {
 
     public static void main(String[] args) {
@@ -272,12 +298,13 @@ When a consumer has processed data, it should commit offsets. If consumer proces
     }
 }
 </code></pre>
+
                         </div>
                         
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -492,7 +519,7 @@ When a consumer has processed data, it should commit offsets. If consumer proces
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            <!-- raw HTML omitted -->
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -522,19 +549,6 @@ When a consumer has processed data, it should commit offsets. If consumer proces
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/">
-                            
-                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
-                            
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
                             
                             <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
@@ -543,6 +557,19 @@ When a consumer has processed data, it should commit offsets. If consumer proces
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                            
+                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
                     </div>
                 </div>
                 
@@ -559,7 +586,16 @@ When a consumer has processed data, it should commit offsets. If consumer proces
 
             <h4>Contact</h4>
 
-            <!-- raw HTML omitted -->
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -604,17 +640,14 @@ When a consumer has processed data, it should commit offsets. If consumer proces
     
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-40213017-3', 'auto');
-	
-	ga('send', 'pageview');
-}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,39 +183,50 @@
                         <p class="text-muted text-uppercase mb-small text-right">June 19, 2021</p>
 
                         <div id="post-content">
-                          <hr>
+                          
+
+<hr />
+
 <p>I believe many developers, after familiarizing themselves with microservices, realized that they thought they had successfully built a microservices architecture empired with Spring Cloud. But after the popular of kubernetes (K8S), they were curious and exciting of creating the cloud native microservices serivces.</p>
+
 <h2 id="the-era-of-spring-boot-and-cloud">The Era of Spring Boot and Cloud</h2>
+
 <p>In October 2012, Mike Youngstrom created a feature request in Spring Jira to support a containerless web application architecture in the Spring Framework. He suggested configuring web container services inside the Spring container guided by the main method. This requirement led to the development of the Spring Boot project that started in early 2013. in April 2014, Spring Boot 1.0.0 was released. Since then, a number of smaller versions of Spring Boot have started to appear.
 The simplicity of Spring boot allows java developers to quickly apply it to projects at scale. Spring boot is arguably one of the fastest ways to develop RESTful microservices based web applications in Java. It is also well suited for docker container deployment and rapid prototyping. All the way to Spring Cloud from Spring, the first big companies that selected it built a complete microservices ecosystem early on, and many solutions are open source, and many pitfalls have been stepped through quite steadily. For many small and medium-sized companies that want to use microservices architecture, it is definitely the best time to enter the market and use the Spring Cloud stack directly.</p>
+
 <h2 id="the-era-of-kubernetes">The Era of Kubernetes</h2>
+
 <p>But when K8S was introduced, things start changing. Although Java ecosystem of Spring Cloud is by far the most complete microservices framework, basically satisfying all microservices architecture requirements, it makes most architecture closely tide to Java. Especially after Oracel Java start charging money for upgrade and mainteanance, many company are looking for alternatives of Java. In addition, the performance of Java make it not the best of choice for high performance applications which becomes more and more common senarios in this era. As result, some companys give up Java and others stick to Java because they have to.</p>
-<p>Now, K8S is 7 years and it becomes more mature and popular. It becomes one of most popular open source project in the planent and backed by so many great companies, such as Google and Redhat. When we put the original Spring Cloud-based services into K8S, we found out there are many overlape mechanisms offered by K8S and Spring cloud. Although SPring Could tries their best to integrate and merge it using <a href="https://github.com/spring-cloud/spring-cloud-kubernetes,">https://github.com/spring-cloud/spring-cloud-kubernetes,</a> it is quite clear developers now have more chioce to move out from Java stack freely.</p>
+
+<p>Now, K8S is 7 years and it becomes more mature and popular. It becomes one of most popular open source project in the planent and backed by so many great companies, such as Google and Redhat. When we put the original Spring Cloud-based services into K8S, we found out there are many overlape mechanisms offered by K8S and Spring cloud. Although SPring Could tries their best to integrate and merge it using <a href="https://github.com/spring-cloud/spring-cloud-kubernetes">https://github.com/spring-cloud/spring-cloud-kubernetes</a>, it is quite clear developers now have more chioce to move out from Java stack freely.</p>
+
 <p>Let&rsquo;s have a quick look what&rsquo;s offered in Spring Cloud can be replaced by K8S.</p>
+
 <ul>
-<li>Service Discovery
-Spring Cloud&rsquo;s classic solutions: Netflix Eureka, Alibaba Nacos, Hashicorp. the main principle is to register your own services when they are deployed, so that other services can retrieve them.</li>
-</ul>
+<li><p>Service Discovery
+Spring Cloud&rsquo;s classic solutions: Netflix Eureka, Alibaba Nacos, Hashicorp. the main principle is to register your own services when they are deployed, so that other services can retrieve them.</p>
+
 <pre><code>spring.cloud.service-registry.auto-registration.enabled
 @EnableDiscoveryClient(autoRegister=false)
-</code></pre><p>However, in K8S, the registration and querying of services is handled by the native Service component, whose connection name is implemented using internal DNS. This means that we have to connect the service discovery function to the K8S Service mechanism. To achieve this, the solution provides a DiscoveryClient component that allows cloud-based applications to easily query other services. With Kubernetes native service discovery, the service can be tracked by Istio and will be under the control of Service Mesh in the future.</p>
-<ul>
-<li>
-<p>Configuration Management
-In Spring Cloud, we can use spring cloudc config service. On the other hand, Kubernetes ConfigMap and Secret are available, and are often paired with Vault to manage sensitive configurations. K8S solution provides ConfigMapPropertySource and SecretsPropertySource to access ConfigMap and Secret on Kubernetes.</p>
-</li>
-<li>
-<p>Load Balancing &amp; Circuit Breaker
-Spring Cloud&rsquo;s original solution: Netflix Ribbon and Hystrix, but in K8S there is Service implementation of load balancing and Istio can implement fusion breaker, developers only need to focus on crud. Since load balancing and fusion breaker will rely on service discovery mechanism, so Ribbon and Hytrix&rsquo;s original functionality fails in the K8S native environment. There is some mention in the solution about Ribbon integration with Kubernetes native environment implementation, but the relevant link has disappeared and should be dropped. So it is recommended to avoid using client-side load balancing and fusers.</p>
-</li>
-<li>
-<p>Service Implementation
-Compared to the service implemention, Spring Boot make the code implemention so easy, but the Spring it can only use Java. The K8S ecosystem has been developed and designed to be more versatile and extensive, and some of the features of the Spring Cloud components are also integrated and considered and extended in Kubernetes. By using K8S, developers now have more chocie to implement micro-service in the cloud with cloud efficient programming language, such as golang, rust, etc. As result, your service architecture has not to be tied to the specific language or stack.</p>
-</li>
+</code></pre>
+
+<p>However, in K8S, the registration and querying of services is handled by the native Service component, whose connection name is implemented using internal DNS. This means that we have to connect the service discovery function to the K8S Service mechanism. To achieve this, the solution provides a DiscoveryClient component that allows cloud-based applications to easily query other services. With Kubernetes native service discovery, the service can be tracked by Istio and will be under the control of Service Mesh in the future.</p></li>
+
+<li><p>Configuration Management
+In Spring Cloud, we can use spring cloudc config service. On the other hand, Kubernetes ConfigMap and Secret are available, and are often paired with Vault to manage sensitive configurations. K8S solution provides ConfigMapPropertySource and SecretsPropertySource to access ConfigMap and Secret on Kubernetes.</p></li>
+
+<li><p>Load Balancing &amp; Circuit Breaker
+Spring Cloud&rsquo;s original solution: Netflix Ribbon and Hystrix, but in K8S there is Service implementation of load balancing and Istio can implement fusion breaker, developers only need to focus on crud. Since load balancing and fusion breaker will rely on service discovery mechanism, so Ribbon and Hytrix&rsquo;s original functionality fails in the K8S native environment. There is some mention in the solution about Ribbon integration with Kubernetes native environment implementation, but the relevant link has disappeared and should be dropped. So it is recommended to avoid using client-side load balancing and fusers.</p></li>
+
+<li><p>Service Implementation
+Compared to the service implemention, Spring Boot make the code implemention so easy, but the Spring it can only use Java. The K8S ecosystem has been developed and designed to be more versatile and extensive, and some of the features of the Spring Cloud components are also integrated and considered and extended in Kubernetes. By using K8S, developers now have more chocie to implement micro-service in the cloud with cloud efficient programming language, such as golang, rust, etc. As result, your service architecture has not to be tied to the specific language or stack.
+<p align="center"><img src="/img/banners/k8s_spring_02.png" width="800"></p></p></li>
 </ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+
+<p align="center"><img src="/img/banners/k8s_spring.png" width="800"></p>
+
 <h2 id="summary">Summary</h2>
+
 <p>With the populrity of K8S, more and more company are moving to building native cloud micro-service with golang and K8S. I believe if NetFlex were nowadays for doing the same thing, they will not create Eruka. Althougt we can certainly ignore K8S native components altogether and adopt Spring Boot and Spring Cloud solutions completely or using K8S only as a tool and platform for deploying applications, it is equite clear that in the near future, Service Mesh and its generic Cloud Native technology development will be derailed from Spring Cloud and deeply integrated with our applications.</p>
 
                         </div>
@@ -223,7 +234,7 @@ Compared to the service implemention, Spring Boot make the code implemention so 
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -438,7 +449,7 @@ Compared to the service implemention, Spring Boot make the code implemention so 
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            <!-- raw HTML omitted -->
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -468,19 +479,6 @@ Compared to the service implemention, Spring Boot make the code implemention so 
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/">
-                            
-                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
-                            
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
                             
                             <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
@@ -489,6 +487,19 @@ Compared to the service implemention, Spring Boot make the code implemention so 
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                            
+                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
                     </div>
                 </div>
                 
@@ -505,7 +516,16 @@ Compared to the service implemention, Spring Boot make the code implemention so 
 
             <h4>Contact</h4>
 
-            <!-- raw HTML omitted -->
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -550,17 +570,14 @@ Compared to the service implemention, Spring Boot make the code implemention so 
     
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-40213017-3', 'auto');
-	
-	ga('send', 'pageview');
-}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

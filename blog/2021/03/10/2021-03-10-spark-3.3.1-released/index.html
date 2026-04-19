@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,8 +183,12 @@
                         <p class="text-muted text-uppercase mb-small text-right">March 10, 2021</p>
 
                         <div id="post-content">
-                          <hr>
+                          
+
+<hr />
+
 <p>Apache Spark 3.1.1 is released on March 2, 2021. It is milestone release for Spark in 2021. This version of spark keeps making it more efficient and stable. Below are highlighted new features and changes.</p>
+
 <ul>
 <li>Python usability</li>
 <li>ANSI SQL compliance</li>
@@ -192,61 +196,65 @@
 <li>Shuffle hash join improvements</li>
 <li>History Server support of structured streaming</li>
 </ul>
+
 <h3 id="project-zen">Project Zen</h3>
+
 <p>Project Zen was initiated in this release to improve PySpark’s usability in these three ways:</p>
+
 <ul>
 <li>Being Pythonic</li>
 <li>Better and easier usability in PySpark</li>
 <li>Better interoperability with other Python libraries</li>
 </ul>
+
 <p>As part of this project, this release includes many improvements in PySpark – from leveraging Python type hints to newly redesigned PySpark documentation and so on.</p>
+
 <ul>
-<li>
-<p>Python typing support in PySpark was initiated as a third party library, pyspark-stubs, and has become a mature and stable library. In this release, PySpark officially includes the Python type hints with many benefits. The Python type hints can be most useful in IDEs and notebooks by enabling users and developers to leverage seamless autocompletion, including the recently added autocompletion support in Databricks notebooks.</p>
-</li>
-<li>
-<p>Dependency management support in PySpark is completed and documented to guide PySpark users and developers. Previously, PySpark had incomplete support of dependency management that only worked in YARN and was undocumented.</p>
-</li>
-<li>
-<p>New installation options for PyPI users were introduced. In this release, as part of Project Zen, all the options are also available to PyPI users. This enables them to install from PyPI and run their application in any type of their existing Spark clusters.</p>
-</li>
-<li>
-<p>New documentation for PySpark is introduced in this release. PySpark documentation was difficult to navigate and only included API references. The documentation is completely redesigned in this release with fine-grained classifications and easy-to-navigate hierarchies.</p>
-</li>
+<li><p>Python typing support in PySpark was initiated as a third party library, pyspark-stubs, and has become a mature and stable library. In this release, PySpark officially includes the Python type hints with many benefits. The Python type hints can be most useful in IDEs and notebooks by enabling users and developers to leverage seamless autocompletion, including the recently added autocompletion support in Databricks notebooks.</p></li>
+
+<li><p>Dependency management support in PySpark is completed and documented to guide PySpark users and developers. Previously, PySpark had incomplete support of dependency management that only worked in YARN and was undocumented.</p></li>
+
+<li><p>New installation options for PyPI users were introduced. In this release, as part of Project Zen, all the options are also available to PyPI users. This enables them to install from PyPI and run their application in any type of their existing Spark clusters.</p></li>
+
+<li><p>New documentation for PySpark is introduced in this release. PySpark documentation was difficult to navigate and only included API references. The documentation is completely redesigned in this release with fine-grained classifications and easy-to-navigate hierarchies.</p></li>
 </ul>
+
 <h3 id="ansi-sql-compliance">ANSI SQL compliance</h3>
+
 <p>This release adds additional improvements for ANSI SQL compliance, which aids in simplifying the workload migration from traditional data warehouse systems to Spark.</p>
+
 <ul>
-<li>
-<p>The ANSI dialect mode has been introduced and enhanced since the release of Spark 3.0. The behaviors in the ANSI mode align with ANSI SQL’s style if they are not strictly from the ANSI SQL. In this release when the input is invalid more operators/functions throw runtime errors instead of returning NULL.</p>
-</li>
-<li>
-<p>Various new SQL features are added in this release. The widely used standard CHAR/VARCHAR data types are added as variants of the supported String types. More built-in functions were added. The current number of built-in operators/functions has now reached 350. More DDL/DML/utility commands have been enhanced, including INSERT, MERGE and EXPLAIN. Starting from this release, in Spark WebUI, the SQL plans are presented in a simpler and structured format (i.e. using EXPLAIN FORMATTED)</p>
-</li>
-<li>
-<p>Unifying the CREATE TABLE SQL syntax has been completed in this release. Spark maintains two sets of CREATE TABLE syntax. When the statement contains neither USING nor STORED AS clauses, Spark used the default Hive file format. When spark.sql.legacy.createHiveTableByDefault is set to false (the default is true in Spark 3.1 release, but false in Databricks Runtime 8.0 release), the default table format depends on spark.sql.sources.default (the default is parquet in Spark 3.1 release, but delta in Databricks Runtime 8.0 release). This means starting in Databricks Runtime 8.0 Delta Lake tables are now the default format which will deliver better performance and reliability.</p>
-</li>
+<li><p>The ANSI dialect mode has been introduced and enhanced since the release of Spark 3.0. The behaviors in the ANSI mode align with ANSI SQL’s style if they are not strictly from the ANSI SQL. In this release when the input is invalid more operators/functions throw runtime errors instead of returning NULL.</p></li>
+
+<li><p>Various new SQL features are added in this release. The widely used standard CHAR/VARCHAR data types are added as variants of the supported String types. More built-in functions were added. The current number of built-in operators/functions has now reached 350. More DDL/DML/utility commands have been enhanced, including INSERT, MERGE and EXPLAIN. Starting from this release, in Spark WebUI, the SQL plans are presented in a simpler and structured format (i.e. using EXPLAIN FORMATTED)</p></li>
+
+<li><p>Unifying the CREATE TABLE SQL syntax has been completed in this release. Spark maintains two sets of CREATE TABLE syntax. When the statement contains neither USING nor STORED AS clauses, Spark used the default Hive file format. When spark.sql.legacy.createHiveTableByDefault is set to false (the default is true in Spark 3.1 release, but false in Databricks Runtime 8.0 release), the default table format depends on spark.sql.sources.default (the default is parquet in Spark 3.1 release, but delta in Databricks Runtime 8.0 release). This means starting in Databricks Runtime 8.0 Delta Lake tables are now the default format which will deliver better performance and reliability.</p></li>
 </ul>
+
 <h3 id="performance">Performance</h3>
+
 <p>Catalyst is the query compiler that optimizes most Spark applications. In Databricks, billions of queries per day are optimized and executed. This release enhances the query optimization and accelerates query processing.</p>
+
 <ul>
-<li>
-<p>Predicate pushdown is one of the most effective performance features because it can significantly reduce the amount of data scanned and processed. Various enhancements are provided, such as rewriting the Filter predicates and Join condition, reducing partition scanning, and enabling more predicate pushdown.</p>
-</li>
-<li>
-<p>Shuffle removal, subexpression elimination and nested field pruning are the other three major optimization features.</p>
-</li>
-<li>
-<p>Shuffle-Hash Join (SHJ) supports all the join types (SPARK-32399) with the corresponding codegen execution (SPARK-32421) starting from this release.</p>
-</li>
+<li><p>Predicate pushdown is one of the most effective performance features because it can significantly reduce the amount of data scanned and processed. Various enhancements are provided, such as rewriting the Filter predicates and Join condition, reducing partition scanning, and enabling more predicate pushdown.</p></li>
+
+<li><p>Shuffle removal, subexpression elimination and nested field pruning are the other three major optimization features.</p></li>
+
+<li><p>Shuffle-Hash Join (SHJ) supports all the join types (SPARK-32399) with the corresponding codegen execution (SPARK-32421) starting from this release.</p></li>
 </ul>
+
 <h3 id="streaming">Streaming</h3>
+
 <p>Spark is the best platform for building distributed stream processing applications. More than 10 trillion records per day are processed on Databricks with structured streaming. This release enhances its monitoring, usability and functionality.</p>
+
 <p>For better debugging and monitoring structured streaming applications, the History Server support is added and the Live UI support is further enhanced by adding more metrics for state, watermark gap and more state custom metrics.</p>
+
 <p>New Streaming table APIs are added for reading and writing streaming DataFrame to a table, like the table APIs in DataFrameReader and DataFrameWriter, as shown in this example notebook. In Databricks Runtime, Delta table format is recommended for exactly-once semantics and better performance.
 Stream-stream Join adds two new join type supports, including full outer (SPARK-32862) and left semi (SPARK-32863) in this release. Prior to Apache Spark 3.1, inner, left outer and right outer stream-stream joins have been supported, as presented in the original blog post of stream-stream joins.
 Other updates in Spark 3.1</p>
+
 <p>In addition to these new features, the release focuses on usability, stability, and refinement, resolving around 1,500 tickets. It’s the result of contributions from over 200 contributors, including individuals as well as companies like Databricks, Google, Apple, Linkedin, Microsoft, Intel, IBM, Alibaba, Facebook, Nvidia, Netflix, Adobe and many more. We’ve highlighted a number of the key SQL, Python and streaming advancements in Spark for this blog post, but there are many other capabilities in this 3.1 milestone not covered here. Learn more in the release notes and discover all the other improvements to Spark, including Spark on Kubernetes GAed,  node decommissioning, state schema validation, the search function in Spark documentations and more.</p>
+
 <p>Other more detailed features from Spark refers the <a href="https://databricks.com/blog/2021/03/02/introducing-apache-spark-3-1.html">official release blog</a>.</p>
 
                         </div>
@@ -254,7 +262,7 @@ Other updates in Spark 3.1</p>
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -469,7 +477,7 @@ Other updates in Spark 3.1</p>
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            <!-- raw HTML omitted -->
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -499,19 +507,6 @@ Other updates in Spark 3.1</p>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/">
-                            
-                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
-                            
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
                             
                             <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
@@ -520,6 +515,19 @@ Other updates in Spark 3.1</p>
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                            
+                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
                     </div>
                 </div>
                 
@@ -536,7 +544,16 @@ Other updates in Spark 3.1</p>
 
             <h4>Contact</h4>
 
-            <!-- raw HTML omitted -->
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -581,17 +598,14 @@ Other updates in Spark 3.1</p>
     
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-40213017-3', 'auto');
-	
-	ga('send', 'pageview');
-}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,144 +183,173 @@
                         <p class="text-muted text-uppercase mb-small text-right">April 19, 2026</p>
 
                         <div id="post-content">
-                          <p>Data engineering is the bedrock of any data-driven organization, transforming raw, often chaotic data into structured, reliable insights. While building simple ETL pipelines might seem straightforward, the real challenge emerges when dealing with production-grade requirements: robustness, scalability, observability, and crucially, idempotency.</p>
+                          
+
+<p>Data engineering is the bedrock of any data-driven organization, transforming raw, often chaotic data into structured, reliable insights. While building simple ETL pipelines might seem straightforward, the real challenge emerges when dealing with production-grade requirements: robustness, scalability, observability, and crucially, idempotency.</p>
+
 <p>This deep-dive will move past the &ldquo;Hello World&rdquo; of data pipelines, exploring how Apache Airflow and dbt can be meticulously combined to construct resilient, idempotent workflows capable of handling failures, re-runs, and evolving business logic without corrupting your data.</p>
+
 <h2 id="the-idempotency-imperative-in-data-pipelines">The Idempotency Imperative in Data Pipelines</h2>
+
 <p>At its core, an idempotent operation is one that can be executed multiple times without changing the result beyond the initial application. For data pipelines, this means if a task or an entire DAG fails midway and is re-run, the final state of the data should be identical to what it would have been if the pipeline had succeeded on the first attempt.</p>
+
 <p>Without idempotency, re-runs can lead to:</p>
+
 <ul>
 <li><strong>Duplicate Data:</strong> Records inserted multiple times.</li>
 <li><strong>Incorrect Aggregations:</strong> Sums or counts inflated by duplicates.</li>
 <li><strong>State Inconsistencies:</strong> Downstream systems receiving conflicting or erroneous data.</li>
 <li><strong>Complex Recovery:</strong> Manual intervention to clean up corrupted states.</li>
 </ul>
+
 <p>Achieving idempotency requires careful design at every layer: ingestion, transformation, and loading.</p>
+
 <h2 id="orchestration-powerhouse-apache-airflow-beyond-basic-operators">Orchestration Powerhouse: Apache Airflow Beyond Basic Operators</h2>
+
 <p>Apache Airflow is the de facto standard for orchestrating complex data workflows. While <code>BashOperator</code> and <code>PythonOperator</code> are workhorses, true mastery comes from leveraging Airflow&rsquo;s deeper capabilities to build robust, failure-resistant pipelines.</p>
+
 <h3 id="1-custom-operators-and-sensors">1. Custom Operators and Sensors</h3>
+
 <p>For unique integration patterns or specific business logic, custom operators provide encapsulated, reusable components. Sensors, on the other hand, are crucial for event-driven workflows, pausing a DAG run until a specific condition is met.</p>
+
 <p><strong>Example: A Custom S3-to-S3 Copy Operator with Error Handling</strong></p>
+
 <p>Imagine a scenario where you need to copy a specific set of files from an S3 landing zone to a processing zone, with robust error handling and metadata tracking.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># my_airflow_plugin/operators/s3_copy_operator.py</span>
-<span style="color:#f92672">from</span> airflow.models.baseoperator <span style="color:#f92672">import</span> BaseOperator
-<span style="color:#f92672">from</span> airflow.utils.decorators <span style="color:#f92672">import</span> apply_defaults
-<span style="color:#f92672">from</span> airflow.providers.amazon.aws.hooks.s3 <span style="color:#f92672">import</span> S3Hook
-<span style="color:#f92672">from</span> airflow.exceptions <span style="color:#f92672">import</span> AirflowException
-<span style="color:#f92672">import</span> logging
 
-log <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(__name__)
+<pre><code class="language-python"># my_airflow_plugin/operators/s3_copy_operator.py
+from airflow.models.baseoperator import BaseOperator
+from airflow.utils.decorators import apply_defaults
+from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from airflow.exceptions import AirflowException
+import logging
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">S3ToS3CopyOperator</span>(BaseOperator):
-    <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    Copies an S3 object from a source key to a destination key.
-</span><span style="color:#e6db74">    Supports conditional copying (e.g., only if source exists).
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+log = logging.getLogger(__name__)
 
-    template_fields <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;source_bucket_name&#39;</span>, <span style="color:#e6db74">&#39;source_key&#39;</span>, <span style="color:#e6db74">&#39;dest_bucket_name&#39;</span>, <span style="color:#e6db74">&#39;dest_key&#39;</span>)
+class S3ToS3CopyOperator(BaseOperator):
+    &quot;&quot;&quot;
+    Copies an S3 object from a source key to a destination key.
+    Supports conditional copying (e.g., only if source exists).
+    &quot;&quot;&quot;
 
-    <span style="color:#a6e22e">@apply_defaults</span>
-    <span style="color:#66d9ef">def</span> __init__(
+    template_fields = ('source_bucket_name', 'source_key', 'dest_bucket_name', 'dest_key')
+
+    @apply_defaults
+    def __init__(
         self,
         source_bucket_name: str,
         source_key: str,
         dest_bucket_name: str,
         dest_key: str,
-        aws_conn_id: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;aws_default&#39;</span>,
-        replace: bool <span style="color:#f92672">=</span> True,
-        <span style="color:#f92672">*</span>args,
-        <span style="color:#f92672">**</span>kwargs
+        aws_conn_id: str = 'aws_default',
+        replace: bool = True,
+        *args,
+        **kwargs
     ):
-        super()<span style="color:#f92672">.</span>__init__(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs)
-        self<span style="color:#f92672">.</span>source_bucket_name <span style="color:#f92672">=</span> source_bucket_name
-        self<span style="color:#f92672">.</span>source_key <span style="color:#f92672">=</span> source_key
-        self<span style="color:#f92672">.</span>dest_bucket_name <span style="color:#f92672">=</span> dest_bucket_name
-        self<span style="color:#f92672">.</span>dest_key <span style="color:#f92672">=</span> dest_key
-        self<span style="color:#f92672">.</span>aws_conn_id <span style="color:#f92672">=</span> aws_conn_id
-        self<span style="color:#f92672">.</span>replace <span style="color:#f92672">=</span> replace
+        super().__init__(*args, **kwargs)
+        self.source_bucket_name = source_bucket_name
+        self.source_key = source_key
+        self.dest_bucket_name = dest_bucket_name
+        self.dest_key = dest_key
+        self.aws_conn_id = aws_conn_id
+        self.replace = replace
 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute</span>(self, context):
-        s3_hook <span style="color:#f92672">=</span> S3Hook(aws_conn_id<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>aws_conn_id)
+    def execute(self, context):
+        s3_hook = S3Hook(aws_conn_id=self.aws_conn_id)
 
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> s3_hook<span style="color:#f92672">.</span>check_for_key(self<span style="color:#f92672">.</span>source_key, self<span style="color:#f92672">.</span>source_bucket_name):
-            <span style="color:#66d9ef">raise</span> AirflowException(f<span style="color:#e6db74">&#34;Source key {self.source_key} does not exist in {self.source_bucket_name}&#34;</span>)
+        if not s3_hook.check_for_key(self.source_key, self.source_bucket_name):
+            raise AirflowException(f&quot;Source key {self.source_key} does not exist in {self.source_bucket_name}&quot;)
 
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>replace <span style="color:#f92672">and</span> s3_hook<span style="color:#f92672">.</span>check_for_key(self<span style="color:#f92672">.</span>dest_key, self<span style="color:#f92672">.</span>dest_bucket_name):
-            log<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Destination key {self.dest_key} already exists and replace is False. Skipping copy.&#34;</span>)
-            <span style="color:#66d9ef">return</span>
+        if not self.replace and s3_hook.check_for_key(self.dest_key, self.dest_bucket_name):
+            log.info(f&quot;Destination key {self.dest_key} already exists and replace is False. Skipping copy.&quot;)
+            return
 
-        log<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Copying s3://{self.source_bucket_name}/{self.source_key} to s3://{self.dest_bucket_name}/{self.dest_key}&#34;</span>)
-        <span style="color:#66d9ef">try</span>:
-            s3_hook<span style="color:#f92672">.</span>copy_object(self<span style="color:#f92672">.</span>source_key, self<span style="color:#f92672">.</span>dest_key, self<span style="color:#f92672">.</span>source_bucket_name, self<span style="color:#f92672">.</span>dest_bucket_name)
-            log<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;Copy successful.&#34;</span>)
-        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
-            <span style="color:#66d9ef">raise</span> AirflowException(f<span style="color:#e6db74">&#34;Failed to copy S3 object: {e}&#34;</span>)
-</code></pre></div><p>This operator ensures that if the source file is missing, the task fails immediately. It also supports idempotency by allowing <code>replace=False</code>, preventing overwrites if the destination already exists (though for true idempotency with <code>UPSERT</code> semantics, downstream transformation is key).</p>
+        log.info(f&quot;Copying s3://{self.source_bucket_name}/{self.source_key} to s3://{self.dest_bucket_name}/{self.dest_key}&quot;)
+        try:
+            s3_hook.copy_object(self.source_key, self.dest_key, self.source_bucket_name, self.dest_bucket_name)
+            log.info(&quot;Copy successful.&quot;)
+        except Exception as e:
+            raise AirflowException(f&quot;Failed to copy S3 object: {e}&quot;)
+</code></pre>
+
+<p>This operator ensures that if the source file is missing, the task fails immediately. It also supports idempotency by allowing <code>replace=False</code>, preventing overwrites if the destination already exists (though for true idempotency with <code>UPSERT</code> semantics, downstream transformation is key).</p>
+
 <h3 id="2-cross-dag-dependencies-and-external-task-sensors">2. Cross-DAG Dependencies and External Task Sensors</h3>
+
 <p>Complex data platforms often involve multiple DAGs, each responsible for a specific domain or stage. Orchestrating dependencies across DAGs is critical. <code>ExternalTaskSensor</code> is the primary tool for this.</p>
-<h4 id="dagsproducer_dagpy">dags/producer_dag.py</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
-<span style="color:#f92672">from</span> airflow.operators.python <span style="color:#f92672">import</span> PythonOperator
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_data</span>(<span style="color:#f92672">**</span>context):
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Generating data for consumer...&#34;</span>)
-    <span style="color:#75715e"># In a real scenario, this might write a file to S3,</span>
-    <span style="color:#75715e"># update a database, or push a message to a queue.</span>
-    context[<span style="color:#e6db74">&#39;ti&#39;</span>]<span style="color:#f92672">.</span>xcom_push(key<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;data_ready&#39;</span>, value<span style="color:#f92672">=</span>True)
+<h4 id="dags-producer-dag-py">dags/producer_dag.py</h4>
 
-<span style="color:#66d9ef">with</span> DAG(
-    dag_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;producer_data_ingestion_dag&#39;</span>,
-    start_date<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">2023</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
-    schedule_interval<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;@hourly&#39;</span>,
-    catchup<span style="color:#f92672">=</span>False,
-    tags<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;producer&#39;</span>, <span style="color:#e6db74">&#39;xcom&#39;</span>],
-) <span style="color:#66d9ef">as</span> producer_dag:
-    generate_data_task <span style="color:#f92672">=</span> PythonOperator(
-        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;generate_data&#39;</span>,
-        python_callable<span style="color:#f92672">=</span>generate_data,
-        do_xcom_push<span style="color:#f92672">=</span>True
+<pre><code class="language-python">from airflow import DAG
+from airflow.operators.python import PythonOperator
+from datetime import datetime
+
+def generate_data(**context):
+    print(&quot;Generating data for consumer...&quot;)
+    # In a real scenario, this might write a file to S3,
+    # update a database, or push a message to a queue.
+    context['ti'].xcom_push(key='data_ready', value=True)
+
+with DAG(
+    dag_id='producer_data_ingestion_dag',
+    start_date=datetime(2023, 1, 1),
+    schedule_interval='@hourly',
+    catchup=False,
+    tags=['producer', 'xcom'],
+) as producer_dag:
+    generate_data_task = PythonOperator(
+        task_id='generate_data',
+        python_callable=generate_data,
+        do_xcom_push=True
     )
-</code></pre></div><h4 id="dagsconsumer_dagpy">dags/consumer_dag.py</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
-<span style="color:#f92672">from</span> airflow.operators.python <span style="color:#f92672">import</span> PythonOperator
-<span style="color:#f92672">from</span> airflow.sensors.external_task <span style="color:#f92672">import</span> ExternalTaskSensor
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</code></pre>
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_data</span>(<span style="color:#f92672">**</span>context):
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Consumer received data and is processing...&#34;</span>)
-    <span style="color:#75715e"># Retrieve XCom value from producer if needed, though sensor just checks state</span>
-    <span style="color:#75715e"># producer_data_ready = context[&#39;ti&#39;].xcom_pull(dag_id=&#39;producer_data_ingestion_dag&#39;, task_ids=&#39;generate_data&#39;, key=&#39;data_ready&#39;, include_prior_dates=False)</span>
-    <span style="color:#75715e"># if not producer_data_ready:</span>
-    <span style="color:#75715e">#    raise ValueError(&#34;Producer data not ready!&#34;)</span>
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Processing complete.&#34;</span>)
+<h4 id="dags-consumer-dag-py">dags/consumer_dag.py</h4>
 
-<span style="color:#66d9ef">with</span> DAG(
-    dag_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;consumer_data_processing_dag&#39;</span>,
-    start_date<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">2023</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
-    schedule_interval<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;@hourly&#39;</span>,
-    catchup<span style="color:#f92672">=</span>False,
-    tags<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;consumer&#39;</span>, <span style="color:#e6db74">&#39;sensor&#39;</span>],
-) <span style="color:#66d9ef">as</span> consumer_dag:
-    wait_for_producer <span style="color:#f92672">=</span> ExternalTaskSensor(
-        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wait_for_producer_data&#39;</span>,
-        external_dag_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;producer_data_ingestion_dag&#39;</span>,
-        external_task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;generate_data&#39;</span>,
-        <span style="color:#75715e"># This ensures the sensor waits for the *exact* corresponding run_id of the producer DAG</span>
-        <span style="color:#75715e"># By default, external_task_sensor checks for the latest completed task if no execution_delta/date is specified.</span>
-        <span style="color:#75715e"># To make it truly idempotent for a specific run, consider passing execution_delta or execution_date_fn.</span>
-        poke_interval<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
-        timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span>
+<pre><code class="language-python">from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.sensors.external_task import ExternalTaskSensor
+from datetime import datetime
+
+def process_data(**context):
+    print(&quot;Consumer received data and is processing...&quot;)
+    # Retrieve XCom value from producer if needed, though sensor just checks state
+    # producer_data_ready = context['ti'].xcom_pull(dag_id='producer_data_ingestion_dag', task_ids='generate_data', key='data_ready', include_prior_dates=False)
+    # if not producer_data_ready:
+    #    raise ValueError(&quot;Producer data not ready!&quot;)
+    print(&quot;Processing complete.&quot;)
+
+with DAG(
+    dag_id='consumer_data_processing_dag',
+    start_date=datetime(2023, 1, 1),
+    schedule_interval='@hourly',
+    catchup=False,
+    tags=['consumer', 'sensor'],
+) as consumer_dag:
+    wait_for_producer = ExternalTaskSensor(
+        task_id='wait_for_producer_data',
+        external_dag_id='producer_data_ingestion_dag',
+        external_task_id='generate_data',
+        # This ensures the sensor waits for the *exact* corresponding run_id of the producer DAG
+        # By default, external_task_sensor checks for the latest completed task if no execution_delta/date is specified.
+        # To make it truly idempotent for a specific run, consider passing execution_delta or execution_date_fn.
+        poke_interval=5,
+        timeout=600
     )
 
-    process_data_task <span style="color:#f92672">=</span> PythonOperator(
-        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;process_data&#39;</span>,
-        python_callable<span style="color:#f92672">=</span>process_data
+    process_data_task = PythonOperator(
+        task_id='process_data',
+        python_callable=process_data
     )
 
-    wait_for_producer <span style="color:#f92672">&gt;&gt;</span> process_data_task
-</code></pre></div><p>The <code>ExternalTaskSensor</code> ensures the <code>consumer_data_processing_dag</code> only proceeds after the <code>generate_data</code> task in <code>producer_data_ingestion_dag</code> has successfully completed for the <em>corresponding scheduled interval</em>. This maintains chronological and data integrity.</p>
+    wait_for_producer &gt;&gt; process_data_task
+</code></pre>
+
+<p>The <code>ExternalTaskSensor</code> ensures the <code>consumer_data_processing_dag</code> only proceeds after the <code>generate_data</code> task in <code>producer_data_ingestion_dag</code> has successfully completed for the <em>corresponding scheduled interval</em>. This maintains chronological and data integrity.</p>
+
 <h3 id="3-airflow-executors-choosing-for-idempotency-and-scale">3. Airflow Executors: Choosing for Idempotency and Scale</h3>
+
 <p>The executor determines how tasks are run. The choice impacts scalability, cost, and how you manage task failures and retries.</p>
+
 <table>
 <thead>
 <tr>
@@ -330,6 +359,7 @@ log <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</s
 <th align="left">Best For</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td align="left"><strong>LocalExecutor</strong></td>
@@ -337,12 +367,14 @@ log <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</s
 <td align="left">Tasks run sequentially or in parallel on a single machine. Idempotency logic needs to be within the task itself. Limited parallelism.</td>
 <td align="left">Dev/Test, small deployments.</td>
 </tr>
+
 <tr>
 <td align="left"><strong>CeleryExecutor</strong></td>
 <td align="left">Distributes tasks to worker nodes via a message queue (Celery).</td>
 <td align="left">Tasks can run on ephemeral workers. Ensures tasks complete once, but retries need idempotent task design. Requires external message broker (Redis/RabbitMQ).</td>
 <td align="left">Medium-to-large scale, fault tolerance, distributed processing.</td>
 </tr>
+
 <tr>
 <td align="left"><strong>KubernetesExecutor</strong></td>
 <td align="left">Launches each task as a separate Kubernetes pod.</td>
@@ -351,164 +383,190 @@ log <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</s
 </tr>
 </tbody>
 </table>
+
 <p>For highly idempotent and isolated task execution, the <code>KubernetesExecutor</code> is often preferred in modern cloud-native architectures. Each task runs in its own pod, ensuring a clean slate for retries and minimizing side-effects from previous runs or other tasks.</p>
+
 <p><strong>KubernetesPodOperator for Ad-hoc Containerized Tasks</strong></p>
+
 <p>Even with <code>KubernetesExecutor</code>, you might use <code>KubernetesPodOperator</code> for specific tasks that require unique environments, custom Docker images, or specific Kubernetes resource configurations that differ from the Airflow worker defaults.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
-<span style="color:#f92672">from</span> airflow.providers.cncf.kubernetes.operators.kubernetes_pod <span style="color:#f92672">import</span> KubernetesPodOperator
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
-<span style="color:#66d9ef">with</span> DAG(
-    dag_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kubernetes_pod_example&#39;</span>,
-    start_date<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">2023</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
-    schedule_interval<span style="color:#f92672">=</span>None,
-    catchup<span style="color:#f92672">=</span>False,
-    tags<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;kubernetes&#39;</span>],
-) <span style="color:#66d9ef">as</span> kubernetes_dag:
-    run_spark_job <span style="color:#f92672">=</span> KubernetesPodOperator(
-        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;run_spark_job_in_k8s&#39;</span>,
-        namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;default&#39;</span>,
-        image<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;databricks/spark:latest&#39;</span>,
-        cmds<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;/bin/bash&#39;</span>, <span style="color:#e6db74">&#39;-cx&#39;</span>],
-        arguments<span style="color:#f92672">=</span>[
-            <span style="color:#e6db74">&#39;spark-submit&#39;</span>, <span style="color:#e6db74">&#39;--master&#39;</span>, <span style="color:#e6db74">&#39;local[*]&#39;</span>,
-            <span style="color:#e6db74">&#39;/opt/spark/work-dir/your_spark_job.py&#39;</span>,
-            <span style="color:#e6db74">&#39;--input-path&#39;</span>, <span style="color:#e6db74">&#39;s3a://your-bucket/input/&#39;</span>,
-            <span style="color:#e6db74">&#39;--output-path&#39;</span>, f<span style="color:#e6db74">&#34;s3a://your-bucket/output/{{{{ ds }}}}/&#34;</span>
+<pre><code class="language-python">from airflow import DAG
+from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+from datetime import datetime
+
+with DAG(
+    dag_id='kubernetes_pod_example',
+    start_date=datetime(2023, 1, 1),
+    schedule_interval=None,
+    catchup=False,
+    tags=['kubernetes'],
+) as kubernetes_dag:
+    run_spark_job = KubernetesPodOperator(
+        task_id='run_spark_job_in_k8s',
+        namespace='default',
+        image='databricks/spark:latest',
+        cmds=['/bin/bash', '-cx'],
+        arguments=[
+            'spark-submit', '--master', 'local[*]',
+            '/opt/spark/work-dir/your_spark_job.py',
+            '--input-path', 's3a://your-bucket/input/',
+            '--output-path', f&quot;s3a://your-bucket/output/{{{{ ds }}}}/&quot;
         ],
-        name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;spark-transformer-pod&#39;</span>,
-        <span style="color:#75715e"># Custom resource requests/limits for the pod</span>
-        resources<span style="color:#f92672">=</span>{
-            <span style="color:#e6db74">&#39;request_memory&#39;</span>: <span style="color:#e6db74">&#39;4Gi&#39;</span>,
-            <span style="color:#e6db74">&#39;request_cpu&#39;</span>: <span style="color:#e6db74">&#39;2000m&#39;</span>,
-            <span style="color:#e6db74">&#39;limit_memory&#39;</span>: <span style="color:#e6db74">&#39;8Gi&#39;</span>,
-            <span style="color:#e6db74">&#39;limit_cpu&#39;</span>: <span style="color:#e6db74">&#39;4000m&#39;</span>,
+        name='spark-transformer-pod',
+        # Custom resource requests/limits for the pod
+        resources={
+            'request_memory': '4Gi',
+            'request_cpu': '2000m',
+            'limit_memory': '8Gi',
+            'limit_cpu': '4000m',
         },
-        <span style="color:#75715e"># Mount secrets or config maps as needed</span>
-        env_vars<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;AWS_ACCESS_KEY_ID&#39;</span>: <span style="color:#e6db74">&#39;{{ conn.aws_default.login }}&#39;</span>, <span style="color:#e6db74">&#39;AWS_SECRET_ACCESS_KEY&#39;</span>: <span style="color:#e6db74">&#39;{{ conn.aws_default.password }}&#39;</span>},
-        <span style="color:#75715e"># You can mount volumes, service accounts, etc.</span>
-        do_xcom_push<span style="color:#f92672">=</span>False, <span style="color:#75715e"># Often better for large outputs to use external storage</span>
-        is_delete_operator_pod<span style="color:#f92672">=</span>True <span style="color:#75715e"># Clean up pod after completion</span>
+        # Mount secrets or config maps as needed
+        env_vars={'AWS_ACCESS_KEY_ID': '{{ conn.aws_default.login }}', 'AWS_SECRET_ACCESS_KEY': '{{ conn.aws_default.password }}'},
+        # You can mount volumes, service accounts, etc.
+        do_xcom_push=False, # Often better for large outputs to use external storage
+        is_delete_operator_pod=True # Clean up pod after completion
     )
-</code></pre></div><p>Notice the use of Airflow Jinja templating (<code>{{ ds }}</code>) to pass execution date into the Spark job, critical for time-partitioned, idempotent outputs.</p>
-<h2 id="data-transformation-with-dbt-native-idempotency-and-data-quality">Data Transformation with dbt: Native Idempotency and Data Quality</h2>
-<p>dbt (data build tool) has revolutionized the &ldquo;T&rdquo; in ELT by enabling data analysts and engineers to transform data in their warehouse using SQL, following software engineering best practices. Its core tenets inherently support idempotency and data quality.</p>
-<h3 id="1-incremental-models-and-unique_key">1. Incremental Models and <code>unique_key</code></h3>
-<p>dbt&rsquo;s incremental models are a powerful feature for processing only new or changed data, critical for large datasets and maintaining idempotency.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- models/gold/orders_daily_summary.sql
-</span><span style="color:#75715e"></span>
-<span style="color:#960050;background-color:#1e0010">{{</span> config(
-    materialized<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;incremental&#39;</span>,
-    unique_key<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;order_date&#39;</span>, <span style="color:#e6db74">&#39;customer_id&#39;</span>],
-    on_schema_change<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sync_all_columns&#39;</span>
-) <span style="color:#960050;background-color:#1e0010">}}</span>
+</code></pre>
 
-<span style="color:#66d9ef">WITH</span> new_orders <span style="color:#66d9ef">AS</span> (
-    <span style="color:#66d9ef">SELECT</span>
+<p>Notice the use of Airflow Jinja templating (<code>{{ ds }}</code>) to pass execution date into the Spark job, critical for time-partitioned, idempotent outputs.</p>
+
+<h2 id="data-transformation-with-dbt-native-idempotency-and-data-quality">Data Transformation with dbt: Native Idempotency and Data Quality</h2>
+
+<p>dbt (data build tool) has revolutionized the &ldquo;T&rdquo; in ELT by enabling data analysts and engineers to transform data in their warehouse using SQL, following software engineering best practices. Its core tenets inherently support idempotency and data quality.</p>
+
+<h3 id="1-incremental-models-and-unique-key">1. Incremental Models and <code>unique_key</code></h3>
+
+<p>dbt&rsquo;s incremental models are a powerful feature for processing only new or changed data, critical for large datasets and maintaining idempotency.</p>
+
+<pre><code class="language-sql">-- models/gold/orders_daily_summary.sql
+
+{{ config(
+    materialized='incremental',
+    unique_key=['order_date', 'customer_id'],
+    on_schema_change='sync_all_columns'
+) }}
+
+WITH new_orders AS (
+    SELECT
         order_id,
         customer_id,
         order_date,
         total_amount
-    <span style="color:#66d9ef">FROM</span>
-        <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#66d9ef">ref</span>(<span style="color:#e6db74">&#39;stg_orders&#39;</span>) <span style="color:#960050;background-color:#1e0010">}}</span>
+    FROM
+        {{ ref('stg_orders') }}
 
-    <span style="color:#960050;background-color:#1e0010">{</span><span style="color:#f92672">%</span> <span style="color:#66d9ef">if</span> is_incremental() <span style="color:#f92672">%</span><span style="color:#960050;background-color:#1e0010">}</span>
-    <span style="color:#75715e">-- This WHERE clause ensures we only process new data for incremental runs
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">WHERE</span> order_date <span style="color:#f92672">&gt;</span> (<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">MAX</span>(order_date) <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">{{</span> this <span style="color:#960050;background-color:#1e0010">}}</span>)
-    <span style="color:#960050;background-color:#1e0010">{</span><span style="color:#f92672">%</span> endif <span style="color:#f92672">%</span><span style="color:#960050;background-color:#1e0010">}</span>
+    {% if is_incremental() %}
+    -- This WHERE clause ensures we only process new data for incremental runs
+    WHERE order_date &gt; (SELECT MAX(order_date) FROM {{ this }})
+    {% endif %}
 )
 
-<span style="color:#66d9ef">SELECT</span>
+SELECT
     order_date,
     customer_id,
-    <span style="color:#66d9ef">COUNT</span>(order_id) <span style="color:#66d9ef">AS</span> total_orders,
-    <span style="color:#66d9ef">SUM</span>(total_amount) <span style="color:#66d9ef">AS</span> total_revenue
-<span style="color:#66d9ef">FROM</span>
+    COUNT(order_id) AS total_orders,
+    SUM(total_amount) AS total_revenue
+FROM
     new_orders
-<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span>
+GROUP BY
     order_date, customer_id
-</code></pre></div><ul>
+</code></pre>
+
+<ul>
 <li><code>materialized='incremental'</code>: dbt will intelligently <code>INSERT</code> new rows or <code>MERGE</code>/<code>UPDATE</code> existing ones.</li>
 <li><code>unique_key=['order_date', 'customer_id']</code>: This tells dbt which columns uniquely identify a record. When re-running an incremental model, dbt uses this key to <code>MERGE</code> new data. If a record with the same <code>unique_key</code> already exists, it will be updated; otherwise, it will be inserted. This is a cornerstone of transactional idempotency.</li>
 <li><code>on_schema_change='sync_all_columns'</code>: Ensures schema evolution is handled gracefully, preventing pipeline failures due to schema drift.</li>
 </ul>
+
 <h3 id="2-data-quality-with-dbt-tests">2. Data Quality with dbt Tests</h3>
+
 <p>dbt&rsquo;s testing framework allows you to define assertions about your data, ensuring quality at critical transformation steps. Tests can be generic (<code>not_null</code>, <code>unique</code>, <code>accepted_values</code>, <code>relationships</code>) or custom SQL queries.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># models/gold/schema.yml</span>
 
-<span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">2</span>
+<pre><code class="language-yaml"># models/gold/schema.yml
 
-<span style="color:#66d9ef">models</span>:
-  - <span style="color:#66d9ef">name</span>: orders_daily_summary
-    <span style="color:#66d9ef">description</span>: Daily summary of orders per customer
-    <span style="color:#66d9ef">columns</span>:
-      - <span style="color:#66d9ef">name</span>: order_date
-        <span style="color:#66d9ef">description</span>: Date of the order
-        <span style="color:#66d9ef">tests</span>:
+version: 2
+
+models:
+  - name: orders_daily_summary
+    description: Daily summary of orders per customer
+    columns:
+      - name: order_date
+        description: Date of the order
+        tests:
           - not_null
-          - <span style="color:#66d9ef">dbt_expectations.expect_column_values_to_be_of_type</span>: { <span style="color:#66d9ef">column_type</span>: <span style="color:#e6db74">&#39;date&#39;</span> }
-      - <span style="color:#66d9ef">name</span>: customer_id
-        <span style="color:#66d9ef">description</span>: Unique identifier for the customer
-        <span style="color:#66d9ef">tests</span>:
+          - dbt_expectations.expect_column_values_to_be_of_type: { column_type: 'date' }
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
           - not_null
           - unique
-      - <span style="color:#66d9ef">name</span>: total_orders
-        <span style="color:#66d9ef">description</span>: Total number of orders for the day/customer
-        <span style="color:#66d9ef">tests</span>:
+      - name: total_orders
+        description: Total number of orders for the day/customer
+        tests:
           - not_null
-          - <span style="color:#66d9ef">dbt_expectations.expect_column_values_to_be_between</span>: { <span style="color:#66d9ef">min_value: 0, max_value</span>: <span style="color:#ae81ff">1000000</span> }
-      - <span style="color:#66d9ef">name</span>: total_revenue
-        <span style="color:#66d9ef">description</span>: Total revenue for the day/customer
-        <span style="color:#66d9ef">tests</span>:
+          - dbt_expectations.expect_column_values_to_be_between: { min_value: 0, max_value: 1000000 }
+      - name: total_revenue
+        description: Total revenue for the day/customer
+        tests:
           - not_null
-          - <span style="color:#66d9ef">dbt_expectations.expect_column_values_to_be_between</span>: { <span style="color:#66d9ef">min_value: 0.0, max_value</span>: <span style="color:#ae81ff">100000000.0</span> }
+          - dbt_expectations.expect_column_values_to_be_between: { min_value: 0.0, max_value: 100000000.0 }
 
-</code></pre></div><p>Running <code>dbt test</code> will execute these checks, failing the dbt run if any assertion isn&rsquo;t met. Integrating this into Airflow (e.g., as a distinct task after <code>dbt run</code>) ensures data quality gatekeeping.</p>
+</code></pre>
+
+<p>Running <code>dbt test</code> will execute these checks, failing the dbt run if any assertion isn&rsquo;t met. Integrating this into Airflow (e.g., as a distinct task after <code>dbt run</code>) ensures data quality gatekeeping.</p>
+
 <h3 id="3-integrating-dbt-with-airflow">3. Integrating dbt with Airflow</h3>
+
 <p>The <code>dbt-airflow</code> package simplifies the integration, but a robust <code>BashOperator</code> or <code>KubernetesPodOperator</code> approach offers more control and transparency.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># dags/dbt_pipeline_dag.py</span>
-<span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
-<span style="color:#f92672">from</span> airflow.operators.bash <span style="color:#f92672">import</span> BashOperator
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
-DBT_PROJECT_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/usr/local/airflow/dbt&#39;</span>
-DBT_PROFILES_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/usr/local/airflow/dbt/profiles&#39;</span>
+<pre><code class="language-python"># dags/dbt_pipeline_dag.py
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from datetime import datetime
 
-<span style="color:#66d9ef">with</span> DAG(
-    dag_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;dbt_transformation_pipeline&#39;</span>,
-    start_date<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">2023</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
-    schedule_interval<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;@daily&#39;</span>,
-    catchup<span style="color:#f92672">=</span>False,
-    tags<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;dbt&#39;</span>, <span style="color:#e6db74">&#39;transformation&#39;</span>],
-    template_searchpath<span style="color:#f92672">=</span>[DBT_PROJECT_DIR] <span style="color:#75715e"># Allows Airflow to find dbt_project.yml for templating</span>
-) <span style="color:#66d9ef">as</span> dbt_dag:
-    <span style="color:#75715e"># Task 1: Run dbt models</span>
-    dbt_run_task <span style="color:#f92672">=</span> BashOperator(
-        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;dbt_run&#39;</span>,
-        bash_command<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;dbt run --project-dir {DBT_PROJECT_DIR} --profiles-dir {DBT_PROFILES_DIR} --target production --vars &#39;{{&#34;</span>run_date<span style="color:#e6db74">&#34;: &#34;</span>{{ ds }}<span style="color:#e6db74">&#34;}}&#39;&#34;</span>,
-        cwd<span style="color:#f92672">=</span>DBT_PROJECT_DIR, <span style="color:#75715e"># Set current working directory for dbt</span>
-        env<span style="color:#f92672">=</span>{
-            <span style="color:#e6db74">&#39;DBT_TARGET&#39;</span>: <span style="color:#e6db74">&#39;production&#39;</span>,
-            <span style="color:#e6db74">&#39;DBT_PROFILE&#39;</span>: <span style="color:#e6db74">&#39;datafibers_profile&#39;</span> <span style="color:#75715e"># From your profiles.yml</span>
+DBT_PROJECT_DIR = '/usr/local/airflow/dbt'
+DBT_PROFILES_DIR = '/usr/local/airflow/dbt/profiles'
+
+with DAG(
+    dag_id='dbt_transformation_pipeline',
+    start_date=datetime(2023, 1, 1),
+    schedule_interval='@daily',
+    catchup=False,
+    tags=['dbt', 'transformation'],
+    template_searchpath=[DBT_PROJECT_DIR] # Allows Airflow to find dbt_project.yml for templating
+) as dbt_dag:
+    # Task 1: Run dbt models
+    dbt_run_task = BashOperator(
+        task_id='dbt_run',
+        bash_command=f&quot;dbt run --project-dir {DBT_PROJECT_DIR} --profiles-dir {DBT_PROFILES_DIR} --target production --vars '{{&quot;run_date&quot;: &quot;{{ ds }}&quot;}}'&quot;,
+        cwd=DBT_PROJECT_DIR, # Set current working directory for dbt
+        env={
+            'DBT_TARGET': 'production',
+            'DBT_PROFILE': 'datafibers_profile' # From your profiles.yml
         }
     )
 
-    <span style="color:#75715e"># Task 2: Run dbt tests (as a data quality gate)</span>
-    dbt_test_task <span style="color:#f92672">=</span> BashOperator(
-        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;dbt_test&#39;</span>,
-        bash_command<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;dbt test --project-dir {DBT_PROJECT_DIR} --profiles-dir {DBT_PROFILES_DIR} --target production&#34;</span>,
-        cwd<span style="color:#f92672">=</span>DBT_PROJECT_DIR,
-        env<span style="color:#f92672">=</span>{
-            <span style="color:#e6db74">&#39;DBT_TARGET&#39;</span>: <span style="color:#e6db74">&#39;production&#39;</span>,
-            <span style="color:#e6db74">&#39;DBT_PROFILE&#39;</span>: <span style="color:#e6db74">&#39;datafibers_profile&#39;</span>
+    # Task 2: Run dbt tests (as a data quality gate)
+    dbt_test_task = BashOperator(
+        task_id='dbt_test',
+        bash_command=f&quot;dbt test --project-dir {DBT_PROJECT_DIR} --profiles-dir {DBT_PROFILES_DIR} --target production&quot;,
+        cwd=DBT_PROJECT_DIR,
+        env={
+            'DBT_TARGET': 'production',
+            'DBT_PROFILE': 'datafibers_profile'
         }
     )
 
-    dbt_run_task <span style="color:#f92672">&gt;&gt;</span> dbt_test_task
-</code></pre></div><p><strong>Note on Idempotency with <code>dbt run</code>:</strong> When <code>dbt run</code> is executed, it rebuilds or updates models. For incremental models, the <code>unique_key</code> configuration (as shown above) is what provides the <code>UPSERT</code> semantics, making the <code>dbt run</code> operation idempotent for the data within those models. If the same <code>run_date</code> is processed twice, dbt will update existing records rather than inserting duplicates.</p>
+    dbt_run_task &gt;&gt; dbt_test_task
+</code></pre>
+
+<p><strong>Note on Idempotency with <code>dbt run</code>:</strong> When <code>dbt run</code> is executed, it rebuilds or updates models. For incremental models, the <code>unique_key</code> configuration (as shown above) is what provides the <code>UPSERT</code> semantics, making the <code>dbt run</code> operation idempotent for the data within those models. If the same <code>run_date</code> is processed twice, dbt will update existing records rather than inserting duplicates.</p>
+
 <h2 id="architectural-pattern-a-robust-elt-pipeline-with-airflow-and-dbt">Architectural Pattern: A Robust ELT Pipeline with Airflow and dbt</h2>
+
 <p>Let&rsquo;s visualize a common robust ELT pattern leveraging the techniques discussed:</p>
-<pre><code class="language-mermaid" data-lang="mermaid">graph TD
+
+<pre><code class="language-mermaid">graph TD
     subgraph Data Sources
         A[Raw Event Stream/DB Change Data Capture]
         B[External APIs/Files]
@@ -560,90 +618,99 @@ DBT_PROFILES_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74
     style K fill:#cfc,stroke:#333,stroke-width:2px
     style L fill:#cfc,stroke:#333,stroke-width:2px
     style M fill:#cfc,stroke:#333,stroke-width:2px
-</code></pre><p>In this diagram:</p>
+</code></pre>
+
+<p>In this diagram:</p>
+
 <ul>
 <li><strong>Ingestion:</strong> Airflow monitors for new data and loads it to a raw/staging area. Validation is crucial here to prevent bad data from propagating.</li>
 <li><strong>Transformation:</strong> dbt takes over, running models in a structured way (staging -&gt; intermediate -&gt; marts). Each <code>dbt run</code> operation for incremental models with <code>unique_key</code> ensures idempotency. <code>dbt test</code> tasks act as quality gates.</li>
 <li><strong>Consumption:</strong> Clean, transformed, and validated data is available for downstream applications.</li>
 </ul>
-<h2 id="advanced-idempotency-techniques--best-practices">Advanced Idempotency Techniques &amp; Best Practices</h2>
-<ol>
-<li>
-<p><strong>Transactional Loading with Staging Tables:</strong> For critical data, load into a temporary staging table, then perform an atomic <code>MERGE</code>/<code>UPSERT</code> or <code>TRUNCATE</code>/<code>INSERT</code> into the final table. This ensures either all changes apply or none do.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- Example SQL for transactional UPSERT
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">BEGIN</span>;
 
-<span style="color:#75715e">-- 1. Create a temporary staging table for new/updated data
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TEMPORARY</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> temp_my_table (
-    id INT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
-    name VARCHAR(<span style="color:#ae81ff">255</span>),
+<h2 id="advanced-idempotency-techniques-best-practices">Advanced Idempotency Techniques &amp; Best Practices</h2>
+
+<ol>
+<li><p><strong>Transactional Loading with Staging Tables:</strong> For critical data, load into a temporary staging table, then perform an atomic <code>MERGE</code>/<code>UPSERT</code> or <code>TRUNCATE</code>/<code>INSERT</code> into the final table. This ensures either all changes apply or none do.</p>
+
+<pre><code class="language-sql">-- Example SQL for transactional UPSERT
+BEGIN;
+
+-- 1. Create a temporary staging table for new/updated data
+CREATE TEMPORARY TABLE IF NOT EXISTS temp_my_table (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
     value DECIMAL,
-    updated_at <span style="color:#66d9ef">TIMESTAMP</span>
+    updated_at TIMESTAMP
 );
 
-<span style="color:#75715e">-- 2. Insert or load data into the staging table
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> temp_my_table (id, name, value, updated_at) <span style="color:#66d9ef">VALUES</span>
-(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Item A&#39;</span>, <span style="color:#ae81ff">100</span>.<span style="color:#ae81ff">0</span>, NOW()),
-(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Item B&#39;</span>, <span style="color:#ae81ff">200</span>.<span style="color:#ae81ff">0</span>, NOW())
-<span style="color:#66d9ef">ON</span> CONFLICT (id) <span style="color:#66d9ef">DO</span> <span style="color:#66d9ef">UPDATE</span> <span style="color:#66d9ef">SET</span>
-    name <span style="color:#f92672">=</span> EXCLUDED.name,
-    value <span style="color:#f92672">=</span> EXCLUDED.value,
-    updated_at <span style="color:#f92672">=</span> EXCLUDED.updated_at;
+-- 2. Insert or load data into the staging table
+INSERT INTO temp_my_table (id, name, value, updated_at) VALUES
+(1, 'Item A', 100.0, NOW()),
+(2, 'Item B', 200.0, NOW())
+ON CONFLICT (id) DO UPDATE SET
+    name = EXCLUDED.name,
+    value = EXCLUDED.value,
+    updated_at = EXCLUDED.updated_at;
 
-<span style="color:#75715e">-- 3. Perform MERGE from staging to final table
-</span><span style="color:#75715e">--    (Syntax varies by database, this is conceptual)
-</span><span style="color:#75715e"></span>MERGE <span style="color:#66d9ef">INTO</span> final_my_table <span style="color:#66d9ef">AS</span> target
-<span style="color:#66d9ef">USING</span> temp_my_table <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">source</span>
-<span style="color:#66d9ef">ON</span> target.id <span style="color:#f92672">=</span> <span style="color:#66d9ef">source</span>.id
-<span style="color:#66d9ef">WHEN</span> MATCHED <span style="color:#66d9ef">THEN</span>
-    <span style="color:#66d9ef">UPDATE</span> <span style="color:#66d9ef">SET</span>
-        name <span style="color:#f92672">=</span> <span style="color:#66d9ef">source</span>.name,
-        value <span style="color:#f92672">=</span> <span style="color:#66d9ef">source</span>.value,
-        updated_at <span style="color:#f92672">=</span> <span style="color:#66d9ef">source</span>.updated_at
-<span style="color:#66d9ef">WHEN</span> <span style="color:#66d9ef">NOT</span> MATCHED <span style="color:#66d9ef">THEN</span>
-    <span style="color:#66d9ef">INSERT</span> (id, name, value, updated_at)
-    <span style="color:#66d9ef">VALUES</span> (<span style="color:#66d9ef">source</span>.id, <span style="color:#66d9ef">source</span>.name, <span style="color:#66d9ef">source</span>.value, <span style="color:#66d9ef">source</span>.updated_at);
+-- 3. Perform MERGE from staging to final table
+--    (Syntax varies by database, this is conceptual)
+MERGE INTO final_my_table AS target
+USING temp_my_table AS source
+ON target.id = source.id
+WHEN MATCHED THEN
+    UPDATE SET
+        name = source.name,
+        value = source.value,
+        updated_at = source.updated_at
+WHEN NOT MATCHED THEN
+    INSERT (id, name, value, updated_at)
+    VALUES (source.id, source.name, source.value, source.updated_at);
 
-<span style="color:#66d9ef">COMMIT</span>;
+COMMIT;
 
-<span style="color:#75715e">-- Alternatively, for full refresh idempotency:
-</span><span style="color:#75715e">-- TRUNCATE TABLE final_my_table;
-</span><span style="color:#75715e">-- INSERT INTO final_my_table SELECT * FROM temp_my_table;
-</span><span style="color:#75715e">-- COMMIT;
-</span></code></pre></div></li>
-<li>
-<p><strong>Utilize Airflow&rsquo;s <code>run_id</code> for Partitioning:</strong> Airflow&rsquo;s <code>run_id</code> (<code>{{ run_id }}</code>) is a unique identifier for each DAG run instance. You can leverage it in combination with execution date (<code>{{ ds }}</code> or <code>{{ ds_nodash }}</code>) to create unique output paths or identifiers for each run, especially useful when writing to file systems like S3.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Example: Writing to a run-specific folder in S3</span>
-<span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
-<span style="color:#f92672">from</span> airflow.operators.bash <span style="color:#f92672">import</span> BashOperator
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+-- Alternatively, for full refresh idempotency:
+-- TRUNCATE TABLE final_my_table;
+-- INSERT INTO final_my_table SELECT * FROM temp_my_table;
+-- COMMIT;
+</code></pre></li>
 
-<span style="color:#66d9ef">with</span> DAG(
-    dag_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;s3_partitioned_output&#39;</span>,
-    start_date<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">2023</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
-    schedule_interval<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;@daily&#39;</span>,
-    catchup<span style="color:#f92672">=</span>False
-) <span style="color:#66d9ef">as</span> s3_dag:
-    write_data_to_s3 <span style="color:#f92672">=</span> BashOperator(
-        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;write_data&#39;</span>,
-        bash_command<span style="color:#f92672">=</span>f<span style="color:#e6db74">&#34;echo &#39;data for {{ ds }}&#39; &gt; s3://my-bucket/processed_data/{{ ds }}/{{ run_id }}/output.txt&#34;</span>
+<li><p><strong>Utilize Airflow&rsquo;s <code>run_id</code> for Partitioning:</strong> Airflow&rsquo;s <code>run_id</code> (<code>{{ run_id }}</code>) is a unique identifier for each DAG run instance. You can leverage it in combination with execution date (<code>{{ ds }}</code> or <code>{{ ds_nodash }}</code>) to create unique output paths or identifiers for each run, especially useful when writing to file systems like S3.</p>
+
+<pre><code class="language-python"># Example: Writing to a run-specific folder in S3
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from datetime import datetime
+
+with DAG(
+    dag_id='s3_partitioned_output',
+    start_date=datetime(2023, 1, 1),
+    schedule_interval='@daily',
+    catchup=False
+) as s3_dag:
+    write_data_to_s3 = BashOperator(
+        task_id='write_data',
+        bash_command=f&quot;echo 'data for {{ ds }}' &gt; s3://my-bucket/processed_data/{{ ds }}/{{ run_id }}/output.txt&quot;
     )
-</code></pre></div><p>This ensures that even if you re-run a specific <code>ds</code> (daily execution), the <code>run_id</code> creates a new, distinct output location, preventing accidental overwrites of previous successful runs. A downstream task can then decide which <code>run_id</code>'s output to pick (e.g., the latest successful one).</p>
-</li>
-<li>
-<p><strong>Idempotent Retries:</strong> Design tasks to be retryable without side effects. This often means:</p>
+</code></pre>
+
+<p>This ensures that even if you re-run a specific <code>ds</code> (daily execution), the <code>run_id</code> creates a new, distinct output location, preventing accidental overwrites of previous successful runs. A downstream task can then decide which <code>run_id</code>&rsquo;s output to pick (e.g., the latest successful one).</p></li>
+
+<li><p><strong>Idempotent Retries:</strong> Design tasks to be retryable without side effects. This often means:</p>
+
 <ul>
 <li><strong>Externalizing State:</strong> Don&rsquo;t rely on in-memory state. Store intermediate results in durable storage.</li>
 <li><strong>Conditional Operations:</strong> Check if a resource already exists or an operation has been performed before attempting it again.</li>
 <li><strong>Atomic Operations:</strong> Use database transactions or <code>MERGE</code>/<code>UPSERT</code> operations.</li>
-</ul>
-</li>
-<li>
-<p><strong>Monitoring and Alerting:</strong> While idempotency prevents data corruption, it doesn&rsquo;t prevent failures. Implement robust monitoring (Airflow UI, Grafana, Prometheus) and alerting (PagerDuty, Slack) to detect failures promptly. Monitor task states, DAG run durations, and data quality test results.</p>
-</li>
+</ul></li>
+
+<li><p><strong>Monitoring and Alerting:</strong> While idempotency prevents data corruption, it doesn&rsquo;t prevent failures. Implement robust monitoring (Airflow UI, Grafana, Prometheus) and alerting (PagerDuty, Slack) to detect failures promptly. Monitor task states, DAG run durations, and data quality test results.</p></li>
 </ol>
+
 <h2 id="conclusion">Conclusion</h2>
+
 <p>Building resilient, production-grade data pipelines demands a deep understanding of architectural patterns and practical techniques for failure handling and data integrity. By moving beyond basic Airflow operators, strategically applying dbt&rsquo;s native idempotency features, and adopting best practices like transactional loading and robust quality gates, data engineers can construct pipelines that are not only efficient but also trustworthy.</p>
+
 <p>Mastering idempotency is not merely an optimization; it&rsquo;s a fundamental shift towards building data infrastructure that can reliably serve critical business needs, even in the face of inevitable disruptions. The DataFibers community thrives on such robust foundations, enabling confident decision-making atop rock-solid data.</p>
 
                         </div>
@@ -651,7 +718,7 @@ DBT_PROFILES_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -866,7 +933,7 @@ DBT_PROFILES_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            <!-- raw HTML omitted -->
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -896,19 +963,6 @@ DBT_PROFILES_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/">
-                            
-                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
-                            
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
                             
                             <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
@@ -917,6 +971,19 @@ DBT_PROFILES_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                            
+                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
                     </div>
                 </div>
                 
@@ -933,7 +1000,16 @@ DBT_PROFILES_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74
 
             <h4>Contact</h4>
 
-            <!-- raw HTML omitted -->
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -978,17 +1054,14 @@ DBT_PROFILES_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74
     
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-40213017-3', 'auto');
-	
-	ga('send', 'pageview');
-}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

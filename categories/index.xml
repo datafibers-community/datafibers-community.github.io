@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on DataFibers</title>
@@ -6,31 +6,14 @@
     <description>Recent content in Categories on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Sun, 15 Dec 2019 19:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>data-engineering</title>
-      <link>https://datafibers-community.github.io/categories/data-engineering/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/categories/data-engineering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>digest</title>
-      <link>https://datafibers-community.github.io/categories/digest/</link>
-      <pubDate>Sat, 01 Jul 2023 10:17:46 +0200</pubDate>
-      
-      <guid>https://datafibers-community.github.io/categories/digest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>article</title>
+      <title>Article</title>
       <link>https://datafibers-community.github.io/categories/article/</link>
       <pubDate>Sun, 15 Dec 2019 19:50:46 +0200</pubDate>
       
@@ -39,16 +22,25 @@
     </item>
     
     <item>
-      <title>review</title>
-      <link>https://datafibers-community.github.io/categories/review/</link>
-      <pubDate>Wed, 10 Jan 2018 13:50:46 +0200</pubDate>
+      <title>Data Engineering</title>
+      <link>https://datafibers-community.github.io/categories/data-engineering/</link>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://datafibers-community.github.io/categories/review/</guid>
+      <guid>https://datafibers-community.github.io/categories/data-engineering/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>release</title>
+      <title>Digest</title>
+      <link>https://datafibers-community.github.io/categories/digest/</link>
+      <pubDate>Sat, 01 Jul 2023 10:17:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/digest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Release</title>
       <link>https://datafibers-community.github.io/categories/release/</link>
       <pubDate>Fri, 22 Dec 2017 13:50:46 +0200</pubDate>
       
@@ -57,7 +49,16 @@
     </item>
     
     <item>
-      <title>training</title>
+      <title>Review</title>
+      <link>https://datafibers-community.github.io/categories/review/</link>
+      <pubDate>Wed, 10 Jan 2018 13:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Training</title>
       <link>https://datafibers-community.github.io/categories/training/</link>
       <pubDate>Thu, 20 Jul 2017 13:50:46 +0200</pubDate>
       
@@ -66,7 +67,7 @@
     </item>
     
     <item>
-      <title>tutorial</title>
+      <title>Tutorial</title>
       <link>https://datafibers-community.github.io/categories/tutorial/</link>
       <pubDate>Sat, 01 Jul 2017 13:50:46 +0200</pubDate>
       

@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hive on DataFibers</title>
+    <title>Hive on DataFibers</title>
     <link>https://datafibers-community.github.io/tags/hive/</link>
-    <description>Recent content in hive on DataFibers</description>
+    <description>Recent content in Hive on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Wed, 30 May 2018 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/hive/index.xml" rel="self" type="application/rss+xml" />
@@ -37,8 +38,11 @@ DESC employee; +---------------+------------------------------+----------+--+ | 
       <pubDate>Wed, 10 Jan 2018 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2018/01/10/2018-01-10-reviews-big-data/</guid>
-      <description>Learning Spark SQL  Level Ent. Level Mid. Level Adv.  Published in Sep. 2017. Start reading it.
- Learning Apache Flink  Level Ent. Level Mid.  There are very few books about Apache Flink. Besides offical document, this is a good one for people who wants to know Flink quicker. This book, published in the earlier of 2017, covers most of core topics for Flink with examples. Some examples may lack of details and explainations, such as on the ML section, but it is a good in general.</description>
+      <description>Learning Spark SQL  Level Ent.
+ Level Mid.
+ Level Adv.  Published in Sep. 2017. Start reading it.
+
+Learning Apache Flink  Level Ent. Level Mid.  There are very few books about Apache Flink. Besides offical document, this is a good one for people who wants to know Flink quicker. This book, published in the earlier of 2017, covers most of core topics for Flink with examples.</description>
     </item>
     
     <item>

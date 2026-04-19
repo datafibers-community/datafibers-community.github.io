@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hbase on DataFibers</title>
+    <title>Hbase on DataFibers</title>
     <link>https://datafibers-community.github.io/tags/hbase/</link>
-    <description>Recent content in hbase on DataFibers</description>
+    <description>Recent content in Hbase on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Sat, 28 Apr 2018 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/hbase/index.xml" rel="self" type="application/rss+xml" />
@@ -17,11 +18,9 @@
       <pubDate>Sat, 28 Apr 2018 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/blog/2018/04/28/2018-04-28-hbase-shell_example/</guid>
-      <description>1. General Information status Show cluster status. Can be &amp;lsquo;summary&amp;rsquo;, &amp;lsquo;simple&amp;rsquo;, or &amp;lsquo;detailed&amp;rsquo;. The default is &amp;lsquo;summary&amp;rsquo;.
-hbase&amp;gt; status hbase&amp;gt; status &#39;simple&#39; hbase&amp;gt; status &#39;summary&#39; hbase&amp;gt; status &#39;detailed&#39; version Output this HBase version.
-hbase&amp;gt; version whoami Show the current hbase user.Usage:
-hbase&amp;gt; whoami 2. Tables Management alter Alter column family schema by passing table name and a specification for new column family schema.
-For example, change/add the &amp;lsquo;f1&amp;rsquo; column family in table &amp;lsquo;t1&amp;rsquo; from current value and keep a maximum of 5 cell VERSIONS as follows.</description>
+      <description>We use this place to collect commonly used HBase shell command for reference. HBase shell is an HBase extensible jruby-based (JIRB) shell to execute some commands(each command represents one functionality) in HBase. HBase shell commands are mainly categorized into 6 parts as follows. Will keep adding more examples here.
+1. General Information status Show cluster status. Can be &amp;lsquo;summary&amp;rsquo;, &amp;lsquo;simple&amp;rsquo;, or &amp;lsquo;detailed&amp;rsquo;. The default is &amp;lsquo;summary&amp;rsquo;.
+hbase&amp;gt; status hbase&amp;gt; status &#39;simple&#39; hbase&amp;gt; status &#39;summary&#39; hbase&amp;gt; status &#39;detailed&#39;  version Output this HBase version.</description>
     </item>
     
   </channel>

@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,56 +183,74 @@
                         <p class="text-muted text-uppercase mb-small text-right">November 1, 2017</p>
 
                         <div id="post-content">
-                          <h3 id="1-git-cheat-sheet">1. Git Cheat Sheet</h3>
-<!-- raw HTML omitted -->
+                          
+
+<h3 id="1-git-cheat-sheet">1. Git Cheat Sheet</h3>
+
+<p align="left"><img src="http://i.imgur.com/5jLso42.png" width="600" /></p>
+
 <h3 id="2-check-in-git-modified-but-untracked-content">2. Check in Git Modified But Untracked Content</h3>
-<p>Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the <code>git add . </code> and <code>git status</code>. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit. I only realize that I miss the theme files when I try to rebuild the Hexo site from home.</p>
+
+<p>Recently, I migrate this site to Hexo. I download the theme from github to the Hexo project folder. I also keep the source code in the github in case I lost the source code. However, when I run the <code>git add .</code> and <code>git status</code>. It shows error messages saying the theme folder is not tracked content. Most time, I did not check the git status - bad habit. I only realize that I miss the theme files when I try to rebuild the Hexo site from home.</p>
+
 <p>After searching a while form Google, I got my issues resolved and shared the steps below for reference.</p>
+
 <ul>
 <li>Removed the .git directories from the directories (In my case, ../theme/hueman/.git)</li>
 <li>Run <code>git rm -rf --cached &lt;the untracked directory&gt;</code> (In my case, /C/Users/ddu/Git/sparkera/themes/hueman)</li>
-<li>Re-added the directories with a <code>git add . </code> and check by <code>git status</code>.</li>
+<li>Re-added the directories with a <code>git add .</code> and check by <code>git status</code>.</li>
 </ul>
-<p>Then all the untracked files are added. Then you can do <code>git commit -m </code> and <code>git push</code> the submit all the changes.</p>
+
+<p>Then all the untracked files are added. Then you can do <code>git commit -m</code> and <code>git push</code> the submit all the changes.</p>
+
 <h3 id="3-git-catch-up-changes">3. Git Catch up Changes</h3>
+
 <p>There are following ways to catch up/revert changes in GIT</p>
+
 <h4 id="catchup-changes-from-remote">Catchup changes from remote</h4>
+
 <ol>
-<li>
-<p>Pull out from remote again and you <strong>lost all</strong> of your local changes as well as hisory</p>
-<pre><code> rm -Rf working_folders
- git clone remote_git_address
+<li><p>Pull out from remote again and you <strong>lost all</strong> of your local changes as well as hisory</p>
+
+<pre><code>rm -Rf working_folders
+git clone remote_git_address
+</code></pre></li>
+
+<li><p>Merge from remote and this <strong>keeps all</strong> your local changes</p>
+
+<pre><code>git pull 
 </code></pre>
-</li>
-<li>
-<p>Merge from remote and this <strong>keeps all</strong> your local changes</p>
-<pre><code> git pull 
-</code></pre>
-</li>
-</ol>
+
 <p>or</p>
-<pre><code>    git fetch
-    git merge
-</code></pre>
-<!-- raw HTML omitted -->
-<ol>
-<li>
-<p>Roll back all files to the latest commit and you <strong>lost all</strong> of your local changes not submitted</p>
-<pre><code> git reset --head HEAD
-</code></pre>
-</li>
-<li>
-<p>Roll back specific files to the latest commit and you <strong>keep all</strong> of other local changes not submitted</p>
-<pre><code> git checkout HEAD specific_file_name 
-</code></pre>
-</li>
-<li>
-<p>Roll back all files to the latest commit and you <strong>lost all</strong> of your local changes not submitted. Hoever, this will submit a new commit as revert</p>
-<pre><code> git revert HEAD
-</code></pre>
-</li>
+
+<pre><code>git fetch
+git merge
+</code></pre></li>
 </ol>
+
+<p><br></p>
+
+<h4 id="catchup-changes-from-local-commit">Catchup changes from local commit</h4>
+
+<ol>
+<li><p>Roll back all files to the latest commit and you <strong>lost all</strong> of your local changes not submitted</p>
+
+<pre><code>git reset --head HEAD
+</code></pre></li>
+
+<li><p>Roll back specific files to the latest commit and you <strong>keep all</strong> of other local changes not submitted</p>
+
+<pre><code>git checkout HEAD specific_file_name 
+</code></pre></li>
+
+<li><p>Roll back all files to the latest commit and you <strong>lost all</strong> of your local changes not submitted. Hoever, this will submit a new commit as revert</p>
+
+<pre><code>git revert HEAD
+</code></pre></li>
+</ol>
+
 <p><strong>Note:</strong></p>
+
 <ul>
 <li>Git fast forward: It means code commit submmited should be ordered by time. To resolve the &ldquo;non-fast-forward&rdquo; error, you can use command 2 or 3. <strong><code>git -f push</code></strong> is not recommended since it forces push to remote.</li>
 </ul>
@@ -242,7 +260,7 @@
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -457,7 +475,7 @@
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            <!-- raw HTML omitted -->
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -487,19 +505,6 @@
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/">
-                            
-                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
-                            
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
                             
                             <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
@@ -508,6 +513,19 @@
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                            
+                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
                     </div>
                 </div>
                 
@@ -524,7 +542,16 @@
 
             <h4>Contact</h4>
 
-            <!-- raw HTML omitted -->
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -569,17 +596,14 @@
     
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-40213017-3', 'auto');
-	
-	ga('send', 'pageview');
-}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

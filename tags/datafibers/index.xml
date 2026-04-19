@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>datafibers on DataFibers</title>
+    <title>Datafibers on DataFibers</title>
     <link>https://datafibers-community.github.io/tags/datafibers/</link>
-    <description>Recent content in datafibers on DataFibers</description>
+    <description>Recent content in Datafibers on DataFibers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
     <lastBuildDate>Fri, 22 Dec 2017 13:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/datafibers/index.xml" rel="self" type="application/rss+xml" />
@@ -41,8 +42,8 @@ Details Below is the list of key changes in this release.
       <guid>https://datafibers-community.github.io/blog/2016/12/29/2016-12-29-df-winter-release/</guid>
       <description>Summary Before new year, DataFibers has completed the winter release of 2016, which has more than 20+ changes requests applied. In this release, DataFibers is featured with new api document and landing pages. In addition, the preview version of stream processing (by flink) is ready.
 Details Below is the list of key changes in this release.
-  Integrated REST API Document to the DF Application
-  Added landing welcome page</description>
+ Integrated REST API Document to the DF Application
+ Added landing welcome page</description>
     </item>
     
   </channel>

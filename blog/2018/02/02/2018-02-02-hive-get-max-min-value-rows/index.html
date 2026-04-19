@@ -17,7 +17,7 @@
   <meta name="description" content="DataFibers enterprise open source data bus">	
   
 
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.30.2" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -183,8 +183,12 @@
                         <p class="text-muted text-uppercase mb-small text-right">February 2, 2018</p>
 
                         <div id="post-content">
-                          <!-- raw HTML omitted -->
+                          
+
+<p align="left"><img src="/img/banners/maxmin.jpg" width="400"></p>
+
 <p>Most of time, we need to find the max or min value of particular columns as well as other columns. For example, we have following <em>employee</em> table.</p>
+
 <pre><code>DESC employee;
 +---------------+------------------------------+----------+--+
 |   col_name    |          data_type           | comment  |
@@ -208,13 +212,20 @@
 | Steven   | Male    | 30   |
 +----------+---------+------+
 5 rows selected (75.887 seconds)
-</code></pre><h2 id="questions">Questions</h2>
+</code></pre>
+
+<h2 id="questions">Questions</h2>
+
 <blockquote>
 <p><strong>Who is oldest of males or females?</strong></p>
 </blockquote>
+
 <p>There are three solutions available.  <strong>Note</strong>, gender_age is a struct.</p>
+
 <h2 id="solution-1">Solution 1</h2>
+
 <p>The most frequent way of doing it is to to firstly find the MAX of age in each gender group and do SELF JOIN by matching gender and the MAX age as follows. This will create two stages of jobs and <strong>NOT</strong> efficient.</p>
+
 <pre><code>&gt; SELECT employee.gender_age.gender, employee.gender_age.age, name 
 &gt; FROM
 &gt; employee JOIN 
@@ -233,8 +244,12 @@
 | Male         | 35   | Will  |
 +--------------+------+-------+
 2 rows selected (94.043 seconds)
-</code></pre><h2 id="solution-2">Solution 2</h2>
+</code></pre>
+
+<h2 id="solution-2">Solution 2</h2>
+
 <p>Once Hive 0.11.0 introduced analytics functions, we can use ROW_NUMBER to solve the problem as well, but only trigger one MapReduce job.</p>
+
 <pre><code>&gt; SELECT gender, age, name
 &gt; FROM
 &gt; (
@@ -250,8 +265,12 @@
 | Male    | 35   | Will  |
 +---------+------+-------+
 2 rows selected (61.655 seconds)
-</code></pre><h2 id="solution-3">Solution 3</h2>
-<p>Actually, there is a better way of doing it as follows through <em><strong>MAX/MIN STRUCT</strong></em> function added by <strong><a href="https://issues.apache.org/jira/browse/HIVE-1128">Hive-1128</a></strong> since Hive 0.6.0, although it is not documented anywhere in the Hive Wiki.</p>
+</code></pre>
+
+<h2 id="solution-3">Solution 3</h2>
+
+<p>Actually, there is a better way of doing it as follows through <strong><em>MAX/MIN STRUCT</em></strong> function added by <strong><a href="https://issues.apache.org/jira/browse/HIVE-1128">Hive-1128</a></strong> since Hive 0.6.0, although it is not documented anywhere in the Hive Wiki.</p>
+
 <pre><code>&gt; SELECT gender_age.gender, 
 &gt; max(struct(gender_age.age, name)).col1 as age,
 &gt; max(struct(gender_age.age, name)).col2 as name
@@ -264,8 +283,12 @@
 | Male         | 35   | Will  |
 +--------------+------+-------+
 2 rows selected (47.659 seconds)
-</code></pre><p>The above job only trigger one MapReduce job. We still need to use the <em>Group By</em> clause. However, we can use <em><strong>MAX/MIN STRUCT</strong></em> function to show all other columns in the same line of <em>MAX/MIN</em> value. By default, <em>Group By</em> clause does not allow columns shown in the <em>SELECT</em> list if it is not <em>Group By</em> column.</p>
+</code></pre>
+
+<p>The above job only trigger one MapReduce job. We still need to use the <em>Group By</em> clause. However, we can use <strong><em>MAX/MIN STRUCT</em></strong> function to show all other columns in the same line of <em>MAX/MIN</em> value. By default, <em>Group By</em> clause does not allow columns shown in the <em>SELECT</em> list if it is not <em>Group By</em> column.</p>
+
 <h2 id="summary">Summary</h2>
+
 <p>The solution 3 is better in terms of performance, query complexity, and version supports at older Hive. The solution 2 is better and powerful since it does not require GROUP BY keywords. In addition, the solutions above are all working in Spark SQL.</p>
 
                         </div>
@@ -273,7 +296,7 @@
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -488,7 +511,7 @@
         <div class="col-md-4 col-sm-6">
             <h4>About us</h4>
 
-            <!-- raw HTML omitted -->
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -518,19 +541,6 @@
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://datafibers-community.github.io/blog/">
-                            
-                            <img src="https://datafibers-community.github.io/img/placeholder.png" class="img-responsive" alt="Blogs">
-                            
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="https://datafibers-community.github.io/blog/">Blogs</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
                         <a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">
                             
                             <img src="https://datafibers-community.github.io//img/banners/cloud_computing.png" class="img-responsive" alt="Leading Cloud Tech. Stack Comparison">
@@ -539,6 +549,19 @@
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="https://datafibers-community.github.io/blog/2023/07/01/2023-07-01-leading-cloud-technology-stack/">Leading Cloud Tech. Stack Comparison</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">
+                            
+                            <img src="https://datafibers-community.github.io//img/banners/k8s01.png" class="img-responsive" alt="Embracing Kubernetes, Goodbye Spring Cloud">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2021/06/19/2021-06-19-embracing-kubernetes-goodbye-spring-cloud-copy/">Embracing Kubernetes, Goodbye Spring Cloud</a></h5>
                     </div>
                 </div>
                 
@@ -555,7 +578,16 @@
 
             <h4>Contact</h4>
 
-            <!-- raw HTML omitted -->
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
 
             <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
 
@@ -600,17 +632,14 @@
     
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-40213017-3', 'auto');
-	
-	ga('send', 'pageview');
-}
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
 </script>
 
 <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
