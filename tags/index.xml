@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 Jan 2021 20:50:46 +0200</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Airflow</title>
-      <link>https://datafibers-community.github.io/tags/airflow/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/airflow/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Apache</title>
@@ -49,33 +40,6 @@
     </item>
     
     <item>
-      <title>Data Engineering</title>
-      <link>https://datafibers-community.github.io/tags/data-engineering/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/data-engineering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Pipelines</title>
-      <link>https://datafibers-community.github.io/tags/data-pipelines/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/data-pipelines/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Quality</title>
-      <link>https://datafibers-community.github.io/tags/data-quality/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/data-quality/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Databricks</title>
       <link>https://datafibers-community.github.io/tags/databricks/</link>
       <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
@@ -90,24 +54,6 @@
       <pubDate>Fri, 22 Dec 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/datafibers/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dbt</title>
-      <link>https://datafibers-community.github.io/tags/dbt/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/dbt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Etl</title>
-      <link>https://datafibers-community.github.io/tags/etl/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/etl/</guid>
       <description></description>
     </item>
     
@@ -157,15 +103,6 @@
     </item>
     
     <item>
-      <title>Idempotency</title>
-      <link>https://datafibers-community.github.io/tags/idempotency/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/idempotency/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>K8s</title>
       <link>https://datafibers-community.github.io/tags/k8s/</link>
       <pubDate>Sat, 19 Jun 2021 10:17:46 +0200</pubDate>
@@ -184,15 +121,6 @@
     </item>
     
     <item>
-      <title>Kubernetes</title>
-      <link>https://datafibers-community.github.io/tags/kubernetes/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Machine Learning</title>
       <link>https://datafibers-community.github.io/tags/machine-learning/</link>
       <pubDate>Sat, 10 Mar 2018 13:50:46 +0200</pubDate>
@@ -207,15 +135,6 @@
       <pubDate>Sun, 17 Jun 2018 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/nosql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Orchestration</title>
-      <link>https://datafibers-community.github.io/tags/orchestration/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/orchestration/</guid>
       <description></description>
     </item>
     

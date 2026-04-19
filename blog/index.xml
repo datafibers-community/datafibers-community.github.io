@@ -13,16 +13,6 @@
     
     
     <item>
-      <title>Beyond Basics: Mastering Idempotent Data Pipelines with Apache Airflow and dbt</title>
-      <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/</guid>
-      <description>Data engineering is the bedrock of any data-driven organization, transforming raw, often chaotic data into structured, reliable insights. While building simple ETL pipelines might seem straightforward, the real challenge emerges when dealing with production-grade requirements: robustness, scalability, observability, and crucially, idempotency.
-This deep-dive will move past the &amp;ldquo;Hello World&amp;rdquo; of data pipelines, exploring how Apache Airflow and dbt can be meticulously combined to construct resilient, idempotent workflows capable of handling failures, re-runs, and evolving business logic without corrupting your data.</description>
-    </item>
-    
-    <item>
       <title>Demystifying Databricks: Under the Hood of Delta Lake, Photon, and Unity Catalog</title>
       <link>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-demystifying-databricks-under-the-hood-of-delta-lake-photon-and-unity-catalog/</link>
       <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
