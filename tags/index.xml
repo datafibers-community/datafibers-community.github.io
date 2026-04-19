@@ -21,24 +21,6 @@
     </item>
     
     <item>
-      <title>apache</title>
-      <link>https://datafibers-community.github.io/tags/apache/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/apache/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>apache flink</title>
-      <link>https://datafibers-community.github.io/tags/apache-flink/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/apache-flink/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>data-engineering</title>
       <link>https://datafibers-community.github.io/tags/data-engineering/</link>
       <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
@@ -75,47 +57,11 @@
     </item>
     
     <item>
-      <title>deep dive</title>
-      <link>https://datafibers-community.github.io/tags/deep-dive/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/deep-dive/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>etl</title>
       <link>https://datafibers-community.github.io/tags/etl/</link>
       <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/etl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>event time</title>
-      <link>https://datafibers-community.github.io/tags/event-time/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/event-time/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>fault tolerance</title>
-      <link>https://datafibers-community.github.io/tags/fault-tolerance/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/fault-tolerance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>flink</title>
-      <link>https://datafibers-community.github.io/tags/flink/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/flink/</guid>
       <description></description>
     </item>
     
@@ -147,24 +93,6 @@
     </item>
     
     <item>
-      <title>stateful streaming</title>
-      <link>https://datafibers-community.github.io/tags/stateful-streaming/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/stateful-streaming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>stream processing</title>
-      <link>https://datafibers-community.github.io/tags/stream-processing/</link>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://datafibers-community.github.io/tags/stream-processing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>cloud</title>
       <link>https://datafibers-community.github.io/tags/cloud/</link>
       <pubDate>Sat, 01 Jul 2023 10:17:46 +0200</pubDate>
@@ -192,6 +120,15 @@
     </item>
     
     <item>
+      <title>apache</title>
+      <link>https://datafibers-community.github.io/tags/apache/</link>
+      <pubDate>Fri, 22 Jan 2021 20:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/apache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>big data</title>
       <link>https://datafibers-community.github.io/tags/big-data/</link>
       <pubDate>Sun, 15 Dec 2019 19:50:46 +0200</pubDate>
@@ -206,6 +143,15 @@
       <pubDate>Sat, 02 Nov 2019 19:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/kafka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flink</title>
+      <link>https://datafibers-community.github.io/tags/flink/</link>
+      <pubDate>Sat, 05 Oct 2019 19:50:46 +0200</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/flink/</guid>
       <description></description>
     </item>
     

@@ -8,16 +8,6 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/apache/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datafibers-community.github.io/tags/apache-flink/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-beyond-basics-mastering-idempotent-data-pipelines-with-apache-airflow-and-dbt/</loc>
     <lastmod>2026-04-19T00:00:00+00:00</lastmod>
   </url>
@@ -63,32 +53,7 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/categories/deep-dive/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datafibers-community.github.io/tags/deep-dive/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://datafibers-community.github.io/tags/etl/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datafibers-community.github.io/tags/event-time/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datafibers-community.github.io/tags/fault-tolerance/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datafibers-community.github.io/tags/flink/</loc>
     <lastmod>2026-04-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -108,22 +73,7 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/stateful-streaming/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datafibers-community.github.io/tags/stream-processing/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://datafibers-community.github.io/tags/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-unraveling-apache-flinks-core-state-checkpoints-and-event-time-internals/</loc>
     <lastmod>2026-04-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -168,6 +118,11 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/apache/</loc>
+    <lastmod>2021-01-22T20:50:46+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2021/01/22/2021-01-22-apache-superset/</loc>
     <lastmod>2021-01-22T20:50:46+02:00</lastmod>
   </url>
@@ -200,6 +155,11 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/kafka/</loc>
     <lastmod>2019-11-02T19:50:46+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/flink/</loc>
+    <lastmod>2019-10-05T19:50:46+02:00</lastmod>
   </url>
   
   <url>
