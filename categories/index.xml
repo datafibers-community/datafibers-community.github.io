@@ -22,11 +22,29 @@
     </item>
     
     <item>
+      <title>Cloud Native</title>
+      <link>https://datafibers-community.github.io/categories/cloud-native/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/cloud-native/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Data Engineering</title>
       <link>https://datafibers-community.github.io/categories/data-engineering/</link>
       <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/data-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devops</title>
+      <link>https://datafibers-community.github.io/categories/devops/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/devops/</guid>
       <description></description>
     </item>
     

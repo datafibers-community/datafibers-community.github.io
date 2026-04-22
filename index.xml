@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Harness Engineering: Deep Dive into Orchestration Logic with Harness CD</title>
+      <link>https://datafibers-community.github.io/blog/2026/04/22/2026-04-22-harness-engineering-deep-dive-into-orchestration-logic-with-harness-cd/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/04/22/2026-04-22-harness-engineering-deep-dive-into-orchestration-logic-with-harness-cd/</guid>
+      <description>In the realm of modern software delivery, orchestration is king. As deployments become more complex, involving microservices, multi-cloud environments, and intricate rollback strategies, simply pushing code is no longer sufficient. This is where Harness Engineering, specifically its Continuous Delivery (CD) module, shines. This deep-dive will move beyond surface-level introductions and explore the architectural patterns, practical challenges, and &amp;ldquo;under-the-hood&amp;rdquo; mechanics of how Harness CD empowers sophisticated deployment orchestration.
+Beyond the GUI: Understanding Harness CD&amp;rsquo;s Core Abstractions While Harness boasts a powerful UI, its true strength lies in the declarative definition of deployment strategies.</description>
+    </item>
     
     <item>
       <title>Demystifying Databricks: Under the Hood of Delta Lake, Photon, and Unity Catalog</title>

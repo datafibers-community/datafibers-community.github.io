@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/04/22/2026-04-22-harness-engineering-deep-dive-into-orchestration-logic-with-harness-cd/</loc>
+    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/04/19/2026-04-19-demystifying-databricks-under-the-hood-of-delta-lake-photon-and-unity-catalog/</loc>
     <lastmod>2026-04-19T00:00:00+00:00</lastmod>
   </url>
@@ -197,7 +202,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -210,6 +215,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/cloud/</loc>
     <lastmod>2023-07-01T10:17:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/cloud-native/</loc>
+    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -229,7 +240,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -242,6 +253,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/datafibers/</loc>
     <lastmod>2017-12-22T13:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/devops/</loc>
+    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -266,6 +283,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/hadoop/</loc>
     <lastmod>2018-01-10T13:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/harness-enginnering/</loc>
+    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
