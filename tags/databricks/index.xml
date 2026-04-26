@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 19 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/databricks/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Databricks Under the Hood: Dissecting the Lakehouse Engine for Performance and Governance</title>
+      <link>https://datafibers-community.github.io/blog/2026/04/26/2026-04-26-databricks-under-the-hood-dissecting-the-lakehouse-engine-for-performance-and-governance/</link>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/04/26/2026-04-26-databricks-under-the-hood-dissecting-the-lakehouse-engine-for-performance-and-governance/</guid>
+      <description>Databricks Under the Hood: Dissecting the Lakehouse Engine for Performance and Governance Databricks has established itself as a cornerstone of modern data architectures, unifying data warehousing and data lakes into the powerful &amp;ldquo;Lakehouse&amp;rdquo; paradigm. But beyond the marketing and high-level promises, what truly powers Databricks? How does it deliver on its guarantees of performance, reliability, and governance? This deep dive will pull back the curtain, exploring its core architecture, underlying technologies, and practical operational patterns.</description>
+    </item>
     
     <item>
       <title>Demystifying Databricks: Under the Hood of Delta Lake, Photon, and Unity Catalog</title>
