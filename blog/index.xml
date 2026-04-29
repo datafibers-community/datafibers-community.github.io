@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 26 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Beyond Basics: Architecting Robust RAG Pipelines for LLMs</title>
+      <link>https://datafibers-community.github.io/blog/2026/04/29/2026-04-29-beyond-basics-architecting-robust-rag-pipelines-for-llms/</link>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/04/29/2026-04-29-beyond-basics-architecting-robust-rag-pipelines-for-llms/</guid>
+      <description>The rise of Large Language Models (LLMs) has revolutionized how we interact with information. However, their inherent limitations—hallucinations, outdated knowledge, and lack of domain-specific context—often hinder their utility in enterprise applications. This is where Retrieval Augmented Generation (RAG) shines. Instead of a generic overview, this deep-dive explores the intricate architecture and critical engineering considerations required to build truly robust and performant RAG pipelines.
+The Fundamental Challenge: Bridging LLM Gaps LLMs excel at linguistic tasks, but their knowledge is frozen at their last training cutoff.</description>
+    </item>
     
     <item>
       <title>Databricks Under the Hood: Dissecting the Lakehouse Engine for Performance and Governance</title>
