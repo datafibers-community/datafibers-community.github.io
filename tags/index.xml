@@ -40,6 +40,15 @@
     </item>
     
     <item>
+      <title>Data Pipeline</title>
+      <link>https://datafibers-community.github.io/tags/data-pipeline/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/data-pipeline/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Databricks</title>
       <link>https://datafibers-community.github.io/tags/databricks/</link>
       <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
@@ -76,6 +85,15 @@
     </item>
     
     <item>
+      <title>Grok</title>
+      <link>https://datafibers-community.github.io/tags/grok/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/grok/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Hadoop</title>
       <link>https://datafibers-community.github.io/tags/hadoop/</link>
       <pubDate>Wed, 10 Jan 2018 13:50:46 +0200</pubDate>
@@ -103,6 +121,15 @@
     </item>
     
     <item>
+      <title>Hermes Agent</title>
+      <link>https://datafibers-community.github.io/tags/hermes-agent/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/hermes-agent/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Hive</title>
       <link>https://datafibers-community.github.io/tags/hive/</link>
       <pubDate>Wed, 30 May 2018 13:50:46 +0200</pubDate>
@@ -123,9 +150,18 @@
     <item>
       <title>Kafka</title>
       <link>https://datafibers-community.github.io/tags/kafka/</link>
-      <pubDate>Sat, 02 Nov 2019 19:50:46 +0200</pubDate>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/kafka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logs</title>
+      <link>https://datafibers-community.github.io/tags/logs/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/logs/</guid>
       <description></description>
     </item>
     
@@ -139,11 +175,29 @@
     </item>
     
     <item>
+      <title>Monitoring</title>
+      <link>https://datafibers-community.github.io/tags/monitoring/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Nosql</title>
       <link>https://datafibers-community.github.io/tags/nosql/</link>
       <pubDate>Sun, 17 Jun 2018 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/nosql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Observability</title>
+      <link>https://datafibers-community.github.io/tags/observability/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/observability/</guid>
       <description></description>
     </item>
     
@@ -180,6 +234,15 @@
       <pubDate>Wed, 28 Apr 2021 20:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/spark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Telemetry</title>
+      <link>https://datafibers-community.github.io/tags/telemetry/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/telemetry/</guid>
       <description></description>
     </item>
     

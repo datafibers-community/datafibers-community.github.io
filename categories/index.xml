@@ -67,11 +67,29 @@
     </item>
     
     <item>
+      <title>Distributed Systems</title>
+      <link>https://datafibers-community.github.io/categories/distributed-systems/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/distributed-systems/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Llms</title>
       <link>https://datafibers-community.github.io/categories/llms/</link>
       <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/llms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Observability  Monitoring</title>
+      <link>https://datafibers-community.github.io/categories/observability--monitoring/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/observability--monitoring/</guid>
       <description></description>
     </item>
     

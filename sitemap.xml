@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/05/03/2026-05-03-hermes-agent-unveiled-architectural-deep-dive-for-robust-data-telemetry/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/04/29/2026-04-29-beyond-basics-architecting-robust-rag-pipelines-for-llms/</loc>
     <lastmod>2026-04-29T00:00:00+00:00</lastmod>
   </url>
@@ -218,7 +223,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -255,8 +260,14 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/data-pipeline/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -285,6 +296,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/distributed-systems/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/flink/</loc>
     <lastmod>2019-10-05T19:50:46+02:00</lastmod>
     <priority>0</priority>
@@ -293,6 +310,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/git/</loc>
     <lastmod>2017-11-01T13:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/grok/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -315,6 +338,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/hermes-agent/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/hive/</loc>
     <lastmod>2018-05-30T13:50:46+02:00</lastmod>
     <priority>0</priority>
@@ -328,7 +357,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/kafka/</loc>
-    <lastmod>2019-11-02T19:50:46+02:00</lastmod>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -339,14 +368,38 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/logs/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/machine-learning/</loc>
     <lastmod>2018-03-10T13:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/monitoring/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/nosql/</loc>
     <lastmod>2018-06-17T13:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/observability/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/observability--monitoring/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -389,6 +442,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/</loc>
     <lastmod>2021-01-22T20:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/telemetry/</loc>
+    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

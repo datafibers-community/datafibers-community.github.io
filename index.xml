@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 May 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hermes Agent Unveiled: Architectural Deep Dive for Robust Data Telemetry</title>
+      <link>https://datafibers-community.github.io/blog/2026/05/03/2026-05-03-hermes-agent-unveiled-architectural-deep-dive-for-robust-data-telemetry/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/05/03/2026-05-03-hermes-agent-unveiled-architectural-deep-dive-for-robust-data-telemetry/</guid>
+      <description>The landscape of distributed systems demands robust and efficient telemetry collection. While many agents exist, the Hermes Agent distinguishes itself with a lightweight footprint, modular design, and a strong emphasis on reliability and security. This deep dive moves beyond a generic overview, peeling back the layers to explore Hermes Agent&amp;rsquo;s &amp;ldquo;under-the-hood&amp;rdquo; architecture, configuration patterns, and practical implementation challenges within the DataFibers ecosystem.
+The Hermes Philosophy: Input, Process, Output At its core, Hermes Agent operates on a simple, yet powerful, pipeline: Input sources data, Processors transform and filter it, and Outputs deliver it to various destinations.</description>
+    </item>
     
     <item>
       <title>Beyond Basics: Architecting Robust RAG Pipelines for LLMs</title>
