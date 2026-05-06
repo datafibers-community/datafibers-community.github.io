@@ -22,9 +22,18 @@
     </item>
     
     <item>
+      <title>Architecture</title>
+      <link>https://datafibers-community.github.io/tags/architecture/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Big Data</title>
       <link>https://datafibers-community.github.io/tags/big-data/</link>
-      <pubDate>Sun, 15 Dec 2019 19:50:46 +0200</pubDate>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/big-data/</guid>
       <description></description>
@@ -63,6 +72,15 @@
       <pubDate>Fri, 22 Dec 2017 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/datafibers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Distributed Computing</title>
+      <link>https://datafibers-community.github.io/tags/distributed-computing/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/distributed-computing/</guid>
       <description></description>
     </item>
     
@@ -202,6 +220,15 @@
     </item>
     
     <item>
+      <title>Performance Tuning</title>
+      <link>https://datafibers-community.github.io/tags/performance-tuning/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/performance-tuning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Rag</title>
       <link>https://datafibers-community.github.io/tags/rag/</link>
       <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
@@ -231,7 +258,7 @@
     <item>
       <title>Spark</title>
       <link>https://datafibers-community.github.io/tags/spark/</link>
-      <pubDate>Wed, 28 Apr 2021 20:50:46 +0200</pubDate>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/spark/</guid>
       <description></description>

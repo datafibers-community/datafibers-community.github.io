@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 03 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unveiling Spark&#39;s Core: A Deep Dive into its Execution and Optimization Engine</title>
+      <link>https://datafibers-community.github.io/blog/2026/05/06/2026-05-06-unveiling-sparks-core-a-deep-dive-into-its-execution-and-optimization-engine/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/05/06/2026-05-06-unveiling-sparks-core-a-deep-dive-into-its-execution-and-optimization-engine/</guid>
+      <description>Apache Spark has become the de-facto standard for large-scale data processing, analytics, and machine learning. While many interact with its intuitive APIs, a true mastery of Spark, and the ability to diagnose and optimize complex workloads, hinges on understanding its &amp;ldquo;under-the-hood&amp;rdquo; mechanics. This deep dive will pull back the curtain, exploring Spark&amp;rsquo;s architectural patterns, its sophisticated optimization engine, and critical aspects like shuffle management and fault tolerance.
+The Anatomy of a Spark Application Every Spark application runs as a set of independent processes on a cluster, coordinated by the SparkContext in the driver program.</description>
+    </item>
     
     <item>
       <title>Hermes Agent Unveiled: Architectural Deep Dive for Robust Data Telemetry</title>
