@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Technical Deep Dive on DataFibers</title>
+    <link>https://datafibers-community.github.io/categories/technical-deep-dive/</link>
+    <description>Recent content in Technical Deep Dive on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/categories/technical-deep-dive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Demystifying Open-CLAW: Under the Hood of Cloud Native Application Lifecycle Management</title>
+      <link>https://datafibers-community.github.io/blog/2026/05/10/2026-05-10-demystifying-open-claw-under-the-hood-of-cloud-native-application-lifecycle-management/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/05/10/2026-05-10-demystifying-open-claw-under-the-hood-of-cloud-native-application-lifecycle-management/</guid>
+      <description>The cloud-native landscape is a dizzying array of tools and abstractions. While Kubernetes orchestrates our containers, managing the full lifecycle of complex applications – from development to deployment, scaling, and upgrades – presents its own set of challenges. This is where Open-CLAW, a project aiming to standardize and simplify Cloud Application Lifecycle Automation, steps into the spotlight. Forget generic overviews; today, we&amp;rsquo;re diving deep into the architectural patterns and practical implementation hurdles of Open-CLAW.</description>
+    </item>
+    
+  </channel>
+</rss>

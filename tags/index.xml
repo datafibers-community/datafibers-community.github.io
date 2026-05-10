@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>Application Lifecycle Management</title>
+      <link>https://datafibers-community.github.io/tags/application-lifecycle-management/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/application-lifecycle-management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Architecture</title>
       <link>https://datafibers-community.github.io/tags/architecture/</link>
       <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
@@ -40,11 +49,29 @@
     </item>
     
     <item>
+      <title>Cicd</title>
+      <link>https://datafibers-community.github.io/tags/cicd/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/cicd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cloud</title>
       <link>https://datafibers-community.github.io/tags/cloud/</link>
       <pubDate>Sat, 01 Jul 2023 10:17:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloud Native</title>
+      <link>https://datafibers-community.github.io/tags/cloud-native/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/cloud-native/</guid>
       <description></description>
     </item>
     
@@ -175,6 +202,15 @@
     </item>
     
     <item>
+      <title>Kubernetes</title>
+      <link>https://datafibers-community.github.io/tags/kubernetes/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Logs</title>
       <link>https://datafibers-community.github.io/tags/logs/</link>
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
@@ -216,6 +252,15 @@
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/observability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Open Claw</title>
+      <link>https://datafibers-community.github.io/tags/open-claw/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/open-claw/</guid>
       <description></description>
     </item>
     
