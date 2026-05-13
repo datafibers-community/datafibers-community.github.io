@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hermes-Agent Under the Hood: Dissecting Its Architecture for Robust Data Ingestion</title>
+      <link>https://datafibers-community.github.io/blog/2026/05/13/2026-05-13-hermes-agent-under-the-hood-dissecting-its-architecture-for-robust-data-ingestion/</link>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/05/13/2026-05-13-hermes-agent-under-the-hood-dissecting-its-architecture-for-robust-data-ingestion/</guid>
+      <description>The landscape of modern distributed systems demands sophisticated solutions for collecting, processing, and routing operational data. Logs, metrics, and traces—often generated at immense scale across heterogeneous environments—are critical for observability. While many tools exist, the hermes-agent distinguishes itself by offering a highly configurable, resilient, and performant agent designed for these exact challenges.
+This isn&amp;rsquo;t a generic overview. We&amp;rsquo;re diving deep into the hermes-agent&amp;rsquo;s internal workings, exploring its architectural patterns, data flow mechanisms, and how it tackles the practical complexities of distributed data ingestion.</description>
+    </item>
     
     <item>
       <title>Demystifying Open-CLAW: Under the Hood of Cloud Native Application Lifecycle Management</title>
