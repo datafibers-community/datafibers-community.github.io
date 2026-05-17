@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/05/17/2026-05-17-demystifying-databricks-an-architectural-deep-dive-into-compute-delta-and-photon/</loc>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/05/13/2026-05-13-hermes-agent-under-the-hood-dissecting-its-architecture-for-robust-data-ingestion/</loc>
     <lastmod>2026-05-13T00:00:00+00:00</lastmod>
   </url>
@@ -250,7 +255,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -273,14 +278,14 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/cloud-native/</loc>
-    <lastmod>2026-05-10T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/categories/cloud-native/</loc>
+    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/categories/cloud-native/</loc>
-    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/tags/cloud-native/</loc>
+    <lastmod>2026-05-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -294,7 +299,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/data-engineering/</loc>
-    <lastmod>2026-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -306,13 +311,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/tags/databricks/</loc>
-    <lastmod>2026-04-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -341,13 +346,13 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/distributed-computing/</loc>
+    <loc>https://datafibers-community.github.io/categories/distributed-computing/</loc>
     <lastmod>2026-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/categories/distributed-computing/</loc>
+    <loc>https://datafibers-community.github.io/tags/distributed-computing/</loc>
     <lastmod>2026-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

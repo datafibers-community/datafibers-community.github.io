@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 26 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/data-engineering/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Demystifying Databricks: An Architectural Deep-Dive into Compute, Delta, and Photon</title>
+      <link>https://datafibers-community.github.io/blog/2026/05/17/2026-05-17-demystifying-databricks-an-architectural-deep-dive-into-compute-delta-and-photon/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/05/17/2026-05-17-demystifying-databricks-an-architectural-deep-dive-into-compute-delta-and-photon/</guid>
+      <description>Demystifying Databricks: An Architectural Deep-Dive into Compute, Delta, and Photon The modern data landscape demands agility, scalability, and unified governance. While many platforms promise these, Databricks stands out with its Lakehouse architecture, built upon Apache Spark and Delta Lake. But what truly makes it tick? Beyond the notebooks and pretty dashboards lies a sophisticated orchestration of compute, storage, and metadata management. This deep-dive will pull back the curtain, exploring the &amp;ldquo;under-the-hood&amp;rdquo; mechanisms that empower Databricks to deliver on its promise.</description>
+    </item>
     
     <item>
       <title>Databricks Under the Hood: Dissecting the Lakehouse Engine for Performance and Governance</title>
