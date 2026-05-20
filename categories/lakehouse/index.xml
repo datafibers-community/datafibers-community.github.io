@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lakehouse on DataFibers</title>
+    <link>https://datafibers-community.github.io/categories/lakehouse/</link>
+    <description>Recent content in Lakehouse on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Wed, 20 May 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/categories/lakehouse/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Demystifying Databricks: An Under-the-Hood Look at Clusters, Photon, and Delta Live Tables</title>
+      <link>https://datafibers-community.github.io/blog/2026/05/20/2026-05-20-demystifying-databricks-an-under-the-hood-look-at-clusters-photon-and-delta-live-tables/</link>
+      <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/05/20/2026-05-20-demystifying-databricks-an-under-the-hood-look-at-clusters-photon-and-delta-live-tables/</guid>
+      <description>Databricks has revolutionized how organizations approach data and AI, providing a unified platform built on Apache Spark. While its user-friendly notebooks and managed services are widely celebrated, true mastery—and the ability to troubleshoot, optimize, and build robust solutions—comes from understanding what&amp;rsquo;s happening beneath the surface. This deep dive into Databricks&amp;rsquo; core components will pull back the curtain, exploring its architecture, internal mechanisms, and advanced features, complete with practical code and configuration examples for the DataFibers Community.</description>
+    </item>
+    
+  </channel>
+</rss>
