@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 20 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Beyond the API: A Deep Dive into Spark&#39;s Execution Engine and Performance Puzzles</title>
+      <link>https://datafibers-community.github.io/blog/2026/05/24/2026-05-24-beyond-the-api-a-deep-dive-into-sparks-execution-engine-and-performance-puzzles/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/05/24/2026-05-24-beyond-the-api-a-deep-dive-into-sparks-execution-engine-and-performance-puzzles/</guid>
+      <description>Apache Spark has become the de-facto standard for large-scale data processing, thanks to its versatility and speed. But merely knowing its DataFrame API isn&amp;rsquo;t enough to harness its full potential. True mastery comes from understanding what happens under the hood: how Spark orchestrates computations, manages memory, and optimizes queries. This deep dive will pull back the curtain on Spark&amp;rsquo;s execution engine, exploring its architecture, common bottlenecks, and advanced tuning techniques.</description>
+    </item>
     
     <item>
       <title>Demystifying Databricks: An Under-the-Hood Look at Clusters, Photon, and Delta Live Tables</title>

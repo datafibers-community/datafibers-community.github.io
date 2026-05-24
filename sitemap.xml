@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/05/24/2026-05-24-beyond-the-api-a-deep-dive-into-sparks-execution-engine-and-performance-puzzles/</loc>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/05/20/2026-05-20-demystifying-databricks-an-under-the-hood-look-at-clusters-photon-and-delta-live-tables/</loc>
     <lastmod>2026-05-20T00:00:00+00:00</lastmod>
   </url>
@@ -242,7 +247,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/architecture/</loc>
-    <lastmod>2026-05-06T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -254,13 +259,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/big-data/</loc>
-    <lastmod>2026-05-06T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-05-20T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -310,7 +315,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/data-engineering/</loc>
-    <lastmod>2026-05-20T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -322,7 +327,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-05-20T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -341,6 +346,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/datafibers-community/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/deep-dive/</loc>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -496,7 +507,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/performance-tuning/</loc>
-    <lastmod>2026-05-06T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -532,7 +543,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/spark/</loc>
-    <lastmod>2026-05-06T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
