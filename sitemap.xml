@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/05/31/2026-05-31-demystifying-azure-networking-beyond-the-basics-with-vnet-peering-and-private-endpoints/</loc>
+    <lastmod>2026-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/05/24/2026-05-24-beyond-the-api-a-deep-dive-into-sparks-execution-engine-and-performance-puzzles/</loc>
     <lastmod>2026-05-24T00:00:00+00:00</lastmod>
   </url>
@@ -258,6 +263,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/azure-cloud/</loc>
+    <lastmod>2026-05-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/big-data/</loc>
     <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -265,7 +276,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -306,6 +317,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/cloud-networking/</loc>
+    <lastmod>2026-05-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/community/</loc>
   </url>
   
@@ -327,7 +344,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
