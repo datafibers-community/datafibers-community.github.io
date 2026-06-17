@@ -94,6 +94,15 @@
     </item>
     
     <item>
+      <title>Data Streaming</title>
+      <link>https://datafibers-community.github.io/tags/data-streaming/</link>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/data-streaming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Databricks</title>
       <link>https://datafibers-community.github.io/tags/databricks/</link>
       <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
@@ -126,6 +135,15 @@
       <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/distributed-computing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Distributed Systems</title>
+      <link>https://datafibers-community.github.io/tags/distributed-systems/</link>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/distributed-systems/</guid>
       <description></description>
     </item>
     
@@ -213,7 +231,7 @@
     <item>
       <title>Kafka</title>
       <link>https://datafibers-community.github.io/tags/kafka/</link>
-      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/kafka/</guid>
       <description></description>
@@ -243,6 +261,15 @@
       <pubDate>Sat, 10 Mar 2018 13:50:46 +0200</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Messaging</title>
+      <link>https://datafibers-community.github.io/tags/messaging/</link>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/messaging/</guid>
       <description></description>
     </item>
     

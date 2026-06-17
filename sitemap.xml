@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/06/17/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics/</loc>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/05/31/2026-05-31-demystifying-azure-networking-beyond-the-basics-with-vnet-peering-and-private-endpoints/</loc>
     <lastmod>2026-05-31T00:00:00+00:00</lastmod>
   </url>
@@ -257,6 +262,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/architecture/</loc>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/categories/article/</loc>
     <lastmod>2019-12-15T19:50:46+02:00</lastmod>
     <priority>0</priority>
@@ -269,6 +280,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/backend-development/</loc>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/big-data/</loc>
     <lastmod>2026-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -276,7 +293,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-05-31T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -343,8 +360,14 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/data-streaming/</loc>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-05-31T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -393,6 +416,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/distributed-computing/</loc>
     <lastmod>2026-05-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/distributed-systems/</loc>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -458,7 +487,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/kafka/</loc>
-    <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -489,6 +518,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/machine-learning/</loc>
     <lastmod>2018-03-10T13:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/messaging/</loc>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

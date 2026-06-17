@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 31 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unpacking Kafka&#39;s Internals: A Deep Dive into Its Core Mechanics</title>
+      <link>https://datafibers-community.github.io/blog/2026/06/17/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics/</link>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/06/17/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics/</guid>
+      <description>Unpacking Kafka&amp;rsquo;s Internals: A Deep Dive into Its Core Mechanics Introduction Kafka isn&amp;rsquo;t just a message queue; it&amp;rsquo;s a distributed streaming platform designed for high-throughput, low-latency, and fault-tolerant data ingestion. While many understand its basic publish-subscribe model, its true power lies in its meticulously engineered &amp;ldquo;under-the-hood&amp;rdquo; mechanisms. This post will peel back the layers, exploring the core architectural components, data distribution, replication, and the guarantees it provides.
+The Foundation: Brokers, Topics, and Partitions At its heart, a Kafka cluster consists of one or more brokers (servers).</description>
+    </item>
     
     <item>
       <title>Demystifying Azure Networking: Beyond the Basics with VNet Peering and Private Endpoints</title>
