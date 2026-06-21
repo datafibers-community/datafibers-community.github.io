@@ -220,6 +220,15 @@
     </item>
     
     <item>
+      <title>Information Retrieval</title>
+      <link>https://datafibers-community.github.io/tags/information-retrieval/</link>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/information-retrieval/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>K8s</title>
       <link>https://datafibers-community.github.io/tags/k8s/</link>
       <pubDate>Sat, 19 Jun 2021 10:17:46 +0200</pubDate>
@@ -243,6 +252,15 @@
       <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Llm</title>
+      <link>https://datafibers-community.github.io/tags/llm/</link>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/llm/</guid>
       <description></description>
     </item>
     
@@ -279,6 +297,15 @@
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Natural Language Processing</title>
+      <link>https://datafibers-community.github.io/tags/natural-language-processing/</link>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/natural-language-processing/</guid>
       <description></description>
     </item>
     
@@ -321,7 +348,7 @@
     <item>
       <title>Rag</title>
       <link>https://datafibers-community.github.io/tags/rag/</link>
-      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/rag/</guid>
       <description></description>
@@ -360,6 +387,15 @@
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/telemetry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vector Databases</title>
+      <link>https://datafibers-community.github.io/tags/vector-databases/</link>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/vector-databases/</guid>
       <description></description>
     </item>
     

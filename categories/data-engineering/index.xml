@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 24 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/data-engineering/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Demystifying RAG: Beyond the Hype - A Deep Dive into Retrieval Augmented Generation</title>
+      <link>https://datafibers-community.github.io/blog/2026/06/21/2026-06-21-demystifying-rag-beyond-the-hype---a-deep-dive-into-retrieval-augmented-generation/</link>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/06/21/2026-06-21-demystifying-rag-beyond-the-hype---a-deep-dive-into-retrieval-augmented-generation/</guid>
+      <description>Retrieval Augmented Generation (RAG) has become the buzzword of LLM applications. But peel back the marketing gloss, and you&amp;rsquo;ll find a sophisticated architecture addressing core limitations of large language models: their static knowledge and propensity for hallucination. This deep dive will cut through the jargon and explore the nitty-gritty of how RAG works, its architectural patterns, and the practical challenges of implementation.
+The Fundamental Problem: LLMs as Knowledge Silos LLMs are trained on massive datasets, but this knowledge is frozen at the time of training.</description>
+    </item>
     
     <item>
       <title>Beyond the API: A Deep Dive into Spark&#39;s Execution Engine and Performance Puzzles</title>

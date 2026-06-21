@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/06/21/2026-06-21-demystifying-rag-beyond-the-hype---a-deep-dive-into-retrieval-augmented-generation/</loc>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/06/17/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics/</loc>
     <lastmod>2026-06-17T00:00:00+00:00</lastmod>
   </url>
@@ -274,6 +279,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/artificial-intelligence/</loc>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/azure-cloud/</loc>
     <lastmod>2026-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -293,7 +304,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -349,7 +360,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/data-engineering/</loc>
-    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -367,7 +378,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -480,6 +491,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/information-retrieval/</loc>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/k8s/</loc>
     <lastmod>2021-06-19T10:17:46+02:00</lastmod>
     <priority>0</priority>
@@ -500,6 +517,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/lakehouse/</loc>
     <lastmod>2026-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/llm/</loc>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -530,6 +553,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/monitoring/</loc>
     <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/natural-language-processing/</loc>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -565,7 +594,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/rag/</loc>
-    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -636,6 +665,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/tutorial/</loc>
     <lastmod>2017-07-01T13:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/vector-databases/</loc>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
