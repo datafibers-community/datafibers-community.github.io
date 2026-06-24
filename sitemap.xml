@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/06/24/2026-06-24-spark-deep-dive-unraveling-the-magic-of-catalyst-tungsten-and-beyond/</loc>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/06/21/2026-06-21-demystifying-rag-beyond-the-hype---a-deep-dive-into-retrieval-augmented-generation/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url>
@@ -262,7 +267,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/architecture/</loc>
-    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -298,13 +303,19 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/big-data/</loc>
-    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/catalyst/</loc>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -378,7 +389,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -588,7 +599,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/performance-tuning/</loc>
-    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -623,8 +634,14 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/shuffling/</loc>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/spark/</loc>
-    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -637,6 +654,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/technical-deep-dive/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/technical-guides/</loc>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -660,6 +683,12 @@
   
   <url>
     <loc>https://datafibers-community.github.io/training/</loc>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/tungsten/</loc>
+    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

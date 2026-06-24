@@ -33,7 +33,7 @@
     <item>
       <title>Architecture</title>
       <link>https://datafibers-community.github.io/tags/architecture/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/architecture/</guid>
       <description></description>
@@ -51,9 +51,18 @@
     <item>
       <title>Big Data</title>
       <link>https://datafibers-community.github.io/tags/big-data/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/big-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Catalyst</title>
+      <link>https://datafibers-community.github.io/tags/catalyst/</link>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/catalyst/</guid>
       <description></description>
     </item>
     
@@ -339,7 +348,7 @@
     <item>
       <title>Performance Tuning</title>
       <link>https://datafibers-community.github.io/tags/performance-tuning/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/performance-tuning/</guid>
       <description></description>
@@ -373,9 +382,18 @@
     </item>
     
     <item>
+      <title>Shuffling</title>
+      <link>https://datafibers-community.github.io/tags/shuffling/</link>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/shuffling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Spark</title>
       <link>https://datafibers-community.github.io/tags/spark/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/spark/</guid>
       <description></description>
@@ -387,6 +405,15 @@
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/telemetry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tungsten</title>
+      <link>https://datafibers-community.github.io/tags/tungsten/</link>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/tungsten/</guid>
       <description></description>
     </item>
     

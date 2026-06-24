@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 24 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jun 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spark Deep Dive: Unraveling the Magic of Catalyst, Tungsten, and Beyond</title>
+      <link>https://datafibers-community.github.io/blog/2026/06/24/2026-06-24-spark-deep-dive-unraveling-the-magic-of-catalyst-tungsten-and-beyond/</link>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/06/24/2026-06-24-spark-deep-dive-unraveling-the-magic-of-catalyst-tungsten-and-beyond/</guid>
+      <description>Apache Spark has become the de facto standard for big data processing, but many developers interact with it purely through its high-level APIs like DataFrames and Spark SQL without truly understanding the intricate machinery humming beneath. This post isn&amp;rsquo;t another &amp;lsquo;What is Spark?&amp;rsquo; introduction; instead, we&amp;rsquo;ll peel back the layers to explore Spark&amp;rsquo;s core architecture, optimization engines, and common performance challenges, arming you with the knowledge to troubleshoot and tune your Spark applications like a pro.</description>
+    </item>
     
     <item>
       <title>Beyond the API: A Deep Dive into Spark&#39;s Execution Engine and Performance Puzzles</title>
