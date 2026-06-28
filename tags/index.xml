@@ -150,7 +150,7 @@
     <item>
       <title>Distributed Systems</title>
       <link>https://datafibers-community.github.io/tags/distributed-systems/</link>
-      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/distributed-systems/</guid>
       <description></description>
@@ -229,6 +229,15 @@
     </item>
     
     <item>
+      <title>Idempotence</title>
+      <link>https://datafibers-community.github.io/tags/idempotence/</link>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/idempotence/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Information Retrieval</title>
       <link>https://datafibers-community.github.io/tags/information-retrieval/</link>
       <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
@@ -249,7 +258,7 @@
     <item>
       <title>Kafka</title>
       <link>https://datafibers-community.github.io/tags/kafka/</link>
-      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/kafka/</guid>
       <description></description>
@@ -270,6 +279,15 @@
       <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/llm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Log Compaction</title>
+      <link>https://datafibers-community.github.io/tags/log-compaction/</link>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/log-compaction/</guid>
       <description></description>
     </item>
     
@@ -396,6 +414,15 @@
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/spark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Streaming</title>
+      <link>https://datafibers-community.github.io/tags/streaming/</link>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/streaming/</guid>
       <description></description>
     </item>
     

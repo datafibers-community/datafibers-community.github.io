@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/</loc>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/06/24/2026-06-24-spark-deep-dive-unraveling-the-magic-of-catalyst-tungsten-and-beyond/</loc>
     <lastmod>2026-06-24T00:00:00+00:00</lastmod>
   </url>
@@ -260,6 +265,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/apache-kafka/</loc>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/application-lifecycle-management/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -309,7 +320,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -371,7 +382,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/data-engineering/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -389,7 +400,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-06-24T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -443,7 +454,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/distributed-systems/</loc>
-    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -502,6 +513,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/idempotence/</loc>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/information-retrieval/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -515,7 +532,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/kafka/</loc>
-    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -540,6 +557,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/llms/</loc>
     <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/log-compaction/</loc>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -642,6 +665,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/spark/</loc>
     <lastmod>2026-06-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/streaming/</loc>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

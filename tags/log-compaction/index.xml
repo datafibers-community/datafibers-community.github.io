@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Log Compaction on DataFibers</title>
+    <link>https://datafibers-community.github.io/tags/log-compaction/</link>
+    <description>Recent content in Log Compaction on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Sun, 28 Jun 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/tags/log-compaction/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kafka&#39;s Unseen Engine: Deep Dive into Log Compaction and Idempotence</title>
+      <link>https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/</link>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/</guid>
+      <description>Beyond the Basics: Unraveling Kafka&amp;rsquo;s Log Compaction and Idempotence Welcome back to the DataFibers Community! Today, we&amp;rsquo;re ditching the superficial &amp;ldquo;what is Kafka&amp;rdquo; and plunging into the intricate mechanics that make it a robust and reliable distributed streaming platform. We&amp;rsquo;ll explore two powerful, yet often misunderstood, features: Log Compaction and Idempotent Producers. These aren&amp;rsquo;t just buzzwords; they are critical for building fault-tolerant and efficient data pipelines.
+The Heart of the Matter: Kafka&amp;rsquo;s Log Structure Before we dive into compaction and idempotence, let&amp;rsquo;s refresh our understanding of Kafka&amp;rsquo;s fundamental data structure: the log.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>Apache Kafka</title>
+      <link>https://datafibers-community.github.io/categories/apache-kafka/</link>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/apache-kafka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Architecture</title>
       <link>https://datafibers-community.github.io/categories/architecture/</link>
       <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
@@ -87,7 +96,7 @@
     <item>
       <title>Data Engineering</title>
       <link>https://datafibers-community.github.io/categories/data-engineering/</link>
-      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/data-engineering/</guid>
       <description></description>
