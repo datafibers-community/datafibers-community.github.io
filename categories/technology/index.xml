@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 13 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Demystifying Apache Spark: Under the Hood of its Distributed Architecture</title>
+      <link>https://datafibers-community.github.io/blog/2026/07/01/2026-07-01-demystifying-apache-spark-under-the-hood-of-its-distributed-architecture/</link>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/07/01/2026-07-01-demystifying-apache-spark-under-the-hood-of-its-distributed-architecture/</guid>
+      <description>Apache Spark has cemented its position as a cornerstone in the big data ecosystem, lauded for its speed, ease of use, and versatility. While many developers are familiar with its high-level APIs like map, reduce, and filter, the true power and elegance of Spark lie in its sophisticated, deeply optimized execution engine. This deep-dive explores Spark&amp;rsquo;s internal architecture, its core abstractions, the magic of the Catalyst Optimizer and Tungsten Engine, and crucial performance considerations that transform a basic Spark job into a highly efficient distributed application.</description>
+    </item>
     
     <item>
       <title>Hermes-Agent Under the Hood: Dissecting Its Architecture for Robust Data Ingestion</title>
