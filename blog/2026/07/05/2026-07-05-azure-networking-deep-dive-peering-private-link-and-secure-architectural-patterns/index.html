@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="datafibers, big data, streaming">	
+  
+
+  
+  <meta name="description" content="DataFibers enterprise open source data bus">	
+  
+
+  <meta name="generator" content="Hugo 0.30.2" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="https://datafibers-community.github.io/css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="https://datafibers-community.github.io/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="https://datafibers-community.github.io/css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="https://datafibers-community.github.io/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="https://datafibers-community.github.io/img/apple-touch-icon.png" />
+  
+
+  <link href="https://datafibers-community.github.io/css/owl.carousel.css" rel="stylesheet">
+  <link href="https://datafibers-community.github.io/css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
+
+  
+  <meta property="og:title" content="Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2026/07/05/2026-07-05-azure-networking-deep-dive-peering-private-link-and-secure-architectural-patterns//" />
+  <meta property="og:image" content="img/logo.png" />
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="https://datafibers-community.github.io/">
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">Home</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="http://github.com/datafibers-community/df_data_service/releases/latest">Download</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/community/">Community</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/training/">Training</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">Contact</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">July 5, 2026</p>
+
+                        <div id="post-content">
+                          
+
+<p>Building robust and secure cloud infrastructure in Azure heavily relies on a deep understanding of its networking capabilities. While creating a Virtual Network (VNet) and subnet might seem straightforward, the true power and complexity lie in interconnecting these networks, enforcing granular security, and securely integrating Platform-as-a-Service (PaaS) offerings without exposing them to the public internet.</p>
+
+<p>This deep dive will go beyond the basics, exploring the &ldquo;under-the-hood&rdquo; mechanics of Azure VNet Peering, User-Defined Routes (UDRs), Network Security Groups (NSGs), and the transformative Azure Private Link service. We&rsquo;ll uncover architectural patterns, practical implementation challenges, and command-line walk-throughs to equip you with the knowledge to design and troubleshoot highly secure and performant Azure networks.</p>
+
+<h2 id="1-azure-virtual-networks-vnets-the-foundation-revisited">1. Azure Virtual Networks (VNets): The Foundation Revisited</h2>
+
+<p>At its core, an Azure VNet provides logical isolation for your resources, defining a private IP address space (CIDR block). While familiar, it&rsquo;s crucial to appreciate how subnets, service endpoints, and subnet delegation play into advanced scenarios.</p>
+
+<p><strong>Under-the-Hood: Network Segmentation and Routing</strong></p>
+
+<p>Azure automatically creates a system route table for every subnet, enabling traffic flow within the VNet, to the internet (via a default route <code>0.0.0.0/0</code>), and to Azure services. This implicit routing is powerful but often needs explicit overrides for complex architectures.</p>
+
+<h3 id="practical-tip-cidr-planning-is-paramount">Practical Tip: CIDR Planning is Paramount</h3>
+
+<p>Poor IP address planning leads to costly re-architectures. Always plan for growth, potential mergers, and VNet peering requirements where overlapping CIDRs are a showstopper.</p>
+
+<pre><code class="language-bash"># Example: Creating a VNet with a /16 CIDR and a few subnets
+az network vnet create \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'vnet-hub-prod' \
+    --address-prefix '10.10.0.0/16' \
+    --location 'eastus'
+
+az network vnet subnet create \
+    --resource-group 'rg-networking-deepdive' \
+    --vnet-name 'vnet-hub-prod' \
+    --name 'snet-dmz' \
+    --address-prefix '10.10.1.0/24'
+
+az network vnet subnet create \
+    --resource-group 'rg-networking-deepdive' \
+    --vnet-name 'vnet-hub-prod' \
+    --name 'snet-firewall' \
+    --address-prefix '10.10.2.0/24' \
+    --delegations 'Microsoft.ContainerInstance/containerGroups'
+</code></pre>
+
+<p>Notice the <code>delegations</code> parameter. This allows specific Azure services (like Azure Container Instances or Azure SQL Managed Instance) to inject resources directly into your subnet, granting them VNet-level access and enforcing VNet-native network security.</p>
+
+<h2 id="2-vnet-peering-extending-your-private-network-seamlessly">2. VNet Peering: Extending Your Private Network Seamlessly</h2>
+
+<p>VNet peering allows you to connect two Azure Virtual Networks, enabling resources in both VNets to communicate with each other as if they were in the same network. This is fundamental for building hub-spoke topologies or connecting separate application environments.</p>
+
+<p><strong>Under-the-Hood: Microsoft&rsquo;s Backbone Connection</strong></p>
+
+<p>When you peer two VNets, Azure establishes a direct logical connection over its high-speed, low-latency global backbone network. Critically:</p>
+
+<ul>
+<li><strong>No Gateway Required</strong>: Peered VNets communicate directly; traffic doesn&rsquo;t traverse VPN gateways or firewalls unless explicitly routed. This means better performance and lower cost compared to gateway-based connectivity for VNet-to-VNet.</li>
+<li><strong>No NAT</strong>: Traffic between peered VNets uses private IP addresses, eliminating network address translation (NAT). This simplifies troubleshooting and improves security.</li>
+<li><strong>Non-Transitive</strong>: This is a key limitation. If VNet A is peered with VNet B, and VNet B is peered with VNet C, VNet A cannot directly communicate with VNet C. Traffic must explicitly route through B. This often necessitates UDRs and NVAs in hub-spoke designs.</li>
+</ul>
+
+<h3 id="architectural-pattern-hub-spoke-topology">Architectural Pattern: Hub-Spoke Topology</h3>
+
+<p>This is the most common use case for VNet peering. A central &ldquo;hub&rdquo; VNet hosts shared services like firewalls (NVAs), VPN gateways, and monitoring tools. &ldquo;Spoke&rdquo; VNets host application workloads and peer with the hub. This centralizes security and connectivity management.</p>
+
+<pre><code class="language-mermaid">graph LR
+    subgraph Hub VNet (10.10.0.0/16)
+        FW[Azure Firewall / NVA]
+        GW(VPN Gateway)
+        FW --&gt; snet_firewall[Firewall Subnet]
+        GW --&gt; snet_gateway[Gateway Subnet]
+    end
+
+    subgraph Spoke VNet A (10.20.0.0/16)
+        AppA[VM/AKS App A]
+        DBA[SQL DB A]
+        AppA &lt;--&gt; DBA
+    end
+
+    subgraph Spoke VNet B (10.30.0.0/16)
+        AppB[VM/AKS App B]
+        DBB[SQL DB B]
+        AppB &lt;--&gt; DBB
+    end
+
+    FW &lt;--- Hub_Spoke_A(VNet Peering) ---&gt; AppA
+    FW &lt;--- Hub_Spoke_B(VNet Peering) ---&gt; AppB
+
+    style Hub_Spoke_A fill:#f9f,stroke:#333,stroke-width:2px,color:#fff,font-weight:bold
+    style Hub_Spoke_B fill:#f9f,stroke:#333,stroke-width:2px,color:#fff,font-weight:bold
+
+    AppA -- Traffic to Hub/Other Spokes --&gt; Hub_Spoke_A
+    AppB -- Traffic to Hub/Other Spokes --&gt; Hub_Spoke_B
+</code></pre>
+
+<p><strong>CLI Walk-through: Creating and Peering VNets</strong></p>
+
+<p>First, create the spoke VNet:</p>
+
+<pre><code class="language-bash">az network vnet create \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'vnet-spoke-app' \
+    --address-prefix '10.20.0.0/16' \
+    --location 'eastus'
+
+az network vnet subnet create \
+    --resource-group 'rg-networking-deepdive' \
+    --vnet-name 'vnet-spoke-app' \
+    --name 'snet-app' \
+    --address-prefix '10.20.1.0/24'
+</code></pre>
+
+<p>Now, peer <code>vnet-hub-prod</code> with <code>vnet-spoke-app</code>. This requires two peering links, one initiated from each VNet:</p>
+
+<pre><code class="language-bash"># Peering from Hub to Spoke
+az network vnet peering create \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'hub-to-spoke-app' \
+    --vnet-name 'vnet-hub-prod' \
+    --remote-vnet 'vnet-spoke-app' \
+    --allow-vnet-access \
+    --allow-forwarded-traffic \
+    --allow-gateway-transit # If Spoke needs to use Hub's gateway
+
+# Peering from Spoke to Hub
+az network vnet peering create \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'spoke-app-to-hub' \
+    --vnet-name 'vnet-spoke-app' \
+    --remote-vnet 'vnet-hub-prod' \
+    --allow-vnet-access \
+    --use-remote-gateways # If Spoke is using Hub's gateway
+</code></pre>
+
+<p><code>--allow-forwarded-traffic</code> is crucial for the hub VNet to route traffic from one spoke to another via an NVA in the hub. <code>--allow-gateway-transit</code> and <code>--use-remote-gateways</code> are for using a VPN/ExpressRoute gateway in one VNet from a peered VNet.</p>
+
+<h2 id="3-user-defined-routes-udrs-and-network-virtual-appliances-nvas">3. User-Defined Routes (UDRs) and Network Virtual Appliances (NVAs)</h2>
+
+<p>While VNet peering connects networks, UDRs dictate how traffic flows <em>within</em> and <em>between</em> those networks, especially when you introduce Network Virtual Appliances (NVAs) like Azure Firewall, Barracuda WAF, or third-party firewalls.</p>
+
+<p><strong>Under-the-Hood: Overriding System Routes</strong></p>
+
+<p>Azure&rsquo;s Software Defined Network (SDN) automatically provides system routes. UDRs allow you to override these default behaviors. When a packet leaves a subnet, Azure first checks the UDRs associated with that subnet. If a matching route is found, it takes precedence over system routes.</p>
+
+<p>Common use cases:
+*   <strong>Forced Tunneling</strong>: Directing all internet-bound traffic through an NVA in a hub VNet or an on-premises firewall.
+*   <strong>Inter-Spoke Routing</strong>: Forcing traffic between spoke VNets to go through an NVA in the hub, circumventing the non-transitive nature of VNet peering.</p>
+
+<p><strong>CLI Walk-through: Creating a UDR for Forced Tunneling</strong></p>
+
+<p>Let&rsquo;s assume <code>vnet-hub-prod</code> has a firewall NVA in <code>10.10.2.4</code> and all traffic from <code>vnet-spoke-app</code> needs to pass through it.</p>
+
+<pre><code class="language-bash"># Create a route table
+az network route-table create \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'rt-spoke-app-to-firewall' \
+    --location 'eastus'
+
+# Add a route to direct all 0.0.0.0/0 traffic to the NVA's private IP
+az network route-table route create \
+    --resource-group 'rg-networking-deepdive' \
+    --route-table-name 'rt-spoke-app-to-firewall' \
+    --name 'to-firewall-internet' \
+    --address-prefix '0.0.0.0/0' \
+    --next-hop-type VirtualAppliance \
+    --next-hop-ip-address '10.10.2.4' # IP of your NVA in the hub VNet
+
+# Associate the route table to the spoke's application subnet
+az network vnet subnet update \
+    --resource-group 'rg-networking-deepdive' \
+    --vnet-name 'vnet-spoke-app' \
+    --name 'snet-app' \
+    --route-table 'rt-spoke-app-to-firewall'
+</code></pre>
+
+<h3 id="challenge-asymmetric-routing">Challenge: Asymmetric Routing</h3>
+
+<p>When using NVAs, be vigilant about asymmetric routing. If traffic goes <em>through</em> an NVA on the way out but bypasses it on the way back (e.g., return traffic takes the default system route directly to the source), the NVA might drop the return packets, leading to connection failures. Ensure UDRs correctly route both ingress and egress traffic through your NVAs.</p>
+
+<h2 id="4-network-security-groups-nsgs-granular-layer-4-security">4. Network Security Groups (NSGs): Granular Layer 4 Security</h2>
+
+<p>NSGs are stateful packet filtering firewalls that control inbound and outbound traffic at the network interface (NIC) or subnet level. While they operate at Layer 4 (TCP/UDP), understanding their processing order is critical for effective security.</p>
+
+<p><strong>Under-the-Hood: Rule Evaluation Logic</strong></p>
+
+<p>When traffic attempts to enter or leave a NIC or subnet, NSG rules are evaluated in order of priority (lowest number first).</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Property</th>
+<th align="left">Description</th>
+<th align="left">Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><strong>Priority</strong></td>
+<td align="left">A number between 100 and 4096. Lower numbers are processed first.</td>
+<td align="left">N/A (user-defined)</td>
+</tr>
+
+<tr>
+<td align="left"><strong>Source/Destination</strong></td>
+<td align="left">IP addresses, CIDR blocks, Service Tags, Application Security Groups (ASGs).</td>
+<td align="left">Any/Any</td>
+</tr>
+
+<tr>
+<td align="left"><strong>Source/Destination Port Ranges</strong></td>
+<td align="left">Specific ports or ranges (e.g., 80, 443, 22-25).</td>
+<td align="left">Any</td>
+</tr>
+
+<tr>
+<td align="left"><strong>Protocol</strong></td>
+<td align="left">TCP, UDP, ICMP, ESP, AH, or Any.</td>
+<td align="left">Any</td>
+</tr>
+
+<tr>
+<td align="left"><strong>Direction</strong></td>
+<td align="left">Inbound or Outbound.</td>
+<td align="left">N/A</td>
+</tr>
+
+<tr>
+<td align="left"><strong>Action</strong></td>
+<td align="left">Allow or Deny.</td>
+<td align="left">N/A</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Rule Processing Order:</strong></p>
+
+<ol>
+<li><strong>Inbound Traffic</strong>: If an NSG is associated with both the NIC and the subnet, rules are processed as follows:
+
+<ul>
+<li><strong>Subnet NSG</strong>: Inbound rules are evaluated. If <code>Deny</code>, traffic is dropped. If <code>Allow</code>, it proceeds to the NIC NSG.</li>
+<li><strong>NIC NSG</strong>: Inbound rules are evaluated. If <code>Deny</code>, traffic is dropped. If <code>Allow</code>, traffic is allowed to the VM/resource.</li>
+</ul></li>
+<li><strong>Outbound Traffic</strong>: Similar to inbound, but in reverse order:
+
+<ul>
+<li><strong>NIC NSG</strong>: Outbound rules are evaluated.</li>
+<li><strong>Subnet NSG</strong>: Outbound rules are evaluated.</li>
+</ul></li>
+</ol>
+
+<p><strong>Default Security Rules</strong>: Every NSG comes with several default rules that cannot be deleted but can be overridden by higher-priority custom rules. These include allowing VNet-to-VNet traffic (if peered), allowing Azure Load Balancer probe traffic, and denying all inbound internet traffic.</p>
+
+<p><strong>Challenge: Diagnosing NSG Issues</strong></p>
+
+<p>Misconfigured NSGs are a common cause of connectivity problems. Use Azure Network Watcher&rsquo;s &ldquo;IP flow verify&rdquo; tool to diagnose which NSG rule (if any) is blocking traffic.</p>
+
+<pre><code class="language-bash"># Example: Verify if port 22 is open to a VM's NIC
+az network watcher test-ip-flow \
+    --direction Inbound \
+    --protocol TCP \
+    --local-port 22 \
+    --remote-port 3389 \
+    --local-ip 10.20.1.4 \
+    --remote-ip 1.2.3.4 \
+    --resource-id '/subscriptions/{subId}/resourceGroups/{rgName}/providers/Microsoft.Compute/virtualMachines/{vmName}/networkInterfaces/{nicName}'
+</code></pre>
+
+<h2 id="5-azure-private-link-secure-private-access-to-paas-services">5. Azure Private Link: Secure Private Access to PaaS Services</h2>
+
+<p>Historically, connecting securely to Azure PaaS services (like Azure SQL Database, Storage Accounts, or Key Vault) from a VNet often involved Service Endpoints or exposing services to the public internet, requiring complex firewall rules. Azure Private Link revolutionizes this by bringing PaaS services directly into your VNet.</p>
+
+<p><strong>The Problem with Public Endpoints:</strong></p>
+
+<p>Even with Service Endpoints, traffic to PaaS services still traverses Microsoft&rsquo;s public backbone, albeit within Azure&rsquo;s network perimeter. More importantly, DNS resolution for public endpoints resolves to public IPs, which can lead to misconfigurations or require intricate routing for private access.</p>
+
+<p><strong>Under-the-Hood: Private Endpoints as VNIC proxies</strong></p>
+
+<p>Azure Private Link works by creating a <strong>Private Endpoint</strong> for your PaaS resource. A Private Endpoint is essentially a Network Interface (NIC) that is provisioned into a specific subnet within your VNet. This NIC is then privately mapped to a specific instance of your Azure PaaS service.</p>
+
+<p>Key aspects:</p>
+
+<ul>
+<li><strong>Private IP Address</strong>: The Private Endpoint receives a private IP address from your chosen VNet subnet.</li>
+<li><strong>Service-specific FQDN</strong>: The PaaS service&rsquo;s FQDN (e.g., <code>mystorageaccount.blob.core.windows.net</code>) now resolves to this private IP address from within your VNet.</li>
+<li><strong>Azure Backbone</strong>: All traffic to the PaaS service via the Private Endpoint stays entirely within the Microsoft backbone, never traversing the public internet.</li>
+<li><strong>DNS Integration</strong>: This is the most crucial part. For your VNet to correctly resolve the PaaS service&rsquo;s public FQDN to its new private IP, you <strong>must</strong> integrate with Azure Private DNS Zones.</li>
+</ul>
+
+<h3 id="architectural-pattern-centralized-private-link">Architectural Pattern: Centralized Private Link</h3>
+
+<p>You can deploy Private Endpoints in a dedicated subnet (e.g., in your hub VNet) and leverage VNet peering to allow spoke VNets to access PaaS services privately. This centralizes the management of Private Endpoints and Private DNS Zones.</p>
+
+<pre><code class="language-mermaid">graph LR
+    subgraph Hub VNet (10.10.0.0/16)
+        snet_private_endpoint[Private Endpoint Subnet]
+        pdns[Azure Private DNS Zone]
+        vm_hub[Mgmt VM]
+    end
+
+    subgraph Spoke VNet (10.20.0.0/16)
+        app_vm[App VM]
+    end
+
+    subgraph Azure PaaS Services
+        sa(Storage Account)
+        sql(SQL DB)
+    end
+
+    app_vm -- VNet Peering --&gt; vm_hub
+    app_vm -- Queries --&gt; pdns
+
+    sa -- Private Link Service --&gt; pe_sa(Private Endpoint for SA)
+    sql -- Private Link Service --&gt; pe_sql(Private Endpoint for SQL)
+
+    pe_sa --&gt; snet_private_endpoint
+    pe_sql --&gt; snet_private_endpoint
+
+    snet_private_endpoint &lt;--- Link VNet ---&gt; pdns
+
+    app_vm -- Private IP Resolution --&gt; pe_sa
+    app_vm -- Private IP Resolution --&gt; pe_sql
+
+    style pe_sa fill:#bbf,stroke:#333,stroke-width:2px
+    style pe_sql fill:#bbf,stroke:#333,stroke-width:2px
+</code></pre>
+
+<p><strong>CLI Walk-through: Private Link for a Storage Account</strong></p>
+
+<p>First, we need a Storage Account and a VNet with a subnet for Private Endpoints.</p>
+
+<pre><code class="language-bash"># Assume 'rg-networking-deepdive', 'vnet-hub-prod' exist.
+# Create a subnet specifically for Private Endpoints (no NSG or UDRs needed here usually)
+
+az network vnet subnet create \
+    --resource-group 'rg-networking-deepdive' \
+    --vnet-name 'vnet-hub-prod' \
+    --name 'snet-private-endpoints' \
+    --address-prefix '10.10.5.0/24' \
+    --disable-private-endpoint-network-policies true # IMPORTANT
+
+# Create a storage account
+az storage account create \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'mydatadiverstorage1234' \
+    --location 'eastus' \
+    --sku 'Standard_LRS' \
+    --kind 'StorageV2'
+
+# Create a Private Endpoint for the Storage Account
+az network private-endpoint create \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'pe-mydatadiverstorage' \
+    --vnet-name 'vnet-hub-prod' \
+    --subnet 'snet-private-endpoints' \
+    --private-connection-resource-id $(az storage account show --name 'mydatadiverstorage1234' --query 'id' -o tsv) \
+    --group-id 'blob' \
+    --connection-name 'storageaccountprivateconnection'
+</code></pre>
+
+<p><strong>DNS Integration with Azure Private DNS Zones:</strong></p>
+
+<p>This is the critical last step. You need a Private DNS Zone linked to your VNet to override the public DNS resolution of the storage account&rsquo;s FQDN (e.g., <code>mydatadiverstorage1234.blob.core.windows.net</code>) to the private IP of the Private Endpoint.</p>
+
+<pre><code class="language-bash"># Create a Private DNS Zone for blob storage
+az network private-dns zone create \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'privatelink.blob.core.windows.net'
+
+# Link the Private DNS Zone to your VNet
+az network private-dns link vnet create \
+    --resource-group 'rg-networking-deepdive' \
+    --zone-name 'privatelink.blob.core.windows.net' \
+    --name 'vnet-hub-prod-link' \
+    --virtual-network 'vnet-hub-prod' \
+    --registration-enabled false
+
+# Create a DNS record set for the Private Endpoint
+# Get the private IP of the Private Endpoint first
+PE_IP=$(az network private-endpoint show \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'pe-mydatadiverstorage' \
+    --query 'networkInterfaces[0].ipConfigurations[0].privateIpAddress' -o tsv)
+
+# Get the FQDN of the Storage Account, e.g., 'mydatadiverstorage1234.blob.core.windows.net'
+STORAGE_FQDN=$(az storage account show \
+    --resource-group 'rg-networking-deepdive' \
+    --name 'mydatadiverstorage1234' \
+    --query 'primaryEndpoints.blob' -o tsv | cut -d'/' -f3)
+
+# The actual DNS name to create is the first part of the FQDN
+DNS_RECORD_NAME=$(echo $STORAGE_FQDN | cut -d'.' -f1)
+
+az network private-dns record-set a create \
+    --resource-group 'rg-networking-deepdive' \
+    --zone-name 'privatelink.blob.core.windows.net' \
+    --name $DNS_RECORD_NAME
+
+az network private-dns record-set a add-record \
+    --resource-group 'rg-networking-deepdive' \
+    --zone-name 'privatelink.blob.core.windows.net' \
+    --record-set-name $DNS_RECORD_NAME \
+    --ipv4-address $PE_IP
+</code></pre>
+
+<p><strong>Important Note</strong>: Azure now automatically creates the DNS <code>A</code> records in the linked Private DNS Zone if you enable the <code>private-dns-zone</code> argument during <code>az network private-endpoint create</code> or use the <code>--manual-private-link-service-connection</code> flag and then enable auto-approval. Always check the latest documentation for the most streamlined approach.</p>
+
+<h3 id="challenge-dns-resolution-is-key">Challenge: DNS Resolution is Key</h3>
+
+<p>Without correct DNS configuration (i.e., the PaaS FQDN resolving to the Private Endpoint&rsquo;s private IP within your VNet), your applications will attempt to connect to the public endpoint, leading to connectivity issues or public exposure. Ensure your VNet&rsquo;s DNS servers are configured to resolve via the Private DNS Zone (which happens automatically when the zone is linked).</p>
+
+<h2 id="6-best-practices-and-troubleshooting">6. Best Practices and Troubleshooting</h2>
+
+<ul>
+<li><strong>Centralized Network Management</strong>: For large deployments, consolidate networking resources (Hub VNet, Azure Firewall, DNS) in a dedicated subscription and resource group managed by a central networking team.</li>
+<li><strong>IP Address Management (IPAM)</strong>: Use a robust IPAM solution. Overlapping CIDRs are incredibly difficult to resolve post-deployment.</li>
+<li><strong>Network Watcher</strong>: Leverage IP Flow Verify, Next Hop, and Connection Monitor for real-time diagnostics and troubleshooting connectivity issues.</li>
+<li><strong>Automation</strong>: Use Azure Resource Manager (ARM) templates, Bicep, or Terraform to define and deploy your network infrastructure consistently and idempotently.</li>
+<li><strong>Security Review</strong>: Regularly review NSG rules and UDRs. Overly permissive rules or incorrect UDRs can create security gaps.</li>
+<li><strong>Private Link DNS</strong>: Double-check DNS configuration whenever deploying Private Endpoints. This is the #1 troubleshooting area.</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Azure networking offers a rich set of capabilities to build highly secure, scalable, and resilient cloud infrastructures. By understanding the underlying mechanisms of VNet peering, UDRs, NSGs, and Azure Private Link, you can move beyond basic connectivity to design sophisticated architectural patterns like hub-spoke models and achieve true private connectivity for your critical PaaS services. Mastering these concepts is not just about configuration; it&rsquo;s about enabling secure and efficient communication across your entire Azure estate.</p>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="https://datafibers-community.github.io/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="https://datafibers-community.github.io/categories/ai-engineering">ai-engineering (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/apache-kafka">apache-kafka (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/architecture">architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/artificial-intelligence">artificial-intelligence (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/azure-networking">azure-networking (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/backend-development">backend-development (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-architecture">cloud-architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-computing">cloud-computing (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-native">cloud-native (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-networking">cloud-networking (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/data-engineering">data-engineering (7)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/datafibers-community">datafibers-community (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/devops">devops (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/digest">digest (10)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/distributed-computing">distributed-computing (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/distributed-systems">distributed-systems (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/lakehouse">lakehouse (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/llms">llms (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/observability--monitoring">observability--monitoring (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/release">release (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/review">review (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technical-deep-dive">technical-deep-dive (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technical-guides">technical-guides (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technology">technology (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/training">training (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/tutorial">tutorial (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/application-lifecycle-management"><i class="fa fa-tags"></i> application-lifecycle-management</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/architecture"><i class="fa fa-tags"></i> architecture</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/azure-cloud"><i class="fa fa-tags"></i> azure-cloud</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/catalyst"><i class="fa fa-tags"></i> catalyst</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cicd"><i class="fa fa-tags"></i> cicd</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cloud"><i class="fa fa-tags"></i> cloud</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cloud-native"><i class="fa fa-tags"></i> cloud-native</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-pipeline"><i class="fa fa-tags"></i> data-pipeline</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-streaming"><i class="fa fa-tags"></i> data-streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/databricks"><i class="fa fa-tags"></i> databricks</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-dive"><i class="fa fa-tags"></i> deep-dive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/distributed-computing"><i class="fa fa-tags"></i> distributed-computing</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/distributed-systems"><i class="fa fa-tags"></i> distributed-systems</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/git"><i class="fa fa-tags"></i> git</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/grok"><i class="fa fa-tags"></i> grok</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hadoop"><i class="fa fa-tags"></i> hadoop</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/harness-enginnering"><i class="fa fa-tags"></i> harness-enginnering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hbase"><i class="fa fa-tags"></i> hbase</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hermes-agent"><i class="fa fa-tags"></i> hermes-agent</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/idempotence"><i class="fa fa-tags"></i> idempotence</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/information-retrieval"><i class="fa fa-tags"></i> information-retrieval</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/llm"><i class="fa fa-tags"></i> llm</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/log-compaction"><i class="fa fa-tags"></i> log-compaction</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/logs"><i class="fa fa-tags"></i> logs</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/messaging"><i class="fa fa-tags"></i> messaging</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/monitoring"><i class="fa fa-tags"></i> monitoring</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/natural-language-processing"><i class="fa fa-tags"></i> natural-language-processing</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/observability"><i class="fa fa-tags"></i> observability</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/open-claw"><i class="fa fa-tags"></i> open-claw</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/performance-tuning"><i class="fa fa-tags"></i> performance-tuning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/rag"><i class="fa fa-tags"></i> rag</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/scala"><i class="fa fa-tags"></i> scala</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/shuffling"><i class="fa fa-tags"></i> shuffling</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/streaming"><i class="fa fa-tags"></i> streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/telemetry"><i class="fa fa-tags"></i> telemetry</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/tungsten"><i class="fa fa-tags"></i> tungsten</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/vector-databases"><i class="fa fa-tags"></i> vector-databases</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/07/05/2026-07-05-azure-networking-deep-dive-peering-private-link-and-secure-architectural-patterns/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-07-05-azure-networking-deep-dive-peering-private-link-and-secure-architectural-patterns.jpg" class="img-responsive" alt="Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/07/05/2026-07-05-azure-networking-deep-dive-peering-private-link-and-secure-architectural-patterns/">Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/07/01/2026-07-01-demystifying-apache-spark-under-the-hood-of-its-distributed-architecture/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-07-01-demystifying-apache-spark-under-the-hood-of-its-distributed-architecture.jpg" class="img-responsive" alt="Demystifying Apache Spark: Under the Hood of its Distributed Architecture">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/07/01/2026-07-01-demystifying-apache-spark-under-the-hood-of-its-distributed-architecture/">Demystifying Apache Spark: Under the Hood of its Distributed Architecture</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence.jpg" class="img-responsive" alt="Kafka&#39;s Unseen Engine: Deep Dive into Log Compaction and Idempotence">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/">Kafka&#39;s Unseen Engine: Deep Dive into Log Compaction and Idempotence</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+            <h4>Contact</h4>
+
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2026, DataFibers all rights reserved.</p>
+            
+            <p class="pull-right">
+                Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+                
+
+                Powered by <a href="https://gohugo.io/">Hugo</a>
+                <img src="https://visitor-badge.laobi.icu/badge?page_id=datafibers-community.github.io&left_text=Visits"
+                    alt="Visitor Badge" style="vertical-align: middle; margin-left: 10px;" />
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+    </div>
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCksU3IZTuUK6fA-doQUfQ4KcYm7mB_vlk&v=3.exp"></script>
+
+<script src="https://datafibers-community.github.io/js/hpneo.gmaps.js"></script>
+<script src="https://datafibers-community.github.io/js/gmaps.init.js"></script>
+<script src="https://datafibers-community.github.io/js/front.js"></script>
+
+
+<script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
+  </body>
+</html>

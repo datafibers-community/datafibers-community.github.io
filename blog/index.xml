@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 01 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns</title>
+      <link>https://datafibers-community.github.io/blog/2026/07/05/2026-07-05-azure-networking-deep-dive-peering-private-link-and-secure-architectural-patterns/</link>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/07/05/2026-07-05-azure-networking-deep-dive-peering-private-link-and-secure-architectural-patterns/</guid>
+      <description>Building robust and secure cloud infrastructure in Azure heavily relies on a deep understanding of its networking capabilities. While creating a Virtual Network (VNet) and subnet might seem straightforward, the true power and complexity lie in interconnecting these networks, enforcing granular security, and securely integrating Platform-as-a-Service (PaaS) offerings without exposing them to the public internet.
+This deep dive will go beyond the basics, exploring the &amp;ldquo;under-the-hood&amp;rdquo; mechanics of Azure VNet Peering, User-Defined Routes (UDRs), Network Security Groups (NSGs), and the transformative Azure Private Link service.</description>
+    </item>
     
     <item>
       <title>Demystifying Apache Spark: Under the Hood of its Distributed Architecture</title>

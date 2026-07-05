@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/07/05/2026-07-05-azure-networking-deep-dive-peering-private-link-and-secure-architectural-patterns/</loc>
+    <lastmod>2026-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/07/01/2026-07-01-demystifying-apache-spark-under-the-hood-of-its-distributed-architecture/</loc>
     <lastmod>2026-07-01T00:00:00+00:00</lastmod>
   </url>
@@ -307,7 +312,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/azure-cloud/</loc>
-    <lastmod>2026-05-31T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/azure-networking/</loc>
+    <lastmod>2026-07-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -325,7 +336,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -350,6 +361,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/cloud/</loc>
     <lastmod>2023-07-01T10:17:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/cloud-architecture/</loc>
+    <lastmod>2026-07-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -405,7 +422,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

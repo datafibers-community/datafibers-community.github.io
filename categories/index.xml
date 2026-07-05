@@ -58,11 +58,29 @@
     </item>
     
     <item>
+      <title>Azure Networking</title>
+      <link>https://datafibers-community.github.io/categories/azure-networking/</link>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/azure-networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Backend Development</title>
       <link>https://datafibers-community.github.io/categories/backend-development/</link>
       <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/backend-development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloud Architecture</title>
+      <link>https://datafibers-community.github.io/categories/cloud-architecture/</link>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/cloud-architecture/</guid>
       <description></description>
     </item>
     
