@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Distributed Systems</title>
+  <title>Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
 
   
-  <meta property="og:title" content="Distributed Systems" />
+  <meta property="og:title" content="Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/tags/distributed-systems//" />
+  <meta property="og:url" content="/blog/2026/07/08/2026-07-08-hermes-agent-under-the-hood-of-a-resilient-distributed-event-ingestion-system//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://datafibers-community.github.io/">
-                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Distributed Systems logo" height="50" class="hidden-xs hidden-sm">
-                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Distributed Systems logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Distributed Systems - go to homepage</span>
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Distributed Systems</h1>
+                <h1>Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System</h1>
             </div>
         </div>
     </div>
@@ -173,93 +173,327 @@
 
         <div id="content">
             <div class="container">
+
                 <div class="row">
+
                     
 
-                    <div class="col-md-9" id="blog-listing-medium">
+                    <div class="col-md-9" id="blog-post">
 
+                        <p class="text-muted text-uppercase mb-small text-right">July 8, 2026</p>
+
+                        <div id="post-content">
+                          
+
+<p>The modern data landscape is a torrent of events, flowing from countless sources to various analytical and operational sinks. Ensuring every single event is captured, processed, and delivered reliably, without loss or performance degradation, is a monumental challenge. Enter <strong>Hermes Agent</strong>: a robust, distributed event ingestion system designed to act as a resilient intermediary, buffering, processing, and delivering high volumes of events even in the face of network glitches, downstream backpressure, and system failures.</p>
+
+<p>This isn&rsquo;t a generic overview. We&rsquo;re diving deep into the architecture, the clever mechanics that make Hermes Agent tick, and the practical configurations that empower its reliability and performance.</p>
+
+<h2 id="the-core-problem-taming-the-event-deluge">The Core Problem: Taming the Event Deluge</h2>
+
+<p>Imagine a distributed system where thousands of microservices, IoT devices, or user interfaces are generating events continuously. These events need to reach Kafka topics, S3 buckets, analytical databases, or other backend systems. Direct ingestion often leads to:</p>
+
+<ol>
+<li><strong>Event Loss</strong>: During transient network issues, sink downtime, or application crashes.</li>
+<li><strong>Backpressure Overload</strong>: Slow downstream systems can lead to upstream systems grinding to a halt or dropping events.</li>
+<li><strong>Complex Configuration</strong>: Managing numerous connections, retries, and batching strategies across disparate sources and sinks.</li>
+</ol>
+
+<p>Hermes Agent steps in to solve these, acting as a smart, durable proxy. It decouples event producers from consumers, providing a reliable buffer and processing layer.</p>
+
+<h2 id="architectural-deep-dive-the-data-flow-pipeline">Architectural Deep Dive: The Data Flow Pipeline</h2>
+
+<p>At its heart, Hermes Agent is a modular pipeline. Events flow from configured <em>sources</em>, through an internal <em>processing and buffering</em> layer, and finally to <em>sinks</em>. This pipeline is designed for fault tolerance and efficiency.</p>
+
+<p>Let&rsquo;s visualize the high-level components and data flow:</p>
+
+<pre><code class="language-mermaid">graph TD
+    subgraph &quot;Hermes Agent Instance&quot;
+        Source[Source Connectors]
+        InternalBuffer(Internal Durable Buffer &amp; WAL)
+        Processor[Event Processor &amp; Batcher]
+        Sink[Sink Connectors]
+    end
+
+    Producer((Event Producers)) --&gt; Source
+    Source --&gt; InternalBuffer
+    InternalBuffer --&gt; Processor
+    Processor --&gt; Sink
+    Sink --&gt; Consumer((Event Consumers/Sinks))
+
+    style Producer fill:#aaffdd,stroke:#333,stroke-width:2px
+    style Consumer fill:#ddaaff,stroke:#333,stroke-width:2px
+    style Source fill:#cceeff,stroke:#333,stroke-width:2px
+    style InternalBuffer fill:#ffffcc,stroke:#333,stroke-width:2px
+    style Processor fill:#ffccff,stroke:#333,stroke-width:2px
+    style Sink fill:#e0ffc0,stroke:#333,stroke-width:2px
+
+    linkStyle 0 stroke:#0066cc,stroke-width:2px,fill:none;
+    linkStyle 1 stroke:#0066cc,stroke-width:2px,fill:none;
+    linkStyle 2 stroke:#0066cc,stroke-width:2px,fill:none;
+    linkStyle 3 stroke:#0066cc,stroke-width:2px,fill:none;
+
+    subgraph &quot;Control Plane Integration (Optional)&quot;
+        ConfigStore[Distributed Config Store (e.g., ZooKeeper/etcd)]
+        ManagementAPI[Management API/CLI]
+    end
+
+    ConfigStore -- Updates/Monitors --&gt; Source
+    ConfigStore -- Updates/Monitors --&gt; Sink
+    ManagementAPI -- Control/Status --&gt; InternalBuffer
+    ManagementAPI -- Control/Status --&gt; Processor
+
+    linkStyle 4 stroke:#666,stroke-width:1px,fill:none;
+    linkStyle 5 stroke:#666,stroke-width:1px,fill:none;
+    linkStyle 6 stroke:#666,stroke-width:1px,fill:none;
+    linkStyle 7 stroke:#666,stroke-width:1px,fill:none;
+</code></pre>
+
+<p>Let&rsquo;s break down each component:</p>
+
+<h3 id="1-source-connectors-the-ingress-gateway">1. Source Connectors: The Ingress Gateway</h3>
+
+<p>Sources are responsible for receiving events from various protocols and formats. Hermes Agent supports a pluggable architecture, allowing it to ingest from diverse systems.</p>
+
+<p><strong>Example: HTTP Source Configuration</strong></p>
+
+<p>This configuration snippet shows an HTTP source expecting JSON payloads. It defines the endpoint and basic security.</p>
+
+<pre><code class="language-yaml">sources:
+  - name: my-http-source
+    type: http
+    config:
+      port: 8080
+      path: /events
+      # Optional: Basic authentication credentials
+      auth_username: &quot;hermesuser&quot;
+      auth_password_env: &quot;HERMES_HTTP_PASS&quot;
+      # Max payload size to prevent OOM errors
+      max_payload_bytes: 1048576 # 1MB
+      # Headers to propagate (useful for tracing/context)
+      propagate_headers:
+        - &quot;X-Request-ID&quot;
+        - &quot;User-Agent&quot;
+</code></pre>
+
+<p>When <code>my-http-source</code> receives an event, it immediately writes it to Hermes Agent&rsquo;s internal buffer, acknowledging the request <em>only after durability is ensured</em>.</p>
+
+<h3 id="2-internal-durable-buffer-write-ahead-log-wal-the-heartbeat-of-reliability">2. Internal Durable Buffer &amp; Write-Ahead Log (WAL): The Heartbeat of Reliability</h3>
+
+<p>This is where Hermes Agent guarantees <strong>at-least-once delivery</strong>. Instead of holding events purely in memory, which is volatile, Hermes Agent employs a disk-backed queue, often implemented as a Write-Ahead Log (WAL) or a segmented log. Each incoming event is appended to this log on local disk.</p>
+
+<p><strong>Why is this critical?</strong></p>
+
+<ul>
+<li><strong>Process Crashes</strong>: If Hermes Agent crashes, upon restart, it can replay events from the last committed position in the WAL, ensuring no events are lost that were successfully acknowledged by the source.</li>
+<li><strong>Network Partition/Sink Unavailability</strong>: Events are safely buffered locally until the downstream sink becomes available.</li>
+<li><strong>Backpressure Handling</strong>: It provides a deep buffer, allowing producers to continue sending events even if sinks are temporarily slow.</li>
+</ul>
+
+<p><strong>Configuration Example: Buffer Settings</strong></p>
+
+<pre><code class="language-yaml">global:
+  data_dir: &quot;/var/lib/hermes-agent/data&quot; # Directory for WAL files
+  buffer_segment_size_mb: 128 # Each WAL segment is 128MB
+  max_buffer_segments: 1024 # Max 128GB total buffer on disk
+  flush_interval_ms: 100 # How often to fsync the WAL to disk
+</code></pre>
+
+<p>The <code>data_dir</code> is paramount. It determines where the persistent event log resides. <code>flush_interval_ms</code> balances latency and durability: lower values mean more frequent disk flushes (higher durability, potentially higher I/O) while higher values reduce I/O but increase the window for data loss in an abrupt crash.</p>
+
+<h3 id="3-event-processor-batcher-preparing-for-delivery">3. Event Processor &amp; Batcher: Preparing for Delivery</h3>
+
+<p>Before sending events to sinks, Hermes Agent can perform light-weight processing:</p>
+
+<ul>
+<li><strong>Batching</strong>: Grouping multiple events into a single payload to reduce network overhead and improve sink throughput.</li>
+<li><strong>Routing</strong>: Directing events to specific sinks based on event metadata or content.</li>
+<li><strong>Simple Transformations</strong>: Applying basic JSON path extractions, adding metadata, or filtering.</li>
+</ul>
+
+<p>This stage is crucial for optimizing delivery and can be configured per sink.</p>
+
+<h3 id="4-sink-connectors-the-egress-gateway-with-guarantees">4. Sink Connectors: The Egress Gateway with Guarantees</h3>
+
+<p>Sinks are responsible for pushing events to their final destinations. Like sources, sinks are pluggable, supporting various targets like Kafka, S3, databases, or even custom HTTP endpoints.</p>
+
+<p><strong>Reliability Mechanisms in Sinks:</strong></p>
+
+<ul>
+<li><strong>Retry Policies</strong>: If a sink operation fails (e.g., network timeout, service unavailable), Hermes Agent won&rsquo;t drop the event. Instead, it retries delivery with configurable backoff strategies (e.g., exponential backoff).</li>
+<li><strong>Dead-Letter Queues (DLQ)</strong>: For events that consistently fail after multiple retries, they can be moved to a DLQ (e.g., a separate Kafka topic or S3 bucket) for later investigation, preventing them from blocking the main pipeline.</li>
+<li><strong>Idempotency</strong>: While not fully managed by Hermes Agent, careful sink design (e.g., using event IDs for deduplication on the sink side) can complement Hermes&rsquo;s at-least-once guarantees to achieve effective exactly-once processing.</li>
+</ul>
+
+<p><strong>Example: Kafka Sink Configuration with Retries &amp; DLQ</strong></p>
+
+<pre><code class="language-yaml">sinks:
+  - name: my-kafka-sink
+    type: kafka
+    config:
+      brokers: &quot;kafka-broker-1:9092,kafka-broker-2:9092&quot;
+      topic: &quot;raw-events-topic&quot;
+      # Batching settings
+      batch_size_events: 1000 # Send batches of 1000 events
+      batch_size_bytes: 1048576 # Or 1MB, whichever comes first
+      batch_timeout_ms: 500 # Send after 500ms even if batch not full
+      # Retry policy
+      max_retries: 5
+      initial_retry_delay_ms: 1000 # 1 second
+      retry_multiplier: 2.0 # Exponential backoff: 1s, 2s, 4s, 8s, 16s
+      # Dead-letter queue
+      dead_letter_topic: &quot;raw-events-dlq&quot;
+      # Optional: Kafka producer specific settings
+      producer_config:
+        acks: &quot;all&quot;
+        linger.ms: 50
+</code></pre>
+
+<p>This configuration demonstrates robust delivery. If the Kafka brokers are temporarily unavailable, Hermes Agent will retry up to 5 times with exponential backoff. If all retries fail, the event is moved to <code>raw-events-dlq</code> instead of being dropped.</p>
+
+<h2 id="backpressure-management-preventing-overload">Backpressure Management: Preventing Overload</h2>
+
+<p>One of the most critical aspects of a robust ingestion system is its ability to handle backpressure. If a downstream sink slows down or becomes unavailable, Hermes Agent must prevent this from propagating upstream and affecting event producers.</p>
+
+<p>Hermes Agent manages backpressure primarily through its internal durable buffer. When a sink is slow:</p>
+
+<ol>
+<li><strong>Events accumulate in the WAL</strong>: The internal buffer grows, utilizing disk space.</li>
+<li><strong>Configurable High-Water Marks</strong>: Hermes Agent can be configured with thresholds. If the buffer size (in events or bytes) exceeds a certain level, it can trigger alarms.</li>
+<li><strong>Proactive Signaling (Optional)</strong>: In advanced setups, Hermes Agent might signal back to an orchestration layer or even back to source connectors (e.g., by returning HTTP 503s for HTTP sources) if its internal buffers are critically full and it can no longer guarantee durability.</li>
+</ol>
+
+<p>This layered approach ensures that event producers can continue sending data without being blocked by temporary downstream issues, at the cost of increased latency and disk usage within the agent.</p>
+
+<h2 id="monitoring-operability-keeping-an-eye-on-the-flow">Monitoring &amp; Operability: Keeping an Eye on the Flow</h2>
+
+<p>Running a distributed agent like Hermes requires deep visibility. Hermes Agent provides comprehensive metrics, logging, and health checks.</p>
+
+<p><strong>Metrics (Prometheus/Grafana)</strong></p>
+
+<p>Hermes Agent exposes a <code>/metrics</code> endpoint, typically in Prometheus format, providing crucial operational insights:</p>
+
+<ul>
+<li><code>hermes_source_events_received_total</code>: Total events ingested per source.</li>
+<li><code>hermes_sink_events_sent_total</code>: Total events successfully sent per sink.</li>
+<li><code>hermes_sink_events_failed_total</code>: Events failed to send per sink (before DLQ/retries).</li>
+<li><code>hermes_buffer_current_bytes</code>: Current size of the internal buffer on disk.</li>
+<li><code>hermes_buffer_oldest_event_age_seconds</code>: Latency indicator for buffered events.</li>
+<li><code>hermes_retries_count_total</code>: Number of retries attempted by sinks.</li>
+<li><code>hermes_dead_letter_queue_events_total</code>: Events sent to DLQ.</li>
+</ul>
+
+<p><strong>CLI for Status and Management</strong></p>
+
+<p>A command-line interface (CLI) can provide immediate operational insights:</p>
+
+<pre><code class="language-bash">hermes-agent status
+</code></pre>
+
+<p><strong>Example Output (Conceptual)</strong></p>
+
+<pre><code>Hermes Agent Status:
+  Version: 1.2.0
+  Uptime: 1d 5h 23m
+
+  Buffer (Global):
+    Current size: 1.2 GB / 128 GB (1% full)
+    Oldest event age: 15 seconds
+    Events in buffer: 1,523,123
+
+  Sources:
+    - my-http-source (HTTP)
+      Status: RUNNING
+      Events Received: 10,234,567
+      Current Rate: 1,200 events/sec
+
+  Sinks:
+    - my-kafka-sink (Kafka)
+      Status: RUNNING (Connected to kafka-broker-1:9092)
+      Events Sent: 10,234,500
+      Events Failed: 67 (all retried successfully)
+      Events to DLQ: 0
+      Current Rate: 1,190 events/sec
+      Pending Retries: 0
+</code></pre>
+
+<p>This CLI output provides a quick snapshot of the agent&rsquo;s health, its buffer status, and the operational metrics for each source and sink.</p>
+
+<h2 id="extensibility-custom-connectors">Extensibility: Custom Connectors</h2>
+
+<p>Hermes Agent&rsquo;s pluggable architecture is key to its adaptability. Developers can extend its capabilities by implementing custom source and sink connectors.</p>
+
+<p><strong>Conceptual Go Interface for a Sink Connector</strong></p>
+
+<pre><code class="language-go">package connector
+
+type SinkEvent struct {
+    ID       string
+    Payload  []byte
+    Metadata map[string]string
+}
+
+type SinkConnector interface {
+    // Init initializes the sink with its configuration.
+    Init(config map[string]interface{}) error
+
+    // Send attempts to send a batch of events.
+    // Returns the number of events successfully sent and an error if any.
+    // If an error occurs, Hermes Agent will retry the unsent events.
+    Send(events []SinkEvent) (int, error)
+
+    // Close shuts down the sink, releasing resources.
+    Close() error
+
+    // Name returns the unique name of the sink type.
+    Name() string
+}
+
+// A SourceConnector would have a similar interface, with a method like ReadEvents() (&lt;-chan Event, error)
+</code></pre>
+
+<p>This interface dictates the contract for any new sink. Implementing <code>Send</code> correctly, including error handling, is crucial for integrating with Hermes Agent&rsquo;s retry mechanisms. This design allows the core agent logic to remain stable while supporting a wide array of data systems.</p>
+
+<h2 id="practical-challenges-and-considerations">Practical Challenges and Considerations</h2>
+
+<ul>
+<li><strong>Resource Management</strong>: Hermes Agent utilizes disk I/O heavily for its WAL. Adequate SSDs are recommended. Memory usage scales with batching and internal processing, while CPU depends on transformation complexity.</li>
+<li><strong>Security</strong>: Ensure sources are authenticated (e.g., via API keys, basic auth) and sinks use secure connections (TLS/SSL) with appropriate authentication (e.g., Kafka SASL, S3 IAM roles).</li>
+<li><strong>Scalability</strong>: Hermes Agent instances are typically stateless with respect to each other (events don&rsquo;t typically flow between agents), allowing for horizontal scaling. Multiple Hermes Agent instances can run in parallel, each handling a subset of event producers or configured for specific ingestion tasks.</li>
+<li><strong>Configuration Management</strong>: In a large deployment, managing <code>hermes-agent.yaml</code> files across many instances can be complex. Integrating with a distributed configuration service (like Kubernetes ConfigMaps, Consul, ZooKeeper) is a common pattern.</li>
+</ul>
+
+<h2 id="conclusion-the-backbone-of-reliable-data-pipelines">Conclusion: The Backbone of Reliable Data Pipelines</h2>
+
+<p>Hermes Agent serves as a critical infrastructure component, transforming chaotic event streams into reliably delivered data. By deeply understanding its durable buffering, sophisticated retry mechanisms, and pluggable architecture, engineers can design and operate data pipelines that are resilient to real-world failures and scalable to immense volumes. It&rsquo;s not just about moving data; it&rsquo;s about guaranteeing its journey from source to insight, even when the path is bumpy.</p>
+
+                        </div>
                         
                         
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/">
-                                          
-                                          <img src="https://datafibers-community.github.io/img/banners/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/">Kafka&#39;s Unseen Engine: Deep Dive into Log Compaction and Idempotence</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/data-engineering">data engineering</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/"><i class="fa fa-calendar-o"></i> June 28, 2026</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Beyond the Basics: Unraveling Kafka&rsquo;s Log Compaction and Idempotence Welcome back to the DataFibers Community! Today, we&rsquo;re ditching the superficial &ldquo;what is Kafka&rdquo; and plunging into the intricate mechanics that make it a robust and reliable distributed streaming platform. We&rsquo;ll explore two powerful, yet often misunderstood, features: Log Compaction and Idempotent Producers. These aren&rsquo;t just buzzwords; they are critical for building fault-tolerant and efficient data pipelines.
-The Heart of the Matter: Kafka&rsquo;s Log Structure Before we dive into compaction and idempotence, let&rsquo;s refresh our understanding of Kafka&rsquo;s fundamental data structure: the log.</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2026/06/28/2026-06-28-kafkas-unseen-engine-deep-dive-into-log-compaction-and-idempotence/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="https://datafibers-community.github.io/blog/2026/06/17/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics/">
-                                          
-                                          <img src="https://datafibers-community.github.io/img/banners/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="https://datafibers-community.github.io/blog/2026/06/17/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics/">Unpacking Kafka&#39;s Internals: A Deep Dive into Its Core Mechanics</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          
-                                          
-                                          in <a href="https://datafibers-community.github.io/categories/architecture">architecture</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="https://datafibers-community.github.io/blog/2026/06/17/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics/"><i class="fa fa-calendar-o"></i> June 17, 2026</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">Unpacking Kafka&rsquo;s Internals: A Deep Dive into Its Core Mechanics Introduction Kafka isn&rsquo;t just a message queue; it&rsquo;s a distributed streaming platform designed for high-throughput, low-latency, and fault-tolerant data ingestion. While many understand its basic publish-subscribe model, its true power lies in its meticulously engineered &ldquo;under-the-hood&rdquo; mechanisms. This post will peel back the layers, exploring the core architectural components, data distribution, replication, and the guarantees it provides.
-The Foundation: Brokers, Topics, and Partitions At its heart, a Kafka cluster consists of one or more brokers (servers).</p>
-                                    <p class="read-more"><a href="https://datafibers-community.github.io/blog/2026/06/17/2026-06-17-unpacking-kafkas-internals-a-deep-dive-into-its-core-mechanics/" class="btn btn-template-main">Continue reading</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
                         
 
-                        <ul class="pager">
-                            
-                            <li class="previous disabled"><a href="#">&larr; Newer</a></li>
-                            
-
-                            
-                            <li class="next disabled"><a href="#">Older &rarr;</a></li>
-                            
-                        </ul>
                     </div>
                     
 
@@ -572,6 +806,7 @@ The Foundation: Brokers, Topics, and Partitions At its heart, a Kafka cluster co
 
                 </div>
                 
+
             </div>
             
         </div>
@@ -733,5 +968,6 @@ ga('send', 'pageview');
 <script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
 
 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
   </body>
 </html>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 05 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System</title>
+      <link>https://datafibers-community.github.io/blog/2026/07/08/2026-07-08-hermes-agent-under-the-hood-of-a-resilient-distributed-event-ingestion-system/</link>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/07/08/2026-07-08-hermes-agent-under-the-hood-of-a-resilient-distributed-event-ingestion-system/</guid>
+      <description>The modern data landscape is a torrent of events, flowing from countless sources to various analytical and operational sinks. Ensuring every single event is captured, processed, and delivered reliably, without loss or performance degradation, is a monumental challenge. Enter Hermes Agent: a robust, distributed event ingestion system designed to act as a resilient intermediary, buffering, processing, and delivering high volumes of events even in the face of network glitches, downstream backpressure, and system failures.</description>
+    </item>
     
     <item>
       <title>Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns</title>
