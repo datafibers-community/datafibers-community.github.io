@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unpacking Apache Spark: A Deep Dive into its Architectural Core</title>
+      <link>https://datafibers-community.github.io/blog/2026/07/12/2026-07-12-unpacking-apache-spark-a-deep-dive-into-its-architectural-core/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/07/12/2026-07-12-unpacking-apache-spark-a-deep-dive-into-its-architectural-core/</guid>
+      <description>Apache Spark has revolutionized big data processing, becoming an indispensable tool for data engineers and scientists alike. While many are familiar with its high-level APIs like DataFrames and Spark SQL, understanding the intricate mechanisms &amp;ldquo;under the hood&amp;rdquo; is crucial for building robust, performant, and scalable applications. This deep dive will pull back the curtain, exploring Spark&amp;rsquo;s architectural patterns, its sophisticated optimization engine, and the practical challenges of distributed execution.</description>
+    </item>
     
     <item>
       <title>Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System</title>
