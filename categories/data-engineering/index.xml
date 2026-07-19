@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jul 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/data-engineering/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unpacking the Databricks Lakehouse: A Deep Dive into Delta, Photon, and Unity Catalog</title>
+      <link>https://datafibers-community.github.io/blog/2026/07/19/2026-07-19-unpacking-the-databricks-lakehouse-a-deep-dive-into-delta-photon-and-unity-catalog/</link>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/07/19/2026-07-19-unpacking-the-databricks-lakehouse-a-deep-dive-into-delta-photon-and-unity-catalog/</guid>
+      <description>Databricks has rapidly evolved from a managed Spark platform to the cornerstone of many modern data architectures, often termed the &amp;lsquo;Lakehouse&amp;rsquo;. While the high-level benefits—simplicity, scale, and collaboration—are well-known, the true power lies in its meticulously engineered components working in concert. This deep dive aims to peel back the layers, exploring the &amp;ldquo;under-the-hood&amp;rdquo; mechanisms of key Databricks technologies: Delta Lake, Photon, and Unity Catalog, alongside practical implementation considerations for DataFibers engineers.</description>
+    </item>
     
     <item>
       <title>Unpacking Apache Spark: A Deep Dive into its Architectural Core</title>

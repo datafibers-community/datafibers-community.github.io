@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/07/19/2026-07-19-unpacking-the-databricks-lakehouse-a-deep-dive-into-delta-photon-and-unity-catalog/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/07/15/2026-07-15-advanced-rag-architecture-from-naive-pipelines-to-production-grade-retrieval-and-re-ranking-engines/</loc>
     <lastmod>2026-07-15T00:00:00+00:00</lastmod>
   </url>
@@ -351,7 +356,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -392,6 +397,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/cloud-data-platforms/</loc>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/cloud-native/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -419,7 +430,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/data-engineering/</loc>
-    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -437,13 +448,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/tags/databricks/</loc>
-    <lastmod>2026-05-20T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
