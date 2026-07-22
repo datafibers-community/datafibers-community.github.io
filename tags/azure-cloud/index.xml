@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 05 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/azure-cloud/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deep Dive: Azure Virtual Network Peering, Service Endpoints, and Private Link</title>
+      <link>https://datafibers-community.github.io/blog/2026/07/22/2026-07-22-deep-dive-azure-virtual-network-peering-service-endpoints-and-private-link/</link>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/07/22/2026-07-22-deep-dive-azure-virtual-network-peering-service-endpoints-and-private-link/</guid>
+      <description>The Azure Virtual Network (VNet) is the foundational building block for your private network in the cloud. While many are familiar with its basic capabilities like subnets, NSGs, and VPN gateways, true mastery of Azure&amp;rsquo;s networking requires understanding its more advanced features. This deep-dive explores the &amp;lsquo;under-the-hood&amp;rsquo; mechanisms of VNet Peering, Service Endpoints, and Private Link, revealing how they enable secure, efficient, and scalable network architectures.
+We&amp;rsquo;ll move beyond generic overviews to dissect their architectural implications, practical implementation challenges, and how they solve real-world connectivity problems.</description>
+    </item>
     
     <item>
       <title>Azure Networking Deep Dive: Peering, Private Link, and Secure Architectural Patterns</title>
