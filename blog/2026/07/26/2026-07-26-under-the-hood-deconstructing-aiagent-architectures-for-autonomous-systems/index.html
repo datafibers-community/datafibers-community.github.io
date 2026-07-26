@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="datafibers, big data, streaming">	
+  
+
+  
+  <meta name="description" content="DataFibers enterprise open source data bus">	
+  
+
+  <meta name="generator" content="Hugo 0.30.2" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="https://datafibers-community.github.io/css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="https://datafibers-community.github.io/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="https://datafibers-community.github.io/css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="https://datafibers-community.github.io/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="https://datafibers-community.github.io/img/apple-touch-icon.png" />
+  
+
+  <link href="https://datafibers-community.github.io/css/owl.carousel.css" rel="stylesheet">
+  <link href="https://datafibers-community.github.io/css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
+
+  
+  <meta property="og:title" content="Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2026/07/26/2026-07-26-under-the-hood-deconstructing-aiagent-architectures-for-autonomous-systems//" />
+  <meta property="og:image" content="img/logo.png" />
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="https://datafibers-community.github.io/">
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">Home</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="http://github.com/datafibers-community/df_data_service/releases/latest">Download</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/community/">Community</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/training/">Training</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">Contact</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">July 26, 2026</p>
+
+                        <div id="post-content">
+                          
+
+<p>The proliferation of Large Language Models (LLMs) has ushered in a new era of intelligent automation, culminating in the rise of AiAgents. More than just wrappers around LLMs, AiAgents represent a paradigm shift towards autonomous, goal-oriented systems capable of perception, reasoning, action, and continuous learning within dynamic environments. This deep-dive post, tailored for the DataFibers Community, will peel back the layers, exploring the architectural patterns, &ldquo;under-the-hood&rdquo; mechanics, and practical implementation challenges of building robust AiAgents.</p>
+
+<h3 id="the-anatomy-of-an-aiagent">The Anatomy of an AiAgent</h3>
+
+<p>At its heart, an AiAgent embodies a sophisticated control loop, often inspired by cognitive architectures. It&rsquo;s designed not just to respond, but to <em>act</em> purposefully. Think of an AiAgent as having several interconnected modules:</p>
+
+<ol>
+<li><strong>Perception Module:</strong> How the agent observes its environment. This can range from structured API responses to raw sensor data or document embeddings. It&rsquo;s the agent&rsquo;s &lsquo;eyes and ears.&rsquo;</li>
+<li><strong>Memory Module:</strong> Essential for context, learning, and statefulness. Divided into short-term (working memory) and long-term (knowledge base).</li>
+<li><strong>Reasoning &amp; Planning Module:</strong> The &lsquo;brain,&rsquo; typically powered by an LLM. It interprets observations, retrieves relevant memories, forms a plan, and decides on the next action.</li>
+<li><strong>Action Module:</strong> The agent&rsquo;s &lsquo;hands and voice.&rsquo; This module executes planned actions, interacting with external tools, APIs, or even human users.</li>
+<li><strong>Feedback &amp; Learning Loop:</strong> A crucial component for self-correction and improvement. The agent evaluates the outcomes of its actions, updates its memory, and refines its future strategies.</li>
+</ol>
+
+<p>Let&rsquo;s visualize this core loop:</p>
+
+<pre><code class="language-mermaid">graph TD
+    A[Environment] -- Observes --&gt; B{Perception Module}
+    B -- Processed Observations --&gt; C[Reasoning &amp; Planning Module]
+    C -- Queries / Updates --&gt; D[Memory Module]
+    D -- Context / Knowledge --&gt; C
+    C -- Planned Action --&gt; E{Action Module}
+    E -- Executes --&gt; A
+    A -- Feedback / Outcome --&gt; C
+</code></pre>
+
+<h3 id="memory-the-foundation-of-intelligence">Memory: The Foundation of Intelligence</h3>
+
+<p>Effective memory management is paramount for an agent&rsquo;s long-term utility. We distinguish between:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Memory Type</th>
+<th align="left">Characteristics</th>
+<th align="left">Use Cases</th>
+<th align="left">Implementation Strategies</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><strong>Short-Term</strong></td>
+<td align="left">Ephemeral, contextual, high-bandwidth</td>
+<td align="left">Current conversation, scratchpad for thoughts</td>
+<td align="left">LLM context window, simple list/dict, Redis</td>
+</tr>
+
+<tr>
+<td align="left"><strong>Long-Term</strong></td>
+<td align="left">Persistent, indexed, high-capacity, searchable</td>
+<td align="left">Knowledge base, past experiences, learned skills</td>
+<td align="left">Vector databases (ChromaDB, Pinecone, Qdrant), Relational DBs, Knowledge Graphs</td>
+</tr>
+</tbody>
+</table>
+
+<p>For long-term memory, vector databases are particularly powerful. They allow the agent to store and retrieve semantically similar pieces of information based on embeddings, enabling efficient RAG (Retrieval Augmented Generation).</p>
+
+<h3 id="tools-extending-agent-capabilities">Tools: Extending Agent Capabilities</h3>
+
+<p>An agent&rsquo;s utility is directly proportional to the tools it can wield. These tools are essentially functions or APIs exposed to the LLM, often described via schema (e.g., JSON Schema). The LLM&rsquo;s &lsquo;function calling&rsquo; capability is key here, allowing it to dynamically choose and execute tools based on its reasoning.</p>
+
+<p>Consider a simple &lsquo;weather lookup&rsquo; tool:</p>
+
+<pre><code class="language-python">import requests
+import json
+
+def get_current_weather(location: str) -&gt; str:
+    &quot;&quot;&quot;
+    Gets the current weather for a specified location.
+    Args:
+        location (str): The city and state, e.g., 'San Francisco, CA'.
+    Returns:
+        str: A JSON string with weather data or an error message.
+    &quot;&quot;&quot;
+    try:
+        # IMPORTANT: Replace 'YOUR_WEATHER_API_KEY' with a real API key 
+        # In a production app, use environment variables (e.g., os.getenv('WEATHER_API_KEY'))
+        api_key = &quot;YOUR_WEATHER_API_KEY&quot; 
+        base_url = &quot;http://api.openweathermap.org/data/2.5/weather&quot;
+        params = {&quot;q&quot;: location, &quot;appid&quot;: api_key, &quot;units&quot;: &quot;metric&quot;}
+        response = requests.get(base_url, params=params)
+        response.raise_for_status() # Raise an exception for HTTP errors
+        weather_data = response.json()
+        return json.dumps(weather_data)
+    except requests.exceptions.RequestException as e:
+        return json.dumps({&quot;error&quot;: f&quot;Failed to fetch weather: {e}&quot;})
+    except json.JSONDecodeError:
+        return json.dumps({&quot;error&quot;: &quot;Invalid JSON response from weather API.&quot;})
+
+# Example of how an LLM might 'call' this tool conceptually
+# tool_output = get_current_weather(location='London, UK')
+# print(tool_output)
+</code></pre>
+
+<p>To make this accessible to an LLM, you&rsquo;d typically provide a schema:</p>
+
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;get_current_weather&quot;,
+  &quot;description&quot;: &quot;Get the current weather in a given location&quot;,
+  &quot;parameters&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+      &quot;location&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;The city and state, e.g., San Francisco, CA&quot;
+      }
+    },
+    &quot;required&quot;: [&quot;location&quot;]
+  }
+}
+</code></pre>
+
+<h3 id="reasoning-orchestration-the-agent-s-control-flow">Reasoning &amp; Orchestration: The Agent&rsquo;s Control Flow</h3>
+
+<p>The core of an agent&rsquo;s intelligence lies in its reasoning and planning module, often implemented as a specialized prompt for an LLM. The ReAct (Reasoning and Acting) pattern is a popular approach:</p>
+
+<p><code>Thought</code>: What should I do next? I need to&hellip;
+<code>Action</code>: tool_name(tool_parameters)
+<code>Observation</code>: Tool output
+<code>Thought</code>: Based on the observation, I will&hellip;
+<code>Action</code>: next_tool(next_parameters)
+&hellip;
+<code>Thought</code>: I have completed my task.
+<code>Final Answer</code>: The answer is&hellip;</p>
+
+<p>Here&rsquo;s a simplified pseudo-code representation of an agent&rsquo;s main loop:</p>
+
+<pre><code class="language-python">from typing import Dict, Any, Callable
+import json
+
+class SimpleAiAgent:
+    def __init__(self, llm_client: Any, tools: Dict[str, Callable], memory_store: Any):
+        self.llm = llm_client
+        self.tools = tools
+        self.memory = memory_store # e.g., a vector database client
+        self.context = [] # Short-term context / conversation history
+
+    def _get_relevant_memory(self, query: str, top_k: int = 3) -&gt; list:
+        # In a real implementation, this would query a vector DB
+        # For simplicity, returning a dummy list here.
+        print(f&quot;[Memory] Retrieving for: '{query}'&quot;)
+        return [f&quot;Fact about {query}: Example data.&quot;]
+
+    def _call_llm(self, prompt: str) -&gt; str:
+        # Placeholder for LLM API call
+        print(f&quot;[LLM Call] Input: '{prompt[:100]}...'&quot;)
+        
+        # Simulate LLM response containing Thought, Action or Final Answer
+        # This logic would be replaced by an actual LLM API call and parsing
+        if &quot;weather in London&quot; in prompt.lower() and &quot;get_current_weather&quot; in self.tools:
+            return &quot;Thought: I need to use the get_current_weather tool to find the weather in London, UK.\nAction: get_current_weather({'location': 'London, UK'})&quot;
+        elif &quot;Observation:&quot; in prompt and &quot;weather_data&quot; in prompt.lower():
+            return &quot;Thought: I have the weather data. I can now provide the final answer.\nFinal Answer: The weather in London is currently 20 degrees Celsius and clear, according to the tool output.&quot;
+        elif &quot;final answer&quot; in prompt.lower():
+            # If the LLM already decided on a final answer, just return it
+            return prompt 
+        return &quot;Thought: I am processing the request. I don't have enough information or a specific tool to directly answer this. If I had a 'search_web' tool, I would use it now.\nAction: None&quot; # Fallback simulation
+
+    def run(self, initial_query: str, max_iterations: int = 5) -&gt; str:
+        self.context.append(f&quot;User query: {initial_query}&quot;)
+        current_thought = f&quot;Thought: I need to address the user's request: {initial_query}&quot;
+
+        for i in range(max_iterations):
+            # 1. Perception &amp; Memory Retrieval
+            relevant_memories = self._get_relevant_memory(current_thought)
+            full_prompt = (f&quot;You are an expert AI agent. Current conversation context:\n{'\n'.join(self.context)}\n&quot;
+                           f&quot;Relevant memories: {'\n'.join(relevant_memories)}\n&quot;
+                           f&quot;Available tools: {list(self.tools.keys())}\n&quot;
+                           f&quot;You must always respond with a 'Thought:' followed by 'Action: tool_name(args)' or 'Final Answer: your result'.\n&quot;
+                           f&quot;{current_thought}\n&quot;)
+
+            # 2. Reasoning (LLM Call)
+            llm_response = self._call_llm(full_prompt)
+            self.context.append(f&quot;LLM Response: {llm_response}&quot;)
+
+            if &quot;Final Answer:&quot; in llm_response:
+                return llm_response.split(&quot;Final Answer:&quot;)[1].strip()
+
+            if &quot;Action:&quot; in llm_response and &quot;None&quot; not in llm_response:
+                action_str = llm_response.split(&quot;Action:&quot;)[1].strip()
+                try:
+                    # Robust parsing for tool name and arguments
+                    tool_name_match = action_str.strip().split('(')[0]
+                    tool_name = tool_name_match.strip()
+
+                    tool_args_str = action_str[action_str.find('(')+1:action_str.rfind(')')].replace(&quot;'&quot;, '&quot;')
+                    tool_args = json.loads(tool_args_str)
+
+                    if tool_name in self.tools:
+                        print(f&quot;[Action] Calling tool '{tool_name}' with args {tool_args}&quot;)
+                        observation = self.tools[tool_name](**tool_args)
+                        self.context.append(f&quot;Observation: {observation}&quot;)
+                        current_thought = f&quot;Thought: Based on the observation, I will continue my task. Observation: {observation}&quot;
+                    else:
+                        observation = f&quot;Error: Tool '{tool_name}' not found.&quot;
+                        self.context.append(f&quot;Observation: {observation}&quot;)
+                        current_thought = f&quot;Thought: I encountered an error. I need to re-evaluate. Error: {observation}&quot;
+                except (json.JSONDecodeError, IndexError, KeyError) as e:
+                    observation = f&quot;Error parsing action or arguments: {e}. Action string: '{action_str}'&quot;
+                    self.context.append(f&quot;Observation: {observation}&quot;)
+                    current_thought = f&quot;Thought: I encountered an error during action parsing. I need to re-evaluate. Error: {observation}&quot;
+                except Exception as e:
+                    observation = f&quot;Unexpected error during tool execution: {e}&quot;
+                    self.context.append(f&quot;Observation: {observation}&quot;)
+                    current_thought = f&quot;Thought: I encountered an unexpected error. I need to re-evaluate. Error: {observation}&quot;
+            elif &quot;Thought:&quot; in llm_response:
+                current_thought = llm_response
+            else:
+                current_thought = f&quot;Thought: Unexpected LLM response format. Current response: {llm_response}&quot;
+
+        return &quot;Final Answer: Failed to reach a final answer within max iterations.&quot;
+
+# --- Example Usage (Conceptual) ---
+# This section demonstrates how you would conceptually use the SimpleAiAgent.
+# For a real run, you would need to replace mock objects with actual LLM clients and memory stores.
+#
+# from unittest.mock import Mock
+# 
+# # Define a mock LLM client for demonstration
+# class MockLLMClient:
+#     def __call__(self, prompt: str) -&gt; str:
+#         if &quot;weather in London&quot; in prompt and &quot;get_current_weather&quot; in prompt:
+#             return &quot;Thought: I need to use the get_current_weather tool to find the weather in London, UK.\nAction: get_current_weather({'location': 'London, UK'})&quot;
+#         elif &quot;Observation:&quot; in prompt and &quot;weather_data&quot; in prompt.lower():
+#             return &quot;Thought: I have the weather data. I can now provide the final answer.\nFinal Answer: The weather in London is currently 20 degrees Celsius and clear, according to the tool output.&quot;
+#         return &quot;Thought: I am processing the request. If I had a 'search_web' tool, I would use it now.\nAction: None&quot;
+#
+# # Define a mock Memory Store
+# class MockMemoryStore:
+#     def query(self, query: str, top_k: int) -&gt; list:
+#         return [f&quot;Memory for '{query}': London has variable weather.&quot;]
+#
+# # Instantiate mock clients and tools
+# mock_llm_instance = MockLLMClient()
+# mock_memory_instance = MockMemoryStore()
+#
+# # Ensure get_current_weather is available as a tool (from earlier snippet)
+# agent_tools = {&quot;get_current_weather&quot;: get_current_weather}
+#
+# # Create and run the agent
+# agent = SimpleAiAgent(llm_client=mock_llm_instance, tools=agent_tools, memory_store=mock_memory_instance)
+# print(&quot;\n--- Running AiAgent Simulation ---&quot;)
+# result = agent.run(&quot;What is the weather like in London today?&quot;)
+# print(f&quot;\n--- Simulation Complete ---&quot;)
+# print(f&quot;Final Agent Result: {result}&quot;)
+# # Expected Output (approximate):
+# # [Memory] Retrieving for: 'Thought: I need to address the user's request: What is the weather like in London today?'
+# # [LLM Call] Input: 'You are an expert AI agent. Current conversation context:
+# # User query: What is the weather like in Lo...'
+# # [Action] Calling tool 'get_current_weather' with args {'location': 'London, UK'}
+# # [Memory] Retrieving for: 'Thought: Based on the observation, I will continue my task. Observation: {&quot;error&quot;: &quot;Failed to...'
+# # [LLM Call] Input: 'You are an expert AI agent. Current conversation context:
+# # User query: What is the weather like in Lo...'
+# # --- Simulation Complete ---
+# # Final Agent Result: The weather in London is currently 20 degrees Celsius and clear, according to the tool output.
+</code></pre>
+
+<p>This <code>run</code> method illustrates the continuous perception-reasoning-action loop, where the agent iteratively refines its understanding and takes steps towards its goal.</p>
+
+<h3 id="implementation-challenges-best-practices">Implementation Challenges &amp; Best Practices</h3>
+
+<p>Building production-ready AiAgents comes with its own set of hurdles:</p>
+
+<ol>
+<li><p><strong>Cost Optimization:</strong> Every LLM call incurs a cost. Design agents to be efficient, employing techniques like prompt compression, caching, and conditional tool execution to minimize unnecessary API calls.</p>
+
+<ul>
+<li><strong>Best Practice:</strong> Implement robust caching mechanisms for tool outputs and frequently accessed memories. Utilize cheaper, smaller models for simpler reasoning steps where possible.</li>
+</ul></li>
+
+<li><p><strong>Reliability &amp; Error Handling:</strong> LLMs can hallucinate, APIs can fail, and external systems can be unpredictable. Agents need robust error recovery strategies.</p>
+
+<ul>
+<li><strong>Best Practice:</strong> Implement retry logic for tool calls, add explicit error messages in tool outputs, and design the agent&rsquo;s reasoning prompt to handle and recover from errors gracefully (e.g., &lsquo;If the previous tool call failed, what should I try next?&rsquo;).</li>
+</ul></li>
+
+<li><p><strong>Scalability:</strong> As agents become more complex and numerous, managing concurrent execution, shared resources, and state becomes critical.</p>
+
+<ul>
+<li><strong>Best Practice:</strong> Employ asynchronous programming (e.g., <code>asyncio</code>), containerization (Docker, Kubernetes), and message queues (Kafka, RabbitMQ) for inter-agent communication and task distribution.</li>
+</ul></li>
+
+<li><p><strong>Observability &amp; Debugging:</strong> Understanding an agent&rsquo;s internal thought process and tracing its execution path is vital for debugging and performance tuning.</p>
+
+<ul>
+<li><strong>Best Practice:</strong> Implement comprehensive logging (LLM prompts, responses, tool calls, observations). Use tracing tools (e.g., OpenTelemetry, LangChain callbacks) to visualize the agent&rsquo;s decision-making flow. Monitor key metrics like tokens used, latency, and success rates.</li>
+</ul></li>
+
+<li><p><strong>Security &amp; Ethics:</strong> Agents interact with external systems and potentially sensitive data. Guardrails are essential.</p>
+
+<ul>
+<li><strong>Best Practice:</strong> Implement strict input/output validation for tools. Sanitize user inputs. Continuously evaluate agents for bias, fairness, and adherence to safety guidelines. Consider human-in-the-loop mechanisms for critical decisions.</li>
+</ul></li>
+</ol>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>AiAgents represent a transformative step towards truly intelligent automation. By understanding their underlying architectural components – perception, memory, reasoning, and action – and addressing the practical challenges of implementation, developers can unlock unprecedented levels of autonomy and capability. The journey of building sophisticated AiAgents is complex, but with thoughtful design, robust engineering practices, and continuous learning, we can build agents that not only perform tasks but intelligently adapt and evolve.</p>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="https://datafibers-community.github.io/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="https://datafibers-community.github.io/categories/ai-engineering">ai-engineering (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/apache-kafka">apache-kafka (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/architecture">architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/artificial-intelligence">artificial-intelligence (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/autonomous-systems">autonomous-systems (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/azure-networking">azure-networking (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/backend-development">backend-development (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-architecture">cloud-architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-computing">cloud-computing (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-data-platforms">cloud-data-platforms (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-native">cloud-native (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-networking">cloud-networking (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/data-engineering">data-engineering (9)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/datafibers-community">datafibers-community (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/devops">devops (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/digest">digest (10)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/distributed-computing">distributed-computing (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/distributed-systems">distributed-systems (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/lakehouse">lakehouse (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/llms">llms (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/observability--monitoring">observability--monitoring (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/release">release (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/review">review (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technical-deep-dive">technical-deep-dive (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technical-guides">technical-guides (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technology">technology (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/training">training (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/tutorial">tutorial (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="https://datafibers-community.github.io/tags/aiagent"><i class="fa fa-tags"></i> aiagent</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/application-lifecycle-management"><i class="fa fa-tags"></i> application-lifecycle-management</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/architecture"><i class="fa fa-tags"></i> architecture</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/azure-cloud"><i class="fa fa-tags"></i> azure-cloud</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/catalyst"><i class="fa fa-tags"></i> catalyst</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cicd"><i class="fa fa-tags"></i> cicd</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cloud"><i class="fa fa-tags"></i> cloud</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cloud-native"><i class="fa fa-tags"></i> cloud-native</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-pipeline"><i class="fa fa-tags"></i> data-pipeline</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-streaming"><i class="fa fa-tags"></i> data-streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/databricks"><i class="fa fa-tags"></i> databricks</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-dive"><i class="fa fa-tags"></i> deep-dive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/distributed-computing"><i class="fa fa-tags"></i> distributed-computing</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/distributed-systems"><i class="fa fa-tags"></i> distributed-systems</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/git"><i class="fa fa-tags"></i> git</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/grok"><i class="fa fa-tags"></i> grok</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hadoop"><i class="fa fa-tags"></i> hadoop</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/harness-enginnering"><i class="fa fa-tags"></i> harness-enginnering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hbase"><i class="fa fa-tags"></i> hbase</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hermes-agent"><i class="fa fa-tags"></i> hermes-agent</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/idempotence"><i class="fa fa-tags"></i> idempotence</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/information-retrieval"><i class="fa fa-tags"></i> information-retrieval</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/llm"><i class="fa fa-tags"></i> llm</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/log-compaction"><i class="fa fa-tags"></i> log-compaction</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/logs"><i class="fa fa-tags"></i> logs</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/messaging"><i class="fa fa-tags"></i> messaging</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/monitoring"><i class="fa fa-tags"></i> monitoring</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/natural-language-processing"><i class="fa fa-tags"></i> natural-language-processing</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/networking"><i class="fa fa-tags"></i> networking</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/observability"><i class="fa fa-tags"></i> observability</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/open-claw"><i class="fa fa-tags"></i> open-claw</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/performance-tuning"><i class="fa fa-tags"></i> performance-tuning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/private-link"><i class="fa fa-tags"></i> private-link</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/rag"><i class="fa fa-tags"></i> rag</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/scala"><i class="fa fa-tags"></i> scala</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/service-endpoints"><i class="fa fa-tags"></i> service-endpoints</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/shuffling"><i class="fa fa-tags"></i> shuffling</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/streaming"><i class="fa fa-tags"></i> streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/telemetry"><i class="fa fa-tags"></i> telemetry</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/tungsten"><i class="fa fa-tags"></i> tungsten</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/vector-databases"><i class="fa fa-tags"></i> vector-databases</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/vnet"><i class="fa fa-tags"></i> vnet</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/07/26/2026-07-26-under-the-hood-deconstructing-aiagent-architectures-for-autonomous-systems/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-07-26-under-the-hood-deconstructing-aiagent-architectures-for-autonomous-systems.jpg" class="img-responsive" alt="Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/07/26/2026-07-26-under-the-hood-deconstructing-aiagent-architectures-for-autonomous-systems/">Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/07/22/2026-07-22-deep-dive-azure-virtual-network-peering-service-endpoints-and-private-link/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-07-22-deep-dive-azure-virtual-network-peering-service-endpoints-and-private-link.jpg" class="img-responsive" alt="Deep Dive: Azure Virtual Network Peering, Service Endpoints, and Private Link">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/07/22/2026-07-22-deep-dive-azure-virtual-network-peering-service-endpoints-and-private-link/">Deep Dive: Azure Virtual Network Peering, Service Endpoints, and Private Link</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/07/19/2026-07-19-unpacking-the-databricks-lakehouse-a-deep-dive-into-delta-photon-and-unity-catalog/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-07-19-unpacking-the-databricks-lakehouse-a-deep-dive-into-delta-photon-and-unity-catalog.jpg" class="img-responsive" alt="Unpacking the Databricks Lakehouse: A Deep Dive into Delta, Photon, and Unity Catalog">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/07/19/2026-07-19-unpacking-the-databricks-lakehouse-a-deep-dive-into-delta-photon-and-unity-catalog/">Unpacking the Databricks Lakehouse: A Deep Dive into Delta, Photon, and Unity Catalog</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+            <h4>Contact</h4>
+
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2026, DataFibers all rights reserved.</p>
+            
+            <p class="pull-right">
+                Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+                
+
+                Powered by <a href="https://gohugo.io/">Hugo</a>
+                <img src="https://visitor-badge.laobi.icu/badge?page_id=datafibers-community.github.io&left_text=Visits"
+                    alt="Visitor Badge" style="vertical-align: middle; margin-left: 10px;" />
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+    </div>
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCksU3IZTuUK6fA-doQUfQ4KcYm7mB_vlk&v=3.exp"></script>
+
+<script src="https://datafibers-community.github.io/js/hpneo.gmaps.js"></script>
+<script src="https://datafibers-community.github.io/js/gmaps.init.js"></script>
+<script src="https://datafibers-community.github.io/js/front.js"></script>
+
+
+<script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
+  </body>
+</html>

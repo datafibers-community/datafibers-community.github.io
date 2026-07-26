@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 22 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jul 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Under the Hood: Deconstructing AiAgent Architectures for Autonomous Systems</title>
+      <link>https://datafibers-community.github.io/blog/2026/07/26/2026-07-26-under-the-hood-deconstructing-aiagent-architectures-for-autonomous-systems/</link>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/07/26/2026-07-26-under-the-hood-deconstructing-aiagent-architectures-for-autonomous-systems/</guid>
+      <description>The proliferation of Large Language Models (LLMs) has ushered in a new era of intelligent automation, culminating in the rise of AiAgents. More than just wrappers around LLMs, AiAgents represent a paradigm shift towards autonomous, goal-oriented systems capable of perception, reasoning, action, and continuous learning within dynamic environments. This deep-dive post, tailored for the DataFibers Community, will peel back the layers, exploring the architectural patterns, &amp;ldquo;under-the-hood&amp;rdquo; mechanics, and practical implementation challenges of building robust AiAgents.</description>
+    </item>
     
     <item>
       <title>Deep Dive: Azure Virtual Network Peering, Service Endpoints, and Private Link</title>
