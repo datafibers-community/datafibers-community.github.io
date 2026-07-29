@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 26 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ai Architecture</title>
+      <link>https://datafibers-community.github.io/tags/ai-architecture/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/ai-architecture/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Aiagent</title>
@@ -148,6 +157,15 @@
     </item>
     
     <item>
+      <title>Deepseek</title>
+      <link>https://datafibers-community.github.io/tags/deepseek/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/deepseek/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Distributed Computing</title>
       <link>https://datafibers-community.github.io/tags/distributed-computing/</link>
       <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
@@ -238,6 +256,15 @@
     </item>
     
     <item>
+      <title>Hugging Face</title>
+      <link>https://datafibers-community.github.io/tags/hugging-face/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/hugging-face/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Idempotence</title>
       <link>https://datafibers-community.github.io/tags/idempotence/</link>
       <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
@@ -285,7 +312,7 @@
     <item>
       <title>Llm</title>
       <link>https://datafibers-community.github.io/tags/llm/</link>
-      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/llm/</guid>
       <description></description>
@@ -310,6 +337,15 @@
     </item>
     
     <item>
+      <title>Lora</title>
+      <link>https://datafibers-community.github.io/tags/lora/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/lora/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Machine Learning</title>
       <link>https://datafibers-community.github.io/tags/machine-learning/</link>
       <pubDate>Sat, 10 Mar 2018 13:50:46 +0200</pubDate>
@@ -324,6 +360,24 @@
       <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/messaging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mixture of Experts</title>
+      <link>https://datafibers-community.github.io/tags/mixture-of-experts/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/mixture-of-experts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Moe</title>
+      <link>https://datafibers-community.github.io/tags/moe/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/moe/</guid>
       <description></description>
     </item>
     
@@ -373,11 +427,29 @@
     </item>
     
     <item>
+      <title>Ollama</title>
+      <link>https://datafibers-community.github.io/tags/ollama/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/ollama/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Open Claw</title>
       <link>https://datafibers-community.github.io/tags/open-claw/</link>
       <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/open-claw/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Peft</title>
+      <link>https://datafibers-community.github.io/tags/peft/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/peft/</guid>
       <description></description>
     </item>
     

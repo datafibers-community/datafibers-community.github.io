@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deepseek on DataFibers</title>
+    <link>https://datafibers-community.github.io/tags/deepseek/</link>
+    <description>Recent content in Deepseek on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/tags/deepseek/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deep-Dive into DeepSeek&#39;s MoE Architecture for LLMs</title>
+      <link>https://datafibers-community.github.io/blog/2026/07/29/2026-07-29-deep-dive-into-deepseeks-moe-architecture-for-llms/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/07/29/2026-07-29-deep-dive-into-deepseeks-moe-architecture-for-llms/</guid>
+      <description>Unpacking DeepSeek: The Power of Sparse Mixture-of-Experts in Large Language Models The landscape of Large Language Models (LLMs) is continuously evolving, with new architectures and training methodologies pushing the boundaries of what&amp;rsquo;s possible. Among the rising stars in the open-source community, DeepSeek models have garnered significant attention, particularly for their innovative application of the Mixture-of-Experts (MoE) architecture. This deep dive will go beyond mere performance metrics, dissecting the &amp;lsquo;under-the-hood&amp;rsquo; mechanisms that make DeepSeek models both powerful and efficient.</description>
+    </item>
+    
+  </channel>
+</rss>

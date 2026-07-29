@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/07/29/2026-07-29-deep-dive-into-deepseeks-moe-architecture-for-llms/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/07/26/2026-07-26-under-the-hood-deconstructing-aiagent-architectures-for-autonomous-systems/</loc>
     <lastmod>2026-07-26T00:00:00+00:00</lastmod>
   </url>
@@ -293,6 +298,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/ai-architecture/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/categories/ai-engineering/</loc>
     <lastmod>2026-07-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -342,7 +353,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/artificial-intelligence/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -378,7 +389,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -470,7 +481,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -495,6 +506,18 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/deep-dive/</loc>
     <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/deep-learning/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/deepseek/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -583,6 +606,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/hugging-face/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/idempotence/</loc>
     <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -620,13 +649,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/llm/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/categories/llms/</loc>
-    <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -643,14 +672,38 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/lora/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/machine-learning/</loc>
     <lastmod>2018-03-10T13:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/machine-learning/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/messaging/</loc>
     <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/mixture-of-experts/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/moe/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -691,8 +744,26 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/ollama/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/open-claw/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/open-source/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/peft/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -764,7 +835,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/</loc>
-    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

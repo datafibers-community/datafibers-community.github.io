@@ -51,7 +51,7 @@
     <item>
       <title>Artificial Intelligence</title>
       <link>https://datafibers-community.github.io/categories/artificial-intelligence/</link>
-      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/artificial-intelligence/</guid>
       <description></description>
@@ -148,6 +148,15 @@
     </item>
     
     <item>
+      <title>Deep Learning</title>
+      <link>https://datafibers-community.github.io/categories/deep-learning/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Devops</title>
       <link>https://datafibers-community.github.io/categories/devops/</link>
       <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
@@ -195,9 +204,18 @@
     <item>
       <title>Llms</title>
       <link>https://datafibers-community.github.io/categories/llms/</link>
-      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/llms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>https://datafibers-community.github.io/categories/machine-learning/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/machine-learning/</guid>
       <description></description>
     </item>
     
@@ -207,6 +225,15 @@
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/observability--monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Open Source</title>
+      <link>https://datafibers-community.github.io/categories/open-source/</link>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/open-source/</guid>
       <description></description>
     </item>
     
