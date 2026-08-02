@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/08/02/2026-08-02-geminis-inner-workings-a-deep-dive-into-tensor-processing-and-model-parallelism/</loc>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/07/29/2026-07-29-deep-dive-into-deepseeks-moe-architecture-for-llms/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
   </url>
@@ -310,6 +315,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/ai-infrastructure/</loc>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/aiagent/</loc>
     <lastmod>2026-07-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -389,7 +400,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -481,7 +492,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -511,7 +522,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/deep-learning/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -547,7 +558,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/distributed-systems/</loc>
-    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -560,6 +571,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/flink/</loc>
     <lastmod>2019-10-05T19:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/gemeni/</loc>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -649,7 +666,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/llm/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -698,6 +715,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/mixture-of-experts/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/model-parallelism/</loc>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -770,6 +793,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/performance-tuning/</loc>
     <lastmod>2026-06-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/pipeline-parallelism/</loc>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -860,6 +889,18 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/telemetry/</loc>
     <lastmod>2026-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/tensor-parallelism/</loc>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/tpu/</loc>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
