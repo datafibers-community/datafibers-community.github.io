@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 02 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs</title>
+      <link>https://datafibers-community.github.io/blog/2026/08/09/2026-08-09-rag-under-the-hood-deconstructing-advanced-retrieval-architectures-for-llms/</link>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/08/09/2026-08-09-rag-under-the-hood-deconstructing-advanced-retrieval-architectures-for-llms/</guid>
+      <description>RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs Retrieval-Augmented Generation (RAG) has rapidly become an indispensable pattern for grounding Large Language Models (LLMs) with external, up-to-date, and domain-specific knowledge. While the core concept of &amp;ldquo;retrieve-then-generate&amp;rdquo; seems straightforward, building a robust, high-performance RAG system that reliably delivers accurate and relevant answers requires a deep understanding of its intricate components and advanced architectural patterns. This isn&amp;rsquo;t just about plugging an LLM into a vector database; it&amp;rsquo;s about engineering a sophisticated information retrieval pipeline.</description>
+    </item>
     
     <item>
       <title>Gemini&#39;s Inner Workings: A Deep Dive into Tensor Processing and Model Parallelism</title>

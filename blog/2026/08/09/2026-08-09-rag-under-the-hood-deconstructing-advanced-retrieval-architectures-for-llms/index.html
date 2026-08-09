@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="datafibers, big data, streaming">	
+  
+
+  
+  <meta name="description" content="DataFibers enterprise open source data bus">	
+  
+
+  <meta name="generator" content="Hugo 0.30.2" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="https://datafibers-community.github.io/css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="https://datafibers-community.github.io/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="https://datafibers-community.github.io/css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="https://datafibers-community.github.io/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="https://datafibers-community.github.io/img/apple-touch-icon.png" />
+  
+
+  <link href="https://datafibers-community.github.io/css/owl.carousel.css" rel="stylesheet">
+  <link href="https://datafibers-community.github.io/css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
+
+  
+  <meta property="og:title" content="RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2026/08/09/2026-08-09-rag-under-the-hood-deconstructing-advanced-retrieval-architectures-for-llms//" />
+  <meta property="og:image" content="img/logo.png" />
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="https://datafibers-community.github.io/">
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs logo" class="visible-xs visible-sm">
+                    <span class="sr-only">RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">Home</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="http://github.com/datafibers-community/df_data_service/releases/latest">Download</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/community/">Community</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/training/">Training</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">Contact</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">August 9, 2026</p>
+
+                        <div id="post-content">
+                          
+
+<h1 id="rag-under-the-hood-deconstructing-advanced-retrieval-architectures-for-llms">RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs</h1>
+
+<p>Retrieval-Augmented Generation (RAG) has rapidly become an indispensable pattern for grounding Large Language Models (LLMs) with external, up-to-date, and domain-specific knowledge. While the core concept of &ldquo;retrieve-then-generate&rdquo; seems straightforward, building a robust, high-performance RAG system that reliably delivers accurate and relevant answers requires a deep understanding of its intricate components and advanced architectural patterns. This isn&rsquo;t just about plugging an LLM into a vector database; it&rsquo;s about engineering a sophisticated information retrieval pipeline.</p>
+
+<p>At DataFibers, we believe in diving deeper than the surface. This post will pull back the curtain on RAG, exploring the foundational mechanics, advanced retrieval strategies, and practical challenges you&rsquo;ll encounter when moving beyond basic implementations.</p>
+
+<h2 id="the-foundation-deconstructing-the-indexing-pipeline">The Foundation: Deconstructing the Indexing Pipeline</h2>
+
+<p>The indexing pipeline is where your raw, unstructured data transforms into a searchable knowledge base. Its efficiency and quality directly impact the retrieval&rsquo;s efficacy.</p>
+
+<h3 id="1-data-ingestion-preprocessing">1. Data Ingestion &amp; Preprocessing</h3>
+
+<p>This initial step involves loading data from diverse sources (documents, databases, APIs) and cleaning it. Common tasks include: removing boilerplate, extracting text from PDFs/HTML, normalizing formats, and handling encoding issues.</p>
+
+<h3 id="2-chunking-strategies-the-art-of-context-segmentation">2. Chunking Strategies: The Art of Context Segmentation</h3>
+
+<p>One of the most critical and often overlooked aspects of RAG is how documents are split into manageable &ldquo;chunks&rdquo; or passages. The goal is to create chunks that are semantically coherent, small enough to fit within an LLM&rsquo;s context window, yet large enough to contain sufficient information to answer a query. This is far from a one-size-fits-all problem.</p>
+
+<h4 id="common-chunking-methods">Common Chunking Methods:</h4>
+
+<ul>
+<li><strong>Fixed-Size Chunking:</strong> Simple, but can split sentences or ideas mid-flow.</li>
+<li><strong>Recursive Character Text Splitter:</strong> Iteratively splits text by a list of separators (e.g., &ldquo;\n\n&rdquo;, &ldquo;\n&rdquo;, &ldquo; &ldquo;), maintaining semantic boundaries better. This is a common and effective heuristic.</li>
+<li><strong>Semantic Chunking:</strong> A more advanced approach where text is chunked based on embedding similarity. Consecutive sentences or paragraphs are grouped if their embeddings are close, indicating semantic relatedness. This is computationally more intensive but can yield superior chunks.</li>
+</ul>
+
+<p><strong>Example: Recursive Character Text Splitter with LangChain</strong></p>
+
+<pre><code class="language-python">from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+long_document = (
+    &quot;RAG systems excel at grounding LLMs by integrating external knowledge. &quot;
+    &quot;The core idea is to retrieve relevant information before generation. &quot;
+    &quot;However, optimal chunking strategies are paramount for effective retrieval. &quot;
+    &quot;Fixed-size chunks can break semantic units, leading to poor recall. &quot;
+    &quot;Recursive splitting, on the other hand, attempts to preserve meaning by splitting at natural delimiters. &quot;
+    &quot;This often results in more coherent context for the LLM. &quot;
+    &quot;Advanced methods like semantic chunking are gaining traction for even finer granularity. &quot;
+    &quot;Evaluating chunking performance is an iterative process.&quot;
+)
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=200, # Max characters per chunk
+    chunk_overlap=20, # Overlap to maintain context across chunks
+    separators=[&quot;\n\n&quot;, &quot;\n&quot;, &quot;. &quot;, &quot; &quot;] # Prioritized separators
+)
+
+chunks = text_splitter.split_text(long_document)
+
+for i, chunk in enumerate(chunks):
+    print(f&quot;Chunk {i+1}: {chunk}\n---&quot;)
+</code></pre>
+
+<h4 id="output-illustrative-actual-output-depends-on-chunk-size-and-overlap">Output (illustrative, actual output depends on chunk_size and overlap):</h4>
+
+<pre><code>Chunk 1: RAG systems excel at grounding LLMs by integrating external knowledge. The core idea is to retrieve relevant information before generation. However, optimal chunking strategies are paramount for effective retrieval.
+---
+Chunk 2: optimal chunking strategies are paramount for effective retrieval. Fixed-size chunks can break semantic units, leading to poor recall. Recursive splitting, on the other hand, attempts to preserve meaning by splitting at natural delimiters.
+---
+Chunk 3: by splitting at natural delimiters. This often results in more coherent context for the LLM. Advanced methods like semantic chunking are gaining traction for even finer granularity. Evaluating chunking performance is an iterative process.
+---
+</code></pre>
+
+<h3 id="3-embedding-models-transforming-text-to-vectors">3. Embedding Models: Transforming Text to Vectors</h3>
+
+<p>Once chunks are prepared, they are converted into high-dimensional numerical vectors (embeddings). These embeddings capture the semantic meaning of the text, allowing for similarity searches. The choice of embedding model is crucial:</p>
+
+<ul>
+<li><strong>Performance:</strong> Models like OpenAI&rsquo;s <code>text-embedding-ada-002</code> or various Hugging Face models (e.g., <code>BAAI/bge-large-en-v1.5</code>) offer different trade-offs in terms of cost, speed, and quality.</li>
+<li><strong>Domain Specificity:</strong> For highly specialized domains, fine-tuning an embedding model or using a domain-specific model can significantly improve retrieval accuracy.</li>
+<li><strong>Dimensionality:</strong> Higher dimensions generally capture more nuance but increase storage and computation.</li>
+</ul>
+
+<h3 id="4-vector-store-the-knowledge-repository">4. Vector Store: The Knowledge Repository</h3>
+
+<p>The vector store (e.g., Pinecone, Weaviate, Milvus, Chroma, Qdrant) is where your embeddings are stored and indexed for efficient similarity search. Key considerations:</p>
+
+<ul>
+<li><strong>Indexing Algorithms:</strong> Algorithms like HNSW (Hierarchical Navigable Small World) or IVF_FLAT (Inverted File Index with Flat Quantization) enable approximate nearest neighbor (ANN) search, balancing speed and accuracy over brute-force k-NN.</li>
+<li><strong>Metadata Filtering:</strong> Storing metadata alongside vectors allows for pre- or post-filtering of search results (e.g., only search documents from a specific date range or author). This is critical for targeted retrieval.</li>
+</ul>
+
+<p><strong>Example: Adding Documents to a Vector Store (Conceptual)</strong></p>
+
+<pre><code class="language-python"># Assuming 'vector_store_client' is an initialized client for your chosen vector DB
+# And 'embedding_model' is a function/service to generate embeddings
+
+def index_document_chunks(doc_id: str, chunks: list[str], metadata: dict, vector_store_client, embedding_model):
+    vectors_to_upsert = []
+    for i, chunk_text in enumerate(chunks):
+        embedding = embedding_model.embed_query(chunk_text) # Generate embedding for the chunk
+        vectors_to_upsert.append({
+            &quot;id&quot;: f&quot;{doc_id}_chunk_{i}&quot;,
+            &quot;values&quot;: embedding,
+            &quot;metadata&quot;: {&quot;text&quot;: chunk_text, &quot;source_doc_id&quot;: doc_id, **metadata}
+        })
+    vector_store_client.upsert(vectors=vectors_to_upsert)
+    print(f&quot;Indexed {len(chunks)} chunks for document {doc_id}&quot;)
+
+# Usage example:
+# index_document_chunks(
+#     &quot;doc_123&quot;,
+#     chunks,
+#     {&quot;author&quot;: &quot;John Doe&quot;, &quot;date&quot;: &quot;2023-10-27&quot;},
+#     pinecone_client,
+#     openai_embedding_model
+# )
+</code></pre>
+
+<h2 id="the-engine-the-retrieval-pipeline-s-nuances">The Engine: The Retrieval Pipeline&rsquo;s Nuances</h2>
+
+<p>This pipeline orchestrates how a user&rsquo;s query is processed, relevant information is fetched, and prepared for the LLM.</p>
+
+<h3 id="1-query-transformation-asking-the-right-questions">1. Query Transformation: Asking the Right Questions</h3>
+
+<p>Raw user queries might not always be optimal for vector search. Query transformation techniques improve retrieval accuracy:</p>
+
+<ul>
+<li><strong>Query Expansion (Multi-Query):</strong> Generate multiple rephrased versions of the original query using an LLM. This increases the chances of hitting relevant documents.</li>
+<li><strong>Query Rewriting:</strong> An LLM rewrites an ambiguous or conversational query into a more concise, keyword-rich format better suited for semantic search.</li>
+</ul>
+
+<p><strong>Example: LLM-based Query Expansion</strong></p>
+
+<pre><code class="language-python">from langchain.chat_models import ChatOpenAI
+from langchain.prompts import ChatPromptTemplate
+
+def expand_query_with_llm(original_query: str, llm: ChatOpenAI) -&gt; list[str]:
+    prompt = ChatPromptTemplate.from_messages([
+        (&quot;system&quot;, &quot;You are a helpful assistant that generates multiple search queries based on a user's original question. Generate 3-5 alternative queries that are likely to find similar information. Return each query on a new line.&quot;),
+        (&quot;user&quot;, &quot;{original_query}&quot;)
+    ])
+    chain = prompt | llm
+    response = chain.invoke({&quot;original_query&quot;: original_query}).content
+    return [q.strip() for q in response.split('\n') if q.strip()]
+
+# Example usage:
+# llm = ChatOpenAI(model=&quot;gpt-3.5-turbo&quot;)
+# original_q = &quot;What are the benefits of using HNSW for vector indexing?&quot;
+# expanded_queries = expand_query_with_llm(original_q, llm)
+# print(expanded_queries)
+</code></pre>
+
+<h3 id="2-hybrid-search-combining-lexical-and-semantic-power">2. Hybrid Search: Combining Lexical and Semantic Power</h3>
+
+<p>Vector search excels at semantic similarity but struggles with exact keyword matches or specific entities. Lexical search (e.g., BM25 algorithm used in Elasticsearch or Lucene) is superb for keyword matching.</p>
+
+<p><strong>Hybrid Search combines both:</strong>
+1.  Perform vector search on query embeddings.
+2.  Perform keyword search on the original text (e.g., using a text index).
+3.  Combine results using techniques like Reciprocal Rank Fusion (RRF) or weighted averaging to get a more comprehensive set of top documents.</p>
+
+<h3 id="3-re-ranking-elevating-relevance">3. Re-ranking: Elevating Relevance</h3>
+
+<p>Initial retrieval often returns a broad set of potentially relevant chunks. Re-ranking is a crucial post-retrieval step that uses a more sophisticated model (often a cross-encoder or another LLM) to score the relevance of retrieved documents to the query, providing a more refined order.</p>
+
+<ul>
+<li><strong>Cross-Encoders:</strong> Models like <code>ColBERT</code> or Cohere&rsquo;s Re-rank API take both the query and a document chunk as input and output a single relevance score. They consider the interaction between query and document, unlike bi-encoder embedding models which embed them independently.</li>
+<li><strong>Reciprocal Rank Fusion (RRF):</strong> An algorithm used to combine ranked lists from multiple retrieval methods (e.g., vector search, lexical search, initial re-ranking) into a single, robust ranked list.</li>
+</ul>
+
+<h2 id="beyond-basics-advanced-rag-architectures">Beyond Basics: Advanced RAG Architectures</h2>
+
+<p>Moving beyond a single-stage retrieve-and-generate, advanced RAG patterns tackle more complex information needs and improve robustness.</p>
+
+<h3 id="1-multi-hop-iterative-rag">1. Multi-Hop / Iterative RAG</h3>
+
+<p>For queries requiring information from multiple sources or chained reasoning, iterative RAG performs multiple retrieval steps. An LLM might generate a sub-query, retrieve results, synthesize an intermediate answer, and then generate another sub-query based on that, repeating until a comprehensive answer is formed.</p>
+
+<h3 id="2-self-correction-adaptive-rag">2. Self-Correction / Adaptive RAG</h3>
+
+<p>Here, the LLM not only generates an answer but also critically evaluates its own response <em>and</em> the retrieved context. If the answer is deemed insufficient or unsupported by the context, the LLM can trigger a refined retrieval step (e.g., by generating a new query, adjusting search parameters, or seeking alternative sources).</p>
+
+<h3 id="3-contextual-compression-filtering">3. Contextual Compression &amp; Filtering</h3>
+
+<p>Even after re-ranking, retrieved chunks might contain noise. Contextual compression uses an LLM or a small specialized model to:
+*   <strong>Condense:</strong> Summarize lengthy chunks to fit more context into the LLM&rsquo;s window.
+*   <strong>Filter:</strong> Identify and remove irrelevant sentences or paragraphs within a chunk, focusing on only the most pertinent information.</p>
+
+<h3 id="architectural-diagram-advanced-rag-flow">Architectural Diagram: Advanced RAG Flow</h3>
+
+<p>Let&rsquo;s visualize a sophisticated RAG pipeline incorporating several advanced techniques:</p>
+
+<pre><code class="language-mermaid">graph TD
+    A[User Query] --&gt; B{Query Transformation}
+    B --&gt; B1[Query Rewriting (LLM)]
+    B --&gt; B2[Query Expansion (LLM)]
+    B --&gt; C{Hybrid Retriever}
+    C --&gt; C1[Vector Search (Embeddings + Vector DB)]
+    C --&gt; C2[Lexical Search (Keywords + Text Index)]
+    C1 --&gt; D[Raw Retrieved Chunks]
+    C2 --&gt; D
+    D --&gt; E{Re-ranking &amp; Filtering}
+    E --&gt; E1[Cross-Encoder Re-ranker]
+    E --&gt; E2[Contextual Compression (LLM/Model)]
+    E1 --&gt; F[Top K Relevant Context]
+    E2 --&gt; F
+    F --&gt; G[LLM Generator]
+    G --&gt; G1{Self-Correction / Verification}
+    G1 --&quot;Insufficient context/confidence&quot;--&gt; A
+    G1 --&quot;Sufficient&quot;--&gt; H[Final Answer]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style H fill:#f9f,stroke:#333,stroke-width:2px
+    style G1 fill:#f9f,stroke:#333,stroke-width:2px
+    classDef llmNode fill:#e0f7fa,stroke:#00bcd4,stroke-width:1px
+    class B1 llmNode
+    class B2 llmNode
+    class E2 llmNode
+    class G llmNode
+</code></pre>
+
+<h2 id="practical-implementation-challenges-best-practices">Practical Implementation Challenges &amp; Best Practices</h2>
+
+<p>Building a production-grade RAG system isn&rsquo;t without its hurdles.</p>
+
+<h3 id="1-optimal-chunking-an-iterative-science">1. Optimal Chunking: An Iterative Science</h3>
+
+<p>There&rsquo;s no magic chunk size. Experiment with different <code>chunk_size</code> and <code>chunk_overlap</code> values, and evaluate their impact on retrieval metrics (e.g., recall, precision, context relevance) for your specific dataset and query types. Semantic chunking can be highly effective but adds complexity.</p>
+
+<h3 id="2-embedding-model-selection-maintenance">2. Embedding Model Selection &amp; Maintenance</h3>
+
+<p>Continuously evaluate embedding models. Newer models emerge frequently, offering better performance or efficiency. For domain-specific applications, monitor embedding drift; if your data distribution changes, you might need to fine-tune or re-embed.</p>
+
+<h3 id="3-balancing-retrieval-latency-and-recall">3. Balancing Retrieval Latency and Recall</h3>
+
+<p>Highly sophisticated retrieval pipelines can introduce latency. Consider:
+*   <strong>Caching:</strong> Cache frequently accessed embeddings or query responses.
+*   <strong>Parallelization:</strong> Run multiple retrieval steps concurrently.
+*   <strong>Approximate Nearest Neighbor (ANN) Tuning:</strong> Adjust HNSW parameters (e.g., <code>M</code>, <code>ef_construction</code>, <code>ef_search</code>) to balance speed and accuracy for your vector store.</p>
+
+<h3 id="4-hallucination-mitigation-and-source-attribution">4. Hallucination Mitigation and Source Attribution</h3>
+
+<p>RAG reduces hallucinations but doesn&rsquo;t eliminate them. Ensure your system provides:
+*   <strong>Source Citation:</strong> Link retrieved chunks directly to their original documents.
+*   <strong>Confidence Scores:</strong> Implement mechanisms to gauge the confidence of the LLM&rsquo;s answer based on context support.
+*   <strong>Fact-Checking Layer:</strong> Consider an additional LLM or rule-based system to verify generated facts against retrieved context.</p>
+
+<h3 id="5-robust-evaluation">5. Robust Evaluation</h3>
+
+<p>Beyond anecdotal testing, formal evaluation is critical. Tools like RAGAS provide metrics for:
+*   <strong>Faithfulness:</strong> How much of the generated answer is supported by the retrieved context.
+*   <strong>Answer Relevance:</strong> How relevant is the generated answer to the query.
+*   <strong>Context Precision:</strong> How relevant are the retrieved contexts to the query.
+*   <strong>Context Recall:</strong> How well does the retrieved context cover all necessary information for the answer.</p>
+
+<p><strong>Example: Basic RAGAS Metric Calculation (Conceptual)</strong></p>
+
+<pre><code class="language-python"># Using RAGAS library (installation: pip install ragas)
+from ragas.metrics import faithfulness, answer_relevance
+from datasets import Dataset
+
+def evaluate_rag_pipeline(qa_dataset: Dataset, pipeline_func):
+    # qa_dataset should contain 'question', 'ground_truth' fields
+    # pipeline_func takes a question and returns {'answer': ..., 'contexts': [...], 'question': ...}
+
+    # Simulate your RAG pipeline's output for each question
+    responses = [pipeline_func(row['question']) for row in qa_dataset]
+
+    # Create a RAGAS Dataset from your responses and ground truths
+    ragas_dataset_data = {
+        &quot;question&quot;: [r['question'] for r in responses],
+        &quot;answer&quot;: [r['answer'] for r in responses],
+        &quot;contexts&quot;: [r['contexts'] for r in responses],
+        &quot;ground_truths&quot;: [row['ground_truth'] for row in qa_dataset]
+    }
+    ragas_dataset = Dataset.from_dict(ragas_dataset_data)
+
+    # Calculate metrics
+    result = ragas_dataset.evaluate(
+        metrics=[faithfulness, answer_relevance]
+    )
+    return result
+
+# Example usage (assuming 'my_qa_dataset' and 'my_rag_pipeline' are defined):
+# evaluation_results = evaluate_rag_pipeline(my_qa_dataset, my_rag_pipeline)
+# print(evaluation_results)
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>RAG is a powerful paradigm, but its true potential is unlocked through meticulous engineering of its underlying components. Moving beyond basic implementations to leverage advanced techniques like sophisticated chunking, query transformation, hybrid search, re-ranking, and iterative architectures is key to building intelligent systems that can navigate complex information landscapes. By addressing the practical challenges with robust evaluation and continuous iteration, you can build RAG systems that significantly enhance the reliability and accuracy of LLM applications for the DataFibers Community and beyond. The journey into advanced RAG is challenging, but deeply rewarding, pushing the boundaries of what LLMs can achieve when grounded in verifiable knowledge.</p>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="https://datafibers-community.github.io/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="https://datafibers-community.github.io/categories/ai-engineering">ai-engineering (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/ai-infrastructure">ai-infrastructure (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/apache-kafka">apache-kafka (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/architecture">architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/artificial-intelligence">artificial-intelligence (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/autonomous-systems">autonomous-systems (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/azure-networking">azure-networking (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/backend-development">backend-development (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-architecture">cloud-architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-computing">cloud-computing (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-data-platforms">cloud-data-platforms (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-native">cloud-native (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-networking">cloud-networking (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/data-engineering">data-engineering (10)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/datafibers-community">datafibers-community (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/deep-learning">deep-learning (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/devops">devops (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/digest">digest (10)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/distributed-computing">distributed-computing (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/distributed-systems">distributed-systems (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/generative-ai">generative-ai (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/lakehouse">lakehouse (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/llms">llms (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/machine-learning">machine-learning (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/observability--monitoring">observability--monitoring (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/open-source">open-source (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/release">release (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/review">review (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technical-deep-dive">technical-deep-dive (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technical-guides">technical-guides (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technology">technology (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/training">training (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/tutorial">tutorial (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="https://datafibers-community.github.io/tags/ai-architecture"><i class="fa fa-tags"></i> ai-architecture</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/aiagent"><i class="fa fa-tags"></i> aiagent</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/application-lifecycle-management"><i class="fa fa-tags"></i> application-lifecycle-management</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/architecture"><i class="fa fa-tags"></i> architecture</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/azure-cloud"><i class="fa fa-tags"></i> azure-cloud</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/catalyst"><i class="fa fa-tags"></i> catalyst</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cicd"><i class="fa fa-tags"></i> cicd</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cloud"><i class="fa fa-tags"></i> cloud</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cloud-native"><i class="fa fa-tags"></i> cloud-native</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-pipeline"><i class="fa fa-tags"></i> data-pipeline</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-streaming"><i class="fa fa-tags"></i> data-streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/databricks"><i class="fa fa-tags"></i> databricks</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-dive"><i class="fa fa-tags"></i> deep-dive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deepseek"><i class="fa fa-tags"></i> deepseek</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/distributed-computing"><i class="fa fa-tags"></i> distributed-computing</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/distributed-systems"><i class="fa fa-tags"></i> distributed-systems</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/gemeni"><i class="fa fa-tags"></i> gemeni</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/git"><i class="fa fa-tags"></i> git</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/grok"><i class="fa fa-tags"></i> grok</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hadoop"><i class="fa fa-tags"></i> hadoop</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/harness-enginnering"><i class="fa fa-tags"></i> harness-enginnering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hbase"><i class="fa fa-tags"></i> hbase</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hermes-agent"><i class="fa fa-tags"></i> hermes-agent</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hugging-face"><i class="fa fa-tags"></i> hugging-face</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/idempotence"><i class="fa fa-tags"></i> idempotence</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/information-retrieval"><i class="fa fa-tags"></i> information-retrieval</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/llm"><i class="fa fa-tags"></i> llm</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/log-compaction"><i class="fa fa-tags"></i> log-compaction</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/logs"><i class="fa fa-tags"></i> logs</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/lora"><i class="fa fa-tags"></i> lora</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/messaging"><i class="fa fa-tags"></i> messaging</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/mixture-of-experts"><i class="fa fa-tags"></i> mixture-of-experts</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/model-parallelism"><i class="fa fa-tags"></i> model-parallelism</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/moe"><i class="fa fa-tags"></i> moe</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/monitoring"><i class="fa fa-tags"></i> monitoring</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/natural-language-processing"><i class="fa fa-tags"></i> natural-language-processing</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/networking"><i class="fa fa-tags"></i> networking</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/observability"><i class="fa fa-tags"></i> observability</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/ollama"><i class="fa fa-tags"></i> ollama</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/open-claw"><i class="fa fa-tags"></i> open-claw</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/peft"><i class="fa fa-tags"></i> peft</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/performance-tuning"><i class="fa fa-tags"></i> performance-tuning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/pipeline-parallelism"><i class="fa fa-tags"></i> pipeline-parallelism</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/private-link"><i class="fa fa-tags"></i> private-link</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/rag"><i class="fa fa-tags"></i> rag</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/scala"><i class="fa fa-tags"></i> scala</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/service-endpoints"><i class="fa fa-tags"></i> service-endpoints</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/shuffling"><i class="fa fa-tags"></i> shuffling</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/streaming"><i class="fa fa-tags"></i> streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/telemetry"><i class="fa fa-tags"></i> telemetry</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/tensor-parallelism"><i class="fa fa-tags"></i> tensor-parallelism</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/tpu"><i class="fa fa-tags"></i> tpu</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/tungsten"><i class="fa fa-tags"></i> tungsten</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/vector-databases"><i class="fa fa-tags"></i> vector-databases</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/vnet"><i class="fa fa-tags"></i> vnet</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/08/09/2026-08-09-rag-under-the-hood-deconstructing-advanced-retrieval-architectures-for-llms/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-08-09-rag-under-the-hood-deconstructing-advanced-retrieval-architectures-for-llms.jpg" class="img-responsive" alt="RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/08/09/2026-08-09-rag-under-the-hood-deconstructing-advanced-retrieval-architectures-for-llms/">RAG Under the Hood: Deconstructing Advanced Retrieval Architectures for LLMs</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/08/02/2026-08-02-geminis-inner-workings-a-deep-dive-into-tensor-processing-and-model-parallelism/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-08-02-geminis-inner-workings-a-deep-dive-into-tensor-processing-and-model-parallelism.jpg" class="img-responsive" alt="Gemini&#39;s Inner Workings: A Deep Dive into Tensor Processing and Model Parallelism">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/08/02/2026-08-02-geminis-inner-workings-a-deep-dive-into-tensor-processing-and-model-parallelism/">Gemini&#39;s Inner Workings: A Deep Dive into Tensor Processing and Model Parallelism</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/07/29/2026-07-29-deep-dive-into-deepseeks-moe-architecture-for-llms/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-07-29-deep-dive-into-deepseeks-moe-architecture-for-llms.jpg" class="img-responsive" alt="Deep-Dive into DeepSeek&#39;s MoE Architecture for LLMs">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/07/29/2026-07-29-deep-dive-into-deepseeks-moe-architecture-for-llms/">Deep-Dive into DeepSeek&#39;s MoE Architecture for LLMs</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+            <h4>Contact</h4>
+
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2026, DataFibers all rights reserved.</p>
+            
+            <p class="pull-right">
+                Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+                
+
+                Powered by <a href="https://gohugo.io/">Hugo</a>
+                <img src="https://visitor-badge.laobi.icu/badge?page_id=datafibers-community.github.io&left_text=Visits"
+                    alt="Visitor Badge" style="vertical-align: middle; margin-left: 10px;" />
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+    </div>
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCksU3IZTuUK6fA-doQUfQ4KcYm7mB_vlk&v=3.exp"></script>
+
+<script src="https://datafibers-community.github.io/js/hpneo.gmaps.js"></script>
+<script src="https://datafibers-community.github.io/js/gmaps.init.js"></script>
+<script src="https://datafibers-community.github.io/js/front.js"></script>
+
+
+<script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
+  </body>
+</html>

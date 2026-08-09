@@ -141,7 +141,7 @@
     <item>
       <title>Data Engineering</title>
       <link>https://datafibers-community.github.io/categories/data-engineering/</link>
-      <pubDate>Sun, 19 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/data-engineering/</guid>
       <description></description>
@@ -202,6 +202,15 @@
     </item>
     
     <item>
+      <title>Generative Ai</title>
+      <link>https://datafibers-community.github.io/categories/generative-ai/</link>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/generative-ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Lakehouse</title>
       <link>https://datafibers-community.github.io/categories/lakehouse/</link>
       <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
@@ -213,7 +222,7 @@
     <item>
       <title>Llms</title>
       <link>https://datafibers-community.github.io/categories/llms/</link>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/llms/</guid>
       <description></description>
