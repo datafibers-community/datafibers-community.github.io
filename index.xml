@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 12 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Under the Hood: Deconstructing Robotics with ROS 2 Architectures</title>
+      <link>https://datafibers-community.github.io/blog/2026/08/16/2026-08-16-under-the-hood-deconstructing-robotics-with-ros-2-architectures/</link>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/08/16/2026-08-16-under-the-hood-deconstructing-robotics-with-ros-2-architectures/</guid>
+      <description>Under the Hood: Deconstructing Robotics with ROS 2 Architectures Robotics is no longer a futuristic fantasy; it&amp;rsquo;s a rapidly evolving field pushing the boundaries of automation, AI, and embedded systems. From industrial manipulators in factories to autonomous delivery drones and sophisticated surgical assistants, robots are becoming indispensable. But what truly makes these complex machines tick? How do their diverse components – sensors, actuators, and decision-making algorithms – communicate and cooperate seamlessly?</description>
+    </item>
     
     <item>
       <title>Under the Hood: Deconstructing Godot&#39;s Engine Architecture</title>

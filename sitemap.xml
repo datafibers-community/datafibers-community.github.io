@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/08/16/2026-08-16-under-the-hood-deconstructing-robotics-with-ros-2-architectures/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/08/12/2026-08-12-under-the-hood-deconstructing-godots-engine-architecture/</loc>
     <lastmod>2026-08-12T00:00:00+00:00</lastmod>
   </url>
@@ -355,14 +360,14 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/categories/architecture/</loc>
-    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/tags/architecture/</loc>
+    <lastmod>2026-07-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/architecture/</loc>
-    <lastmod>2026-07-22T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/categories/architecture/</loc>
+    <lastmod>2026-06-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -410,7 +415,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -457,14 +462,14 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/categories/cloud-native/</loc>
-    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/tags/cloud-native/</loc>
+    <lastmod>2026-05-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/cloud-native/</loc>
-    <lastmod>2026-05-10T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/categories/cloud-native/</loc>
+    <lastmod>2026-04-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -502,7 +507,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -555,14 +560,20 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/distributed-computing/</loc>
+    <lastmod>2026-05-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/categories/distributed-computing/</loc>
     <lastmod>2026-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/distributed-computing/</loc>
-    <lastmod>2026-05-06T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/tags/distributed-systems/</loc>
+    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -573,8 +584,8 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/distributed-systems/</loc>
-    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/categories/embedded-systems/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -723,14 +734,14 @@
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/categories/machine-learning/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <loc>https://datafibers-community.github.io/tags/machine-learning/</loc>
+    <lastmod>2018-03-10T13:50:46+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://datafibers-community.github.io/tags/machine-learning/</loc>
-    <lastmod>2018-03-10T13:50:46+02:00</lastmod>
+    <loc>https://datafibers-community.github.io/categories/machine-learning/</loc>
+    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -857,6 +868,18 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/review/</loc>
     <lastmod>2018-01-10T13:50:46+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/robotics/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/robotics-engineering/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
