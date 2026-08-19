@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/08/19/2026-08-19-deep-dive-into-kimis-200k-context-window-architecture-challenges-and-optimizations/</loc>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/08/16/2026-08-16-under-the-hood-deconstructing-robotics-with-ros-2-architectures/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
   </url>
@@ -379,7 +384,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/artificial-intelligence/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -415,7 +420,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -507,7 +512,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -538,6 +543,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/deep-learning/</loc>
     <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/deep-learning-architecture/</loc>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -692,6 +703,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/kimi-model/</loc>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/kubernetes/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -704,8 +721,20 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/large-context-window/</loc>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/llm/</loc>
-    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/llm-architecture/</loc>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -741,7 +770,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/machine-learning/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -824,6 +853,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/pagedattention/</loc>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/peft/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -884,6 +919,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/rope/</loc>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/scala/</loc>
     <lastmod>2017-09-15T13:50:46+02:00</lastmod>
     <priority>0</priority>
@@ -904,6 +945,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/spark/</loc>
     <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/sparse-attention/</loc>
+    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

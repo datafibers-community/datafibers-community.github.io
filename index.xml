@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 16 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Aug 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deep Dive into Kimi&#39;s 200K Context Window: Architecture, Challenges, and Optimizations</title>
+      <link>https://datafibers-community.github.io/blog/2026/08/19/2026-08-19-deep-dive-into-kimis-200k-context-window-architecture-challenges-and-optimizations/</link>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/08/19/2026-08-19-deep-dive-into-kimis-200k-context-window-architecture-challenges-and-optimizations/</guid>
+      <description>The landscape of Large Language Models (LLMs) is rapidly evolving, with a constant push towards greater capabilities. One of the most significant recent advancements has been the dramatic expansion of context windows. Moonshot AI&amp;rsquo;s Kimi Chat has emerged as a frontrunner, boasting an impressive 200,000-token context window. This isn&amp;rsquo;t just a marginal improvement; it fundamentally changes how developers can interact with and leverage LLMs for complex, long-form tasks.
+But how do models like Kimi achieve such unprecedented context lengths without succumbing to the quadratic scaling nightmares of traditional Transformers?</description>
+    </item>
     
     <item>
       <title>Under the Hood: Deconstructing Robotics with ROS 2 Architectures</title>
