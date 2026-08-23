@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/08/23/2026-08-23-kimi-model-deep-dive-into-its-architecture-and-implementation-patterns/</loc>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/08/19/2026-08-19-deep-dive-into-kimis-200k-context-window-architecture-challenges-and-optimizations/</loc>
     <lastmod>2026-08-19T00:00:00+00:00</lastmod>
   </url>
@@ -323,6 +328,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/ai/</loc>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/ai-architecture/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -366,7 +377,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/architecture/</loc>
-    <lastmod>2026-07-22T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -420,7 +431,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -489,6 +500,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/components/</loc>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/contact/</loc>
   </url>
   
@@ -512,7 +529,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -685,6 +702,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/implementation/</loc>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/information-retrieval/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -704,7 +727,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/kimi-model/</loc>
-    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -853,6 +876,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/orchestration/</loc>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/pagedattention/</loc>
     <lastmod>2026-08-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -962,13 +991,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/categories/technical-deep-dive/</loc>
-    <lastmod>2026-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

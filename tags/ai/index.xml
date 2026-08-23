@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ai on DataFibers</title>
+    <link>https://datafibers-community.github.io/tags/ai/</link>
+    <description>Recent content in Ai on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Sun, 23 Aug 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>kimi-model: Deep Dive into its Architecture and Implementation Patterns</title>
+      <link>https://datafibers-community.github.io/blog/2026/08/23/2026-08-23-kimi-model-deep-dive-into-its-architecture-and-implementation-patterns/</link>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/08/23/2026-08-23-kimi-model-deep-dive-into-its-architecture-and-implementation-patterns/</guid>
+      <description>kimi-model: Beyond the Surface - A Deep Dive into Architecture and Implementation In the rapidly evolving landscape of data processing and AI, new models and frameworks emerge with remarkable frequency. Among these, kimi-model has garnered attention for its unique approach. This post aims to move beyond a high-level overview and delve into the architectural underpinnings, practical implementation challenges, and design patterns that make kimi-model tick. We&amp;rsquo;ll explore its internal workings, discuss common pitfalls, and provide actionable insights for leveraging its full potential.</description>
+    </item>
+    
+  </channel>
+</rss>
