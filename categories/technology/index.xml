@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Under the Hood: Architecting Real-time Robotic Systems with ROS2</title>
+      <link>https://datafibers-community.github.io/blog/2026/08/26/2026-08-26-under-the-hood-architecting-real-time-robotic-systems-with-ros2/</link>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/08/26/2026-08-26-under-the-hood-architecting-real-time-robotic-systems-with-ros2/</guid>
+      <description>Robotics is a fascinating field where hardware meets intricate software. While the end-user often sees a seamless, intelligent machine, a complex symphony of distributed computing, sensor fusion, and precise control loops is orchestrating every movement. This deep dive moves beyond the flashy demos to explore the core architectural patterns and challenges in building robust robotic systems, with a particular focus on the Robot Operating System 2 (ROS2).
+The Brain of Modern Robots: ROS2 ROS2 isn&amp;rsquo;t just a library; it&amp;rsquo;s a comprehensive framework designed for building distributed robotic applications.</description>
+    </item>
     
     <item>
       <title>Hermes Agent: Under the Hood of a Resilient Distributed Event Ingestion System</title>
