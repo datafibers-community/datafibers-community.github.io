@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 19 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/databricks/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Beyond the Notebook: A Deep Dive into Databricks&#39; Lakehouse Architecture and Photon Engine</title>
+      <link>https://datafibers-community.github.io/blog/2026/08/30/2026-08-30-beyond-the-notebook-a-deep-dive-into-databricks-lakehouse-architecture-and-photon-engine/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/08/30/2026-08-30-beyond-the-notebook-a-deep-dive-into-databricks-lakehouse-architecture-and-photon-engine/</guid>
+      <description>Databricks has become synonymous with the Lakehouse, democratizing data engineering, ML, and analytics. But what truly makes it tick beneath the surface? This isn&amp;rsquo;t another &amp;lsquo;getting started&amp;rsquo; guide. We&amp;rsquo;re peeling back the layers to explore the architectural bedrock, the performance-boosting engines, and the practical challenges of building robust data solutions on Databricks.\n\n## Understanding the Databricks Lakehouse Architecture\nAt its core, the Databricks Lakehouse Platform unifies data warehousing and data lakes, built upon the open-source Delta Lake storage layer.</description>
+    </item>
     
     <item>
       <title>Unpacking the Databricks Lakehouse: A Deep Dive into Delta, Photon, and Unity Catalog</title>

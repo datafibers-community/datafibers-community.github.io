@@ -130,6 +130,15 @@
     </item>
     
     <item>
+      <title>Data Engineering</title>
+      <link>https://datafibers-community.github.io/tags/data-engineering/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/data-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Data Pipeline</title>
       <link>https://datafibers-community.github.io/tags/data-pipeline/</link>
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
@@ -150,7 +159,7 @@
     <item>
       <title>Databricks</title>
       <link>https://datafibers-community.github.io/tags/databricks/</link>
-      <pubDate>Sun, 19 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/databricks/</guid>
       <description></description>
@@ -189,6 +198,15 @@
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/deepseek/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Delta Lake</title>
+      <link>https://datafibers-community.github.io/tags/delta-lake/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/delta-lake/</guid>
       <description></description>
     </item>
     
@@ -369,6 +387,15 @@
       <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lakehouse</title>
+      <link>https://datafibers-community.github.io/tags/lakehouse/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/lakehouse/</guid>
       <description></description>
     </item>
     
@@ -562,6 +589,15 @@
     </item>
     
     <item>
+      <title>Photon</title>
+      <link>https://datafibers-community.github.io/tags/photon/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/photon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Pipeline Parallelism</title>
       <link>https://datafibers-community.github.io/tags/pipeline-parallelism/</link>
       <pubDate>Sun, 02 Aug 2026 00:00:00 +0000</pubDate>
@@ -702,6 +738,15 @@
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/tungsten/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unity Catalog</title>
+      <link>https://datafibers-community.github.io/tags/unity-catalog/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/unity-catalog/</guid>
       <description></description>
     </item>
     
