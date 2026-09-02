@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/09/02/2026-09-02-databricks-under-the-hood-delta-lake-photon-and-unity-catalog-deconstructed/</loc>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/08/30/2026-08-30-beyond-the-notebook-a-deep-dive-into-databricks-lakehouse-architecture-and-photon-engine/</loc>
     <lastmod>2026-08-30T00:00:00+00:00</lastmod>
   </url>
@@ -447,7 +452,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-08-30T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -526,14 +531,20 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/data-architecture/</loc>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/data-engineering/</loc>
-    <lastmod>2026-08-30T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/categories/data-engineering/</loc>
-    <lastmod>2026-08-30T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -551,13 +562,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-08-30T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/tags/databricks/</loc>
-    <lastmod>2026-08-30T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -599,7 +610,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/delta-lake/</loc>
-    <lastmod>2026-08-30T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -767,7 +778,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/lakehouse/</loc>
-    <lastmod>2026-08-30T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -940,6 +951,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/photon-engine/</loc>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/pipeline-parallelism/</loc>
     <lastmod>2026-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -1095,7 +1112,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/unity-catalog/</loc>
-    <lastmod>2026-08-30T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

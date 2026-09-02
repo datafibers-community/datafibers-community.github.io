@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="datafibers, big data, streaming">	
+  
+
+  
+  <meta name="description" content="DataFibers enterprise open source data bus">	
+  
+
+  <meta name="generator" content="Hugo 0.30.2" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="https://datafibers-community.github.io/css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="https://datafibers-community.github.io/css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="https://datafibers-community.github.io/css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="https://datafibers-community.github.io/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="https://datafibers-community.github.io/img/apple-touch-icon.png" />
+  
+
+  <link href="https://datafibers-community.github.io/css/owl.carousel.css" rel="stylesheet">
+  <link href="https://datafibers-community.github.io/css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="https://datafibers-community.github.io/index.xml" type="application/rss+xml" title="DataFibers">
+
+  
+  <meta property="og:title" content="Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2026/09/02/2026-09-02-databricks-under-the-hood-delta-lake-photon-and-unity-catalog-deconstructed//" />
+  <meta property="og:image" content="img/logo.png" />
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="https://datafibers-community.github.io/">
+                    <img src="https://datafibers-community.github.io/img/logo.png" alt="Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed logo" height="50" class="hidden-xs hidden-sm">
+                    <img src="https://datafibers-community.github.io/img/logo-small.png" alt="Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">Home</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="http://github.com/datafibers-community/df_data_service/releases/latest">Download</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/community/">Community</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/training/">Training</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">Contact</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">September 2, 2026</p>
+
+                        <div id="post-content">
+                          
+
+<p>Databricks has revolutionized the data landscape, providing a unified platform for data engineering, machine learning, and analytics. While its user-friendly interface and managed Spark capabilities are well-known, the true power lies in its meticulously engineered core components. This deep dive aims to peel back the layers, exploring the architectural nuances, practical challenges, and &lsquo;under-the-hood&rsquo; mechanisms of Databricks&rsquo; foundational technologies: Delta Lake, Photon Engine, and Unity Catalog.</p>
+
+<p>At the heart of Databricks&rsquo; vision for the Lakehouse is a sophisticated interplay of these systems, each addressing critical aspects of data reliability, performance, and governance.</p>
+
+<h2 id="1-delta-lake-the-transactional-foundation-of-your-lakehouse">1. Delta Lake: The Transactional Foundation of Your Lakehouse</h2>
+
+<p>Delta Lake is an open-source storage layer that brings ACID transactions, scalable metadata handling, and unified streaming and batch data processing to data lakes. It&rsquo;s not just a file format; it&rsquo;s a protocol built atop Parquet, enhancing reliability and performance.</p>
+
+<h3 id="1-1-the-transaction-log-how-acid-is-achieved">1.1. The Transaction Log: How ACID is Achieved</h3>
+
+<p>Every Delta table maintains a transaction log (located in the <code>_delta_log</code> subdirectory of the table path). This log is an ordered, atomic record of every change made to the table, including data file additions/deletions, schema changes, and table property modifications. Each change is recorded as a JSON file, and periodically, these JSON files are compacted into Parquet-based checkpoint files for faster reading.</p>
+
+<p><strong>Analogy</strong>: Think of the transaction log as a bank&rsquo;s ledger. Every deposit, withdrawal, or transfer is meticulously recorded, ensuring that the bank&rsquo;s balance is always consistent and recoverable. If the system crashes, the ledger can be replayed to restore the correct state.</p>
+
+<p>Let&rsquo;s inspect a simplified view of a transaction log entry:</p>
+
+<pre><code class="language-json">{
+  &quot;commitInfo&quot;: {
+    &quot;timestamp&quot;: 1678886400000,
+    &quot;operation&quot;: &quot;WRITE&quot;,
+    &quot;operationParameters&quot;: {
+      &quot;mode&quot;: &quot;Append&quot;,
+      &quot;partitionBy&quot;: &quot;[]&quot;
+    },
+    &quot;isBlindAppend&quot;: true
+  },
+  &quot;add&quot;: {
+    &quot;path&quot;: &quot;part-00000-guid.snappy.parquet&quot;,
+    &quot;size&quot;: 12345,
+    &quot;modificationTime&quot;: 1678886400000,
+    &quot;dataChange&quot;: true,
+    &quot;stats&quot;: &quot;{\&quot;numRecords\&quot;:100,\&quot;minValues\&quot;:{},\&quot;maxValues\&quot;:{},\&quot;nullCount\&quot;:{}}&quot;
+  }
+}
+</code></pre>
+
+<p>This JSON snippet describes an <code>add</code> action, indicating a new Parquet file was added. Other actions include <code>remove</code> (for deleting files), <code>metadata</code> (for schema changes), and <code>protocol</code> (for updating Delta Lake protocol versions).</p>
+
+<h3 id="1-2-time-travel-data-versioning">1.2. Time Travel (Data Versioning)</h3>
+
+<p>Because the transaction log records every change, Delta Lake can reconstruct the state of a table at any point in time. This is invaluable for auditing, rolling back bad writes, or reproducing experiments. Each commit to the transaction log corresponds to a version of the table.</p>
+
+<p>To query an older version:</p>
+
+<pre><code class="language-python"># Query by version
+df_v0 = spark.read.format(&quot;delta&quot;).option(&quot;versionAsOf&quot;, 0).load(&quot;/tmp/delta_table&quot;)
+
+# Query by timestamp
+df_yesterday = spark.read.format(&quot;delta&quot;).option(&quot;timestampAsOf&quot;, &quot;2023-03-14&quot;).load(&quot;/tmp/delta_table&quot;)
+</code></pre>
+
+<p>To view the history of a Delta table:</p>
+
+<pre><code class="language-sql">DESCRIBE HISTORY delta.`/tmp/delta_table`;
+</code></pre>
+
+<p>This will return a table showing each version, commit details, operations, and user information.</p>
+
+<h3 id="1-3-schema-enforcement-and-evolution">1.3. Schema Enforcement and Evolution</h3>
+
+<p>Delta Lake automatically enforces schema on writes, preventing bad data from corrupting your tables. However, it also supports controlled schema evolution for scenarios where your data naturally changes over time (e.g., adding a new column).</p>
+
+<p><strong>Schema Enforcement</strong>: By default, if an incoming DataFrame&rsquo;s schema doesn&rsquo;t match the table&rsquo;s schema, the write fails.</p>
+
+<p><strong>Schema Evolution</strong>: You can explicitly allow schema changes using the <code>mergeSchema</code> option or <code>ALTER TABLE ADD COLUMN</code> for SQL. This adds new columns to the table schema and fills existing records for that column with <code>null</code> values.</p>
+
+<pre><code class="language-python"># Example of schema evolution during an append operation
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+
+# Original schema
+original_schema = StructType([
+    StructField(&quot;id&quot;, IntegerType(), True),
+    StructField(&quot;name&quot;, StringType(), True)
+])
+
+data1 = [(1, &quot;Alice&quot;), (2, &quot;Bob&quot;)]
+df1 = spark.createDataFrame(data1, original_schema)
+df1.write.format(&quot;delta&quot;).mode(&quot;overwrite&quot;).save(&quot;/tmp/delta_table_schema&quot;)
+
+# New data with an additional column 'city'
+new_schema = StructType([
+    StructField(&quot;id&quot;, IntegerType(), True),
+    StructField(&quot;name&quot;, StringType(), True),
+    StructField(&quot;city&quot;, StringType(), True)
+])
+data2 = [(3, &quot;Charlie&quot;, &quot;New York&quot;), (4, &quot;David&quot;, &quot;London&quot;)]
+df2 = spark.createDataFrame(data2, new_schema)
+
+# Append with mergeSchema option
+df2.write.format(&quot;delta&quot;)\
+    .mode(&quot;append&quot;)\
+    .option(&quot;mergeSchema&quot;, &quot;true&quot;)\
+    .save(&quot;/tmp/delta_table_schema&quot;)
+
+# The table now has the 'city' column
+spark.read.format(&quot;delta&quot;).load(&quot;/tmp/delta_table_schema&quot;).printSchema()
+</code></pre>
+
+<h2 id="2-photon-engine-turbocharging-apache-spark-workloads">2. Photon Engine: Turbocharging Apache Spark Workloads</h2>
+
+<p>Photon is a vectorized query engine that makes your existing Spark SQL and DataFrame API calls faster on Databricks. It&rsquo;s written in C++ and is designed to provide ultra-fast performance for data ingestion, ETL, data warehousing, and data science workloads.</p>
+
+<h3 id="2-1-beyond-jit-a-native-c-engine">2.1. Beyond JIT: A Native C++ Engine</h3>
+
+<p>Traditional Apache Spark relies on the JVM and bytecode interpretation/JIT compilation. While powerful, this can introduce overheads, especially for high-throughput, low-latency analytical queries. Photon fundamentally changes this by replacing parts of Spark&rsquo;s execution engine with a highly optimized, native C++ implementation.</p>
+
+<p><strong>Key characteristics of Photon:</strong>
+*   <strong>Vectorized Query Processing</strong>: Processes data in batches (vectors) rather than row-by-row, leveraging CPU cache lines and SIMD instructions for significant performance gains.
+*   <strong>Data Layout Optimization</strong>: Works efficiently with columnar data formats (like Parquet) and uses techniques like dictionary encoding and run-length encoding.
+*   <strong>Optimized Operators</strong>: Provides highly optimized implementations for common SQL operators like joins, aggregations, sorts, and scans.
+*   <strong>Seamless Integration</strong>: Photon automatically kicks in when available on a Photon-enabled cluster, requiring no code changes from the user for most workloads.</p>
+
+<p><strong>Analogy</strong>: Imagine Spark as a powerful, general-purpose truck. It can carry anything, but sometimes you need to move specific goods very quickly. Photon is like replacing the truck&rsquo;s engine with a custom-built, high-performance racing engine designed specifically for speed and efficiency when hauling those specific goods.</p>
+
+<h3 id="2-2-enabling-and-verifying-photon">2.2. Enabling and Verifying Photon</h3>
+
+<p>Photon is enabled by default on Databricks Runtime 9.1 LTS and above, specifically for &lsquo;Photon-enabled&rsquo; cluster types.</p>
+
+<p><strong>Cluster Configuration (JSON snippet):</strong>
+When creating a cluster, you&rsquo;d select a Databricks Runtime version that includes Photon. The JSON configuration would look something like this (simplified):</p>
+
+<pre><code class="language-json">{
+  &quot;cluster_name&quot;: &quot;my-photon-cluster&quot;,
+  &quot;spark_version&quot;: &quot;13.3.x-scala2.12-photon-cpu-ml-standard&quot;,
+  &quot;node_type_id&quot;: &quot;i3.xlarge&quot;,
+  &quot;autoscale&quot;: {
+    &quot;min_workers&quot;: 2,
+    &quot;max_workers&quot;: 8
+  },
+  &quot;num_workers&quot;: 3
+}
+</code></pre>
+
+<p>Notice the <code>photon-cpu</code> in the <code>spark_version</code>. This indicates a Photon-enabled runtime.</p>
+
+<p><strong>Verifying Photon usage in Spark UI</strong>: In the Spark UI (available via the Databricks cluster UI), you can inspect query plans. Operations accelerated by Photon will often show <code>Photon</code> prefixes or indicators in the execution plan details, like <code>Photon: Scan</code> or <code>Photon: HashAggregate</code>.</p>
+
+<h3 id="2-3-practical-considerations">2.3. Practical Considerations</h3>
+
+<p>While Photon significantly boosts performance, not all Spark operations are Photon-accelerated. Operations involving UDFs (User-Defined Functions), complex nested data types, or certain legacy Spark APIs might still fall back to the JVM-based Spark engine. Databricks continuously expands Photon&rsquo;s coverage, but it&rsquo;s crucial to profile and monitor your workloads to understand where performance gains are realized.</p>
+
+<h2 id="3-unity-catalog-the-unified-governance-layer">3. Unity Catalog: The Unified Governance Layer</h2>
+
+<p>Unity Catalog is Databricks&rsquo; fine-grained governance solution for data and AI on the Lakehouse. It provides a centralized approach to security, auditing, discovery, and access control across all your Databricks workspaces and data assets.</p>
+
+<h3 id="3-1-centralized-metastore-architecture">3.1. Centralized Metastore Architecture</h3>
+
+<p>Unlike traditional Spark metastores tied to individual clusters or workspaces, Unity Catalog introduces a centralized metastore that can be shared across multiple Databricks workspaces in the same Databricks account. This allows for a single source of truth for metadata and permissions.</p>
+
+<p><strong>Architectural Hierarchy:</strong></p>
+
+<pre><code class="language-mermaid">graph TD
+    A[Databricks Account] --&gt; B[Metastore]
+    B --&gt; C1[Catalog 1]
+    B --&gt; C2[Catalog 2]
+    C1 --&gt; S1[Schema 1]
+    C1 --&gt; S2[Schema 2]
+    S1 --&gt; T1[Table/View/Volume 1]
+    S1 --&gt; T2[Table/View/Volume 2]
+    A --&gt; W1[Workspace 1]
+    A --&gt; W2[Workspace 2]
+    W1 -- Attaches to --&gt; B
+    W2 -- Attaches to --&gt; B
+</code></pre>
+
+<ul>
+<li><strong>Metastore</strong>: The top-level container for all Unity Catalog metadata and permissions.</li>
+<li><strong>Catalog</strong>: The first layer of data organization, analogous to a database in traditional systems. Users can create separate catalogs for different projects, teams, or environments.</li>
+<li><strong>Schema (Database)</strong>: The next layer, containing tables, views, and volumes.</li>
+<li><strong>Table/View/Volume</strong>: The actual data objects.</li>
+</ul>
+
+<h3 id="3-2-granular-access-control-and-identity-federation">3.2. Granular Access Control and Identity Federation</h3>
+
+<p>Unity Catalog enforces access control at the table, row, and column level, directly integrating with your existing identity provider (Azure Active Directory, Okta, etc.). Permissions are managed using standard SQL <code>GRANT</code> and <code>REVOKE</code> statements.</p>
+
+<p><strong>Example: Granting Permissions</strong></p>
+
+<pre><code class="language-sql">-- Grant SELECT on a specific table to a user
+GRANT SELECT ON TABLE main.default.sales_data TO `user_alice@example.com`;
+
+-- Grant USAGE on a schema and SELECT on all tables in it to a group
+GRANT USAGE ON SCHEMA main.analytics TO `data_analysts_group`;
+GRANT SELECT ON ALL TABLES IN SCHEMA main.analytics TO `data_analysts_group`;
+
+-- Grant CREATE TABLE and CREATE VOLUME on a catalog to a group
+GRANT CREATE TABLE, CREATE VOLUME ON CATALOG raw_data TO `data_engineers_group`;
+</code></pre>
+
+<p>This SQL-centric approach makes access management familiar to data professionals and facilitates automated permission provisioning.</p>
+
+<h3 id="3-3-external-locations-and-storage-credentials">3.3. External Locations and Storage Credentials</h3>
+
+<p>For tables backed by external cloud storage (e.g., S3, ADLS Gen2), Unity Catalog uses &lsquo;External Locations&rsquo; and &lsquo;Storage Credentials&rsquo; to securely manage access without exposing cloud access keys to users. Storage credentials abstract the underlying cloud access (e.g., IAM role, service principal), while external locations map a cloud storage path to a logical name within Unity Catalog.</p>
+
+<p><strong>Databricks CLI Example: Creating an External Location</strong></p>
+
+<p>First, define a storage credential (e.g., using an Azure service principal or an AWS IAM role):</p>
+
+<pre><code class="language-bash"># Example for Azure Data Lake Storage Gen2 using Service Principal
+databricks unity-catalog storage-credentials create --name &quot;my_adls_credential&quot; \
+    --azure-service-principal &quot;tenant_id=&lt;tenant-id&gt;,client_id=&lt;client-id&gt;,client_secret=&lt;client-secret&gt;&quot;
+</code></pre>
+
+<p>Then, create an external location referencing this credential:</p>
+
+<pre><code class="language-bash">databricks unity-catalog external-locations create --name &quot;raw_data_location&quot; \
+    --url &quot;abfss://raw@myadlsaccount.dfs.core.windows.net/&quot; \
+    --credential-name &quot;my_adls_credential&quot;
+</code></pre>
+
+<p>Now, users with appropriate permissions on <code>raw_data_location</code> can create tables pointing to paths within <code>abfss://raw@myadlsaccount.dfs.core.windows.net/</code> without directly needing the service principal credentials.</p>
+
+<h2 id="4-architectural-pattern-the-medallion-architecture-on-databricks">4. Architectural Pattern: The Medallion Architecture on Databricks</h2>
+
+<p>The Medallion Architecture (Bronze, Silver, Gold layers) is a robust and widely adopted data architecture pattern on Databricks, leveraging Delta Lake for its reliability and ACID properties across all stages.</p>
+
+<pre><code class="language-mermaid">graph LR
+    Source[External Data Sources] --&gt; Bronze[Bronze Layer (Raw Data)]
+    Bronze --&gt; Silver[Silver Layer (Cleaned &amp; Conformed)]
+    Silver --&gt; Gold[Gold Layer (Aggregated &amp; Business-Ready)]
+    Gold --&gt; Analytics[Reporting &amp; Analytics]
+    Gold --&gt; ML[Machine Learning Models]
+
+    subgraph Data Processing on Databricks
+        Bronze -- Delta Lake --&gt; Silver
+        Silver -- Delta Lake --&gt; Gold
+    end
+</code></pre>
+
+<ul>
+<li><p><strong>Bronze Layer</strong>: Ingests raw data from various sources (streaming or batch) into Delta tables with minimal transformation. The goal is to preserve the raw, immutable history. Schema enforcement is typically relaxed (<code>mergeSchema=true</code>) to accommodate schema drift in source systems.</p>
+
+<pre><code class="language-python"># Example: Ingesting raw JSON into Bronze Delta table
+raw_json_df = spark.read.format(&quot;json&quot;).load(&quot;/mnt/landing_zone/raw_events/&quot;)
+raw_json_df.write.format(&quot;delta&quot;)\
+    .mode(&quot;append&quot;)\
+    .option(&quot;mergeSchema&quot;, &quot;true&quot;)\
+    .saveAsTable(&quot;bronze.raw_events&quot;)
+</code></pre></li>
+
+<li><p><strong>Silver Layer</strong>: Takes data from the Bronze layer, applies cleansing, filtering, standardization, and enrichment logic. Data is often de-duplicated, sensitive information is masked, and data types are corrected. This layer aims for a &ldquo;single source of truth&rdquo; for enterprise data.</p>
+
+<pre><code class="language-python"># Example: Cleaning and conforming raw events to Silver
+from pyspark.sql.functions import col, current_timestamp, sha2
+
+bronze_events_df = spark.read.table(&quot;bronze.raw_events&quot;)
+
+silver_events_df = bronze_events_df.filter(col(&quot;event_timestamp&quot;).isNotNull())\
+    .withColumn(&quot;processed_timestamp&quot;, current_timestamp())\
+    .withColumn(&quot;hashed_user_id&quot;, sha2(col(&quot;user_id&quot;), 256))
+
+silver_events_df.write.format(&quot;delta&quot;)\
+    .mode(&quot;overwrite&quot;)\
+    .option(&quot;overwriteSchema&quot;, &quot;true&quot;)\
+    .saveAsTable(&quot;silver.cleaned_events&quot;)
+</code></pre></li>
+
+<li><p><strong>Gold Layer</strong>: Aggregates, transforms, and joins data from the Silver layer into highly optimized, denormalized models tailored for specific business use cases (e.g., sales dashboards, customer analytics, ML feature stores). This layer is designed for performance and ease of consumption by end-users and applications.</p>
+
+<pre><code class="language-sql">-- Example: Creating a Gold layer aggregate table
+CREATE OR REPLACE TABLE gold.daily_sales_summary
+AS SELECT
+    DATE(sale_timestamp) AS sale_date,
+    product_category,
+    SUM(sale_amount) AS total_sales,
+    COUNT(DISTINCT customer_id) AS distinct_customers
+FROM silver.sales_transactions
+GROUP BY 1, 2;
+</code></pre></li>
+</ul>
+
+<p>This tiered approach ensures data quality, governance, and optimized performance at each stage, making it a scalable and maintainable pattern for building a modern Lakehouse.</p>
+
+<h2 id="conclusion-the-integrated-power-of-the-databricks-lakehouse">Conclusion: The Integrated Power of the Databricks Lakehouse</h2>
+
+<p>Databricks&rsquo; strength lies in the seamless integration and synergistic effects of its core components. Delta Lake provides the transactional reliability and data quality foundation, Photon turbocharges the analytical workloads, and Unity Catalog establishes a unified, granular governance framework across the entire data estate.</p>
+
+<p>Understanding these &lsquo;under-the-hood&rsquo; details empowers data professionals to design more resilient, performant, and secure data solutions on Databricks. As the platform continues to evolve, these foundational elements will remain critical, enabling organizations to unlock the full potential of their data and AI initiatives within a true Lakehouse architecture.</p>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sparkera" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="https://datafibers-community.github.io/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="https://datafibers-community.github.io/categories/ai-engineering">ai-engineering (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/ai-infrastructure">ai-infrastructure (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/apache-kafka">apache-kafka (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/architecture">architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/article">article (18)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/artificial-intelligence">artificial-intelligence (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/autonomous-systems">autonomous-systems (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/azure-networking">azure-networking (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/backend-development">backend-development (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/big-data">big-data (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-architecture">cloud-architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-computing">cloud-computing (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-data-platforms">cloud-data-platforms (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-native">cloud-native (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/cloud-networking">cloud-networking (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/data-engineering">data-engineering (12)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/datafibers-community">datafibers-community (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/deep-learning">deep-learning (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/devops">devops (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/digest">digest (10)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/distributed-computing">distributed-computing (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/distributed-systems">distributed-systems (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/embedded-systems">embedded-systems (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/game-engines">game-engines (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/generative-ai">generative-ai (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/lakehouse">lakehouse (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/llm-architecture">llm-architecture (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/llms">llms (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/machine-learning">machine-learning (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/observability--monitoring">observability--monitoring (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/open-source">open-source (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/release">release (3)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/review">review (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/robotics-engineering">robotics-engineering (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technical-deep-dive">technical-deep-dive (2)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technical-guides">technical-guides (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/technology">technology (4)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/training">training (1)</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/categories/tutorial">tutorial (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="https://datafibers-community.github.io/tags/ai"><i class="fa fa-tags"></i> ai</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/ai-architecture"><i class="fa fa-tags"></i> ai-architecture</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/aiagent"><i class="fa fa-tags"></i> aiagent</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/apache"><i class="fa fa-tags"></i> apache</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/application-lifecycle-management"><i class="fa fa-tags"></i> application-lifecycle-management</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/architecture"><i class="fa fa-tags"></i> architecture</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/azure-cloud"><i class="fa fa-tags"></i> azure-cloud</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/big-data"><i class="fa fa-tags"></i> big-data</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/catalyst"><i class="fa fa-tags"></i> catalyst</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cicd"><i class="fa fa-tags"></i> cicd</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cloud"><i class="fa fa-tags"></i> cloud</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/cloud-native"><i class="fa fa-tags"></i> cloud-native</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/components"><i class="fa fa-tags"></i> components</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-architecture"><i class="fa fa-tags"></i> data-architecture</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-engineering"><i class="fa fa-tags"></i> data-engineering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-pipeline"><i class="fa fa-tags"></i> data-pipeline</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/data-streaming"><i class="fa fa-tags"></i> data-streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/databricks"><i class="fa fa-tags"></i> databricks</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/datafibers"><i class="fa fa-tags"></i> datafibers</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-dive"><i class="fa fa-tags"></i> deep-dive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deep-learning-architecture"><i class="fa fa-tags"></i> deep-learning-architecture</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/deepseek"><i class="fa fa-tags"></i> deepseek</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/delta-lake"><i class="fa fa-tags"></i> delta-lake</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/distributed-computing"><i class="fa fa-tags"></i> distributed-computing</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/distributed-systems"><i class="fa fa-tags"></i> distributed-systems</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/flink"><i class="fa fa-tags"></i> flink</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/gemeni"><i class="fa fa-tags"></i> gemeni</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/git"><i class="fa fa-tags"></i> git</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/godot"><i class="fa fa-tags"></i> godot</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/grok"><i class="fa fa-tags"></i> grok</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hadoop"><i class="fa fa-tags"></i> hadoop</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/harness-enginnering"><i class="fa fa-tags"></i> harness-enginnering</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hbase"><i class="fa fa-tags"></i> hbase</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hermes-agent"><i class="fa fa-tags"></i> hermes-agent</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hive"><i class="fa fa-tags"></i> hive</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/hugging-face"><i class="fa fa-tags"></i> hugging-face</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/idempotence"><i class="fa fa-tags"></i> idempotence</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/implementation"><i class="fa fa-tags"></i> implementation</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/information-retrieval"><i class="fa fa-tags"></i> information-retrieval</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/k8s"><i class="fa fa-tags"></i> k8s</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kafka"><i class="fa fa-tags"></i> kafka</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kimi-model"><i class="fa fa-tags"></i> kimi-model</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/lakehouse"><i class="fa fa-tags"></i> lakehouse</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/large-context-window"><i class="fa fa-tags"></i> large-context-window</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/llm"><i class="fa fa-tags"></i> llm</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/log-compaction"><i class="fa fa-tags"></i> log-compaction</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/logs"><i class="fa fa-tags"></i> logs</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/lora"><i class="fa fa-tags"></i> lora</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/machine-learning"><i class="fa fa-tags"></i> machine-learning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/messaging"><i class="fa fa-tags"></i> messaging</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/mixture-of-experts"><i class="fa fa-tags"></i> mixture-of-experts</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/model-parallelism"><i class="fa fa-tags"></i> model-parallelism</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/moe"><i class="fa fa-tags"></i> moe</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/monitoring"><i class="fa fa-tags"></i> monitoring</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/natural-language-processing"><i class="fa fa-tags"></i> natural-language-processing</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/networking"><i class="fa fa-tags"></i> networking</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/nosql"><i class="fa fa-tags"></i> nosql</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/observability"><i class="fa fa-tags"></i> observability</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/ollama"><i class="fa fa-tags"></i> ollama</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/open-claw"><i class="fa fa-tags"></i> open-claw</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/orchestration"><i class="fa fa-tags"></i> orchestration</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/pagedattention"><i class="fa fa-tags"></i> pagedattention</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/peft"><i class="fa fa-tags"></i> peft</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/performance-tuning"><i class="fa fa-tags"></i> performance-tuning</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/photon"><i class="fa fa-tags"></i> photon</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/photon-engine"><i class="fa fa-tags"></i> photon-engine</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/pipeline-parallelism"><i class="fa fa-tags"></i> pipeline-parallelism</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/private-link"><i class="fa fa-tags"></i> private-link</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/rag"><i class="fa fa-tags"></i> rag</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/redish"><i class="fa fa-tags"></i> redish</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/robotics"><i class="fa fa-tags"></i> robotics</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/rope"><i class="fa fa-tags"></i> rope</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/scala"><i class="fa fa-tags"></i> scala</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/service-endpoints"><i class="fa fa-tags"></i> service-endpoints</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/shuffling"><i class="fa fa-tags"></i> shuffling</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/spark"><i class="fa fa-tags"></i> spark</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/sparse-attention"><i class="fa fa-tags"></i> sparse-attention</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/streaming"><i class="fa fa-tags"></i> streaming</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/telemetry"><i class="fa fa-tags"></i> telemetry</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/tensor-parallelism"><i class="fa fa-tags"></i> tensor-parallelism</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/tpu"><i class="fa fa-tags"></i> tpu</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/tungsten"><i class="fa fa-tags"></i> tungsten</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/unity-catalog"><i class="fa fa-tags"></i> unity-catalog</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/vector-databases"><i class="fa fa-tags"></i> vector-databases</a>
+            </li>
+            
+            <li><a href="https://datafibers-community.github.io/tags/vnet"><i class="fa fa-tags"></i> vnet</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            DataFibers are expertises by applying its cutting edge big data technologies and solutions on enterprise big data centric use cases.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Recent posts</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/09/02/2026-09-02-databricks-under-the-hood-delta-lake-photon-and-unity-catalog-deconstructed/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-09-02-databricks-under-the-hood-delta-lake-photon-and-unity-catalog-deconstructed.jpg" class="img-responsive" alt="Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/09/02/2026-09-02-databricks-under-the-hood-delta-lake-photon-and-unity-catalog-deconstructed/">Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/08/30/2026-08-30-beyond-the-notebook-a-deep-dive-into-databricks-lakehouse-architecture-and-photon-engine/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-08-30-beyond-the-notebook-a-deep-dive-into-databricks-lakehouse-architecture-and-photon-engine.jpg" class="img-responsive" alt="Beyond the Notebook: A Deep Dive into Databricks&#39; Lakehouse Architecture and Photon Engine">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/08/30/2026-08-30-beyond-the-notebook-a-deep-dive-into-databricks-lakehouse-architecture-and-photon-engine/">Beyond the Notebook: A Deep Dive into Databricks&#39; Lakehouse Architecture and Photon Engine</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="https://datafibers-community.github.io/blog/2026/08/26/2026-08-26-under-the-hood-architecting-real-time-robotic-systems-with-ros2/">
+                            
+                            <img src="https://datafibers-community.github.io/img/banners/2026-08-26-under-the-hood-architecting-real-time-robotic-systems-with-ros2.jpg" class="img-responsive" alt="Under the Hood: Architecting Real-time Robotic Systems with ROS2">
+                            
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="https://datafibers-community.github.io/blog/2026/08/26/2026-08-26-under-the-hood-architecting-real-time-robotic-systems-with-ros2/">Under the Hood: Architecting Real-time Robotic Systems with ROS2</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+            <h4>Contact</h4>
+
+            <p><p><strong>DataFibers.</strong>
+        <br>7030 Woodbine Avenue,
+        <br>L3R 6G2
+        <br>Ontario, Markham
+        <br>Canadar
+        <br>
+        <br>
+        <strong>Tel: +1 (647) 960-8578</strong>
+        <br></p>
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">Go to contact page</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2026, DataFibers all rights reserved.</p>
+            
+            <p class="pull-right">
+                Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+                
+
+                Powered by <a href="https://gohugo.io/">Hugo</a>
+                <img src="https://visitor-badge.laobi.icu/badge?page_id=datafibers-community.github.io&left_text=Visits"
+                    alt="Visitor Badge" style="vertical-align: middle; margin-left: 10px;" />
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+    </div>
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-40213017-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCksU3IZTuUK6fA-doQUfQ4KcYm7mB_vlk&v=3.exp"></script>
+
+<script src="https://datafibers-community.github.io/js/hpneo.gmaps.js"></script>
+<script src="https://datafibers-community.github.io/js/gmaps.init.js"></script>
+<script src="https://datafibers-community.github.io/js/front.js"></script>
+
+
+<script src="https://datafibers-community.github.io/js/owl.carousel.min.js"></script>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55ccd57a1c1b9515"></script>
+  </body>
+</html>
