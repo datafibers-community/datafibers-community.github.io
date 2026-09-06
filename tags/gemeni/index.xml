@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 02 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 06 Sep 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/gemeni/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gemini Under the Hood: Architectural Nuances for Practical Implementation</title>
+      <link>https://datafibers-community.github.io/blog/2026/09/06/2026-09-06-gemini-under-the-hood-architectural-nuances-for-practical-implementation/</link>
+      <pubDate>Sun, 06 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/09/06/2026-09-06-gemini-under-the-hood-architectural-nuances-for-practical-implementation/</guid>
+      <description>Gemini, Google&amp;rsquo;s family of powerful, multimodal AI models, has redefined what&amp;rsquo;s possible in generative AI. Beyond the impressive demos and high-level capabilities, understanding its underlying architecture and practical interaction patterns is crucial for developers and data scientists looking to leverage its full potential. This deep dive moves beyond marketing claims to explore Gemini&amp;rsquo;s core components, how it handles multimodality, and key considerations for implementation.
+The Multimodal Transformer Core: A Unified Latent Space At its heart, Gemini is a sophisticated Transformer architecture.</description>
+    </item>
     
     <item>
       <title>Gemini&#39;s Inner Workings: A Deep Dive into Tensor Processing and Model Parallelism</title>

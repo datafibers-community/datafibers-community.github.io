@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/09/06/2026-09-06-gemini-under-the-hood-architectural-nuances-for-practical-implementation/</loc>
+    <lastmod>2026-09-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/09/02/2026-09-02-databricks-under-the-hood-delta-lake-photon-and-unity-catalog-deconstructed/</loc>
     <lastmod>2026-09-02T00:00:00+00:00</lastmod>
   </url>
@@ -452,7 +457,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -465,6 +470,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/</loc>
     <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/category1/</loc>
+    <lastmod>2026-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -562,7 +573,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -670,7 +681,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/gemeni/</loc>
-    <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
