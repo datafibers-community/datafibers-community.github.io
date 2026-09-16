@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Signals on DataFibers</title>
+    <link>https://datafibers-community.github.io/tags/signals/</link>
+    <description>Recent content in Signals on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Wed, 16 Sep 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/tags/signals/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Godot&#39;s Core: Unpacking the Node-Based Architecture and C&#43;&#43; Extensibility</title>
+      <link>https://datafibers-community.github.io/blog/2026/09/16/2026-09-16-godots-core-unpacking-the-node-based-architecture-and-c-extensibility/</link>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/09/16/2026-09-16-godots-core-unpacking-the-node-based-architecture-and-c-extensibility/</guid>
+      <description>Godot&amp;rsquo;s Core: Unpacking the Node-Based Architecture and C++ Extensibility Godot Engine has rapidly ascended as a prominent open-source game development platform, celebrated for its intuitive editor and expressive scripting language. While its user-friendliness is often highlighted, a true understanding of Godot&amp;rsquo;s power lies beneath the surface – in its elegant architectural patterns, efficient resource management, and robust extensibility mechanisms. This deep dive will pull back the curtain, exploring the &amp;ldquo;how&amp;rdquo; and &amp;ldquo;why&amp;rdquo; behind Godot&amp;rsquo;s design choices, from its fundamental scene tree to its C++ module system.</description>
+    </item>
+    
+  </channel>
+</rss>
