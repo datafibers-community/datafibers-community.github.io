@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 23 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Agentic Ai</title>
+      <link>https://datafibers-community.github.io/tags/agentic-ai/</link>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/agentic-ai/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Ai</title>
@@ -31,11 +40,29 @@
     </item>
     
     <item>
+      <title>Ai Native Development</title>
+      <link>https://datafibers-community.github.io/tags/ai-native-development/</link>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/ai-native-development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Aiagent</title>
       <link>https://datafibers-community.github.io/tags/aiagent/</link>
       <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/aiagent/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Anthropic Claude</title>
+      <link>https://datafibers-community.github.io/tags/anthropic-claude/</link>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/anthropic-claude/</guid>
       <description></description>
     </item>
     
@@ -103,11 +130,29 @@
     </item>
     
     <item>
+      <title>Ci/Cd</title>
+      <link>https://datafibers-community.github.io/tags/ci/cd/</link>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/ci/cd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cicd</title>
       <link>https://datafibers-community.github.io/tags/cicd/</link>
       <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/cicd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Claude Code</title>
+      <link>https://datafibers-community.github.io/tags/claude-code/</link>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/claude-code/</guid>
       <description></description>
     </item>
     
@@ -126,6 +171,15 @@
       <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/cloud-native/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Code Generation</title>
+      <link>https://datafibers-community.github.io/tags/code-generation/</link>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/code-generation/</guid>
       <description></description>
     </item>
     
@@ -456,7 +510,7 @@
     <item>
       <title>Llm</title>
       <link>https://datafibers-community.github.io/tags/llm/</link>
-      <pubDate>Wed, 19 Aug 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/llm/</guid>
       <description></description>
@@ -666,6 +720,15 @@
       <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/private-link/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prompt Engineering</title>
+      <link>https://datafibers-community.github.io/tags/prompt-engineering/</link>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/prompt-engineering/</guid>
       <description></description>
     </item>
     

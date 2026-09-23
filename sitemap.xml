@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/09/23/2026-09-23-unpacking-claudes-code-brain-a-deep-dive-into-ai-native-development/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/09/16/2026-09-16-godots-core-unpacking-the-node-based-architecture-and-c-extensibility/</loc>
     <lastmod>2026-09-16T00:00:00+00:00</lastmod>
   </url>
@@ -353,6 +358,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/agentic-ai/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/ai/</loc>
     <lastmod>2026-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -377,8 +388,20 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/ai-native-development/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/aiagent/</loc>
     <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/anthropic-claude/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -420,7 +443,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/artificial-intelligence/</loc>
-    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -462,7 +485,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-09-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -491,8 +514,20 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/ci/cd/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/cicd/</loc>
     <lastmod>2026-05-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/claude-code/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -535,6 +570,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/cloud-networking/</loc>
     <lastmod>2026-07-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/code-generation/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -584,7 +625,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-09-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -633,6 +674,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/delta-lake/</loc>
     <lastmod>2026-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/developer-tools/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -836,7 +883,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/llm/</loc>
-    <lastmod>2026-08-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1009,6 +1056,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/prompt-engineering/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/rag/</loc>
     <lastmod>2026-08-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -1081,6 +1134,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/software-engineering/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/spark/</loc>
     <lastmod>2026-07-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -1100,7 +1159,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/</loc>
-    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
