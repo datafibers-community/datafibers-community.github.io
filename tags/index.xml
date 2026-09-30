@@ -94,6 +94,15 @@
     </item>
     
     <item>
+      <title>Autonomous Systems</title>
+      <link>https://datafibers-community.github.io/tags/autonomous-systems/</link>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/autonomous-systems/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Azure Cloud</title>
       <link>https://datafibers-community.github.io/tags/azure-cloud/</link>
       <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
@@ -283,6 +292,15 @@
     </item>
     
     <item>
+      <title>Devops</title>
+      <link>https://datafibers-community.github.io/tags/devops/</link>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Distributed Computing</title>
       <link>https://datafibers-community.github.io/tags/distributed-computing/</link>
       <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
@@ -306,6 +324,24 @@
       <pubDate>Wed, 16 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/engine-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Event Driven Architecture</title>
+      <link>https://datafibers-community.github.io/tags/event-driven-architecture/</link>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/event-driven-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Feedback Loops</title>
+      <link>https://datafibers-community.github.io/tags/feedback-loops/</link>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/feedback-loops/</guid>
       <description></description>
     </item>
     
@@ -483,7 +519,7 @@
     <item>
       <title>Kubernetes</title>
       <link>https://datafibers-community.github.io/tags/kubernetes/</link>
-      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/kubernetes/</guid>
       <description></description>
@@ -535,6 +571,15 @@
     </item>
     
     <item>
+      <title>Loop Engineering</title>
+      <link>https://datafibers-community.github.io/tags/loop-engineering/</link>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/loop-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Lora</title>
       <link>https://datafibers-community.github.io/tags/lora/</link>
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
@@ -567,6 +612,15 @@
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/mixture-of-experts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mlops</title>
+      <link>https://datafibers-community.github.io/tags/mlops/</link>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/mlops/</guid>
       <description></description>
     </item>
     
@@ -837,6 +891,15 @@
       <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/streaming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>System Design</title>
+      <link>https://datafibers-community.github.io/tags/system-design/</link>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/system-design/</guid>
       <description></description>
     </item>
     

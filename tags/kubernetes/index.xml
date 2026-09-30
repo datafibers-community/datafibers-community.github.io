@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Under the Hood: Mastering Loop Engineering for Autonomous Systems</title>
+      <link>https://datafibers-community.github.io/blog/2026/09/30/2026-09-30-under-the-hood-mastering-loop-engineering-for-autonomous-systems/</link>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/09/30/2026-09-30-under-the-hood-mastering-loop-engineering-for-autonomous-systems/</guid>
+      <description>In the quest for increasingly autonomous and self-optimizing systems, Loop Engineering emerges as a critical discipline. Far beyond simple iterative programming constructs, it&amp;rsquo;s the art and science of designing, building, and managing sophisticated feedback loops that enable systems to observe, analyze, decide, and act (OODA/SADA) in response to dynamic environments. For the DataFibers Community, this isn&amp;rsquo;t just theory; it&amp;rsquo;s the architectural bedrock for resilient distributed systems, advanced MLOps pipelines, and intelligent infrastructure automation.</description>
+    </item>
     
     <item>
       <title>Demystifying Open-CLAW: Under the Hood of Cloud Native Application Lifecycle Management</title>
