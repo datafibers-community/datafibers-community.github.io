@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Oct 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/llm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kimi-model Deep Dive: Unpacking the Architecture and Implementation of a Customizable Language Model</title>
+      <link>https://datafibers-community.github.io/blog/2026/10/04/2026-10-04-kimi-model-deep-dive-unpacking-the-architecture-and-implementation-of-a-customizable-language-model/</link>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/10/04/2026-10-04-kimi-model-deep-dive-unpacking-the-architecture-and-implementation-of-a-customizable-language-model/</guid>
+      <description>The landscape of large language models (LLMs) is rapidly evolving, with a constant stream of new architectures and fine-tuning techniques emerging. Among these, kimi-model stands out for its focus on modularity, customization, and efficient deployment. This deep-dive will take you under the hood of kimi-model, exploring its architectural patterns, the intricacies of its implementation, and the practical challenges you might encounter when integrating it into your data pipelines.
+Beyond the Black Box: Architectural Foundations of kimi-model While many LLMs present themselves as monolithic entities, kimi-model is designed with a modular approach.</description>
+    </item>
     
     <item>
       <title>Unpacking Claude&#39;s Code Brain: A Deep Dive into AI-Native Development</title>
