@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 02 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 11 Oct 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/data-engineering/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Beyond Basics: Unpacking Grok&#39;s Engine for Data Engineers</title>
+      <link>https://datafibers-community.github.io/blog/2026/10/11/2026-10-11-beyond-basics-unpacking-groks-engine-for-data-engineers/</link>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/10/11/2026-10-11-beyond-basics-unpacking-groks-engine-for-data-engineers/</guid>
+      <description>Grok, a seemingly simple pattern-matching tool, is more than just a regex superset. For data engineers, understanding its inner workings is crucial for efficient log parsing, anomaly detection, and building robust data pipelines. This deep-dive will explore grok&amp;rsquo;s architecture, common pitfalls, and advanced usage patterns.
+The Grok &amp;ldquo;Engine&amp;rdquo;: A State Machine Under the Hood At its core, grok operates like a sophisticated state machine. When grok parses a line of text, it attempts to match predefined patterns against the incoming data.</description>
+    </item>
     
     <item>
       <title>Databricks Under the Hood: Delta Lake, Photon, and Unity Catalog Deconstructed</title>

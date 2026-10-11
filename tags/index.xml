@@ -213,7 +213,7 @@
     <item>
       <title>Data Engineering</title>
       <link>https://datafibers-community.github.io/tags/data-engineering/</link>
-      <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/data-engineering/</guid>
       <description></description>
@@ -411,7 +411,7 @@
     <item>
       <title>Grok</title>
       <link>https://datafibers-community.github.io/tags/grok/</link>
-      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/grok/</guid>
       <description></description>
@@ -571,11 +571,29 @@
     </item>
     
     <item>
+      <title>Log Parsing</title>
+      <link>https://datafibers-community.github.io/tags/log-parsing/</link>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/log-parsing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Logs</title>
       <link>https://datafibers-community.github.io/tags/logs/</link>
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/logs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logstash</title>
+      <link>https://datafibers-community.github.io/tags/logstash/</link>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/logstash/</guid>
       <description></description>
     </item>
     
@@ -738,6 +756,15 @@
       <pubDate>Wed, 19 Aug 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/pagedattention/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pattern Matching</title>
+      <link>https://datafibers-community.github.io/tags/pattern-matching/</link>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/pattern-matching/</guid>
       <description></description>
     </item>
     
