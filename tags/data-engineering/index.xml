@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 11 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Oct 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/data-engineering/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deep Dive into Codex: Architecting Intelligent Data Pipelines with AI</title>
+      <link>https://datafibers-community.github.io/blog/2026/10/14/2026-10-14-deep-dive-into-codex-architecting-intelligent-data-pipelines-with-ai/</link>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/10/14/2026-10-14-deep-dive-into-codex-architecting-intelligent-data-pipelines-with-ai/</guid>
+      <description>In the ever-evolving landscape of data engineering, the drive towards intelligent automation is relentless. While ETL/ELT tools have revolutionized data movement, the true frontier lies in empowering these pipelines with cognitive capabilities. This is where technologies like OpenAI&amp;rsquo;s Codex, when thoughtfully integrated, can transform static data flows into dynamic, self-optimizing systems.
+This deep dive isn&amp;rsquo;t about a high-level &amp;ldquo;what is Codex?&amp;rdquo; overview. We&amp;rsquo;re going under the hood, exploring how to architect and implement Codex-powered solutions for practical data pipeline challenges.</description>
+    </item>
     
     <item>
       <title>Beyond Basics: Unpacking Grok&#39;s Engine for Data Engineers</title>

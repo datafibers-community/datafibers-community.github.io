@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/10/14/2026-10-14-deep-dive-into-codex-architecting-intelligent-data-pipelines-with-ai/</loc>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/10/11/2026-10-11-beyond-basics-unpacking-groks-engine-for-data-engineers/</loc>
     <lastmod>2026-10-11T00:00:00+00:00</lastmod>
   </url>
@@ -380,7 +385,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/ai/</loc>
-    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -463,6 +468,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/automation/</loc>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/categories/automation/</loc>
     <lastmod>2026-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -512,7 +523,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-10-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -607,6 +618,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/codex/</loc>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/community/</loc>
   </url>
   
@@ -628,7 +645,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/data-engineering/</loc>
-    <lastmod>2026-10-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -652,7 +669,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-10-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -934,7 +951,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/llm/</loc>
-    <lastmod>2026-10-04T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1090,7 +1107,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/orchestration/</loc>
-    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1133,6 +1150,12 @@
   <url>
     <loc>https://datafibers-community.github.io/tags/pipeline-parallelism/</loc>
     <lastmod>2026-08-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/pipelines/</loc>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1265,6 +1288,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/technical-deep-dive/</loc>
     <lastmod>2026-10-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/categories/technical-deep-dives/</loc>
+    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

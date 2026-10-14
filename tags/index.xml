@@ -24,7 +24,7 @@
     <item>
       <title>Ai</title>
       <link>https://datafibers-community.github.io/tags/ai/</link>
-      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/ai/</guid>
       <description></description>
@@ -90,6 +90,15 @@
       <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automation</title>
+      <link>https://datafibers-community.github.io/tags/automation/</link>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/automation/</guid>
       <description></description>
     </item>
     
@@ -193,6 +202,15 @@
     </item>
     
     <item>
+      <title>Codex</title>
+      <link>https://datafibers-community.github.io/tags/codex/</link>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/codex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Components</title>
       <link>https://datafibers-community.github.io/tags/components/</link>
       <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
@@ -213,7 +231,7 @@
     <item>
       <title>Data Engineering</title>
       <link>https://datafibers-community.github.io/tags/data-engineering/</link>
-      <pubDate>Sun, 11 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/data-engineering/</guid>
       <description></description>
@@ -555,7 +573,7 @@
     <item>
       <title>Llm</title>
       <link>https://datafibers-community.github.io/tags/llm/</link>
-      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/llm/</guid>
       <description></description>
@@ -744,7 +762,7 @@
     <item>
       <title>Orchestration</title>
       <link>https://datafibers-community.github.io/tags/orchestration/</link>
-      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/orchestration/</guid>
       <description></description>
@@ -810,6 +828,15 @@
       <pubDate>Sun, 02 Aug 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/pipeline-parallelism/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pipelines</title>
+      <link>https://datafibers-community.github.io/tags/pipelines/</link>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/pipelines/</guid>
       <description></description>
     </item>
     
