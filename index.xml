@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 14 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unpacking RAG: An Under-the-Hood Deep Dive into Retrieval Augmented Generation Architectures</title>
+      <link>https://datafibers-community.github.io/blog/2026/10/21/2026-10-21-unpacking-rag-an-under-the-hood-deep-dive-into-retrieval-augmented-generation-architectures/</link>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/10/21/2026-10-21-unpacking-rag-an-under-the-hood-deep-dive-into-retrieval-augmented-generation-architectures/</guid>
+      <description>The promise of Large Language Models (LLMs) is transformative, yet their Achilles&amp;rsquo; heel often lies in their knowledge cutoff and propensity for &amp;lsquo;hallucinations.&amp;rsquo; Retrieval Augmented Generation (RAG) emerged as a powerful paradigm to address these limitations, grounding LLM responses in factual, external knowledge. But beyond the high-level concept of &amp;lsquo;retrieving and generating,&amp;rsquo; what does a robust, production-ready RAG system truly entail? This deep dive will pull back the curtain, exploring the architectural nuances, core components, and common challenges in building sophisticated RAG applications.</description>
+    </item>
     
     <item>
       <title>Deep Dive into Codex: Architecting Intelligent Data Pipelines with AI</title>

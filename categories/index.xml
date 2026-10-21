@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Sun, 26 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Ai Engineering</title>
       <link>https://datafibers-community.github.io/categories/ai-engineering/</link>
-      <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/ai-engineering/</guid>
       <description></description>
@@ -166,6 +166,15 @@
     </item>
     
     <item>
+      <title>Data Architecture</title>
+      <link>https://datafibers-community.github.io/categories/data-architecture/</link>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/data-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Data Engineering</title>
       <link>https://datafibers-community.github.io/categories/data-engineering/</link>
       <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
@@ -270,6 +279,15 @@
       <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/categories/lakehouse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Large Language Models</title>
+      <link>https://datafibers-community.github.io/categories/large-language-models/</link>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/categories/large-language-models/</guid>
       <description></description>
     </item>
     

@@ -40,6 +40,15 @@
     </item>
     
     <item>
+      <title>Ai Engineering</title>
+      <link>https://datafibers-community.github.io/tags/ai-engineering/</link>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/ai-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ai Native Development</title>
       <link>https://datafibers-community.github.io/tags/ai-native-development/</link>
       <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
@@ -222,7 +231,7 @@
     <item>
       <title>Data Architecture</title>
       <link>https://datafibers-community.github.io/tags/data-architecture/</link>
-      <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/data-architecture/</guid>
       <description></description>
@@ -573,7 +582,7 @@
     <item>
       <title>Llm</title>
       <link>https://datafibers-community.github.io/tags/llm/</link>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/llm/</guid>
       <description></description>
@@ -724,6 +733,15 @@
     </item>
     
     <item>
+      <title>Nlp</title>
+      <link>https://datafibers-community.github.io/tags/nlp/</link>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Nosql</title>
       <link>https://datafibers-community.github.io/tags/nosql/</link>
       <pubDate>Sun, 17 Jun 2018 13:50:46 +0200</pubDate>
@@ -861,7 +879,7 @@
     <item>
       <title>Rag</title>
       <link>https://datafibers-community.github.io/tags/rag/</link>
-      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/rag/</guid>
       <description></description>
@@ -1026,6 +1044,15 @@
       <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://datafibers-community.github.io/tags/unity-catalog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vector Database</title>
+      <link>https://datafibers-community.github.io/tags/vector-database/</link>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/tags/vector-database/</guid>
       <description></description>
     </item>
     
