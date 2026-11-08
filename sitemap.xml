@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/11/08/2026-11-08-deepseek-under-the-hood-dissecting-moe-architectures-and-practical-deployment/</loc>
+    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/10/28/2026-10-28-beyond-the-basics-demystifying-azure-networking-for-secure-interconnections/</loc>
     <lastmod>2026-10-28T00:00:00+00:00</lastmod>
   </url>
@@ -430,6 +435,12 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/categories/ai/ml-engineering/</loc>
+    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/tags/aiagent/</loc>
     <lastmod>2026-07-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -539,7 +550,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-10-28T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -691,7 +702,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-10-28T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -739,7 +750,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/deepseek/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -973,7 +984,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/large-language-models/</loc>
-    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
