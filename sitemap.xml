@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/11/11/2026-11-11-beyond-autocomplete-an-under-the-hood-look-at-openai-codex-for-ai-engineers/</loc>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/11/08/2026-11-08-deepseek-under-the-hood-dissecting-moe-architectures-and-practical-deployment/</loc>
     <lastmod>2026-11-08T00:00:00+00:00</lastmod>
   </url>
@@ -412,13 +417,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/ai-engineering/</loc>
-    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/categories/ai-engineering/</loc>
-    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -550,7 +555,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -568,7 +573,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/</loc>
-    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -640,13 +645,13 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/code-generation/</loc>
-    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://datafibers-community.github.io/tags/codex/</loc>
-    <lastmod>2026-10-14T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -702,7 +707,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -983,8 +988,14 @@
   </url>
   
   <url>
+    <loc>https://datafibers-community.github.io/tags/large-language-models/</loc>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/categories/large-language-models/</loc>
-    <lastmod>2026-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1147,6 +1158,12 @@
   <url>
     <loc>https://datafibers-community.github.io/categories/open-source/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://datafibers-community.github.io/tags/openai-api/</loc>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

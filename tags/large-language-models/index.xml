@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Large Language Models on DataFibers</title>
+    <link>https://datafibers-community.github.io/tags/large-language-models/</link>
+    <description>Recent content in Large Language Models on DataFibers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
+    <lastBuildDate>Wed, 11 Nov 2026 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://datafibers-community.github.io/tags/large-language-models/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Beyond Autocomplete: An Under-the-Hood Look at OpenAI Codex for AI Engineers</title>
+      <link>https://datafibers-community.github.io/blog/2026/11/11/2026-11-11-beyond-autocomplete-an-under-the-hood-look-at-openai-codex-for-ai-engineers/</link>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/11/11/2026-11-11-beyond-autocomplete-an-under-the-hood-look-at-openai-codex-for-ai-engineers/</guid>
+      <description>The world of software development has been irrevocably changed by Large Language Models (LLMs). While many are familiar with general-purpose LLMs for text generation, OpenAI&amp;rsquo;s Codex stands out as a specialized marvel, engineered specifically to understand and generate code. Far from being a mere autocomplete tool, Codex represents a sophisticated synthesis of deep learning and domain-specific knowledge. This deep dive will peel back the layers, exploring Codex&amp;rsquo;s architectural underpinnings, specialized training methodologies, and practical implications for AI engineers.</description>
+    </item>
+    
+  </channel>
+</rss>
