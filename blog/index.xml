@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 11 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Demystifying Codex: Under-the-Hood with Code Generation Architectures</title>
+      <link>https://datafibers-community.github.io/blog/2026/11/15/2026-11-15-demystifying-codex-under-the-hood-with-code-generation-architectures/</link>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/11/15/2026-11-15-demystifying-codex-under-the-hood-with-code-generation-architectures/</guid>
+      <description>Demystifying Codex: Under-the-Hood with Code Generation Architectures In the rapidly evolving landscape of software development, tools powered by advanced AI models are transforming how we write, debug, and understand code. At the forefront of this revolution is Codex, the underlying model series that powers tools like GitHub Copilot. While its ability to generate contextually relevant code snippets is widely known, a deep understanding of its architecture, operational patterns, and practical implementation challenges is essential for engineers looking to leverage its full potential.</description>
+    </item>
     
     <item>
       <title>Beyond Autocomplete: An Under-the-Hood Look at OpenAI Codex for AI Engineers</title>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://datafibers-community.github.io/blog/2026/11/15/2026-11-15-demystifying-codex-under-the-hood-with-code-generation-architectures/</loc>
+    <lastmod>2026-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://datafibers-community.github.io/blog/2026/11/11/2026-11-11-beyond-autocomplete-an-under-the-hood-look-at-openai-codex-for-ai-engineers/</loc>
     <lastmod>2026-11-11T00:00:00+00:00</lastmod>
   </url>
@@ -555,7 +560,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/blog/</loc>
-    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -579,7 +584,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/categories/category1/</loc>
-    <lastmod>2026-09-06T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -651,7 +656,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/tags/codex/</loc>
-    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -707,7 +712,7 @@
   
   <url>
     <loc>https://datafibers-community.github.io/</loc>
-    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
