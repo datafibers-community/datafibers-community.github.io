@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2026, DataFibers all rights reserved.</copyright>
-    <lastBuildDate>Wed, 16 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://datafibers-community.github.io/tags/godot/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unveiling Godot&#39;s Core: A Deep Dive into its Architectural Underpinnings</title>
+      <link>https://datafibers-community.github.io/blog/2026/11/18/2026-11-18-unveiling-godots-core-a-deep-dive-into-its-architectural-underpinnings/</link>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://datafibers-community.github.io/blog/2026/11/18/2026-11-18-unveiling-godots-core-a-deep-dive-into-its-architectural-underpinnings/</guid>
+      <description>The Godot Engine has rapidly gained traction as a powerful, open-source game development platform. While its ease of use and GDScript syntax are often highlighted, understanding the robust architectural patterns beneath its friendly facade is crucial for building complex, performant, and maintainable projects. This deep dive will go beyond the basics, exploring Godot&amp;rsquo;s fundamental design principles, internal mechanisms, and how they empower developers.
+The Scene Tree: Godot&amp;rsquo;s Hierarchical Backbone At the heart of Godot&amp;rsquo;s architecture lies the Scene Tree.</description>
+    </item>
     
     <item>
       <title>Godot&#39;s Core: Unpacking the Node-Based Architecture and C&#43;&#43; Extensibility</title>
